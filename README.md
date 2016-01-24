@@ -15,12 +15,28 @@ Goals:
 At the moment the build is running using [gulp](http://gulpjs.com/) (just to compile sass but more will likely be added to this)
 
 Make sure you have [gulp](http://gulpjs.com/) (and [node](https://nodejs.org/en/)) installed
-globally on your machine
+globally on your machine. To install gulp run this in the terminal:
 
 ```
 $ npm install --global gulp
 ```
 
-this will let you use the gulp via the command line
+this lets you use the gulp via the command line
 
-Both the artwork and idea specifically are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License
+to install all the dependencies `cd` into the `seed` folder, and then run:
+
+```
+$ npm install
+```
+
+If you want to make changes to the stylesheets, make sure you're in the seed folder and then just type:
+
+```
+$ gulp
+```
+
+into the terminal.
+
+If you'd like to collaborate feel free to leave an issue on github.
+
+Both the artwork and idea specifically are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License, the code is free to use otherwise.
