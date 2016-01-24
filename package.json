@@ -1,7 +1,7 @@
 {
   "name": "seed",
   "version": "1.0.0",
-  "description": "A candy crush style game where the user gathers seeds",
+  "description": "A two dots style game where the user gathers seeds",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
