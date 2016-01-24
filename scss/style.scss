@@ -1,0 +1,88 @@
+/***----------------
+body and wrapper
+----------------***/
+@import './scss/variables';
+@import './scss/mixins';
+
+body {
+   margin: 0;
+   font-family: Lato;
+   background-color: #FFFCD5;
+}
+#app {
+   position: fixed;
+   width: 100%;
+   height: 100%;
+}
+nav {
+   text-align: center;
+}
+
+/***----------------
+main grid
+----------------***/
+.seed-icon {
+   margin: 2em auto;
+   position: absolute;
+   left: 0;
+   right: 0;
+}
+
+#grid-container {
+   width: 400px;
+   margin: 50px auto;
+}
+
+.item {
+   width: $item-size;
+   height: $item-size;
+   margin: auto;
+}
+
+/***----------------
+seed backgrounds
+----------------***/
+.seed {
+   background: url(../img/Seed-icon.png);
+   background-size: contain;
+   background-repeat: no-repeat;
+   background-position-x: 50%;
+}
+
+.seedling {
+   background-color: #78C143;
+   border-radius: $item-size / 2
+}
+
+.water {
+   background-color: #26AAE1;
+   border-radius: $item-size / 2;
+}
+
+/***----------------
+grid system
+----------------***/
+.row {
+   width: 100%;
+}
+.row:after {
+   content: "";
+   display: table;
+   clear: both;
+}
+[class*='col-'] {
+   float: left;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+   padding: 10px;
+   // border: 1px blue solid;
+}
+[class*='col-']:last-of-type {
+   padding-right: 0;
+}
+@for $i from 1 through $columns {
+   .col-#{$i} {
+      width: ((100 / $columns) * $i) * 1%;
+      min-height: 50px;
+   }
+}
