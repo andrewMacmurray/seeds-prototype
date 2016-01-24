@@ -19,12 +19,13 @@ main grid
 ----------------***/
 .seed-icon {
   margin: 2em auto;
+  width: 3em;
   position: absolute;
   left: 0;
   right: 0; }
 
 #grid-container {
-  width: 400px;
+  width: 500px;
   margin: 50px auto; }
 
 .item {
@@ -71,64 +72,64 @@ grid system
 
 .col-1 {
   width: 6.25%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-2 {
   width: 12.5%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-3 {
   width: 18.75%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-4 {
   width: 25%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-5 {
   width: 31.25%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-6 {
   width: 37.5%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-7 {
   width: 43.75%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-8 {
   width: 50%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-9 {
   width: 56.25%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-10 {
   width: 62.5%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-11 {
   width: 68.75%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-12 {
   width: 75%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-13 {
   width: 81.25%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-14 {
   width: 87.5%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-15 {
   width: 93.75%;
-  min-height: 50px; }
+  min-height: 55px; }
 
 .col-16 {
   width: 100%;
-  min-height: 50px; }
+  min-height: 55px; }

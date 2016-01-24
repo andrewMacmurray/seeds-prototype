@@ -23,13 +23,14 @@ main grid
 ----------------***/
 .seed-icon {
    margin: 2em auto;
+   width: 3em;
    position: absolute;
    left: 0;
    right: 0;
 }
 
 #grid-container {
-   width: 400px;
+   width: 500px;
    margin: 50px auto;
 }
 
@@ -51,7 +52,7 @@ seed backgrounds
 
 .seedling {
    background-color: #78C143;
-   border-radius: $item-size / 2
+   border-radius: $item-size / 2;
 }
 
 .water {
@@ -83,6 +84,6 @@ grid system
 @for $i from 1 through $columns {
    .col-#{$i} {
       width: ((100 / $columns) * $i) * 1%;
-      min-height: 50px;
+      min-height: 55px;
    }
 }
