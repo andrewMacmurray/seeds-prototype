@@ -10,7 +10,7 @@ Goals:
 + Experiment with either a match 3 system or a connect the dots system to collect the seeds
 + Different sizes / layouts of each board
 + Maybe use gsap animation library for more complex animation effects / sequencing
-+ A level system where the user progresses either through a hub world (maybe save this for iphone/android implementation later on)
++ A level system where the user progresses through a hub world (maybe save this for iphone/android implementation later on)
 
 At the moment the build is running using [gulp](http://gulpjs.com/) (just to compile sass but more will likely be added to this)
 
@@ -23,7 +23,7 @@ $ npm install --global gulp
 
 this lets you use the gulp via the command line
 
-to install all the dependencies `cd` into the `seed` folder, and then run:
+to install all the dependencies, clone this repository, `cd` into the `seed` folder, and then run:
 
 ```
 $ npm install
