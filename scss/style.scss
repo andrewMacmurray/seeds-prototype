@@ -18,6 +18,12 @@ nav {
    text-align: center;
 }
 
+@media (max-height: 700px) {
+   nav {
+      display: none;
+   }
+}
+
 /***----------------
 main grid
 ----------------***/
@@ -38,13 +44,14 @@ main grid
    width: $item-size;
    height: $item-size;
    margin: auto;
+   transition: 0.3s ease;
 }
 
 /***----------------
 seed backgrounds
 ----------------***/
 .seed {
-   background: url(../img/Seed-icon.png);
+   background: url(../img/seed-dark.png);
    background-size: contain;
    background-repeat: no-repeat;
    background-position-x: 50%;
@@ -58,6 +65,15 @@ seed backgrounds
 .water {
    background-color: #26AAE1;
    border-radius: $item-size / 2;
+}
+
+.sunshine {
+   background-color: #F26521;
+   border-radius: $item-size / 2;
+}
+
+.large {
+   transform: scale(1.3);
 }
 
 /***----------------

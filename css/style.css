@@ -14,6 +14,10 @@ body {
 nav {
   text-align: center; }
 
+@media (max-height: 700px) {
+  nav {
+    display: none; } }
+
 /***----------------
 main grid
 ----------------***/
@@ -31,13 +35,14 @@ main grid
 .item {
   width: 30px;
   height: 30px;
-  margin: auto; }
+  margin: auto;
+  transition: 0.3s ease; }
 
 /***----------------
 seed backgrounds
 ----------------***/
 .seed {
-  background: url(../img/Seed-icon.png);
+  background: url(../img/seed-dark.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position-x: 50%; }
@@ -49,6 +54,13 @@ seed backgrounds
 .water {
   background-color: #26AAE1;
   border-radius: 15px; }
+
+.sunshine {
+  background-color: #F26521;
+  border-radius: 15px; }
+
+.large {
+  transform: scale(1.3); }
 
 /***----------------
 grid system
