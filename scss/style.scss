@@ -44,7 +44,6 @@ main grid
    width: $item-size;
    height: $item-size;
    margin: auto;
-   transition: 0.3s ease;
 }
 
 /***----------------
@@ -55,21 +54,25 @@ seed backgrounds
    background-size: contain;
    background-repeat: no-repeat;
    background-position-x: 50%;
+   transition: 0.3s ease;
 }
 
 .seedling {
    background-color: #78C143;
    border-radius: $item-size / 2;
+   transition: 0.3s ease;
 }
 
 .water {
    background-color: #26AAE1;
    border-radius: $item-size / 2;
+   transition: 0.3s ease;
 }
 
 .sunshine {
    background-color: #F26521;
    border-radius: $item-size / 2;
+   transition: 0.3s ease;
 }
 
 .large {

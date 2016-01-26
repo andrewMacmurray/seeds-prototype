@@ -9,7 +9,7 @@ var responsiveHeight = function() {
 
 myEvents.forEach(function(event) {
    window.addEventListener(event, responsiveHeight, false);
-})
+});
 
 var columns = document.querySelectorAll('.item');
 
@@ -26,12 +26,10 @@ for (var i = 0; i < columns.length; i++) {
    }
 }
 
-
-
 var seedling = document.querySelectorAll('.seedling');
 var scaleSeed = function(e) {
    this.classList.add('large');
-}
+};
 console.log(seedling);
 for (var i = 0; i < seedling.length; i++) {
    seedling[i].addEventListener('mousedown', scaleSeed);
