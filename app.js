@@ -35,3 +35,13 @@ for (var i = 0; i < seedling.length; i++) {
    seedling[i].addEventListener('mousedown', scaleSeed);
    // seedling[i].addEventListener('mouseenter', scaleSeed);
 }
+
+var columnsArray = [].slice.call(columns);
+var obj = columnsArray.map(function(item) {
+   var itemType = item.classList[1];
+   if (itemType === 'sunshine') return 2;
+   if (itemType === 'water') return 'water';
+   if (itemType === 'seed') return 'green';
+   if (itemType === 'seedling') return 34;
+})
+console.log(columnsArray, obj);
