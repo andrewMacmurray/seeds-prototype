@@ -33,5 +33,5 @@ var scaleSeed = function(e) {
 console.log(seedling);
 for (var i = 0; i < seedling.length; i++) {
    seedling[i].addEventListener('mousedown', scaleSeed);
-   seedling[i].addEventListener('mouseenter', scaleSeed);
+   // seedling[i].addEventListener('mouseenter', scaleSeed);
 }

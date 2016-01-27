@@ -35,8 +35,7 @@ main grid
 .item {
   width: 30px;
   height: 30px;
-  margin: auto;
-  transition: 0.3s ease; }
+  margin: auto; }
 
 /***----------------
 seed backgrounds
@@ -49,7 +48,8 @@ seed backgrounds
 
 .seedling {
   background-color: #78C143;
-  border-radius: 15px; }
+  border-radius: 15px;
+  transition: transform 0.3s ease; }
 
 .water {
   background-color: #26AAE1;
