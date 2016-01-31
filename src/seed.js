@@ -16,7 +16,7 @@ function randomColor() {
 }
 
 function makeTile() {
-	return '<div class="col-2 ' + randomColor() + '"><div class="item"></div></div>';
+	return '<div class="col-2"><div class="item ' + randomColor() + '"></div></div>';
 }
 
 function makeRow() {
@@ -24,7 +24,7 @@ function makeRow() {
 	for (var i = 0; i < 8; i++) {
 		tiles += makeTile();
 	}
-	return '<div>' + tiles + '</div>';
+	return '<div class="row">' + tiles + '</div>';
 }
 
 
