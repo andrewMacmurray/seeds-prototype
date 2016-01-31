@@ -12,7 +12,7 @@ function buildMap() {
             if (item.firstChild.className === 'item water') data.type = 'water';
             if (item.firstChild.className === 'item sunshine') data.type = 'sunshine';
             if (item.firstChild.className === 'item seedling') data.type = 'seedling';
-            data.id = '' + i + j;
+            data.coordinates = [i, j];
             return data;
         });
         map.push(itemMap);
