@@ -5,7 +5,7 @@ body {
   margin: 0;
   font-family: Lato;
   background-color: #FFFCD5;
-  transition: 3s ease; }
+  transition: 2.5s ease; }
 
 #app {
   position: fixed;
@@ -60,8 +60,8 @@ seed backgrounds
   background-color: #F26521;
   border-radius: 15px; }
 
-.large {
-  transform: scale(1.3); }
+.small {
+  transform: scale(0.5); }
 
 /***----------------
 grid system
@@ -78,7 +78,8 @@ grid system
   float: left;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 10px; }
+  padding: 10px;
+  transition: 0.3s ease; }
 
 [class*='col-']:last-of-type {
   padding-right: 0; }

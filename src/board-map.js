@@ -24,18 +24,19 @@ function buildMap() {
 }
 
 var waterTotal = 0;
-var dragging = false;
+var waterDragging = false;
 function setDragging() {
+    this.className += ' small';
     waterTotal ++;
-    dragging = true;
+    waterDragging = true;
 }
 function stopDragging() {
-    dragging = false;
+    waterDragging = false;
     waterTotal = 0;
 }
 function addWater() {
-    console.log(waterTotal, 'water');
-    if (dragging === true) {
+    if (waterDragging === true) {
+        this.className += ' small';
         waterTotal ++;
     }
     if (waterTotal === 5) {
@@ -43,13 +44,12 @@ function addWater() {
         document.body.style.backgroundColor = '#92CAE3';
         setTimeout(function() {
             document.body.style.backgroundColor = '#FFFCD5';
-        }, 5000);
+        }, 3500);
     }
 }
 
 
 var waterTiles = document.getElementsByClassName('water');
-console.log(waterTiles);
 for (var i = 0; i < waterTiles.length; i++) {
     var waterNode = waterTiles[i].parentNode;
     waterNode.addEventListener('mousedown', setDragging);
