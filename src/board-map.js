@@ -49,8 +49,10 @@ function addWater() {
 
 
 var waterTiles = document.getElementsByClassName('water');
+console.log(waterTiles);
 for (var i = 0; i < waterTiles.length; i++) {
-    waterTiles[i].addEventListener('mousedown', setDragging);
-    waterTiles[i].addEventListener('mouseup', stopDragging);
-    waterTiles[i].addEventListener('mouseenter', addWater);
+    var waterNode = waterTiles[i].parentNode;
+    waterNode.addEventListener('mousedown', setDragging);
+    waterNode.addEventListener('mouseup', stopDragging);
+    waterNode.addEventListener('mouseenter', addWater);
 }
