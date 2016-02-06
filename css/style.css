@@ -5,7 +5,7 @@ body {
   margin: 0;
   font-family: Lato;
   background-color: #FFFCD5;
-  transition: 2.5s ease; }
+  transition: 1s linear; }
 
 #app {
   position: fixed;
@@ -37,6 +37,9 @@ main grid
   width: 30px;
   height: 30px;
   margin: auto; }
+
+.col-2.mouseDown:hover {
+  cursor: grabbing; }
 
 /***----------------
 seed backgrounds
@@ -147,3 +150,6 @@ grid system
 .col-16 {
   width: 100%;
   min-height: 55px; }
+
+.mouseDown {
+  cursor: -webkit-grabbing; }
