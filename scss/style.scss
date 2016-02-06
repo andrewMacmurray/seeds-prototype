@@ -8,6 +8,7 @@ body {
    margin: 0;
    font-family: Lato;
    background-color: #FFFCD5;
+   transition: 1s linear;
 }
 #app {
    position: fixed;
@@ -46,6 +47,10 @@ main grid
    margin: auto;
 }
 
+.col-2.mouseDown:hover {
+	cursor: grabbing;
+}
+
 /***----------------
 seed backgrounds
 ----------------***/
@@ -54,7 +59,6 @@ seed backgrounds
    background-size: contain;
    background-repeat: no-repeat;
    background-position-x: 50%;
-
 }
 
 .seedling {
@@ -75,8 +79,8 @@ seed backgrounds
 
 }
 
-.large {
-   transform: scale(1.3);
+.small {
+   transform: scale(0.5);
 }
 
 /***----------------
@@ -90,13 +94,16 @@ grid system
    display: table;
    clear: both;
 }
+
 [class*='col-'] {
    float: left;
    -webkit-box-sizing: border-box;
    box-sizing: border-box;
    padding: 10px;
+   transition: 0.3s ease;
    // border: 1px blue solid;
 }
+
 [class*='col-']:last-of-type {
    padding-right: 0;
 }
@@ -105,4 +112,8 @@ grid system
       width: ((100 / $columns) * $i) * 1%;
       min-height: 55px;
    }
+}
+
+.mouseDown {
+	cursor: -webkit-grabbing;
 }

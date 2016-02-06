@@ -4,7 +4,8 @@ body and wrapper
 body {
   margin: 0;
   font-family: Lato;
-  background-color: #FFFCD5; }
+  background-color: #FFFCD5;
+  transition: 1s linear; }
 
 #app {
   position: fixed;
@@ -37,6 +38,9 @@ main grid
   height: 30px;
   margin: auto; }
 
+.col-2.mouseDown:hover {
+  cursor: grabbing; }
+
 /***----------------
 seed backgrounds
 ----------------***/
@@ -59,8 +63,8 @@ seed backgrounds
   background-color: #F26521;
   border-radius: 15px; }
 
-.large {
-  transform: scale(1.3); }
+.small {
+  transform: scale(0.5); }
 
 /***----------------
 grid system
@@ -77,7 +81,8 @@ grid system
   float: left;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 10px; }
+  padding: 10px;
+  transition: 0.3s ease; }
 
 [class*='col-']:last-of-type {
   padding-right: 0; }
@@ -145,3 +150,6 @@ grid system
 .col-16 {
   width: 100%;
   min-height: 55px; }
+
+.mouseDown {
+  cursor: -webkit-grabbing; }
