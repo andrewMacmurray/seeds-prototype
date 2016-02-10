@@ -64,7 +64,7 @@ function addWater() {
         waterTotal = 0;
         document.body.style.backgroundColor = '#92C9E3';
         setTimeout(function() {
-            document.body.style.backgroundColor = '#FFFCD5';
+            document.body.style.backgroundColor = '#FFFCB0';
         }, 1500);
     }
 }
