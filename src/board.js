@@ -5,7 +5,7 @@
 // make a random color
 // append its contents to the DOM
 
-
+var a = 1;
 
 function randomColor() {
 	var random = Math.random();
@@ -38,3 +38,7 @@ function populateBoard() {
 }
 
 populateBoard();
+
+module.exports = {
+	populateBoard: populateBoard
+};
