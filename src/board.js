@@ -5,8 +5,6 @@
 // make a random color
 // append its contents to the DOM
 
-
-
 function randomColor() {
 	var random = Math.random();
 	if (random < 0.1) return 'seed';
@@ -37,4 +35,8 @@ function populateBoard() {
     container.innerHTML = rows;
 }
 
-populateBoard();
+// populateBoard();
+
+module.exports = {
+	populateBoard: populateBoard
+};
