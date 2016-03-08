@@ -4,7 +4,8 @@
   "description": "A two dots style game where the user gathers seeds",
   "main": "app.js",
   "scripts": {
-    "build": "watchify ./src/main.js -o bundle.js"
+    "build": "watchify ./src/main.js -o bundle.js",
+    "sass": "sass --watch ./scss/style.scss:./css/style.css"
   },
   "author": "Andrew MacMurray",
   "license": "ISC",

@@ -18,7 +18,6 @@ nav {
 @media (max-height: 700px) {
   nav {
     display: none; } }
-
 /***----------------
 main grid
 ----------------***/
@@ -153,3 +152,5 @@ grid system
 
 .mouseDown {
   cursor: -webkit-grabbing; }
+
+/*# sourceMappingURL=style.css.map */

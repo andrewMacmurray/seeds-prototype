@@ -1,14 +1,15 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+"use strict";
 const buildMap = () => {
-	var rows = document.getElementsByClassName('row');
+	let rows = document.getElementsByClassName('row');
 	rows = [].slice.call(rows);
-	var map = [];
+	let map = [];
 
 	rows.forEach(function (row, i) {
-		var items = row.childNodes;
+		let items = row.childNodes;
 		items = [].slice.call(items);
-		var itemMap = items.map(function (item, j) {
-			var data = {};
+		let itemMap = items.map(function (item, j) {
+			let data = {};
 			if (item.firstChild.className === 'item seed') data.type = 'seed';
 			if (item.firstChild.className === 'item water') data.type = 'water';
 			if (item.firstChild.className === 'item sunshine') data.type = 'sunshine';
@@ -24,47 +25,8 @@ const buildMap = () => {
 	return map;
 };
 
-const setTiles = (type, color) => {
-	var waterTotal = 0;
-	var waterDragging = false;
-
-	function setDragging(e) {
-		e.target.className += ' small';
-		waterTotal++;
-		waterDragging = true;
-	}
-
-	function stopDragging() {
-		waterDragging = false;
-		waterTotal = 0;
-	}
-
-	function addWater(e) {
-		if (waterDragging === true) {
-			e.target.className += ' small';
-			waterTotal++;
-		}
-		if (waterTotal === 5) {
-			waterTotal = 0;
-			document.body.style.backgroundColor = color;
-			setTimeout(function () {
-				document.body.style.backgroundColor = '#FFFCD5';
-			}, 3500);
-		}
-	}
-
-	var waterTiles = document.getElementsByClassName(type);
-	for (var i = 0; i < waterTiles.length; i++) {
-		var waterNode = waterTiles[i].parentNode;
-		waterNode.addEventListener('mousedown', setDragging);
-		waterNode.addEventListener('mouseup', stopDragging);
-		waterNode.addEventListener('mouseenter', addWater);
-	}
-};
-
 module.exports = {
 	buildMap: buildMap,
-	setTiles: setTiles
 };
 
 },{}],2:[function(require,module,exports){
@@ -87,7 +49,7 @@ function makeTile() {
 	return '<div class="col-2"><div class="item ' + randomColor() + '"></div></div>';
 }
 
-function makeRow() {
+function makeColumn() {
 	var tiles = '';
 	for (var i = 0; i < 8; i++) {
 		tiles += makeTile();
@@ -98,11 +60,11 @@ function makeRow() {
 
 function populateBoard() {
     var container = document.getElementById('grid-container');
-    var rows = '';
+    var columns = '';
 	for (var i = 0; i < 8; i++) {
-		rows += makeRow();
+		columns += makeColumn();
 	}
-    container.innerHTML = rows;
+    container.innerHTML = columns;
 }
 
 // populateBoard();
@@ -115,26 +77,72 @@ module.exports = {
 "use strict";
 const Board = require('./board.js');
 const BoardMap = require('./board-map.js');
+const Tiles = require('./tiles.js');
 Board.populateBoard();
 console.log(BoardMap.buildMap());
 
 let blue = '#92CAE3';
 let orange = '#F99F36';
-BoardMap.setTiles('water', blue);
-BoardMap.setTiles('sunshine', orange);
+Tiles.setTiles('water', blue);
+Tiles.setTiles('sunshine', orange);
 
+(function() {
+	const myEvents = ['load', 'resize'];
+	const grid = document.getElementById('grid-container');
 
-var myEvents = ['load', 'resize'];
-var grid = document.getElementById('grid-container');
+	const responsiveHeight = () => {
+	   let height = window.innerHeight;
+	   let margin = (height - grid.clientHeight) / 2;
+	   grid.style.margin = margin + 'px auto';
+	};
 
-var responsiveHeight = function() {
-   var height = window.innerHeight;
-   var margin = (height - grid.clientHeight) / 2;
-   grid.style.margin = margin + 'px auto';
+	myEvents.forEach(function(event) {
+	   window.addEventListener(event, responsiveHeight, false);
+	});
+}());
+
+},{"./board-map.js":1,"./board.js":2,"./tiles.js":4}],4:[function(require,module,exports){
+"use strict";
+const setTiles = (type, color) => {
+	let waterTotal = 0;
+	let waterDragging = false;
+
+	const setDragging = (e) => {
+		e.target.className += ' small';
+		waterTotal++;
+		waterDragging = true;
+	};
+
+	const stopDragging = () => {
+		waterDragging = false;
+		waterTotal = 0;
+	};
+
+	const addWater = (e) => {
+		if (waterDragging === true) {
+			e.target.className += ' small';
+			waterTotal++;
+		}
+		if (waterTotal === 5) {
+			waterTotal = 0;
+			document.body.style.backgroundColor = color;
+			setTimeout(function () {
+				document.body.style.backgroundColor = '#FFFCD5';
+			}, 3500);
+		}
+	};
+
+	var waterTiles = document.getElementsByClassName(type);
+	for (let i = 0; i < waterTiles.length; i++) {
+		let waterNode = waterTiles[i].parentNode;
+		waterNode.addEventListener('mousedown', setDragging);
+		waterNode.addEventListener('mouseup', stopDragging);
+		waterNode.addEventListener('mouseenter', addWater);
+	}
 };
 
-myEvents.forEach(function(event) {
-   window.addEventListener(event, responsiveHeight, false);
-});
+module.exports = {
+  setTiles: setTiles
+};
 
-},{"./board-map.js":1,"./board.js":2}]},{},[3]);
+},{}]},{},[3]);
