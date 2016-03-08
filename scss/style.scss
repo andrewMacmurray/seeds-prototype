@@ -87,7 +87,8 @@ seed backgrounds
 grid system
 ----------------***/
 .row {
-   width: 100%;
+   width: 12.5%;
+   display: inline-block;
 }
 .row:after {
    content: "";
@@ -96,7 +97,7 @@ grid system
 }
 
 [class*='col-'] {
-   float: left;
+  //  float: left;
    -webkit-box-sizing: border-box;
    box-sizing: border-box;
    padding: 10px;
@@ -109,7 +110,7 @@ grid system
 }
 @for $i from 1 through $columns {
    .col-#{$i} {
-      width: ((100 / $columns) * $i) * 1%;
+      // width: ((100 / $columns) * $i) * 1%;
       min-height: 55px;
    }
 }
