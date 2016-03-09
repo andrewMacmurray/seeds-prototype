@@ -16,7 +16,7 @@ const setTiles = (type, color) => {
 			tile.classList.remove('small');
 		});
 		tilesArray = [];
-		console.log(tilesArray);
+		// console.log(tilesArray);
 		isDragging = false;
 		counter = 0;
 	};
@@ -24,7 +24,7 @@ const setTiles = (type, color) => {
 	const addWater = (e) => {
 		if (isDragging === true) {
 			tilesArray.push(e.target);
-			console.log(tilesArray);
+			// console.log(tilesArray);
 			e.target.firstChild.className += ' small';
 			counter++;
 		}
@@ -33,6 +33,11 @@ const setTiles = (type, color) => {
 				tile.style.opacity = 0;
 				setTimeout(() => {
 					tile.style.display = 'none';
+					if (tile.parentNode && tile.parentNode.className.indexOf('col-2') > -1) {
+						// console.log(tile.parentNode.className);
+						console.log('fired');
+						tile.parentNode.style.display = 'none';
+					}
 				}, 300)
 			});
 			tilesArray = [];
