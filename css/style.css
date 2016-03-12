@@ -67,6 +67,12 @@ seed backgrounds
 .small {
   transform: scale(0.5); }
 
+.rain {
+  background-color: #92CAE3; }
+
+.sun {
+  background-color: #F99F36; }
+
 /***----------------
 grid system
 ----------------***/

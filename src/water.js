@@ -21,7 +21,7 @@ function cursorDown() {
 var waterTotal = 0;
 var waterDragging = false;
 function setDragging() {
-    this.style.transform = 'translate(95px, -105px)';
+    this.style.transform = '	translate(95px, -105px)';
     waterTotal ++;
     waterDragging = true;
 }

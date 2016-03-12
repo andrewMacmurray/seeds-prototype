@@ -36,7 +36,7 @@ const setTiles = (type, color) => {
 					tile.style.display = 'none';
 					if (tile.parentNode && tile.parentNode.className.indexOf('col-2') > -1) {
 						// console.log(tile.parentNode.className);
-						console.log('fired');
+						// console.log('fired');
 						tile.parentNode.style.display = 'none';
 					}
 				}, 500)
@@ -44,14 +44,14 @@ const setTiles = (type, color) => {
 			tilesArray = [];
 			counter = 0;
 			isDragging = false;
-			document.body.style.backgroundColor = color;
+			document.body.classList.add(color);
 			setTimeout(function () {
-				document.body.style.backgroundColor = '#FFFCD5';
+				document.body.classList.remove(color);
 			}, 3500);
 		}
 	};
 
-	console.log(allTiles);
+	// console.log(allTiles);
 	for (let i = 0; i < allTiles.length; i++) {
 		let tileNode = allTiles[i].parentNode;
 		tileNode.addEventListener('mousedown', setDragging);

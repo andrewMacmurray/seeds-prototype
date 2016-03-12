@@ -78,13 +78,15 @@ module.exports = {
 const Board = require('./board.js');
 const BoardMap = require('./board-map.js');
 const Tiles = require('./tiles.js');
+const setMouseIcons = require('./mouse.js');
 Board.populateBoard();
-console.log(BoardMap.buildMap());
+// console.log(BoardMap.buildMap());
 
-let blue = '#92CAE3';
-let orange = '#F99F36';
-Tiles.setTiles('water', blue);
-Tiles.setTiles('sunshine', orange);
+// let blue = '#92CAE3';
+// let orange = '#F99F36';
+setMouseIcons();
+Tiles.setTiles('water', 'rain');
+Tiles.setTiles('sunshine', 'sun');
 
 (function() {
 	const myEvents = ['load', 'resize'];
@@ -101,7 +103,31 @@ Tiles.setTiles('sunshine', orange);
 	});
 }());
 
-},{"./board-map.js":1,"./board.js":2,"./tiles.js":4}],4:[function(require,module,exports){
+},{"./board-map.js":1,"./board.js":2,"./mouse.js":4,"./tiles.js":5}],4:[function(require,module,exports){
+"use strict";
+
+const cursorUp = (columns) => {
+	columns.forEach(column => {
+		column.classList.remove('mouseDown');
+	})
+}
+
+const cursorDown = (columns) => {
+	columns.forEach(column => {
+		column.classList.add('mouseDown');
+	})
+}
+const setMouseIcons = () => {
+	const columns = [].slice.call(document.getElementsByClassName('col-2'));
+	columns.forEach(column => {
+		column.addEventListener('mousedown', () => {cursorDown(columns)});
+		column.addEventListener('mouseup', () => {cursorUp(columns)});
+	})
+}
+
+module.exports = setMouseIcons;
+
+},{}],5:[function(require,module,exports){
 "use strict";
 const setTiles = (type, color) => {
 	let counter = 0;
@@ -140,7 +166,7 @@ const setTiles = (type, color) => {
 					tile.style.display = 'none';
 					if (tile.parentNode && tile.parentNode.className.indexOf('col-2') > -1) {
 						// console.log(tile.parentNode.className);
-						console.log('fired');
+						// console.log('fired');
 						tile.parentNode.style.display = 'none';
 					}
 				}, 500)
@@ -148,14 +174,14 @@ const setTiles = (type, color) => {
 			tilesArray = [];
 			counter = 0;
 			isDragging = false;
-			document.body.style.backgroundColor = color;
+			document.body.classList.add(color);
 			setTimeout(function () {
-				document.body.style.backgroundColor = '#FFFCD5';
+				document.body.classList.remove(color);
 			}, 3500);
 		}
 	};
 
-	console.log(allTiles);
+	// console.log(allTiles);
 	for (let i = 0; i < allTiles.length; i++) {
 		let tileNode = allTiles[i].parentNode;
 		tileNode.addEventListener('mousedown', setDragging);
