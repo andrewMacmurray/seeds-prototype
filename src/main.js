@@ -1,24 +1,26 @@
 "use strict";
 const Board = require('./board.js');
 const BoardMap = require('./board-map.js');
+const Tiles = require('./tiles.js');
 Board.populateBoard();
 console.log(BoardMap.buildMap());
 
 let blue = '#92CAE3';
 let orange = '#F99F36';
-BoardMap.setTiles('water', blue);
-BoardMap.setTiles('sunshine', orange);
+Tiles.setTiles('water', blue);
+Tiles.setTiles('sunshine', orange);
 
+(function() {
+	const myEvents = ['load', 'resize'];
+	const grid = document.getElementById('grid-container');
 
-var myEvents = ['load', 'resize'];
-var grid = document.getElementById('grid-container');
+	const responsiveHeight = () => {
+	   let height = window.innerHeight;
+	   let margin = (height - grid.clientHeight) / 2;
+	   grid.style.margin = margin + 'px auto';
+	};
 
-var responsiveHeight = function() {
-   var height = window.innerHeight;
-   var margin = (height - grid.clientHeight) / 2;
-   grid.style.margin = margin + 'px auto';
-};
-
-myEvents.forEach(function(event) {
-   window.addEventListener(event, responsiveHeight, false);
-});
+	myEvents.forEach(function(event) {
+	   window.addEventListener(event, responsiveHeight, false);
+	});
+}());

@@ -17,7 +17,7 @@ function makeTile() {
 	return '<div class="col-2"><div class="item ' + randomColor() + '"></div></div>';
 }
 
-function makeRow() {
+function makeColumn() {
 	var tiles = '';
 	for (var i = 0; i < 8; i++) {
 		tiles += makeTile();
@@ -28,11 +28,11 @@ function makeRow() {
 
 function populateBoard() {
     var container = document.getElementById('grid-container');
-    var rows = '';
+    var columns = '';
 	for (var i = 0; i < 8; i++) {
-		rows += makeRow();
+		columns += makeColumn();
 	}
-    container.innerHTML = rows;
+    container.innerHTML = columns;
 }
 
 // populateBoard();

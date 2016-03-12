@@ -1,8 +1,8 @@
 /***----------------
 body and wrapper
 ----------------***/
-@import 'scss/variables';
-@import 'scss/mixins';
+@import 'variables';
+@import 'mixins';
 
 body {
    margin: 0;
@@ -70,13 +70,14 @@ seed backgrounds
 .water {
    background-color: #26AAE1;
    border-radius: $item-size / 2;
+   transition: transform 0.3s ease;
 
 }
 
 .sunshine {
    background-color: #F26521;
    border-radius: $item-size / 2;
-
+   transition: transform 0.3s ease;
 }
 
 .small {
@@ -87,7 +88,8 @@ seed backgrounds
 grid system
 ----------------***/
 .row {
-   width: 100%;
+   width: 12.5%;
+   display: inline-block;
 }
 .row:after {
    content: "";
@@ -96,7 +98,7 @@ grid system
 }
 
 [class*='col-'] {
-   float: left;
+  //  float: left;
    -webkit-box-sizing: border-box;
    box-sizing: border-box;
    padding: 10px;
@@ -109,7 +111,7 @@ grid system
 }
 @for $i from 1 through $columns {
    .col-#{$i} {
-      width: ((100 / $columns) * $i) * 1%;
+      // width: ((100 / $columns) * $i) * 1%;
       min-height: 55px;
    }
 }
