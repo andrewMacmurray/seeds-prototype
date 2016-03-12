@@ -56,11 +56,13 @@ seed backgrounds
 
 .water {
   background-color: #26AAE1;
-  border-radius: 15px; }
+  border-radius: 15px;
+  transition: transform 0.3s ease; }
 
 .sunshine {
   background-color: #F26521;
-  border-radius: 15px; }
+  border-radius: 15px;
+  transition: transform 0.3s ease; }
 
 .small {
   transform: scale(0.5); }

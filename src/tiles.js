@@ -2,6 +2,7 @@
 const setTiles = (type, color) => {
 	let counter = 0;
 	let isDragging = false;
+	let allTiles = [].slice.call(document.getElementsByClassName(type));
 	let tilesArray = [];
 
 	const setDragging = (e) => {
@@ -12,12 +13,12 @@ const setTiles = (type, color) => {
 	};
 
 	const stopDragging = () => {
-		tilesArray.forEach((tile) => {
+		isDragging = false;
+		allTiles.forEach((tile) => {
 			tile.classList.remove('small');
 		});
 		tilesArray = [];
 		// console.log(tilesArray);
-		isDragging = false;
 		counter = 0;
 	};
 
@@ -38,7 +39,7 @@ const setTiles = (type, color) => {
 						console.log('fired');
 						tile.parentNode.style.display = 'none';
 					}
-				}, 300)
+				}, 500)
 			});
 			tilesArray = [];
 			counter = 0;
@@ -50,13 +51,12 @@ const setTiles = (type, color) => {
 		}
 	};
 
-	var waterTiles = document.getElementsByClassName(type);
-	console.log(waterTiles);
-	for (let i = 0; i < waterTiles.length; i++) {
-		let waterNode = waterTiles[i].parentNode;
-		waterNode.addEventListener('mousedown', setDragging);
-		waterNode.addEventListener('mouseup', stopDragging);
-		waterNode.addEventListener('mouseenter', addWater);
+	console.log(allTiles);
+	for (let i = 0; i < allTiles.length; i++) {
+		let tileNode = allTiles[i].parentNode;
+		tileNode.addEventListener('mousedown', setDragging);
+		tileNode.addEventListener('mouseup', stopDragging);
+		tileNode.addEventListener('mouseenter', addWater);
 	}
 };
 

@@ -70,13 +70,14 @@ seed backgrounds
 .water {
    background-color: #26AAE1;
    border-radius: $item-size / 2;
+   transition: transform 0.3s ease;
 
 }
 
 .sunshine {
    background-color: #F26521;
    border-radius: $item-size / 2;
-
+   transition: transform 0.3s ease;
 }
 
 .small {
