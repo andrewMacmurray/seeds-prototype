@@ -12,6 +12,14 @@ setMouseIcons();
 Tiles.setTiles('water', 'rain');
 Tiles.setTiles('sunshine', 'sun');
 
+const playButton = document.getElementById('play');
+const track = document.getElementById('music');
+track.pause();
+playButton.addEventListener('click', () => {
+	if (track.paused) track.play();
+	else track.pause();
+});
+
 (function() {
 	const myEvents = ['load', 'resize'];
 	const grid = document.getElementById('grid-container');

@@ -88,6 +88,14 @@ setMouseIcons();
 Tiles.setTiles('water', 'rain');
 Tiles.setTiles('sunshine', 'sun');
 
+const playButton = document.getElementById('play');
+const track = document.getElementById('music');
+track.pause();
+playButton.addEventListener('click', () => {
+	if (track.paused) track.play();
+	else track.pause();
+});
+
 (function() {
 	const myEvents = ['load', 'resize'];
 	const grid = document.getElementById('grid-container');
@@ -136,6 +144,7 @@ const setTiles = (type, color) => {
 	let tilesArray = [];
 
 	const setDragging = (e) => {
+		e.preventDefault();
 		tilesArray.push(e.target);
 		e.target.className += ' small';
 		counter++;
@@ -148,14 +157,12 @@ const setTiles = (type, color) => {
 			tile.classList.remove('small');
 		});
 		tilesArray = [];
-		// console.log(tilesArray);
 		counter = 0;
 	};
 
 	const addWater = (e) => {
-		if (isDragging === true) {
+		if (isDragging === true && e.target.firstChild.className.indexOf('small') < 0) {
 			tilesArray.push(e.target);
-			// console.log(tilesArray);
 			e.target.firstChild.className += ' small';
 			counter++;
 		}
@@ -165,8 +172,6 @@ const setTiles = (type, color) => {
 				setTimeout(() => {
 					tile.style.display = 'none';
 					if (tile.parentNode && tile.parentNode.className.indexOf('col-2') > -1) {
-						// console.log(tile.parentNode.className);
-						// console.log('fired');
 						tile.parentNode.style.display = 'none';
 					}
 				}, 500)
@@ -185,7 +190,7 @@ const setTiles = (type, color) => {
 	for (let i = 0; i < allTiles.length; i++) {
 		let tileNode = allTiles[i].parentNode;
 		tileNode.addEventListener('mousedown', setDragging);
-		tileNode.addEventListener('mouseup', stopDragging);
+		document.addEventListener('mouseup', stopDragging);
 		tileNode.addEventListener('mouseenter', addWater);
 	}
 };
