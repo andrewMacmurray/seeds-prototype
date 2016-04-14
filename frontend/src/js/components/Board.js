@@ -56,19 +56,19 @@ export default class Board extends React.Component {
   }
 
   removeTiles () {
-    // const newBoard = this.state.board.map((row, i) => {
-    //   return row.map((tile, j) => {
-    //     let val = tile
-    //     this.state.moveArray.forEach(([y, x]) => {
-    //       if (x === i && j === y) val = 0
-    //     })
-    //     return val
-    //   })
-    // })
-    // // console.log(JSON.stringify(newBoard))
-    // this.setState({
-    //   board: newBoard
-    // })
+    const newBoard = this.state.board.map((row, i) => {
+      return row.map((tile, j) => {
+        let val = tile
+        this.state.moveArray.forEach(([y, x]) => {
+          if (y === i && j === x) val = 0
+        })
+        return val
+      })
+    })
+    // console.log(JSON.stringify(newBoard))
+    this.setState({
+      board: newBoard
+    })
   }
 
   tileType (num) {
@@ -78,7 +78,7 @@ export default class Board extends React.Component {
     else return 'pod'
   }
 
-  generateSeed (tile, x, y) {
+  generateSeed (tile, y, x) {
     const tileType = this.tileType(tile)
     return (
       <div
@@ -86,6 +86,7 @@ export default class Board extends React.Component {
       className={tileType + ' tile'}
       onMouseDown={this.startDrag}
       onMouseEnter={this.checkTile}
+      onDragStart={(e) => { e.preventDefault() }}
       draggable={false}
       key={'tile-' + x + '-' + y}
       data-x={x}
