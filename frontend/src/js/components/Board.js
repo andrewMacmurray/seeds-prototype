@@ -21,10 +21,19 @@ export default class Board extends React.Component {
     window.addEventListener('mouseup', this.stopDrag)
   }
 
+  stopDrag () {
+    this.removeTiles()
+    this.setState({
+      isDragging: false,
+      moveArray: [],
+      currTile: []
+    })
+  }
+
   startDrag (e) {
     const x = parseInt(e.target.getAttribute('data-x'), 10)
     const y = parseInt(e.target.getAttribute('data-y'), 10)
-    const tile = [x, y]
+    const tile = [y, x]
     this.setState({
       isDragging: true,
       currTile: this.state.currTile.concat(tile),
@@ -32,15 +41,11 @@ export default class Board extends React.Component {
     })
   }
 
-  stopDrag () {
-    this.setState({ isDragging: false })
-  }
-
   checkTile (e) {
     if (this.state.isDragging) {
       const x = parseInt(e.target.getAttribute('data-x'), 10)
       const y = parseInt(e.target.getAttribute('data-y'), 10)
-      const tile = [x, y]
+      const tile = [y, x]
       if (validMove(tile, this.state.currTile, this.state.board)) {
         this.setState({
           currTile: tile,
@@ -48,6 +53,22 @@ export default class Board extends React.Component {
         })
       }
     }
+  }
+
+  removeTiles () {
+    // const newBoard = this.state.board.map((row, i) => {
+    //   return row.map((tile, j) => {
+    //     let val = tile
+    //     this.state.moveArray.forEach(([y, x]) => {
+    //       if (x === i && j === y) val = 0
+    //     })
+    //     return val
+    //   })
+    // })
+    // // console.log(JSON.stringify(newBoard))
+    // this.setState({
+    //   board: newBoard
+    // })
   }
 
   tileType (num) {
@@ -77,16 +98,12 @@ export default class Board extends React.Component {
     console.log(JSON.stringify(this.state.moveArray))
     return (
       <div className='board'>
-        { this.state.board.map((row, i) => (
+        {this.state.board.map((row, i) => (
             <div className='seed-row' key={i}>
-              { row.map((tile, j) => {
-                if (tile > 0) {
-                  return this.generateSeed(tile, i, j)
-                }
-              })}
+              {row.map((tile, j) => (tile > 0) ? this.generateSeed(tile, i, j) : '')}
             </div>
           )
-        ) }
+        )}
       </div>
     )
   }
