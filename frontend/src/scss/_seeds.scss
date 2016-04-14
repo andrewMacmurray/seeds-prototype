@@ -1,0 +1,23 @@
+.tile {
+  border-radius: 50px;
+  height: 35px;
+  width: 35px;
+  margin: 15px 10px;
+  box-sizing: border-box;
+}
+
+.sun {
+  background-color: $orange;
+}
+
+.rain {
+  background-color: $blue;
+}
+
+.seedling {
+  background-color: $green;
+}
+
+.pod {
+  background-color: $brown;
+}
