@@ -1,0 +1,13 @@
+@import 'variables';
+@import 'seeds';
+@import 'board';
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  font-family: $main-font;
+  background-color: $beige;
+}
