@@ -21,9 +21,15 @@ export default class Board extends React.Component {
     window.addEventListener('mouseup', this.stopDrag)
   }
 
-  startDrag () {
-    this.setState({ isDragging: true })
-    this.checkTile()
+  startDrag (e) {
+    const x = parseInt(e.target.getAttribute('data-x'), 10)
+    const y = parseInt(e.target.getAttribute('data-y'), 10)
+    const tile = [x, y]
+    this.setState({
+      isDragging: true,
+      currTile: this.state.currTile.concat(tile),
+      moveArray: this.state.moveArray.concat([tile])
+    })
   }
 
   stopDrag () {
@@ -32,16 +38,10 @@ export default class Board extends React.Component {
 
   checkTile (e) {
     if (this.state.isDragging) {
-      console.log('checking tile')
       const x = parseInt(e.target.getAttribute('data-x'), 10)
       const y = parseInt(e.target.getAttribute('data-y'), 10)
       const tile = [x, y]
-      if (this.state.currTile.length === 0) {
-        this.setState({
-          currTile: this.state.currTile.concat(tile),
-          moveArray: this.state.moveArray.concat([tile])
-        })
-      } else if (validMove(tile, this.state.currTile, this.state.board)) {
+      if (validMove(tile, this.state.currTile, this.state.board)) {
         this.setState({
           currTile: tile,
           moveArray: this.state.moveArray.concat([tile])
@@ -51,9 +51,9 @@ export default class Board extends React.Component {
   }
 
   tileType (num) {
-    if (num === 0) return 'sun'
-    else if (num === 1) return 'rain'
-    else if (num === 2) return 'seedling'
+    if (num === 1) return 'sun'
+    else if (num === 2) return 'rain'
+    else if (num === 3) return 'seedling'
     else return 'pod'
   }
 
@@ -79,7 +79,11 @@ export default class Board extends React.Component {
       <div className='board'>
         { this.state.board.map((row, i) => (
             <div className='seed-row' key={i}>
-              { row.map((tile, j) => this.generateSeed(tile, i, j)) }
+              { row.map((tile, j) => {
+                if (tile > 0) {
+                  return this.generateSeed(tile, i, j)
+                }
+              })}
             </div>
           )
         ) }
