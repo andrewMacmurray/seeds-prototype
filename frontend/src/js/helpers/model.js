@@ -1,13 +1,12 @@
 import R from 'ramda'
 
 const multiply = (x) => x * 3 + 1
-const roundRandom = R.pipe(
+export const roundRandom = R.pipe(
   Math.random,
   multiply,
   Math.round
 )
 const makeRow = () => R.times(roundRandom, 8)
-// const str = (x) => JSON.stringify(x)
 
 export const randomBoard = () => R.times(makeRow, 8)
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { validMove, randomBoard } from '../helpers/model.js'
+import { validMove, randomBoard, roundRandom } from '../helpers/model.js'
 
 export default class Board extends React.Component {
   constructor () {
@@ -15,6 +15,8 @@ export default class Board extends React.Component {
     this.checkTile = this.checkTile.bind(this)
     this.startDrag = this.startDrag.bind(this)
     this.stopDrag = this.stopDrag.bind(this)
+    this.getCoord = this.getCoord.bind(this)
+    this.addNewTiles = this.addNewTiles.bind(this)
   }
 
   componentDidMount () {
@@ -30,10 +32,14 @@ export default class Board extends React.Component {
     })
   }
 
-  startDrag (e) {
+  getCoord (e) {
     const x = parseInt(e.target.getAttribute('data-x'), 10)
     const y = parseInt(e.target.getAttribute('data-y'), 10)
-    const tile = [y, x]
+    return [y, x]
+  }
+
+  startDrag (e) {
+    const tile = this.getCoord(e)
     this.setState({
       isDragging: true,
       currTile: this.state.currTile.concat(tile),
@@ -43,9 +49,7 @@ export default class Board extends React.Component {
 
   checkTile (e) {
     if (this.state.isDragging) {
-      const x = parseInt(e.target.getAttribute('data-x'), 10)
-      const y = parseInt(e.target.getAttribute('data-y'), 10)
-      const tile = [y, x]
+      const tile = this.getCoord(e)
       if (validMove(tile, this.state.currTile, this.state.board)) {
         this.setState({
           currTile: tile,
@@ -66,6 +70,19 @@ export default class Board extends React.Component {
       })
     })
     // console.log(JSON.stringify(newBoard))
+    this.setState({
+      board: newBoard
+    })
+    setTimeout(this.addNewTiles, 500)
+  }
+
+  addNewTiles () {
+    const newBoard = this.state.board.map(row => {
+      return row.map(tile => {
+        const n = roundRandom()
+        return (tile === 0) ? n : tile
+      })
+    })
     this.setState({
       board: newBoard
     })
