@@ -22,10 +22,6 @@ const board = [
   [3, 3, 2, 3, 1, 1, 2, 3]
 ]
 
-export const mapIndex = R.addIndex(R.map)
-
-export const getIndex = R.map(mapIndex((val, i) => i))
-
 // before and after tile values have to match
 export const sameType = ([x2, y2], [x1, y1], board) => board[x2][y2] === board[x1][y1]
 
