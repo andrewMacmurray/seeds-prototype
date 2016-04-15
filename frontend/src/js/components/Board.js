@@ -1,5 +1,5 @@
 import React from 'react'
-import { validMove, randomBoard, roundRandom } from '../helpers/model.js'
+import { validMove, randomBoard, roundRandom, shiftBoard } from '../helpers/model.js'
 
 export default class Board extends React.Component {
   constructor () {
@@ -69,9 +69,8 @@ export default class Board extends React.Component {
         return val
       })
     })
-    // console.log(JSON.stringify(newBoard))
     this.setState({
-      board: newBoard
+      board: shiftBoard(newBoard)
     })
     setTimeout(this.addNewTiles, 500)
   }
