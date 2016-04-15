@@ -12,12 +12,12 @@ const makeRow = () => R.times(roundRandom, 8)
 export const randomBoard = () => R.times(makeRow, 8)
 
 const board = [
-  [4, 1, 2, 2, 2, 3, 1, 2],
+  [4, 0, 2, 2, 0, 3, 0, 2],
   [4, 3, 3, 1, 2, 3, 4, 3],
   [4, 4, 3, 2, 4, 1, 1, 4],
-  [2, 2, 4, 1, 3, 3, 2, 2],
-  [4, 1, 2, 1, 2, 2, 4, 1],
-  [3, 3, 4, 3, 2, 2, 1, 3],
+  [0, 2, 4, 1, 0, 3, 2, 2],
+  [4, 1, 0, 1, 2, 2, 4, 1],
+  [3, 3, 4, 3, 2, 0, 1, 3],
   [2, 2, 4, 2, 2, 1, 2, 2],
   [3, 3, 2, 3, 1, 1, 2, 3]
 ]
@@ -38,5 +38,9 @@ export const validMove = R.allPass([inBounds, isNextTo, sameType])
 const zero = (x) => x === 0
 const tile = (x) => x !== 0
 
-const filterZeroes = R.map(zero)
-const filterTiles = R.map(tile)
+const filterZeroes = R.filter(zero)
+const filterTiles = R.filter(tile)
+export const shift = (board) => R.concat(filterZeroes(board), filterTiles(board))
+export const shiftBoard = R.map(shift)
+
+// console.log(shiftBoard(board), 'filter zeroes', filterTiles(board[0]), 'filter tiles')
