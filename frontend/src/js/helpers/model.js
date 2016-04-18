@@ -11,6 +11,9 @@ const makeRow = () => R.times(roundRandom, 8)
 
 export const randomBoard = () => R.times(makeRow, 8)
 
+const z = () => R.times(R.always(0), 8)
+export const isLeavingArray = () => R.times(z, 8)
+
 const board = [
   [4, 0, 2, 2, 0, 3, 0, 2],
   [4, 3, 3, 1, 2, 3, 4, 3],
@@ -35,8 +38,8 @@ export const validMove = R.allPass([inBounds, isNextTo, sameType])
 // const valid1 = validMove([0, 0], [0, 1], board)
 // console.log(valid1)
 
-const zero = (x) => x === 0
-const tile = (x) => x !== 0
+const zero = (x) => x === -1
+const tile = (x) => x !== -1
 
 const filterZeroes = R.filter(zero)
 const filterTiles = R.filter(tile)
