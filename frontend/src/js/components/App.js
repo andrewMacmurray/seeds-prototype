@@ -6,7 +6,12 @@ import '../../scss/style.scss'
 export default class App extends React.Component {
   render () {
     return (
-      <Board />
+      <div>
+        <div className='logo'>
+          <img src='img/seed-dark.png'/>
+        </div>
+        <Board />
+      </div>
     )
   }
 }
