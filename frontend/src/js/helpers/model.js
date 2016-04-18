@@ -38,8 +38,8 @@ export const validMove = R.allPass([inBounds, isNextTo, sameType])
 // const valid1 = validMove([0, 0], [0, 1], board)
 // console.log(valid1)
 
-const zero = (x) => x === -0
-const tile = (x) => x !== -0
+const zero = (x) => x === -1
+const tile = (x) => x !== -1
 
 const filterZeroes = R.filter(zero)
 const filterTiles = R.filter(tile)
