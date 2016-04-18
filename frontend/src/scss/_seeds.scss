@@ -1,8 +1,8 @@
 .tile {
   border-radius: 50px;
-  height: 35px;
-  width: 35px;
-  margin: 15px 10px;
+  height: 30px;
+  width: 30px;
+  margin: 20px 12px;
   box-sizing: border-box;
 }
 
@@ -16,8 +16,4 @@
 
 .seedling {
   background-color: $green;
-}
-
-.pod {
-  background-color: $brown;
 }
