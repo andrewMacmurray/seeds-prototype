@@ -9,13 +9,18 @@
 }
 
 @keyframes sun-exit {
-  0% {transform: translate(0, 0)}
-  100% {transform: translate(-200px, -500px)}
+  0% {transform: translate(0, 0) scale(1); opacity: 1}
+  100% {transform: translate(0, -400px) scale(5); opacity: 0}
 }
 
 @keyframes rain-exit {
-  0% {transform: translate(0, 0)}
-  100% {transform: translate(200px, -500px)}
+  0% {transform: translate(0, 0) scale(1); opacity: 1}
+  100% {transform: translate(0, -400px) scale(5); opacity: 0}
+}
+
+@keyframes seedling-exit {
+  0% {transform: scale(1); opacity: 1}
+  100% {transform: scale(1.5); opacity: 0}
 }
 
 .sun.leaving {
@@ -24,6 +29,10 @@
 
 .rain.leaving {
   animation: rain-exit 0.5s ease forwards;
+}
+
+.seedling.leaving {
+  animation: seedling-exit 0.5s ease forwards;
 }
 
 .sun {
