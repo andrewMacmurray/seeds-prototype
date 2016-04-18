@@ -73,9 +73,11 @@ export default class Board extends React.Component {
       })
     })
     this.isLeaving()
-    // this.setState({ board: zeroBoard })
-    // setTimeout(this.shiftTiles, 500)
-    // setTimeout(this.addNewTiles, 1000)
+    setTimeout(() => {
+      this.setState({ board: zeroBoard })
+    }, 500)
+    setTimeout(this.shiftTiles, 500)
+    setTimeout(this.addNewTiles, 1000)
   }
 
   shiftTiles () {
@@ -83,7 +85,7 @@ export default class Board extends React.Component {
       row.map(tile =>
         tile === 0 ? -1 : tile
     ))
-    this.setState({ board: shiftBoard(minusOneBoard) })
+    this.setState({ board: shiftBoard(minusOneBoard), isLeavingArray: isLeavingArray() })
   }
 
   addNewTiles () {

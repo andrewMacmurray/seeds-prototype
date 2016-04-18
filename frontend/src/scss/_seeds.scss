@@ -19,11 +19,11 @@
 }
 
 .sun.leaving {
-  animation: sun-exit 0.5s ease;
+  animation: sun-exit 0.5s ease forwards;
 }
 
 .rain.leaving {
-  animation: rain-exit 0.5s ease;
+  animation: rain-exit 0.5s ease forwards;
 }
 
 .sun {
