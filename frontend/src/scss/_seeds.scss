@@ -10,12 +10,12 @@
 
 @keyframes sun-exit {
   0% {transform: translate(0, 0) scale(1); opacity: 1}
-  100% {transform: translate(0, -400px) scale(5); opacity: 0}
+  100% {transform: translate(0, -400px) scale(3); opacity: 0}
 }
 
 @keyframes rain-exit {
   0% {transform: translate(0, 0) scale(1); opacity: 1}
-  100% {transform: translate(0, -400px) scale(5); opacity: 0}
+  100% {transform: translate(0, -400px) scale(3); opacity: 0}
 }
 
 @keyframes seedling-exit {
@@ -45,8 +45,4 @@
 
 .seedling {
   background-color: $green;
-}
-
-.pod {
-
 }

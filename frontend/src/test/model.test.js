@@ -102,22 +102,32 @@ tape('validMove should return true if tile is the same type and close by to the 
 })
 
 tape('shift and shiftBoard function should shift zeroes to end of array', (t) => {
-  let expected = [0, 0, 2, 3, 3, 1, 2, 1]
-  let actual = shift(board[0])
-  t.deepEqual(expected, actual, 'shift fn has shifted 0s in a single array to the end')
-
-  expected = [
-    [0, 0, 2, 3, 3, 1, 2, 1],
-    [0, 0, 2, 2, 3, 2, 1, 1],
-    [0, 2, 1, 1, 1, 2, 1, 2],
-    [0, 1, 1, 2, 3, 1, 1, 2],
-    [0, 1, 1, 1, 1, 1, 2, 1],
+  const leavingBoard = [
+    [2, 3, 3, 1, 2, -1, -1, 1],
+    [2, -1, 2, 3, 2, -1, 1, 1],
+    [2, 1, -1, 1, 1, 2, 1, 2],
+    [1, 1, 2, 3, 1, 1, -1, 2],
+    [1, 1, -1, 1, 1, 1, 2, 1],
     [2, 3, 1, 2, 2, 1, 2, 3],
-    [0, 1, 1, 1, 1, 2, 2, 2],
+    [1, 1, 1, 1, 2, 2, -1, 2],
     [1, 3, 2, 2, 1, 3, 2, 2]
   ]
-  actual = shiftBoard(board)
-  t.deepEqual(expected, actual, 'shiftBoard shifts entire boards 0s to the end')
+  let expected = [-1, -1, 2, 3, 3, 1, 2, 1]
+  let actual = shift(leavingBoard[0])
+  t.deepEqual(actual, expected, 'shift fn has shifted 0s in a single array to the end')
+
+  expected = [
+    [-1, -1, 2, 3, 3, 1, 2, 1],
+    [-1, -1, 2, 2, 3, 2, 1, 1],
+    [-1, 2, 1, 1, 1, 2, 1, 2],
+    [-1, 1, 1, 2, 3, 1, 1, 2],
+    [-1, 1, 1, 1, 1, 1, 2, 1],
+    [2, 3, 1, 2, 2, 1, 2, 3],
+    [-1, 1, 1, 1, 1, 2, 2, 2],
+    [1, 3, 2, 2, 1, 3, 2, 2]
+  ]
+  actual = shiftBoard(leavingBoard)
+  t.deepEqual(actual, expected, 'shiftBoard shifts entire boards 0s to the end')
 
   t.end()
 })

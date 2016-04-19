@@ -1,5 +1,5 @@
 import React from 'react'
-import { validMove, randomBoard, roundRandom, shiftBoard, isLeavingArray } from '../helpers/model.js'
+import { validMove, randomBoard, roundRandom, shiftBoard, falseBoard, addNewTiles, makeMinusOnes, mapZeroes, _isLeaving } from '../helpers/model.js'
 import Seed from './Seed.js'
 
 export default class Board extends React.Component {
@@ -7,7 +7,8 @@ export default class Board extends React.Component {
     super()
     this.state = {
       board: randomBoard(),
-      isLeavingArray: isLeavingArray(),
+      isLeavingArray: falseBoard(),
+      isFallingArray: falseBoard(),
       currTile: [],
       moveArray: [],
       isDragging: false
@@ -20,6 +21,7 @@ export default class Board extends React.Component {
     this.addNewTiles = this.addNewTiles.bind(this)
     this.shiftTiles = this.shiftTiles.bind(this)
     this.isLeaving = this.isLeaving.bind(this)
+    this.mapMoves = this.mapMoves.bind(this)
   }
 
   componentDidMount () {
@@ -62,16 +64,18 @@ export default class Board extends React.Component {
     }
   }
 
-  removeTiles () {
-    const zeroBoard = this.state.board.map((row, i) => {
-      return row.map((tile, j) => {
-        let val = tile
-        this.state.moveArray.forEach(([y, x]) => {
-          if (y === i && j === x) val = 0
-        })
-        return val
+  mapMoves ({ board, moves, newValue, initialValue }) {
+    return board.map((row, i) => row.map((tile, j) => {
+      let val = (initialValue === false) ? false : tile
+      moves.forEach(([y, x]) => {
+        if (y === i && j === x) val = newValue
       })
-    })
+      return val
+    }))
+  }
+
+  removeTiles () {
+    const zeroBoard = mapZeroes(this.state.moveArray, this.state.board)
     this.isLeaving()
     setTimeout(() => {
       this.setState({ board: zeroBoard })
@@ -81,21 +85,15 @@ export default class Board extends React.Component {
   }
 
   shiftTiles () {
-    const minusOneBoard = this.state.board.map(row =>
-      row.map(tile =>
-        tile === 0 ? -1 : tile
-    ))
-    this.setState({ board: shiftBoard(minusOneBoard), isLeavingArray: isLeavingArray() })
+    const minusOneBoard = makeMinusOnes(this.state.board)
+    this.setState({
+      board: shiftBoard(minusOneBoard),
+      isLeavingArray: falseBoard()
+    })
   }
 
   addNewTiles () {
-    const newBoard = this.state.board.map(row => {
-      return row.map(tile => {
-        const n = roundRandom()
-        return (tile === -1) ? n : tile
-      })
-    })
-    this.setState({ board: newBoard })
+    this.setState({ board: addNewTiles(this.state.board) })
   }
 
   tileType (num) {
@@ -105,16 +103,8 @@ export default class Board extends React.Component {
     else if (num === 4) return 'pod'
   }
 
-  isLeaving (num) {
-    const leaving = this.state.isLeavingArray.map((row, i) =>
-      row.map((tile, j) => {
-        let val = false
-        this.state.moveArray.forEach(([y, x]) => {
-          if (y === i && j === x) val = true
-        })
-        return val
-      }))
-    // console.log(JSON.stringify(leaving))
+  isLeaving () {
+    const leaving = _isLeaving(this.state.moveArray, this.state.board)
     this.setState({ isLeavingArray: leaving })
   }
 
@@ -126,15 +116,16 @@ export default class Board extends React.Component {
             <div className='seed-row' key={i}>
               {row.map((tile, j) => {
                 const tileType = this.tileType(tile)
-                return (tile > -1) ?
-                  <Seed
+                return (tile > -1)
+                ? <Seed
                     tileType={tileType}
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}
                     isLeavingBool={(this.state.isLeavingArray[i][j]) ? 'leaving' : ''}
+                    isFallingBool={(this.state.isFallingArray[i][j]) ? 'falling' : ''}
                     y={i}
                     x={j}/> : ''
-                }
+              }
               )}
             </div>
           )

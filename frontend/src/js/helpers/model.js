@@ -11,8 +11,8 @@ const makeRow = () => R.times(roundRandom, 8)
 
 export const randomBoard = () => R.times(makeRow, 8)
 
-const z = () => R.times(R.always(0), 8)
-export const isLeavingArray = () => R.times(z, 8)
+const falseRow = () => R.times(R.always(false), 8)
+export const falseBoard = () => R.times(falseRow, 8)
 
 const board = [
   [4, 0, 2, 2, 0, 3, 0, 2],
@@ -38,12 +38,36 @@ export const validMove = R.allPass([inBounds, isNextTo, sameType])
 // const valid1 = validMove([0, 0], [0, 1], board)
 // console.log(valid1)
 
-const zero = (x) => x === -1
+const isMinusOne = R.equals(-1)
 const tile = (x) => x !== -1
 
-const filterZeroes = R.filter(zero)
+const filterMinus = R.filter(isMinusOne)
 const filterTiles = R.filter(tile)
-export const shift = (board) => R.concat(filterZeroes(board), filterTiles(board))
+export const shift = (board) => R.concat(filterMinus(board), filterTiles(board))
 export const shiftBoard = R.map(shift)
 
 // console.log(shiftBoard(board), 'filter zeroes', filterTiles(board[0]), 'filter tiles')
+
+const addRandomTile = (x) => isMinusOne(x) ? roundRandom() : x
+const addNewRow = R.map(addRandomTile)
+export const addNewTiles = R.map(addNewRow)
+
+const zeroToMinusOne = (x) => R.equals(0, x) ? -1 : x
+const mapMinusOnes = R.map(zeroToMinusOne)
+export const makeMinusOnes = R.map(mapMinusOnes)
+
+const mapWithIndex = R.addIndex(R.map)
+export const mapZeroes = (moves, board) =>
+  mapWithIndex((row, i) =>
+  mapWithIndex((tile, j) =>
+  R.filter(([y, x]) => y === i && j === x)(moves).length ? 0 : tile
+)(row))(board)
+
+export const _isLeaving = (moves, board) =>
+  mapWithIndex((row, i) =>
+  mapWithIndex((tile, j) =>
+  R.filter(([y, x]) => y === i && j === x)(moves).length
+)(row))(board)
+
+// const result = _mapZeroes([[0, 0], [1, 1]], [[0, 1, 2, 3], [0, 1, 2, 3]])
+// console.log('indexes', JSON.stringify(result))
