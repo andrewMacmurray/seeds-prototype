@@ -1,5 +1,5 @@
 import React from 'react'
-import { validMove, randomBoard, roundRandom, shiftBoard, falseBoard, addNewTiles, makeMinusOnes, mapZeroes, mapLeavingTiles } from '../helpers/model.js'
+import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles } from '../helpers/model.js'
 import Seed from './Seed.js'
 
 export default class Board extends React.Component {
@@ -14,10 +14,11 @@ export default class Board extends React.Component {
       isDragging: false
     }
     this.setTileType = this.setTileType.bind(this)
-    this.checkTile = this.checkTile.bind(this)
-    this.startDrag = this.startDrag.bind(this)
-    this.stopDrag = this.stopDrag.bind(this)
     this.getCoord = this.getCoord.bind(this)
+    this.stopDrag = this.stopDrag.bind(this)
+    this.startDrag = this.startDrag.bind(this)
+    this.checkTile = this.checkTile.bind(this)
+    this.removeTiles = this.removeTiles.bind(this)
     this.addNewTiles = this.addNewTiles.bind(this)
     this.shiftTiles = this.shiftTiles.bind(this)
     this.isLeaving = this.isLeaving.bind(this)
@@ -27,6 +28,19 @@ export default class Board extends React.Component {
     window.addEventListener('mouseup', this.stopDrag)
   }
 
+  setTileType (num) {
+    if (num === 1) return 'sun'
+    else if (num === 2) return 'rain'
+    else if (num === 3) return 'seedling'
+    else if (num === 4) return 'pod'
+  }
+
+  getCoord (e) {
+    const x = parseInt(e.target.getAttribute('data-x'), 10)
+    const y = parseInt(e.target.getAttribute('data-y'), 10)
+    return [y, x]
+  }
+
   stopDrag () {
     this.removeTiles()
     this.setState({
@@ -34,12 +48,6 @@ export default class Board extends React.Component {
       moveArray: [],
       currTile: []
     })
-  }
-
-  getCoord (e) {
-    const x = parseInt(e.target.getAttribute('data-x'), 10)
-    const y = parseInt(e.target.getAttribute('data-y'), 10)
-    return [y, x]
   }
 
   startDrag (e) {
@@ -64,13 +72,9 @@ export default class Board extends React.Component {
   }
 
   removeTiles () {
+    const minusOneBoard = mapMinusOnes(this.state.moveArray, this.state.board)
     this.isLeaving()
-    const zeroBoard = mapZeroes(this.state.moveArray, this.state.board)
-    console.log(JSON.stringify(zeroBoard))
-    setTimeout(() => {
-      // this.setState({ board: zeroBoard })
-      this.shiftTiles(zeroBoard)
-    }, 500)
+    setTimeout(() => this.shiftTiles(minusOneBoard), 500)
     setTimeout(this.addNewTiles, 1000)
   }
 
@@ -79,23 +83,11 @@ export default class Board extends React.Component {
   }
 
   shiftTiles (board) {
-    // const minusOneBoard = mapZeroes(this.state.moveArray, this.state.board)
-    // console.log(JSON.stringify(minusOneBoard))
-    this.setState({
-      board: shiftBoard(board),
-      isLeavingArray: falseBoard()
-    })
+    this.setState({ board: shiftBoard(board), isLeavingArray: falseBoard() })
   }
 
   addNewTiles () {
     this.setState({ board: addNewTiles(this.state.board) })
-  }
-
-  setTileType (num) {
-    if (num === 1) return 'sun'
-    else if (num === 2) return 'rain'
-    else if (num === 3) return 'seedling'
-    else if (num === 4) return 'pod'
   }
 
   render () {

@@ -2,11 +2,7 @@ import R from 'ramda'
 import { left, right, up, down, topRight, topLeft, bottomRight, bottomLeft } from './directions.js'
 
 const multiply = (x) => x * 3 + 1
-export const roundRandom = R.pipe(
-  Math.random,
-  multiply,
-  Math.round
-)
+const roundRandom = R.pipe(Math.random, multiply, Math.round)
 const makeRow = () => R.times(roundRandom, 8)
 export const randomBoard = () => R.times(makeRow, 8)
 
@@ -36,13 +32,12 @@ export const isNextTo = R.anyPass([right, down, left, up, topRight, bottomRight,
 export const validMove = R.allPass([inBounds, isNextTo, sameType])
 // const valid1 = validMove([0, 0], [0, 1], board)
 
+// const zeroToMinusOne = (x) => R.equals(0, x) ? -1 : x
+// const mapMinusOnes = R.map(zeroToMinusOne)
+// export const makeMinusOnes = R.map(mapMinusOnes) // converts zeroes to minus ones
+
 const isMinusOne = R.equals(-1)
 const tile = (x) => x !== -1
-
-const zeroToMinusOne = (x) => R.equals(0, x) ? -1 : x
-const mapMinusOnes = R.map(zeroToMinusOne)
-export const makeMinusOnes = R.map(mapMinusOnes) // converts zeroes to minus ones
-
 const filterMinus = R.filter(isMinusOne)
 const filterTiles = R.filter(tile)
 export const shift = (board) => R.concat(filterMinus(board), filterTiles(board))
@@ -55,7 +50,7 @@ export const addNewTiles = R.map(addNewRow) // replaces minus 1 tiles with new r
 
 const mapWithIndex = R.addIndex(R.map)
 
-export const mapZeroes = (moves, board) =>
+export const mapMinusOnes = (moves, board) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
   R.filter(([y, x]) =>
@@ -69,5 +64,4 @@ export const mapLeavingTiles = (moves, board) =>
     y === i && j === x)(moves).length
 )(row))(board)
 
-// const result = _mapZeroes([[0, 0], [1, 1]], [[0, 1, 2, 3], [0, 1, 2, 3]])
-// console.log('indexes', JSON.stringify(result))
+// const result = mapMinusOnes([[0, 0], [1, 1]], [[0, 1, 2, 3], [0, 1, 2, 3]])
