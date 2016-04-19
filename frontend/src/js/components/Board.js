@@ -1,22 +1,27 @@
 import React from 'react'
-import { validMove, randomBoard, roundRandom, shiftBoard } from '../helpers/model.js'
+import { validMove, randomBoard, roundRandom, shiftBoard, falseBoard, addNewTiles, makeMinusOnes, mapZeroes, _isLeaving } from '../helpers/model.js'
+import Seed from './Seed.js'
 
 export default class Board extends React.Component {
   constructor () {
     super()
     this.state = {
       board: randomBoard(),
+      isLeavingArray: falseBoard(),
+      isFallingArray: falseBoard(),
       currTile: [],
       moveArray: [],
       isDragging: false
     }
     this.tileType = this.tileType.bind(this)
-    this.generateSeed = this.generateSeed.bind(this)
     this.checkTile = this.checkTile.bind(this)
     this.startDrag = this.startDrag.bind(this)
     this.stopDrag = this.stopDrag.bind(this)
     this.getCoord = this.getCoord.bind(this)
     this.addNewTiles = this.addNewTiles.bind(this)
+    this.shiftTiles = this.shiftTiles.bind(this)
+    this.isLeaving = this.isLeaving.bind(this)
+    this.mapMoves = this.mapMoves.bind(this)
   }
 
   componentDidMount () {
@@ -59,56 +64,48 @@ export default class Board extends React.Component {
     }
   }
 
-  removeTiles () {
-    const newBoard = this.state.board.map((row, i) => {
-      return row.map((tile, j) => {
-        let val = tile
-        this.state.moveArray.forEach(([y, x]) => {
-          if (y === i && j === x) val = 0
-        })
-        return val
+  mapMoves ({ board, moves, newValue, initialValue }) {
+    return board.map((row, i) => row.map((tile, j) => {
+      let val = (initialValue === false) ? false : tile
+      moves.forEach(([y, x]) => {
+        if (y === i && j === x) val = newValue
       })
-    })
+      return val
+    }))
+  }
+
+  removeTiles () {
+    const zeroBoard = mapZeroes(this.state.moveArray, this.state.board)
+    this.isLeaving()
+    setTimeout(() => {
+      this.setState({ board: zeroBoard })
+    }, 500)
+    setTimeout(this.shiftTiles, 500)
+    setTimeout(this.addNewTiles, 1000)
+  }
+
+  shiftTiles () {
+    const minusOneBoard = makeMinusOnes(this.state.board)
     this.setState({
-      board: shiftBoard(newBoard)
+      board: shiftBoard(minusOneBoard),
+      isLeavingArray: falseBoard()
     })
-    setTimeout(this.addNewTiles, 500)
   }
 
   addNewTiles () {
-    const newBoard = this.state.board.map(row => {
-      return row.map(tile => {
-        const n = roundRandom()
-        return (tile === 0) ? n : tile
-      })
-    })
-    this.setState({
-      board: newBoard
-    })
+    this.setState({ board: addNewTiles(this.state.board) })
   }
 
   tileType (num) {
     if (num === 1) return 'sun'
     else if (num === 2) return 'rain'
     else if (num === 3) return 'seedling'
-    else return 'pod'
+    else if (num === 4) return 'pod'
   }
 
-  generateSeed (tile, y, x) {
-    const tileType = this.tileType(tile)
-    return (
-      <div
-      id={tileType}
-      className={tileType + ' tile'}
-      onMouseDown={this.startDrag}
-      onMouseEnter={this.checkTile}
-      onDragStart={(e) => { e.preventDefault() }}
-      draggable={false}
-      key={'tile-' + x + '-' + y}
-      data-x={x}
-      data-y={y}>
-    </div>
-    )
+  isLeaving () {
+    const leaving = _isLeaving(this.state.moveArray, this.state.board)
+    this.setState({ isLeavingArray: leaving })
   }
 
   render () {
@@ -117,7 +114,19 @@ export default class Board extends React.Component {
       <div className='board'>
         {this.state.board.map((row, i) => (
             <div className='seed-row' key={i}>
-              {row.map((tile, j) => (tile > 0) ? this.generateSeed(tile, i, j) : '')}
+              {row.map((tile, j) => {
+                const tileType = this.tileType(tile)
+                return (tile > -1)
+                ? <Seed
+                    tileType={tileType}
+                    startDrag={this.startDrag}
+                    checkTile={this.checkTile}
+                    isLeavingBool={(this.state.isLeavingArray[i][j]) ? 'leaving' : ''}
+                    isFallingBool={(this.state.isFallingArray[i][j]) ? 'falling' : ''}
+                    y={i}
+                    x={j}/> : ''
+              }
+              )}
             </div>
           )
         )}

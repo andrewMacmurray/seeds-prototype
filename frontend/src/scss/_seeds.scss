@@ -4,6 +4,35 @@
   width: 30px;
   margin: 20px 12px;
   box-sizing: border-box;
+  opacity: 1;
+  transition: translate 0.3s ease, opacity 0.3s ease;
+}
+
+@keyframes sun-exit {
+  0% {transform: translate(0, 0) scale(1); opacity: 1}
+  100% {transform: translate(0, -400px) scale(3); opacity: 0}
+}
+
+@keyframes rain-exit {
+  0% {transform: translate(0, 0) scale(1); opacity: 1}
+  100% {transform: translate(0, -400px) scale(3); opacity: 0}
+}
+
+@keyframes seedling-exit {
+  0% {transform: scale(1); opacity: 1}
+  100% {transform: scale(1.5); opacity: 0}
+}
+
+.sun.leaving {
+  animation: sun-exit 0.5s ease forwards;
+}
+
+.rain.leaving {
+  animation: rain-exit 0.5s ease forwards;
+}
+
+.seedling.leaving {
+  animation: seedling-exit 0.5s ease forwards;
 }
 
 .sun {
