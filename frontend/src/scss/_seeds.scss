@@ -1,3 +1,5 @@
+@import 'animate';
+
 .tile {
   border-radius: 50px;
   height: 30px;
@@ -5,7 +7,7 @@
   position: absolute;
   box-sizing: border-box;
   opacity: 1;
-  transition: translate 0.3s ease, opacity 0.3s ease;
+  animation: bounceInDown 0.6s ease;
 }
 
 .sun {
@@ -14,10 +16,18 @@
 
 .rain {
   background-color: $blue;
+  transition: 0.5s ease;
+  transform: scale(1);
+  opacity: 1;
 }
 
 .seedling {
   background-color: $green;
+}
+
+.pod {
+  transition: 0.5s ease;
+  opacity: 1;
 }
 
 // animations
@@ -42,9 +52,19 @@
 }
 
 .rain.leaving {
-  animation: rain-exit 0.5s ease forwards;
+  // animation: rain-exit 0.5s ease forwards;
+  top: -180px;
+  left: 590px;
+  opacity: 0;
+  transform: scale(3);
 }
 
 .seedling.leaving {
   animation: seedling-exit 0.5s ease forwards;
+}
+
+.pod.leaving {
+  top: -170px;
+  left: 198px;
+  opacity: 0;
 }
