@@ -117,7 +117,7 @@ export default class Board extends React.Component {
   weather (type) {
     const body = document.body.classList
     body.add(type)
-    setTimeout(() => body.remove(type), 2000)
+    setTimeout(() => body.remove(type), 3000)
   }
 
   render () {
