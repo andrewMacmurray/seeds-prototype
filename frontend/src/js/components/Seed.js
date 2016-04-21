@@ -2,7 +2,7 @@ import React from 'react'
 
 export default (props) => (
   <div
-    className={props.tileType + ' tile ' + props.isLeavingBool + ' x-' + props.x + ' y-' + props.y}
+    className={props.tileType + ' tile ' + props.isLeavingBool + ' x-' + props.x + ' y-' + props.y + ' ' + props.isDraggingBool}
     id={props.id}
     onClick={props.handleClick}
     onMouseDown={props.startDrag}
