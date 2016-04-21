@@ -1,8 +1,21 @@
-.seed-row {
-  display: inline-block;
-}
+$grid-size: 57px;
+$grid-offset: 4;
 
 .board {
-  margin: 10vh auto;
-  display: table;
+  margin: 12vh auto;
+  position: absolute;
+  height: $grid-size * 7;
+  width: ($grid-size + $grid-offset) * 7;
+  left: 0;
+  right: 0;
+}
+
+
+@for $i from 0 through 7 {
+  .x-#{$i} {
+    top: ($grid-size - $grid-offset) * $i;
+  }
+  .y-#{$i} {
+    left: $grid-size * $i;
+  }
 }

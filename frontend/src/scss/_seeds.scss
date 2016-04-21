@@ -1,21 +1,45 @@
+@import 'animate';
+
 .tile {
   border-radius: 50px;
   height: 30px;
   width: 30px;
-  margin: 20px 12px;
+  position: absolute;
   box-sizing: border-box;
   opacity: 1;
-  transition: translate 0.3s ease, opacity 0.3s ease;
+  animation: bounceInDown 0.6s ease;
 }
+
+.sun {
+  background-color: $orange;
+}
+
+.rain {
+  background-color: $blue;
+  transition: 0.5s ease;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.seedling {
+  background-color: $green;
+}
+
+.pod {
+  transition: 0.5s ease;
+  opacity: 1;
+}
+
+// animations
 
 @keyframes sun-exit {
   0% {transform: translate(0, 0) scale(1); opacity: 1}
-  100% {transform: translate(0, -400px) scale(3); opacity: 0}
+  100% {transform: translate(-200px, -200px) scale(3); opacity: 0}
 }
 
 @keyframes rain-exit {
   0% {transform: translate(0, 0) scale(1); opacity: 1}
-  100% {transform: translate(0, -400px) scale(3); opacity: 0}
+  100% {transform: translate(200px, -200px) scale(3); opacity: 0}
 }
 
 @keyframes seedling-exit {
@@ -28,21 +52,19 @@
 }
 
 .rain.leaving {
-  animation: rain-exit 0.5s ease forwards;
+  // animation: rain-exit 0.5s ease forwards;
+  top: -180px;
+  left: 590px;
+  opacity: 0;
+  transform: scale(3);
 }
 
 .seedling.leaving {
   animation: seedling-exit 0.5s ease forwards;
 }
 
-.sun {
-  background-color: $orange;
-}
-
-.rain {
-  background-color: $blue;
-}
-
-.seedling {
-  background-color: $green;
+.pod.leaving {
+  top: -170px;
+  left: 198px;
+  opacity: 0;
 }
