@@ -90,29 +90,37 @@ export default class Board extends React.Component {
     this.setState({ board: addNewTiles(this.state.board) })
   }
 
+  weather (type) {
+    const body = document.body.classList
+    body.add(type)
+    setTimeout(() => body.remove(type), 2000)
+  }
+
   render () {
     console.log(JSON.stringify(this.state.moveArray))
     return (
-      <div className='board'>
-        {this.state.board.map((row, i) => (
-            <div className='seed-row' key={i}>
-              {row.map((tile, j) => {
-                const tileType = this.setTileType(tile)
-                return (tile > -1)
-                ? <Seed
-                    tileType={tileType}
-                    startDrag={this.startDrag}
-                    checkTile={this.checkTile}
-                    key={'tile-' + i + '-' + j}
-                    isLeavingBool={(this.state.isLeavingArray[i][j]) ? 'leaving' : ''}
-                    isFallingBool={(this.state.isFallingArray[i][j]) ? 'falling' : ''}
-                    y={i}
-                    x={j}/> : ''
-              }
-              )}
-            </div>
-          )
-        )}
+      <div>
+          <div onClick={() => this.weather('rain-falling')} className='rain-maker'></div>
+          <div onClick={() => this.weather('sun-shining')} className='sun-maker'></div>
+          <div className='board'>
+            {this.state.board.map((row, i) => (
+                row.map((tile, j) => {
+                  const tileType = this.setTileType(tile)
+                  return (tile > -1)
+                  ? <Seed
+                  tileType={tileType}
+                  startDrag={this.startDrag}
+                  checkTile={this.checkTile}
+                  key={'tile-' + i + '-' + j}
+                  isLeavingBool={(this.state.isLeavingArray[i][j]) ? 'leaving' : ''}
+                  isFallingBool={(this.state.isFallingArray[i][j]) ? 'falling' : ''}
+                  y={i}
+                  x={j}/> : ''
+                }
+              )
+            )
+          )}
+        </div>
       </div>
     )
   }

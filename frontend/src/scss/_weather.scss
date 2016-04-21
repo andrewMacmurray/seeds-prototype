@@ -1,0 +1,27 @@
+@mixin weather {
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  position: absolute;
+  top: 85px;
+}
+
+.rain-falling {
+  background-color: $rain-background;
+}
+
+.rain-maker {
+  background-color: $rain-background;
+  @include weather;
+  right: 150px;
+}
+
+.sun-maker {
+  background-color: $sun-background;
+  @include weather;
+  left: 150px;
+}
+
+.sun-shining {
+  background-color: $sun-background;
+}
