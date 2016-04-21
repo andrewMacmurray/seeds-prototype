@@ -49,25 +49,28 @@ export default class Board extends React.Component {
     const currentWeather = this.state[type]
     if (moves.length > 0) {
       const [y, x] = moves[0]
-      if (this.state.board[y][x] === 1) {
-        if (currentWeather + moves.length > 4) {
-          this.weather('sun-shining')
-          return 0
-        } else {
-          return currentWeather + moves.length
-        }
+      if (this.state.board[y][x] === 1 && currentWeather + moves.length > 4) {
+        this.weather('sun-shining')
+        return 0
+      } else if (this.state.board[y][x] === 2 && currentWeather + moves.length > 4) {
+        this.weather('rain-falling')
+        return 0
+      } else {
+        return currentWeather + moves.length
       }
     }
   }
 
   stopDrag () {
     const sunshine = this.addPowerToWeather('sunshine') !== undefined ? this.addPowerToWeather('sunshine') : this.state.sunshine
+    const rain = this.addPowerToWeather('rain') !== undefined ? this.addPowerToWeather('rain') : this.state.rain
     this.removeTiles()
     this.setState({
       isDragging: false,
       moveArray: [],
       currTile: [],
-      sunshine: sunshine
+      sunshine,
+      rain
     })
   }
 
