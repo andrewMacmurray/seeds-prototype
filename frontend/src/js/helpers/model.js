@@ -53,8 +53,7 @@ const mapWithIndex = R.addIndex(R.map)
 export const mapMinusOnes = (moves, board) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
-  R.filter(([y, x]) =>
-    y === i && j === x)(moves).length ? -1 : tile
+  R.filter(([y, x]) => y === i && j === x)(moves).length ? -1 : tile
 )(row))(board)
 
 export const mapLeavingTiles = (moves, board) =>

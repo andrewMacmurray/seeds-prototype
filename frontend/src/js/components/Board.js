@@ -8,7 +8,7 @@ export default class Board extends React.Component {
     this.state = {
       board: randomBoard(),
       isLeavingArray: falseBoard(),
-      isFallingArray: falseBoard(),
+      isDraggingArray: falseBoard(),
       currTile: [],
       moveArray: [],
       isDragging: false,
@@ -49,13 +49,14 @@ export default class Board extends React.Component {
     const currentWeather = this.state[type]
     if (moves.length > 0) {
       const [y, x] = moves[0]
-      if (this.state.board[y][x] === 1 && currentWeather + moves.length > 4) {
+      const tile = this.state.board[y][x]
+      if (tile === 1 && currentWeather + moves.length > 4) {
         this.weather('sun-shining')
         return 0
-      } else if (this.state.board[y][x] === 2 && currentWeather + moves.length > 4) {
+      } else if (tile === 2 && currentWeather + moves.length > 4) {
         this.weather('rain-falling')
         return 0
-      } else {
+      } else if (tile === 1 || tile === 2) {
         return currentWeather + moves.length
       }
     }
@@ -70,7 +71,8 @@ export default class Board extends React.Component {
       moveArray: [],
       currTile: [],
       sunshine,
-      rain
+      rain,
+      isDraggingArray: falseBoard()
     })
   }
 
@@ -79,17 +81,21 @@ export default class Board extends React.Component {
     this.setState({
       isDragging: true,
       currTile: this.state.currTile.concat(tile),
-      moveArray: this.state.moveArray.concat([tile])
+      moveArray: this.state.moveArray.concat([tile]),
+      isDraggingArray: mapLeavingTiles([tile], this.state.board)
     })
   }
 
   checkTile (e) {
     if (this.state.isDragging) {
-      const tile = this.getCoord(e)
-      if (validMove(tile, this.state.currTile, this.state.board)) {
+      const currTile = this.getCoord(e)
+      if (validMove(currTile, this.state.currTile, this.state.board)) {
+        const moveArray = this.state.moveArray.concat([currTile])
+        const isDraggingArray = mapLeavingTiles(moveArray, this.state.board)
         this.setState({
-          currTile: tile,
-          moveArray: this.state.moveArray.concat([tile])
+          currTile,
+          moveArray,
+          isDraggingArray
         })
       }
     }
@@ -101,6 +107,10 @@ export default class Board extends React.Component {
     setTimeout(() => this.shiftTiles(minusOneBoard), 500)
     setTimeout(this.addNewTiles, 1000)
   }
+
+  // isDragging () {
+  //   this.setState({ isDraggingArray: mapLeavingTiles(this.state.moveArray, this.state.board) })
+  // }
 
   isLeaving () {
     this.setState({ isLeavingArray: mapLeavingTiles(this.state.moveArray, this.state.board) })
@@ -137,7 +147,7 @@ export default class Board extends React.Component {
                   checkTile={this.checkTile}
                   key={'tile-' + i + '-' + j}
                   isLeavingBool={(this.state.isLeavingArray[i][j]) ? 'leaving' : ''}
-                  isFallingBool={(this.state.isFallingArray[i][j]) ? 'falling' : ''}
+                  isDraggingBool={(this.state.isDraggingArray[i][j]) ? 'dragging' : ''}
                   y={i}
                   x={j}/> : ''
                 }
