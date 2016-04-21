@@ -24,7 +24,7 @@ export default class Board extends React.Component {
     this.addNewTiles = this.addNewTiles.bind(this)
     this.shiftTiles = this.shiftTiles.bind(this)
     this.isLeaving = this.isLeaving.bind(this)
-    this.addSunshine = this.addSunshine.bind(this)
+    this.addPowerToWeather = this.addPowerToWeather.bind(this)
   }
 
   componentDidMount () {
@@ -44,30 +44,33 @@ export default class Board extends React.Component {
     return [y, x]
   }
 
-  addSunshine () {
+  addPowerToWeather (type) {
     const moves = this.state.moveArray
-    const currentSun = this.state.sunshine
+    const currentWeather = this.state[type]
     if (moves.length > 0) {
       const [y, x] = moves[0]
-      if (this.state.board[y][x] === 1) {
-        if (currentSun + moves.length > 4) {
-          this.weather('sun-shining')
-          return 0
-        } else {
-          return currentSun + moves.length
-        }
+      if (this.state.board[y][x] === 1 && currentWeather + moves.length > 4) {
+        this.weather('sun-shining')
+        return 0
+      } else if (this.state.board[y][x] === 2 && currentWeather + moves.length > 4) {
+        this.weather('rain-falling')
+        return 0
+      } else {
+        return currentWeather + moves.length
       }
     }
   }
 
   stopDrag () {
-    const sunshine = this.addSunshine() !== undefined ? this.addSunshine() : this.state.sunshine
+    const sunshine = this.addPowerToWeather('sunshine') !== undefined ? this.addPowerToWeather('sunshine') : this.state.sunshine
+    const rain = this.addPowerToWeather('rain') !== undefined ? this.addPowerToWeather('rain') : this.state.rain
     this.removeTiles()
     this.setState({
       isDragging: false,
       moveArray: [],
       currTile: [],
-      sunshine: sunshine
+      sunshine,
+      rain
     })
   }
 

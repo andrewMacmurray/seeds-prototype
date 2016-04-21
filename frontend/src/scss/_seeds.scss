@@ -11,14 +11,25 @@
 }
 
 .sun {
+  transition: background-color 0.3s ease;
   background-color: $orange;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.sun:hover {
+  background-color: $sun-background;
 }
 
 .rain {
+  transition: background-color 0.3s ease;
   background-color: $blue;
-  transition: 0.5s ease;
   transform: scale(1);
   opacity: 1;
+}
+
+.rain:hover {
+  background-color: $rain-hover;
 }
 
 .seedling {
@@ -26,21 +37,10 @@
 }
 
 .pod {
-  transition: 0.5s ease;
   opacity: 1;
 }
 
 // animations
-
-@keyframes sun-exit {
-  0% {transform: translate(0, 0) scale(1); opacity: 1}
-  100% {transform: translate(-200px, -200px) scale(3); opacity: 0}
-}
-
-@keyframes rain-exit {
-  0% {transform: translate(0, 0) scale(1); opacity: 1}
-  100% {transform: translate(200px, -200px) scale(3); opacity: 0}
-}
 
 @keyframes seedling-exit {
   0% {transform: scale(1); opacity: 1}
@@ -48,13 +48,17 @@
 }
 
 .sun.leaving {
-  animation: sun-exit 0.5s ease forwards;
+  top: -180px;
+  left: -250px;
+  transition: 0.5s ease;
+  opacity: 0;
+  transform: scale(3);
 }
 
 .rain.leaving {
-  // animation: rain-exit 0.5s ease forwards;
   top: -180px;
   left: 590px;
+  transition: 0.5s ease;
   opacity: 0;
   transform: scale(3);
 }
@@ -64,6 +68,7 @@
 }
 
 .pod.leaving {
+  transition: 0.5s ease;
   top: -170px;
   left: 198px;
   opacity: 0;

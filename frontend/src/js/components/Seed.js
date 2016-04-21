@@ -4,6 +4,7 @@ export default (props) => (
   <div
     className={props.tileType + ' tile ' + props.isLeavingBool + ' x-' + props.x + ' y-' + props.y}
     id={props.id}
+    onClick={props.handleClick}
     onMouseDown={props.startDrag}
     onMouseEnter={props.checkTile}
     draggable={false}

@@ -37,3 +37,4 @@ backend/dist
 public/app.js
 dump.rdb
 config.env
+frontend/src/scss/_animate.scss
