@@ -19,3 +19,14 @@ $grid-offset: 4;
     left: $grid-size * $i;
   }
 }
+
+@for $i from 0 through 7 {
+  @media (max-height: 650px) {
+    .x-#{$i} {
+      top: ($grid-size / 1.1 - $grid-offset) * $i;
+    }
+    .y-#{$i} {
+      left: $grid-size / 1.1 * $i;
+    }
+  }
+}

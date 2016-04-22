@@ -16,11 +16,22 @@ body {
 
 .logo {
   text-align: center;
-  max-width: 50px;
+  width: 50px;
   margin: 60px auto 0;
   -webkit-user-select: none;
 
   img {
     width: 100%;
+  }
+}
+
+@media (max-height: 650px) {
+  .logo {
+    width: 40px;
+    margin: 40px auto 0;
+  }
+
+  .board {
+    margin: 9vh auto;
   }
 }
