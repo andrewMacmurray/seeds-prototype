@@ -30,14 +30,9 @@
   opacity: 1;
 }
 
-.rain:hover {
-  background-color: $rain-hover;
-}
-
+.rain:hover,
 .rain.dragging {
   background-color: $rain-hover;
-  transition: 0.3s ease;
-  transform: scale(0.5);
 }
 
 .seedling {
@@ -46,13 +41,8 @@
 }
 
 
-.seedling:hover {
-  background-color: $seedling-hover;
-}
-
+.seedling:hover,
 .seedling.dragging {
-  transition: 0.3s ease;
-  transform: scale(0.5);
   background-color: $seedling-hover;
 }
 
@@ -64,6 +54,13 @@
 
 .pod.dragging {
   background-size: 40%;
+}
+
+.rain.dragging,
+.sun.dragging,
+.seedling.dragging {
+  transition: 0.3s ease;
+  transform: scale(0.5);
 }
 
 // animations
