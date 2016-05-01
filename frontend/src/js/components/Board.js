@@ -108,10 +108,6 @@ export default class Board extends React.Component {
     setTimeout(this.addNewTiles, 1000)
   }
 
-  // isDragging () {
-  //   this.setState({ isDraggingArray: mapLeavingTiles(this.state.moveArray, this.state.board) })
-  // }
-
   isLeaving () {
     this.setState({ isLeavingArray: mapLeavingTiles(this.state.moveArray, this.state.board) })
   }

@@ -25,3 +25,9 @@
 .sun-shining {
   background-color: $sun-background;
 }
+
+@keyframes rain-pulse {
+  0% { background-color: $rain-background; }
+  50% { background-color: rgb(71, 139, 255); }
+  100% { background-color: $rain-background; }
+}

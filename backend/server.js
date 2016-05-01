@@ -15,11 +15,10 @@ import Images from './routes/Images.js'
 import ReactUrls from './routes/ReactUrls.js'
 import Scripts from './routes/Scripts.js'
 
-const ConnectionSettings = { port, routes: {cors: true} }
 const Plugins = [ Inert ]
 const Routes = [ Images, ReactUrls, Scripts ]
 
-server.connection(ConnectionSettings)
+server.connection({ port })
 server.register(Plugins, handlePlugins)
 server.route(Routes)
 server.start(handleStart)
