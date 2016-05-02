@@ -65,11 +65,6 @@
 
 // animations
 
-@keyframes seedling-exit {
-  0% {transform: scale(1); opacity: 1}
-  100% {transform: scale(1.5); opacity: 0}
-}
-
 .sun.leaving {
   top: -180px;
   left: -250px;
@@ -98,3 +93,8 @@
   left: 198px;
   opacity: 0;
 }
+
+// .falling {
+//   transition: 0.2s ease;
+//   transform: translateY(50px);
+// }
