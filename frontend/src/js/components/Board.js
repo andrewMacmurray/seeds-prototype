@@ -1,5 +1,5 @@
 import React from 'react'
-import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles } from '../model/model.js'
+import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling } from '../model/model.js'
 import Seed from './Seed.js'
 
 export default class Board extends React.Component {
@@ -9,6 +9,7 @@ export default class Board extends React.Component {
       board: randomBoard(),
       isLeavingArray: falseBoard(),
       isDraggingArray: falseBoard(),
+      isFallingArray: falseBoard(),
       currTile: [],
       moveArray: [],
       isDragging: false,
@@ -104,8 +105,9 @@ export default class Board extends React.Component {
   removeTiles () {
     const minusOneBoard = mapMinusOnes(this.state.moveArray, this.state.board)
     this.isLeaving()
-    setTimeout(() => this.shiftTiles(minusOneBoard), 500)
-    setTimeout(this.addNewTiles, 1000)
+    this.setState({ isFallingArray: isFalling(minusOneBoard) })
+    setTimeout(() => this.shiftTiles(minusOneBoard), 400)
+    setTimeout(this.addNewTiles, 600)
   }
 
   isLeaving () {
@@ -113,7 +115,7 @@ export default class Board extends React.Component {
   }
 
   shiftTiles (board) {
-    this.setState({ board: shiftBoard(board), isLeavingArray: falseBoard() })
+    this.setState({ board: shiftBoard(board), isLeavingArray: falseBoard(), isFallingArray: falseBoard() })
   }
 
   addNewTiles () {
@@ -127,7 +129,7 @@ export default class Board extends React.Component {
   }
 
   render () {
-    console.log(JSON.stringify(this.state.moveArray), this.state.sunshine, 'sun')
+    // console.log(JSON.stringify(this.state.moveArray), this.state.sunshine, 'sun')
     return (
       <div>
           <div className='rain-maker'></div>
@@ -144,6 +146,7 @@ export default class Board extends React.Component {
                   key={'tile-' + i + '-' + j}
                   isLeavingBool={(this.state.isLeavingArray[i][j]) ? 'leaving' : ''}
                   isDraggingBool={(this.state.isDraggingArray[i][j]) ? 'dragging' : ''}
+                  isFallingBool={(this.state.isFallingArray[i][j]) ? 'falling' : ''}
                   y={i}
                   x={j}/> : ''
                 }

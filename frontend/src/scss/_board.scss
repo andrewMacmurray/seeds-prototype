@@ -10,7 +10,6 @@ $grid-offset: 4;
   right: 0;
 }
 
-
 @for $i from 0 through 7 {
   .x-#{$i} {
     top: ($grid-size - $grid-offset) * $i;
