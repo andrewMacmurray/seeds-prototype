@@ -17,6 +17,10 @@ $grid-offset: 4;
   .y-#{$i} {
     left: $grid-size * $i;
   }
+  .falling-#{$i} {
+    transform: translateY(($grid-size - $grid-offset) * $i);
+    transition: 0.3s ease;
+  }
 }
 
 @for $i from 0 through 7 {
