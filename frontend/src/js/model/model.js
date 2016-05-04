@@ -1,5 +1,5 @@
 import R from 'ramda'
-import { left, right, up, down, topRight, topLeft, bottomRight, bottomLeft } from './directions.js'
+import { left, right, up, down } from './directions.js'
 
 const multiply = (x) => x * 3 + 1
 const roundRandom = R.pipe(Math.random, multiply, Math.round)
@@ -72,5 +72,37 @@ const sliceStatic = (row) => R.slice(lowestTileIndex(row), row.length, row)
 const mapFalling = R.map(tile)
 const mapStatic = R.map(R.always(false))
 
-export const isFallingRow = (row) => lowestTileIndex(row) > -1 ? R.concat(mapFalling(sliceFalling(row)), mapStatic(sliceStatic(row))) : mapStatic(row)
+export const isFallingRow = (row) =>
+  lowestTileIndex(row) > -1 ?
+  R.concat(mapFalling(sliceFalling(row)), mapStatic(sliceStatic(row))) :
+  mapStatic(row)
+
 export const isFalling = R.map(isFallingRow)
+
+const _row = [1, 2, 4, -1, 1, -1, 3, 2]
+
+const num = (x) => x === '' ? -1 : parseInt(x)
+const splitSections = R.pipe(R.join(','), R.split('-1,'))
+const cleanSection = R.pipe(R.split(','), R.map(num))
+const cleanSections = R.map(cleanSection)
+export const sections = (row) => cleanSections(splitSections(row))
+
+const hasFallingTile = (x) => x.indexOf(-1) > -1
+const magnitude = (row) => R.filter(hasFallingTile, sections(row)).length
+
+const mapMag = (mg) => R.map(item => {
+  if (item === -1) {
+    mg--
+    return 0
+  } else {
+    return mg
+  }
+})
+
+export const mapFallingRow = (row) => {
+  let mg = magnitude(row)
+  const xs = sections(row)
+  return R.flatten(R.map(mapMag(mg))(xs))
+}
+
+export const mapFallingBoard = R.map(mapFallingRow)
