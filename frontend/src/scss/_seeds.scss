@@ -9,6 +9,8 @@
   opacity: 1;
   transform: scale(1);
   animation: bounceInDown 0.6s ease;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .sun {

@@ -107,8 +107,8 @@ export default class Board extends React.Component {
   removeTiles () {
     const minusOneBoard = mapMinusOnes(this.state.moveArray, this.state.board)
     this.isLeaving()
-    setTimeout(() => this.fallingTiles(minusOneBoard), 150)
-    setTimeout(() => this.shiftTiles(minusOneBoard), 400)
+    setTimeout(() => this.fallingTiles(minusOneBoard), 400)
+    setTimeout(() => this.shiftTiles(minusOneBoard), 600)
     setTimeout(() => this.addNewTiles(), 600)
   }
 
