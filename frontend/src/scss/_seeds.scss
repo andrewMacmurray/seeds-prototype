@@ -12,7 +12,6 @@
 }
 
 .sun {
-  transition: background-color 0.3s ease;
   background-color: $orange;
   transform: scale(1);
   opacity: 1;
@@ -21,10 +20,10 @@
 .sun:hover,
 .sun.dragging {
   background-color: $sun-hover;
+  transition: 0.3s ease;
 }
 
 .rain {
-  transition: background-color 0.3s ease;
   background-color: $blue;
   transform: scale(1);
   opacity: 1;
@@ -33,10 +32,10 @@
 .rain:hover,
 .rain.dragging {
   background-color: $rain-hover;
+  transition: 0.3s ease;
 }
 
 .seedling {
-  transition: background-color 0.3s ease;
   background-color: $green;
 }
 
@@ -44,10 +43,10 @@
 .seedling:hover,
 .seedling.dragging {
   background-color: $seedling-hover;
+  transition: 0.3s ease;
 }
 
 .pod {
-  transition: background-size 0.3s ease;
   transform: scale(1);
   opacity: 1;
 }
@@ -93,8 +92,3 @@
   left: 198px;
   opacity: 0;
 }
-
-// .falling {
-//   transition: 0.2s ease;
-//   transform: translateY(50px);
-// }
