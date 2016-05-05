@@ -4,6 +4,8 @@
   border-radius: 5px;
   position: absolute;
   top: 85px;
+  transform: scale(1);
+  transition: 0.3s ease;
 }
 
 .rain-falling {
@@ -32,8 +34,22 @@
   }
 }
 
+.max-rain {
+  animation: rain-pulse 1s infinite linear;
+}
+
+.max-sun {
+  animation: sun-pulse 1s infinite linear;
+}
+
 @keyframes rain-pulse {
   0% { background-color: $rain-background; }
   50% { background-color: rgb(71, 139, 255); }
   100% { background-color: $rain-background; }
+}
+
+@keyframes sun-pulse {
+  0% { background-color: $sun-background; }
+  50% { background-color: rgb(249, 93, 52); }
+  100% { background-color: $sun-background; }
 }

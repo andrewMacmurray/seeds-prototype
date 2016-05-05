@@ -13,7 +13,7 @@ export default class Board extends React.Component {
       currTile: [],
       moveArray: [],
       isDragging: false,
-      sunshine: 0,
+      sun: 0,
       rain: 0,
       score: 0
     }
@@ -28,6 +28,9 @@ export default class Board extends React.Component {
     this.shiftTiles = this.shiftTiles.bind(this)
     this.isLeaving = this.isLeaving.bind(this)
     this.addPowerToWeather = this.addPowerToWeather.bind(this)
+    this.calculateWeatherPower = this.calculateWeatherPower.bind(this)
+    this.shineSun = this.shineSun.bind(this)
+    this.rainFall = this.rainFall.bind(this)
     this.fallingClass = this.fallingClass.bind(this)
   }
 
@@ -48,34 +51,39 @@ export default class Board extends React.Component {
     return [y, x]
   }
 
-  addPowerToWeather (type) {
-    const moves = this.state.moveArray
-    const currentWeather = this.state[type]
+  checkMoveType (moves, board) {
     if (moves.length > 0) {
       const [y, x] = moves[0]
-      const tile = this.state.board[y][x]
-      if (tile === 1 && currentWeather + moves.length > 6) {
-        this.weather('sun-shining')
-        return 0
-      } else if (tile === 2 && currentWeather + moves.length > 6) {
-        this.weather('rain-falling')
-        return 0
-      } else if (tile === 1 || tile === 2) {
-        return currentWeather + moves.length
-      }
+      const type = board[y][x]
+      if (type === 1) return 'sun'
+      else if (type === 2) return 'rain'
+      else if (type === 3) return 'seedling'
+      else if (type === 4) return 'pod'
     }
   }
 
+  calculateWeatherPower (type) {
+    if (type === 'sun' || type === 'rain') {
+      const moves = this.state.moveArray
+      const currentWeather = this.state[type]
+      return moves.length > 0 ? currentWeather + moves.length : currentWeather
+    }
+  }
+
+  addPowerToWeather () {
+    const type = this.checkMoveType(this.state.moveArray, this.state.board)
+    const sun = type === 'sun' ? this.calculateWeatherPower(type) : this.state.sun
+    const rain = type === 'rain' ? this.calculateWeatherPower(type) : this.state.rain
+    this.setState({ sun, rain })
+  }
+
   stopDrag () {
-    const sunshine = this.addPowerToWeather('sunshine') !== undefined ? this.addPowerToWeather('sunshine') : this.state.sunshine
-    const rain = this.addPowerToWeather('rain') !== undefined ? this.addPowerToWeather('rain') : this.state.rain
+    this.addPowerToWeather()
     this.removeTiles()
     this.setState({
       isDragging: false,
       moveArray: [],
       currTile: [],
-      sunshine,
-      rain,
       isDraggingArray: falseBoard()
     })
   }
@@ -135,17 +143,31 @@ export default class Board extends React.Component {
     setTimeout(() => body.remove(type), 3000)
   }
 
+  shineSun () {
+    if (this.state.sun >= 6) {
+      this.weather('sun-shining')
+      this.setState({ sun: 0 })
+    }
+  }
+
+  rainFall () {
+    if (this.state.rain >= 6) {
+      this.weather('rain-falling')
+      this.setState({ rain: 0 })
+    }
+  }
+
   fallingClass(tile) {
     return tile ? 'falling-' + tile : ''
   }
 
   render () {
-    // console.log(JSON.stringify(this.state.moveArray), this.state.sunshine, 'sun')
-    console.log(this.state.rain, 'rain', this.state.sunshine, 'sun')
+    // console.log(JSON.stringify(this.state.moveArray), this.state.sun, 'sun')
+    // console.log(this.state.rain, 'rain', this.state.sun, 'sun')
     return (
       <div>
-          <div className={'rain-maker power-' + this.state.rain}></div>
-          <div className={'sun-maker power-' + this.state.sunshine}></div>
+          <div onClick={this.rainFall} className={'rain-maker power-' + (this.state.rain < 6 ? this.state.rain : 6 + ' max-rain')}></div>
+          <div onClick={this.shineSun} className={'sun-maker power-' + (this.state.sun < 6 ? this.state.sun : 6 + ' max-sun')}></div>
           <div className='board'>
             {this.state.board.map((row, i) => (
                 row.map((tile, j) => {
