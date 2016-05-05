@@ -23,13 +23,22 @@ $grid-offset: 4;
   }
 }
 
-@for $i from 0 through 7 {
-  @media (max-height: 650px) {
+@media (max-height: 650px) {
+  .board {
+    height: 365px;
+    width: 395px;
+  }
+
+  @for $i from 0 through 7 {
     .x-#{$i} {
       top: ($grid-size / 1.1 - $grid-offset) * $i;
     }
     .y-#{$i} {
       left: $grid-size / 1.1 * $i;
+    }
+    .falling-#{$i} {
+      transform: translateY(($grid-size / 1.1 - $grid-offset) * $i);
+      transition: 0.3s ease;
     }
   }
 }
