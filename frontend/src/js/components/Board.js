@@ -14,7 +14,8 @@ export default class Board extends React.Component {
       moveArray: [],
       isDragging: false,
       sunshine: 0,
-      rain: 0
+      rain: 0,
+      score: 0
     }
     this.setTileType = this.setTileType.bind(this)
     this.getCoord = this.getCoord.bind(this)
@@ -53,10 +54,10 @@ export default class Board extends React.Component {
     if (moves.length > 0) {
       const [y, x] = moves[0]
       const tile = this.state.board[y][x]
-      if (tile === 1 && currentWeather + moves.length > 4) {
+      if (tile === 1 && currentWeather + moves.length > 6) {
         this.weather('sun-shining')
         return 0
-      } else if (tile === 2 && currentWeather + moves.length > 4) {
+      } else if (tile === 2 && currentWeather + moves.length > 6) {
         this.weather('rain-falling')
         return 0
       } else if (tile === 1 || tile === 2) {
@@ -140,10 +141,11 @@ export default class Board extends React.Component {
 
   render () {
     // console.log(JSON.stringify(this.state.moveArray), this.state.sunshine, 'sun')
+    console.log(this.state.rain, 'rain', this.state.sunshine, 'sun')
     return (
       <div>
-          <div className='rain-maker'></div>
-          <div className='sun-maker'></div>
+          <div className={'rain-maker power-' + this.state.rain}></div>
+          <div className={'sun-maker power-' + this.state.sunshine}></div>
           <div className='board'>
             {this.state.board.map((row, i) => (
                 row.map((tile, j) => {
