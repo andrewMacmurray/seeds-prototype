@@ -20,7 +20,7 @@
 .sun:hover,
 .sun.dragging {
   background-color: $sun-hover;
-  transition: 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .rain {
@@ -32,7 +32,7 @@
 .rain:hover,
 .rain.dragging {
   background-color: $rain-hover;
-  transition: 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .seedling {
@@ -43,7 +43,7 @@
 .seedling:hover,
 .seedling.dragging {
   background-color: $seedling-hover;
-  transition: 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
 .pod {
