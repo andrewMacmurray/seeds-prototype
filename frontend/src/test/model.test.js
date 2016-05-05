@@ -1,5 +1,5 @@
 import tape from 'tape'
-import { validMove, isNextTo, sameType, shift, shiftBoard, isFallingRow, sections, mapFallingRow } from '../js/model/model.js'
+import { validMove, isNextTo, sameType, shift, shiftBoard, sections, fallingRow } from '../js/model/model.js'
 
 const board = [
   [2, 3, 3, 1, 2, 0, 0, 1],
@@ -132,24 +132,24 @@ tape('shift and shiftBoard function should shift zeroes to end of array', (t) =>
   t.end()
 })
 
-tape('isFallingRow function should mark falling tiles as true and everything else as false', (t) => {
-  let leavingRow = [1, 2, 3, -1, 2, 3, 2, 3]
-  let expected = [true, true, true, false, false, false, false, false]
-  let actual = isFallingRow(leavingRow)
-  t.deepEqual(actual, expected, 'isFalling maps bolleans properly')
-
-  leavingRow = [1, 2, 3, -1, 2, -1, 2, 3]
-  expected = [true, true, true, false, true, false, false, false]
-  actual = isFallingRow(leavingRow)
-  t.deepEqual(actual, expected, 'isFalling maps bolleans properly')
-
-  leavingRow = [1, 2, 3, 1, 2, 1, 2, 3]
-  expected = [false, false, false, false, false, false, false, false]
-  actual = isFallingRow(leavingRow)
-  t.deepEqual(actual, expected, 'isFalling maps bolleans properly')
-
-  t.end()
-})
+// tape('isFallingRow function should mark falling tiles as true and everything else as false', (t) => {
+//   let leavingRow = [1, 2, 3, -1, 2, 3, 2, 3]
+//   let expected = [true, true, true, false, false, false, false, false]
+//   let actual = isFallingRow(leavingRow)
+//   t.deepEqual(actual, expected, 'isFalling maps bolleans properly')
+//
+//   leavingRow = [1, 2, 3, -1, 2, -1, 2, 3]
+//   expected = [true, true, true, false, true, false, false, false]
+//   actual = isFallingRow(leavingRow)
+//   t.deepEqual(actual, expected, 'isFalling maps bolleans properly')
+//
+//   leavingRow = [1, 2, 3, 1, 2, 1, 2, 3]
+//   expected = [false, false, false, false, false, false, false, false]
+//   actual = isFallingRow(leavingRow)
+//   t.deepEqual(actual, expected, 'isFalling maps bolleans properly')
+//
+//   t.end()
+// })
 
 tape('falling sections functions should split each row into compartments', (t) => {
   let leavingRow = [1, 2, 4, -1, 1, -1, 3, 2]
@@ -158,17 +158,17 @@ tape('falling sections functions should split each row into compartments', (t) =
   t.deepEqual(actual, expected, 'sections are correctly split up')
 
   expected = [2, 2, 2, 0, 1, 0, 0, 0]
-  actual = mapFallingRow(leavingRow)
+  actual = fallingRow(leavingRow)
   t.deepEqual(actual, expected, 'magnitude of falling tiles mapped correctly')
 
   leavingRow = [-1, -1, -1, 2, 2, -1, -1, -1]
   expected = [0, 0, 0, 3, 3, 0, 0, 0]
-  actual = mapFallingRow(leavingRow)
+  actual = fallingRow(leavingRow)
   t.deepEqual(actual, expected, 'magnitude of falling tiles mapped correctly')
 
   leavingRow = [-1, 2, -1, 3, -1, -1, -1, -1]
   expected = [0, 5, 0, 4, 0, 0, 0, 0]
-  actual = mapFallingRow(leavingRow)
+  actual = fallingRow(leavingRow)
   t.deepEqual(actual, expected, 'magnitude of falling tiles mapped correctly')
 
   t.end()

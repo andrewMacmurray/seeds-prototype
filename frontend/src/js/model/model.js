@@ -79,8 +79,6 @@ export const isFallingRow = (row) =>
 
 export const isFalling = R.map(isFallingRow)
 
-const _row = [1, 2, 4, -1, 1, -1, 3, 2]
-
 const num = (x) => x === '' ? -1 : parseInt(x)
 const splitSections = R.pipe(R.join(','), R.split('-1,'))
 const cleanSection = R.pipe(R.split(','), R.map(num))
@@ -99,10 +97,10 @@ const mapMag = (mg) => R.map(item => {
   }
 })
 
-export const mapFallingRow = (row) => {
+export const fallingRow = (row) => {
   let mg = magnitude(row)
   const xs = sections(row)
   return R.flatten(R.map(mapMag(mg))(xs))
 }
 
-export const mapFallingBoard = R.map(mapFallingRow)
+export const mapFallingTiles = R.map(fallingRow)

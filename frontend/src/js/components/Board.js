@@ -1,5 +1,5 @@
 import React from 'react'
-import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingBoard } from '../model/model.js'
+import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingTiles } from '../model/model.js'
 import Seed from './Seed.js'
 
 export default class Board extends React.Component {
@@ -23,6 +23,7 @@ export default class Board extends React.Component {
     this.checkTile = this.checkTile.bind(this)
     this.removeTiles = this.removeTiles.bind(this)
     this.addNewTiles = this.addNewTiles.bind(this)
+    this.fallingTiles = this.fallingTiles.bind(this)
     this.shiftTiles = this.shiftTiles.bind(this)
     this.isLeaving = this.isLeaving.bind(this)
     this.addPowerToWeather = this.addPowerToWeather.bind(this)
@@ -106,9 +107,13 @@ export default class Board extends React.Component {
   removeTiles () {
     const minusOneBoard = mapMinusOnes(this.state.moveArray, this.state.board)
     this.isLeaving()
-    this.setState({ isFallingArray: mapFallingBoard(minusOneBoard) })
+    setTimeout(() => this.fallingTiles(minusOneBoard), 150)
     setTimeout(() => this.shiftTiles(minusOneBoard), 400)
-    setTimeout(this.addNewTiles, 600)
+    setTimeout(() => this.addNewTiles(), 600)
+  }
+
+  fallingTiles (board) {
+    this.setState({ isFallingArray: mapFallingTiles(board) })
   }
 
   isLeaving () {
