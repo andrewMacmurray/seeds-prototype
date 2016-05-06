@@ -64,6 +64,14 @@ export const mapLeavingTiles = (moves, board) =>
     y === i && j === x)(moves).length
 )(row))(board)
 
+const growSeed = (x) => x === 3 ? 4 : x
+const growRow = R.map(growSeed)
+export const growSeeds = R.map(growRow)
+
+const growSeedBool = (x) => x === 3
+const isGrowingRow = R.map(growSeedBool)
+export const isGrowing = R.map(isGrowingRow)
+
 // const result = mapMinusOnes([[0, 0], [1, 1]], [[0, 1, 2, 3], [0, 1, 2, 3]])
 
 const lowestTileIndex = R.lastIndexOf(-1)
