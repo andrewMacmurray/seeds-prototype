@@ -1,12 +1,4 @@
-@mixin weather {
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  position: absolute;
-  top: 85px;
-  transform: scale(1);
-  transition: 0.3s ease;
-}
+@import 'mixins';
 
 .rain-falling {
   background-color: $rain-background;
@@ -28,9 +20,9 @@
   background-color: $sun-background;
 }
 
-@for $i from 0 through 6 {
+@for $i from 0 through 12 {
   .power-#{$i} {
-    transform: scale($i + 1 * 0.5);
+    transform: scale($i * 0.5);
   }
 }
 

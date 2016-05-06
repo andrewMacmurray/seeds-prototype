@@ -1,5 +1,5 @@
 import React from 'react'
-import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingTiles } from '../model/model.js'
+import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingTiles, growSeeds, isGrowing } from '../model/model.js'
 import Seed from './Seed.js'
 
 export default class Board extends React.Component {
@@ -10,6 +10,7 @@ export default class Board extends React.Component {
       isLeavingArray: falseBoard(),
       isDraggingArray: falseBoard(),
       isFallingArray: falseBoard(),
+      isGrowingArray: falseBoard(),
       currTile: [],
       moveArray: [],
       isDragging: false,
@@ -29,6 +30,7 @@ export default class Board extends React.Component {
     this.isLeaving = this.isLeaving.bind(this)
     this.addPowerToWeather = this.addPowerToWeather.bind(this)
     this.calculateWeatherPower = this.calculateWeatherPower.bind(this)
+    this.addSeedsToScore = this.addSeedsToScore.bind(this)
     this.shineSun = this.shineSun.bind(this)
     this.rainFall = this.rainFall.bind(this)
     this.fallingClass = this.fallingClass.bind(this)
@@ -77,9 +79,23 @@ export default class Board extends React.Component {
     this.setState({ sun, rain })
   }
 
+  addSeedsToScore () {
+    const type = this.checkMoveType(this.state.moveArray, this.state.board)
+    const moves = this.state.moveArray
+    const currentScore = this.state.score
+    if (type === 'pod' && moves.length > 0) {
+      this.setState({ score: currentScore + moves.length * 5 })
+    } else if (type === 'seedling' && moves.length > 0) {
+      this.setState({ score: currentScore + moves.length })
+    }
+  }
+
   stopDrag () {
-    this.addPowerToWeather()
-    this.removeTiles()
+    if (this.state.moveArray.length > 1) {
+      this.addPowerToWeather()
+      this.addSeedsToScore()
+      this.removeTiles()
+    }
     this.setState({
       isDragging: false,
       moveArray: [],
@@ -144,16 +160,20 @@ export default class Board extends React.Component {
   }
 
   shineSun () {
-    if (this.state.sun >= 6) {
+    if (this.state.sun >= 12) {
       this.weather('sun-shining')
-      this.setState({ sun: 0 })
+      const newBoard = growSeeds(this.state.board)
+      const isGrowingBoard = isGrowing(this.state.board)
+      this.setState({ sun: 0, board: newBoard, isGrowingArray: isGrowingBoard })
+      setTimeout(() => this.setState({ isGrowingArray: falseBoard() }), 500)
     }
   }
 
   rainFall () {
-    if (this.state.rain >= 6) {
+    if (this.state.rain >= 12) {
       this.weather('rain-falling')
-      this.setState({ rain: 0 })
+      const newBoard = growSeeds(this.state.board)
+      this.setState({ rain: 0, board: newBoard })
     }
   }
 
@@ -166,8 +186,9 @@ export default class Board extends React.Component {
     // console.log(this.state.rain, 'rain', this.state.sun, 'sun')
     return (
       <div>
-          <div onClick={this.rainFall} className={'rain-maker power-' + (this.state.rain < 6 ? this.state.rain : 6 + ' max-rain')}></div>
-          <div onClick={this.shineSun} className={'sun-maker power-' + (this.state.sun < 6 ? this.state.sun : 6 + ' max-sun')}></div>
+          <div onClick={this.rainFall} className={'rain-maker power-' + (this.state.rain < 12 ? this.state.rain : 12 + ' max-rain')}></div>
+          <div onClick={this.shineSun} className={'sun-maker power-' + (this.state.sun < 12 ? this.state.sun : 12 + ' max-sun')}></div>
+          <p className='score'>{this.state.score}</p>
           <div className='board'>
             {this.state.board.map((row, i) => (
                 row.map((tile, j) => {
@@ -180,6 +201,7 @@ export default class Board extends React.Component {
                   key={'tile-' + i + '-' + j}
                   isLeavingBool={(this.state.isLeavingArray[i][j]) ? 'leaving' : ''}
                   isDraggingBool={(this.state.isDraggingArray[i][j]) ? 'dragging' : ''}
+                  isGrowingBool={(this.state.isGrowingArray[i][j]) ? 'growing' : ''}
                   isFalling={this.fallingClass(this.state.isFallingArray[i][j])}
                   y={i}
                   x={j}/> : ''

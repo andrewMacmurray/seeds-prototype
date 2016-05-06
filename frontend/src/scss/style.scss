@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 @import 'seeds';
 @import 'board';
 @import 'weather';
@@ -23,6 +24,15 @@ body {
   img {
     width: 100%;
   }
+}
+
+.score {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  color: $text-yellow;
+  @include no-select;
 }
 
 @media (max-height: 650px) {
