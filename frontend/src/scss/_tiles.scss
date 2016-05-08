@@ -1,0 +1,101 @@
+@import 'animate';
+@import 'mixins';
+
+.tile {
+  border-radius: 50px;
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  box-sizing: border-box;
+  opacity: 1;
+  transform: scale(1);
+  animation: bounceInDown 0.6s ease;
+  @include no-select;
+}
+
+.sun {
+  background-color: $orange;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.sun:hover,
+.sun.dragging {
+  background-color: $sun-hover;
+  transition: background-color 0.3s ease;
+}
+
+.rain {
+  background-color: $blue;
+  transform: scale(1);
+  opacity: 1;
+}
+
+.rain:hover,
+.rain.dragging {
+  background-color: $rain-hover;
+  transition: background-color 0.3s ease;
+}
+
+.seedling {
+  background-color: $green;
+}
+
+
+.seedling:hover,
+.seedling.dragging {
+  background-color: $seedling-hover;
+  transition: background-color 0.3s ease;
+}
+
+.pod {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.pod.dragging {
+  transition: background-size 0.1s ease;
+  background-size: 13px 22px;
+}
+
+.rain.dragging,
+.sun.dragging,
+.seedling.dragging {
+  transition: 0.3s ease;
+  transform: scale(0.5);
+}
+
+// animations
+
+.sun.leaving {
+  // top: -180px;
+  // left: -250px;
+  transition: 0.5s ease;
+  opacity: 0;
+  transform: scale(3);
+}
+
+.rain.leaving {
+  // top: -180px;
+  // left: 590px;
+  transition: 0.5s ease;
+  opacity: 0;
+  transform: scale(3);
+}
+
+.seedling.leaving {
+  transition: 0.5s ease;
+  transform: scale(1.5);
+  opacity: 0;
+}
+
+.pod.leaving {
+  transition: 0.5s ease;
+  top: -170px;
+  left: 198px;
+  opacity: 0;
+}
+
+.growing {
+  animation: rubberBand 0.5s ease;
+}

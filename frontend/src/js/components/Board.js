@@ -1,5 +1,17 @@
 import React from 'react'
-import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingTiles, growSeeds, isGrowing } from '../model/model.js'
+import {
+  validMove,
+  randomBoard,
+  shiftBoard,
+  falseBoard,
+  addNewTiles,
+  mapMinusOnes,
+  mapLeavingTiles,
+  isFalling,
+  mapFallingTiles,
+  growSeeds,
+  isGrowing
+} from '../model/model.js'
 import Seed from './Seed.js'
 
 export default class Board extends React.Component {
@@ -142,11 +154,16 @@ export default class Board extends React.Component {
   }
 
   isLeaving () {
-    this.setState({ isLeavingArray: mapLeavingTiles(this.state.moveArray, this.state.board) })
+    const leavingTiles = mapLeavingTiles(this.state.moveArray, this.state.board)
+    this.setState({ isLeavingArray: leavingTiles })
   }
 
   shiftTiles (board) {
-    this.setState({ board: shiftBoard(board), isLeavingArray: falseBoard(), isFallingArray: falseBoard() })
+    this.setState({
+      board: shiftBoard(board),
+      isLeavingArray: falseBoard(),
+      isFallingArray: falseBoard()
+    })
   }
 
   addNewTiles () {
@@ -177,18 +194,22 @@ export default class Board extends React.Component {
     }
   }
 
-  fallingClass(tile) {
+  fallingClass (tile) {
     return tile ? 'falling-' + tile : ''
   }
 
+  weatherMakerClass (type) {
+    return type + '-maker power-' + (this.state[type] < 12 ? this.state[type] : 12 + ' max-' + type)
+  }
+
   render () {
-    // console.log(JSON.stringify(this.state.moveArray), this.state.sun, 'sun')
-    // console.log(this.state.rain, 'rain', this.state.sun, 'sun')
+    // console.log(JSON.stringify(this.state.moveArray))
     return (
       <div>
-          <div onClick={this.rainFall} className={'rain-maker power-' + (this.state.rain < 12 ? this.state.rain : 12 + ' max-rain')}></div>
-          <div onClick={this.shineSun} className={'sun-maker power-' + (this.state.sun < 12 ? this.state.sun : 12 + ' max-sun')}></div>
-          <p className='score'>{this.state.score}</p>
+        <div className='logo'><img src='img/seed-dark.png'/></div>
+        <div onClick={this.rainFall} className={this.weatherMakerClass('rain')}></div>
+        <div onClick={this.shineSun} className={this.weatherMakerClass('sun')}></div>
+        <p className='score'>{this.state.score}</p>
           <div className='board'>
             {this.state.board.map((row, i) => (
                 row.map((tile, j) => {
@@ -209,7 +230,7 @@ export default class Board extends React.Component {
               )
             )
           )}
-        </div>
+          </div>
       </div>
     )
   }
