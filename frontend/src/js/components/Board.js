@@ -13,7 +13,7 @@ import {
   isGrowing
 } from '../model/model.js'
 import { connect } from 'react-redux'
-import { setDrag, addPowerToWeather } from '../actions/actions_index.js'
+import { setDrag, addPowerToWeather, resetWeather } from '../actions/actions_index.js'
 import Seed from './Seed.js'
 
 class Board extends React.Component {
@@ -176,9 +176,10 @@ class Board extends React.Component {
   shineSun () {
     if (this.props.sun >= 12) {
       this.weather('sun-shining')
+      this.props.resetWeather('sun')
       const newBoard = growSeeds(this.state.board)
       const isGrowingBoard = isGrowing(this.state.board)
-      this.setState({ sun: 0, board: newBoard, isGrowingArray: isGrowingBoard })
+      this.setState({ board: newBoard, isGrowingArray: isGrowingBoard })
       setTimeout(() => this.setState({ isGrowingArray: falseBoard() }), 500)
     }
   }
@@ -186,8 +187,9 @@ class Board extends React.Component {
   rainFall () {
     if (this.props.rain >= 12) {
       this.weather('rain-falling')
+      this.props.resetWeather('rain')
       const newBoard = growSeeds(this.state.board)
-      this.setState({ rain: 0, board: newBoard })
+      this.setState({ board: newBoard })
     }
   }
 
@@ -241,4 +243,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { setDrag, addPowerToWeather })(Board)
+export default connect(mapStateToProps, { setDrag, addPowerToWeather, resetWeather })(Board)

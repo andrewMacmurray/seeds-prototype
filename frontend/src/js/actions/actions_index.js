@@ -18,3 +18,12 @@ export function addPowerToWeather (weatherType, power) {
     }
   }
 }
+
+export const RESET_WEATHER = 'RESET_WEATHER'
+
+export function resetWeather (weatherType) {
+  return {
+    type: RESET_WEATHER,
+    payload: weatherType
+  }
+}
