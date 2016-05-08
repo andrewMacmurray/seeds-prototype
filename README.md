@@ -6,9 +6,8 @@ A connect the dots game where the user must gather many seeds.
 
 Goals:
 
-+ Start with a browser based game using React
-+ Different layouts of each board
-+ Maybe use gsap animation library for more complex animation effects / sequencing
++ A browser based game using React and Redux
++ Different layouts and challenges for each board
 + A level system where the user progresses through a hub world
 + An ios / android version in React Native
 
