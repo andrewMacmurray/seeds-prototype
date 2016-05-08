@@ -1,8 +1,10 @@
 @import 'variables';
 @import 'mixins';
+@import 'tiles';
 @import 'seeds';
 @import 'board';
 @import 'weather';
+@import 'intro';
 
 html {
   position: relative;
@@ -13,6 +15,20 @@ body {
   font-family: $main-font;
   background-color: $beige;
   transition: 2s ease;
+}
+
+audio {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+p, a {
+  color: $text-yellow;
 }
 
 .logo {
@@ -31,7 +47,6 @@ body {
   text-align: center;
   left: 0;
   right: 0;
-  color: $text-yellow;
   @include no-select;
 }
 

@@ -1,8 +1,22 @@
 import React from 'react'
-import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingTiles, growSeeds, isGrowing } from '../model/model.js'
+import {
+  validMove,
+  randomBoard,
+  shiftBoard,
+  falseBoard,
+  addNewTiles,
+  mapMinusOnes,
+  mapLeavingTiles,
+  isFalling,
+  mapFallingTiles,
+  growSeeds,
+  isGrowing
+} from '../model/model.js'
+import { connect } from 'react-redux'
+import { setDrag, addPowerToWeather } from '../actions/actions_index.js'
 import Seed from './Seed.js'
 
-export default class Board extends React.Component {
+class Board extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -13,9 +27,6 @@ export default class Board extends React.Component {
       isGrowingArray: falseBoard(),
       currTile: [],
       moveArray: [],
-      isDragging: false,
-      sun: 0,
-      rain: 0,
       score: 0
     }
     this.setTileType = this.setTileType.bind(this)
@@ -28,7 +39,7 @@ export default class Board extends React.Component {
     this.fallingTiles = this.fallingTiles.bind(this)
     this.shiftTiles = this.shiftTiles.bind(this)
     this.isLeaving = this.isLeaving.bind(this)
-    this.addPowerToWeather = this.addPowerToWeather.bind(this)
+    this._addPowerToWeather = this._addPowerToWeather.bind(this)
     this.calculateWeatherPower = this.calculateWeatherPower.bind(this)
     this.addSeedsToScore = this.addSeedsToScore.bind(this)
     this.shineSun = this.shineSun.bind(this)
@@ -72,11 +83,9 @@ export default class Board extends React.Component {
     }
   }
 
-  addPowerToWeather () {
+  _addPowerToWeather () {
     const type = this.checkMoveType(this.state.moveArray, this.state.board)
-    const sun = type === 'sun' ? this.calculateWeatherPower(type) : this.state.sun
-    const rain = type === 'rain' ? this.calculateWeatherPower(type) : this.state.rain
-    this.setState({ sun, rain })
+    this.props.addPowerToWeather(type, this.state.moveArray.length)
   }
 
   addSeedsToScore () {
@@ -92,12 +101,12 @@ export default class Board extends React.Component {
 
   stopDrag () {
     if (this.state.moveArray.length > 0) {
-      this.addPowerToWeather()
+      this._addPowerToWeather()
       this.addSeedsToScore()
       this.removeTiles()
     }
+    this.props.setDrag(false)
     this.setState({
-      isDragging: false,
       moveArray: [],
       currTile: [],
       isDraggingArray: falseBoard()
@@ -106,8 +115,8 @@ export default class Board extends React.Component {
 
   startDrag (e) {
     const tile = this.getCoord(e)
+    this.props.setDrag(true)
     this.setState({
-      isDragging: true,
       currTile: this.state.currTile.concat(tile),
       moveArray: this.state.moveArray.concat([tile]),
       isDraggingArray: mapLeavingTiles([tile], this.state.board)
@@ -115,7 +124,7 @@ export default class Board extends React.Component {
   }
 
   checkTile (e) {
-    if (this.state.isDragging) {
+    if (this.props.isDragging) {
       const currTile = this.getCoord(e)
       if (validMove(currTile, this.state.currTile, this.state.board)) {
         const moveArray = this.state.moveArray.concat([currTile])
@@ -142,11 +151,16 @@ export default class Board extends React.Component {
   }
 
   isLeaving () {
-    this.setState({ isLeavingArray: mapLeavingTiles(this.state.moveArray, this.state.board) })
+    const leavingTiles = mapLeavingTiles(this.state.moveArray, this.state.board)
+    this.setState({ isLeavingArray: leavingTiles })
   }
 
   shiftTiles (board) {
-    this.setState({ board: shiftBoard(board), isLeavingArray: falseBoard(), isFallingArray: falseBoard() })
+    this.setState({
+      board: shiftBoard(board),
+      isLeavingArray: falseBoard(),
+      isFallingArray: falseBoard()
+    })
   }
 
   addNewTiles () {
@@ -160,7 +174,7 @@ export default class Board extends React.Component {
   }
 
   shineSun () {
-    if (this.state.sun >= 12) {
+    if (this.props.sun >= 12) {
       this.weather('sun-shining')
       const newBoard = growSeeds(this.state.board)
       const isGrowingBoard = isGrowing(this.state.board)
@@ -170,25 +184,29 @@ export default class Board extends React.Component {
   }
 
   rainFall () {
-    if (this.state.rain >= 12) {
+    if (this.props.rain >= 12) {
       this.weather('rain-falling')
       const newBoard = growSeeds(this.state.board)
       this.setState({ rain: 0, board: newBoard })
     }
   }
 
-  fallingClass(tile) {
+  fallingClass (tile) {
     return tile ? 'falling-' + tile : ''
   }
 
+  weatherMakerClass (type) {
+    return type + '-maker power-' + (this.props[type] < 12 ? this.props[type] : 12 + ' max-' + type)
+  }
+
   render () {
-    // console.log(JSON.stringify(this.state.moveArray), this.state.sun, 'sun')
-    // console.log(this.state.rain, 'rain', this.state.sun, 'sun')
+    console.log(this.props)
     return (
       <div>
-          <div onClick={this.rainFall} className={'rain-maker power-' + (this.state.rain < 12 ? this.state.rain : 12 + ' max-rain')}></div>
-          <div onClick={this.shineSun} className={'sun-maker power-' + (this.state.sun < 12 ? this.state.sun : 12 + ' max-sun')}></div>
-          <p className='score'>{this.state.score}</p>
+        <div className='logo'><img src='img/seed-dark.png'/></div>
+        <div onClick={this.rainFall} className={this.weatherMakerClass('rain')}></div>
+        <div onClick={this.shineSun} className={this.weatherMakerClass('sun')}></div>
+        <p className='score'>{this.state.score}</p>
           <div className='board'>
             {this.state.board.map((row, i) => (
                 row.map((tile, j) => {
@@ -209,8 +227,18 @@ export default class Board extends React.Component {
               )
             )
           )}
-        </div>
+          </div>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    isDragging: state.isDragging,
+    sun: state.weather.sun,
+    rain: state.weather.rain
+  }
+}
+
+export default connect(mapStateToProps, { setDrag, addPowerToWeather })(Board)
