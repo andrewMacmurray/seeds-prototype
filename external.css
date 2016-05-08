@@ -1,6 +1,6 @@
 .pod {
   background: url(img/seed-dark.png);
   background-position: 50%, 50%;
-  background-size: contain;
+  background-size: 18px 30px;
   background-repeat: no-repeat;
 }
