@@ -6,3 +6,15 @@ export function setDrag (bool) {
     payload: bool
   }
 }
+
+export const WEATHER_POWER = 'WEATHER_POWER'
+
+export function addPowerToWeather (weatherType, power) {
+  return {
+    type: WEATHER_POWER,
+    payload: {
+      weatherType,
+      power
+    }
+  }
+}
