@@ -91,7 +91,7 @@ export default class Board extends React.Component {
   }
 
   stopDrag () {
-    if (this.state.moveArray.length > 1) {
+    if (this.state.moveArray.length > 0) {
       this.addPowerToWeather()
       this.addSeedsToScore()
       this.removeTiles()

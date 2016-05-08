@@ -1,5 +1,5 @@
 import R from 'ramda'
-import { left, right, up, down } from './directions.js'
+import { left, right, up, down, topLeft, topRight, bottomLeft, bottomRight } from './directions.js'
 
 const multiply = (x) => x * 3 + 1
 const roundRandom = R.pipe(Math.random, multiply, Math.round)
@@ -27,8 +27,8 @@ export const sameType = ([x2, y2], [x1, y1], board) => board[x2][y2] === board[x
 const inBounds = ([x2, y2]) => x2 >= 0 && x2 < 8 && y2 >= 0 && y2 < 8
 
 // move is valid if the x and y coordiantes are either plus 1 or minus one of the previous
-// export const isNextTo = R.anyPass([right, down, left, up, topRight, bottomRight, bottomLeft, topLeft])
-export const isNextTo = R.anyPass([right, down, left, up])
+export const isNextTo = R.anyPass([right, down, left, up, topRight, bottomRight, bottomLeft, topLeft])
+// export const isNextTo = R.anyPass([right, down, left, up])
 
 export const validMove = R.allPass([inBounds, isNextTo, sameType])
 // const valid1 = validMove([0, 0], [0, 1], board)
@@ -64,7 +64,7 @@ export const mapLeavingTiles = (moves, board) =>
     y === i && j === x)(moves).length
 )(row))(board)
 
-const growSeed = (x) => x === 3 ? 4 : x
+const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
 const growRow = R.map(growSeed)
 export const growSeeds = R.map(growRow)
 
