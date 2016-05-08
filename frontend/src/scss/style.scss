@@ -23,7 +23,11 @@ audio {
   right: 0;
 }
 
-p {
+a {
+  text-decoration: none;
+}
+
+p, a {
   color: $text-yellow;
 }
 

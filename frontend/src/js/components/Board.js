@@ -12,9 +12,11 @@ import {
   growSeeds,
   isGrowing
 } from '../model/model.js'
+import { connect } from 'react-redux'
+import { setDrag } from '../actions/actions_index.js'
 import Seed from './Seed.js'
 
-export default class Board extends React.Component {
+class Board extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -25,7 +27,6 @@ export default class Board extends React.Component {
       isGrowingArray: falseBoard(),
       currTile: [],
       moveArray: [],
-      isDragging: false,
       sun: 0,
       rain: 0,
       score: 0
@@ -108,8 +109,8 @@ export default class Board extends React.Component {
       this.addSeedsToScore()
       this.removeTiles()
     }
+    this.props.setDrag(false)
     this.setState({
-      isDragging: false,
       moveArray: [],
       currTile: [],
       isDraggingArray: falseBoard()
@@ -118,8 +119,8 @@ export default class Board extends React.Component {
 
   startDrag (e) {
     const tile = this.getCoord(e)
+    this.props.setDrag(true)
     this.setState({
-      isDragging: true,
       currTile: this.state.currTile.concat(tile),
       moveArray: this.state.moveArray.concat([tile]),
       isDraggingArray: mapLeavingTiles([tile], this.state.board)
@@ -127,7 +128,7 @@ export default class Board extends React.Component {
   }
 
   checkTile (e) {
-    if (this.state.isDragging) {
+    if (this.props.isDragging) {
       const currTile = this.getCoord(e)
       if (validMove(currTile, this.state.currTile, this.state.board)) {
         const moveArray = this.state.moveArray.concat([currTile])
@@ -203,7 +204,7 @@ export default class Board extends React.Component {
   }
 
   render () {
-    // console.log(JSON.stringify(this.state.moveArray))
+    console.log(this.props)
     return (
       <div>
         <div className='logo'><img src='img/seed-dark.png'/></div>
@@ -235,3 +236,11 @@ export default class Board extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    isDragging: state.isDragging
+  }
+}
+
+export default connect(mapStateToProps, { setDrag })(Board)
