@@ -4,12 +4,12 @@
   "description": "a connect the dots game build in react",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon backend/server.js --exec babel-node --presets es2015,stage-1",
-    "server-build": "babel backend -d backend/dist --presets es2015,stage-1",
-    "production-serve": "node backend/dist/server.js",
+    "nodemon": "nodemon lib/server.js --exec babel-node --presets es2015,stage-1",
+    "server-build": "babel lib -d lib/dist --presets es2015,stage-1",
+    "production-serve": "node lib/dist/server.js",
     "dev": "webpack-dev-server --hot --inline --content-base public/",
     "watch": "webpack --watch --progress",
-    "test": "nodemon frontend/src/test/model.test.js --exec babel-node --presets es2015,stage-1"
+    "test": "nodemon src/test/model.test.js --exec babel-node --presets es2015,stage-1"
   },
   "repository": {
     "type": "git",
@@ -49,10 +49,8 @@
     "ramda": "^0.21.0",
     "react": "^0.14.8",
     "react-addons-css-transition-group": "^15.0.1",
-    "react-bootstrap": "^0.28.4",
     "react-dom": "^0.14.8",
     "react-redux": "^4.4.5",
-    "react-router": "^2.0.1",
     "redis": "^2.6.0-0",
     "redux": "^3.5.2"
   }
