@@ -1,11 +1,12 @@
 import React from 'react'
 import classNames from 'classnames'
-import TwinSeed from './Seeds/TwinSeed.js'
 
 export default (props) => {
+  const seedType = props.tileType === 'pod' ? '' : false
   const classes = classNames(
-    'tile',
     props.tileType,
+    seedType,
+    'tile',
     props.isLeavingBool,
     'x-' + props.x,
     'y-' + props.y,

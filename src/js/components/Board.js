@@ -1,17 +1,5 @@
 import React from 'react'
-import {
-  validMove,
-  randomBoard,
-  shiftBoard,
-  falseBoard,
-  addNewTiles,
-  mapMinusOnes,
-  mapLeavingTiles,
-  isFalling,
-  mapFallingTiles,
-  growSeeds,
-  isGrowing
-} from '../model/model.js'
+import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingTiles, growSeeds, isGrowing } from '../model/model.js'
 import { connect } from 'react-redux'
 import { setDrag, addPowerToWeather, resetWeather } from '../actions/actions_index.js'
 import Seed from './Seed.js'
