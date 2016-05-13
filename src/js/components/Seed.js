@@ -6,6 +6,7 @@ export default (props) => {
   const classes = classNames(
     props.tileType,
     seedType,
+    props.isGrowingBool,
     'tile',
     props.isLeavingBool,
     'x-' + props.x,
