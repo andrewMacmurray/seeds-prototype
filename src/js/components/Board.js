@@ -1,19 +1,7 @@
 import React from 'react'
-import {
-  validMove,
-  randomBoard,
-  shiftBoard,
-  falseBoard,
-  addNewTiles,
-  mapMinusOnes,
-  mapLeavingTiles,
-  isFalling,
-  mapFallingTiles,
-  growSeeds,
-  isGrowing
-} from '../model/model.js'
+import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingTiles, growSeeds, isGrowing } from '../model/model.js'
 import { connect } from 'react-redux'
-import { setDrag, addPowerToWeather, resetWeather } from '../actions/actions_index.js'
+import { setDrag, addPowerToWeather, resetWeather, updateScore } from '../actions/actionCreators.js'
 import Seed from './Seed.js'
 
 class Board extends React.Component {
@@ -26,9 +14,13 @@ class Board extends React.Component {
       isFallingArray: falseBoard(),
       isGrowingArray: falseBoard(),
       currTile: [],
-      moveArray: [],
-      score: 0
+      moveArray: []
     }
+    // public action creators needed:
+    // startDrag
+    // checkTile
+    // stopDrag
+    // resetWeather
     this.setTileType = this.setTileType.bind(this)
     this.getCoord = this.getCoord.bind(this)
     this.stopDrag = this.stopDrag.bind(this)
@@ -44,12 +36,17 @@ class Board extends React.Component {
     this.addSeedsToScore = this.addSeedsToScore.bind(this)
     this.shineSun = this.shineSun.bind(this)
     this.rainFall = this.rainFall.bind(this)
-    this.fallingClass = this.fallingClass.bind(this)
+    this.fallingMagnitudeClass = this.fallingMagnitudeClass.bind(this)
   }
 
   componentDidMount () {
     window.addEventListener('mouseup', this.stopDrag)
   }
+
+  componentWillUnmount () {
+    window.removeEventListener('mouseup', this.stopDrag)
+  }
+
 
   setTileType (num) {
     if (num === 1) return 'sun'
@@ -91,12 +88,7 @@ class Board extends React.Component {
   addSeedsToScore () {
     const type = this.checkMoveType(this.state.moveArray, this.state.board)
     const moves = this.state.moveArray
-    const currentScore = this.state.score
-    if (type === 'pod' && moves.length > 0) {
-      this.setState({ score: currentScore + moves.length * 5 })
-    } else if (type === 'seedling' && moves.length > 0) {
-      this.setState({ score: currentScore + moves.length })
-    }
+    this.props.updateScore(type, moves)
   }
 
   stopDrag () {
@@ -193,7 +185,7 @@ class Board extends React.Component {
     }
   }
 
-  fallingClass (tile) {
+  fallingMagnitudeClass (tile) {
     return tile ? 'falling-' + tile : ''
   }
 
@@ -208,10 +200,11 @@ class Board extends React.Component {
         <div className='logo'><img src='img/seed-dark.png'/></div>
         <div onClick={this.rainFall} className={this.weatherMakerClass('rain')}></div>
         <div onClick={this.shineSun} className={this.weatherMakerClass('sun')}></div>
-        <p className='score'>{this.state.score}</p>
+        <p className='score'>{this.props.score}</p>
           <div className='board'>
             {this.state.board.map((row, i) => (
                 row.map((tile, j) => {
+                  const { isLeavingArray, isDraggingArray, isGrowingArray, isFallingArray } = this.state
                   const tileType = this.setTileType(tile)
                   return (tile > -1)
                   ? <Seed
@@ -219,10 +212,10 @@ class Board extends React.Component {
                   startDrag={this.startDrag}
                   checkTile={this.checkTile}
                   key={'tile-' + i + '-' + j}
-                  isLeavingBool={(this.state.isLeavingArray[i][j]) ? 'leaving' : ''}
-                  isDraggingBool={(this.state.isDraggingArray[i][j]) ? 'dragging' : ''}
-                  isGrowingBool={(this.state.isGrowingArray[i][j]) ? 'growing' : ''}
-                  isFalling={this.fallingClass(this.state.isFallingArray[i][j])}
+                  isLeavingBool={(isLeavingArray[i][j]) ? 'leaving' : ''}
+                  isDraggingBool={(isDraggingArray[i][j]) ? 'dragging' : ''}
+                  isGrowingBool={(isGrowingArray[i][j]) ? 'growing' : ''}
+                  isFalling={this.fallingMagnitudeClass(isFallingArray[i][j])}
                   y={i}
                   x={j}/> : ''
                 }
@@ -239,8 +232,9 @@ const mapStateToProps = state => {
   return {
     isDragging: state.isDragging,
     sun: state.weather.sun,
-    rain: state.weather.rain
+    rain: state.weather.rain,
+    score: state.score
   }
 }
 
-export default connect(mapStateToProps, { setDrag, addPowerToWeather, resetWeather })(Board)
+export default connect(mapStateToProps, { setDrag, addPowerToWeather, resetWeather, updateScore })(Board)

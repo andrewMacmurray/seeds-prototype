@@ -1,0 +1,6 @@
+export const SET_DRAG = 'SET_DRAG'
+export const UPDATE_SCORE = 'UPDATE_SCORE'
+export const WEATHER_POWER = 'WEATHER_POWER'
+export const RESET_WEATHER = 'RESET_WEATHER'
+export const ADD_TILE = 'ADD_TILE'
+export const SET_VIEW = 'SET_VIEW'

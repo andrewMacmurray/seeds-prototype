@@ -19,6 +19,18 @@
   opacity: 1;
 }
 
+.sun::after {
+  // width: 70px;
+  // height: 10px;
+  // background-color: #F26521;
+  // margin: 10px;
+  // border: 78px;
+  // position: absolute;
+  // content: '';
+  // transform-origin: 9% 60%;
+  // transform: rotateZ(43deg);
+}
+
 .sun:hover,
 .sun.dragging {
   background-color: $sun-hover;
@@ -97,5 +109,5 @@
 }
 
 .growing {
-  animation: rubberBand 0.5s ease;
+  // animation: grow-seed 0.5s ease;
 }

@@ -42,6 +42,20 @@ p, a {
   }
 }
 
+.menu {
+  position: absolute;
+  right: 50px;
+  top: 20px;
+}
+
+.menu-item {
+  display: inline-block;
+  margin-left: 32px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
 .score {
   position: absolute;
   text-align: center;
