@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux'
-import setDrag from './reducer_drag.js'
+import isDragging from './reducer_drag.js'
 import weather from './reducer_weatherPower.js'
 import score from './reducer_score.js'
+import view from './reducer_view.js'
 
 const rootReducer = combineReducers({
-  isDragging: setDrag,
+  isDragging: isDragging,
   weather,
-  score
+  score,
+  view
 })
 
 export default rootReducer

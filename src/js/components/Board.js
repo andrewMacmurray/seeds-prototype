@@ -1,7 +1,7 @@
 import React from 'react'
 import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, mapMinusOnes, mapLeavingTiles, isFalling, mapFallingTiles, growSeeds, isGrowing } from '../model/model.js'
 import { connect } from 'react-redux'
-import { setDrag, addPowerToWeather, resetWeather, updateScore } from '../actions/actions_index.js'
+import { setDrag, addPowerToWeather, resetWeather, updateScore } from '../actions/actionCreators.js'
 import Seed from './Seed.js'
 
 class Board extends React.Component {
@@ -14,9 +14,13 @@ class Board extends React.Component {
       isFallingArray: falseBoard(),
       isGrowingArray: falseBoard(),
       currTile: [],
-      moveArray: [],
-      score: 0
+      moveArray: []
     }
+    // public action creators needed:
+    // startDrag
+    // checkTile
+    // stopDrag
+    // resetWeather
     this.setTileType = this.setTileType.bind(this)
     this.getCoord = this.getCoord.bind(this)
     this.stopDrag = this.stopDrag.bind(this)
@@ -38,6 +42,11 @@ class Board extends React.Component {
   componentDidMount () {
     window.addEventListener('mouseup', this.stopDrag)
   }
+
+  componentWillUnmount () {
+    window.removeEventListener('mouseup', this.stopDrag)
+  }
+
 
   setTileType (num) {
     if (num === 1) return 'sun'

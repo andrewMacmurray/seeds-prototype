@@ -18,7 +18,6 @@ export default (props) => {
     <div
       className={classes}
       id={props.id}
-      onClick={props.handleClick}
       onMouseDown={props.startDrag}
       onMouseEnter={props.checkTile}
       draggable={false}
