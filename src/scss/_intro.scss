@@ -14,16 +14,26 @@
 .seed-container {
   display: table-cell;
   vertical-align: middle;
-  animation: exit 3s ease;
-  animation-delay: 7s;
+  // animation: exit 3s ease;
+  animation-delay: 10s;
   animation-fill-mode: forwards;
 }
 
 .title {
-  font-size: 22px;
+  font-size: 25px;
   letter-spacing: 4px;
   animation: enter 2s ease;
   animation-delay: 2s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.begin {
+  font-size: 16px;
+  margin-top: 65px;
+  letter-spacing: 4px;
+  animation: enter 2s ease;
+  animation-delay: 6s;
   animation-fill-mode: forwards;
   opacity: 0;
 }

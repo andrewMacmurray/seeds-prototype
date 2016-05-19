@@ -5,6 +5,7 @@
 @import 'board';
 @import 'weather';
 @import 'intro';
+@import 'loading';
 
 html {
   position: relative;
@@ -14,7 +15,8 @@ html {
 body {
   font-family: $main-font;
   background-color: $beige;
-  transition: 2s ease;
+  transition: background-color 2s ease;
+  margin: 0;
 }
 
 audio {
