@@ -5,6 +5,7 @@
 @import 'board';
 @import 'weather';
 @import 'intro';
+@import 'loading';
 
 html {
   position: relative;
@@ -14,7 +15,8 @@ html {
 body {
   font-family: $main-font;
   background-color: $beige;
-  transition: 2s ease;
+  transition: background-color 2s ease;
+  margin: 0;
 }
 
 audio {
@@ -36,10 +38,18 @@ p, a {
   width: 50px;
   margin: 60px auto 0;
   -webkit-user-select: none;
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in;
+  animation-fill-mode: forwards;
 
   img {
     width: 100%;
   }
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0}
+  100% {opacity: 1}
 }
 
 .menu {
