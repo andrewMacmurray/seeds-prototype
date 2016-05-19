@@ -4,6 +4,8 @@ A connect the dots game where the user must gather many seeds.
 
 ![seed](public/img/seed-collection.png)
 
+Rough demo working on gh-pages http://andrewmacmurray.github.io/seed/
+
 Goals:
 
 + A browser based game using React and Redux
