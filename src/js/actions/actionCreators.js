@@ -1,7 +1,15 @@
 import * as action from './actionTypes.js'
 
-export function setDrag (bool) {
-  return { type: action.SET_DRAG, payload: bool }
+export function setDrag (bool, tile) {
+  return { type: action.SET_DRAG, payload: { isDragging: bool, tile } }
+}
+
+export function startDrag (tile) {
+  return { type: action.START_DRAG, payload: tile }
+}
+
+export function stopDrag () {
+  return { type: action.STOP_DRAG, payload: null }
 }
 
 export function updateScore (tileType, moves) {
@@ -16,8 +24,8 @@ export function resetWeather (weatherType) {
   return { type: action.RESET_WEATHER, payload: weatherType }
 }
 
-export function addTile (isDragging, tile, currTile, board) {
-  return { type: action.ADD_TILE, payload: { isDragging, tile, currTile, board } }
+export function checkTile (tile) {
+  return { type: action.CHECK_TILE, payload: tile }
 }
 
 export function setView (view) {

@@ -6,18 +6,15 @@ export default (state = defaultState, action) => {
   switch (action.type) {
     case WEATHER_POWER:
 
-      const weatherType = action.payload.weatherType
-      const power = action.payload.power
+      const { weatherType, power } = action.payload.weatherType
 
       if (weatherType === 'sun') return { ...state, sun: state.sun + power }
       if (weatherType === 'rain') return { ...state, rain: state.rain + power }
 
     case RESET_WEATHER:
 
-      const _weatherType = action.payload
-
-      if (_weatherType === 'sun') return { ...state, sun: 0 }
-      if (_weatherType === 'rain') return { ...state, rain: 0 }
+      if (weatherType === 'sun') return { ...state, sun: 0 }
+      if (weatherType === 'rain') return { ...state, rain: 0 }
 
     default:
       return state

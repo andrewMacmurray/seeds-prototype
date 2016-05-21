@@ -9,7 +9,7 @@ import { setView } from '../actions/actionCreators.js'
 import '../../scss/style.scss'
 
 class App extends React.Component {
-  toggleView () {
+  router () {
     const { view } = this.props
     if (view === 'intro') return <Intro />
     if (view === 'board') return <Board />
@@ -29,7 +29,7 @@ class App extends React.Component {
           <p className='menu-item' onClick={() => this.loadView('board')}>Begin</p>
         </div>
         <audio src='./audio/martin-buttrich.mp3' controls />
-        {this.toggleView()}
+        {this.router()}
       </div>
     )
   }
