@@ -25,7 +25,7 @@ export function resetWeather (weatherType) {
 }
 
 export function checkTile (tile) {
-  return { type: action.CHECK_TILE, payload: { tile } }
+  return { type: action.CHECK_TILE, payload: tile }
 }
 
 export function setView (view) {

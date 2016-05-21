@@ -12,15 +12,13 @@ const defaultState = {
 export default (state = defaultState, action) => {
   switch (action.type) {
     case START_DRAG:
-
-    const tile = action.payload.tile
-
+    const tile = action.payload
     if (tile) {
       return {
         ...state,
         isDragging: true,
         moveArray: state.moveArray.concat([tile]),
-        currTile: state.currTile.concat([tile])
+        currTile: state.currTile.concat(tile)
       }
     }
     return state
@@ -43,13 +41,14 @@ export default (state = defaultState, action) => {
           board: state.board
         }
       }
-      const { newCurrTile, newMoveArray } = movesReducer(stateToCheck, checkTileAction)
+      const newState = movesReducer(stateToCheck, checkTileAction)
       return {
         ...state,
-        currTile: newCurrTile,
-        moveArray: newMoveArray
+        currTile: newState.currTile,
+        moveArray: newState.moveArray
       }
     }
+    return state
 
     case STOP_DRAG:
 

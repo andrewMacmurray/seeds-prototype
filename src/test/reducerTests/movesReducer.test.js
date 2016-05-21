@@ -1,16 +1,6 @@
 import tape from 'tape'
 import movesReducer from '../../js/reducers/reducer_moves.js'
-
-const board = [
-  [2, 3, 3, 1, 2, 0, 0, 1],
-  [2, 0, 2, 3, 2, 0, 1, 1],
-  [2, 1, 0, 1, 1, 2, 1, 2],
-  [1, 1, 2, 3, 1, 1, 0, 2],
-  [1, 1, 0, 1, 1, 1, 2, 1],
-  [2, 3, 1, 2, 2, 1, 2, 3],
-  [1, 1, 1, 1, 2, 2, 0, 2],
-  [1, 3, 2, 2, 1, 3, 2, 2]
-]
+import { board } from '../testHelpers.js'
 
 tape('moves reducer should check the current move against the previous one and return the new moves array and a new current tile', (t) => {
   let action = { type: 'CHECK_TILE',
