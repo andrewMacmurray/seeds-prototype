@@ -5,8 +5,10 @@ import { createStore } from 'redux'
 import reducers from './reducers/root_reducer.js'
 import App from './components/App.js'
 
+export const store = createStore(reducers)
+
 ReactDOM.render(
-  <Provider store={createStore(reducers)}>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('app')

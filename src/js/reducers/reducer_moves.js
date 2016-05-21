@@ -1,27 +1,27 @@
-import { ADD_TILE } from '../actions/actionTypes.js'
-import setDrag from '../actions/actionCreators.js'
+import { CHECK_TILE } from '../actions/actionTypes.js'
 import { validMove } from '../model/model.js'
 const defaultState = { moveArray: [], currTile: [] }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case ADD_TILE:
+    case CHECK_TILE:
       const { isDragging, tile, currTile, board } = action.payload
-      const validMove = isDragging && validMove(tile, currTile, board)
+      const isValid = isDragging && validMove(tile, currTile, board)
 
-      if (state.moveArray.length === 0 && validMove) {
+      if (state.moveArray.length === 0) {
         return {
-          state...,
-          moveArray: state.moveArray.concat([currTile])
-          currTile,
+          ...state,
+          moveArray: state.moveArray.concat([tile]),
+          currTile: tile,
         }
       }
 
-      if (validMove) {
+      if (isValid) {
         return {
-          state...,
-          moveArray: state.moveArray.concat([currTile]),
-          currTile
+          ...state,
+          moveArray: state.moveArray.concat([tile]),
+          currTile: tile
+        }
       }
 
     default:
