@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 
 .info {
   letter-spacing: 2px;
@@ -37,6 +38,8 @@
   animation-fill-mode: forwards;
   opacity: 0;
   text-transform: uppercase;
+  cursor: pointer;
+  @include no-select;
 }
 
 

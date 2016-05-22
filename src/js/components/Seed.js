@@ -19,6 +19,7 @@ export default (props) => {
       className={classes}
       id={props.id}
       onMouseDown={props.startDrag}
+      onTouchStart={props.startDrag}
       onMouseEnter={props.checkTile}
       draggable={false}
       data-x={props.x}
