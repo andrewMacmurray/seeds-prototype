@@ -7,12 +7,14 @@
 .rain-maker {
   background-color: $rain-background;
   @include weather;
+  cursor: pointer;
   right: 150px;
 }
 
 .sun-maker {
   background-color: $sun-background;
   @include weather;
+  cursor: pointer;
   left: 150px;
 }
 
@@ -44,4 +46,16 @@
   0% { background-color: $sun-background; }
   50% { background-color: rgb(249, 93, 52); }
   100% { background-color: $sun-background; }
+}
+
+@media (max-width: 440px) {
+  .rain-maker {
+    left: 45px;
+  }
+  .sun-maker {
+    float: right;
+    margin-top: -61px;
+    position: inherit;
+    margin-right: 41px;
+  }
 }

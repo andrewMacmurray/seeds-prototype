@@ -8,6 +8,7 @@ $grid-offset: 4;
   width: ($grid-size + $grid-offset) * 7;
   left: 0;
   right: 0;
+  cursor: pointer;
 }
 
 @for $i from 0 through 7 {
@@ -39,6 +40,33 @@ $grid-offset: 4;
     .falling-#{$i} {
       transform: translateY(($grid-size / 1.1 - $grid-offset) * $i);
       transition: 0.3s ease;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .board {
+    height: 250px;
+    width: 295px;
+  }
+
+  @for $i from 0 through 7 {
+    .x-#{$i} {
+      top: ($grid-size / 1.45 - $grid-offset) * $i;
+    }
+    .y-#{$i} {
+      left: $grid-size / 1.45 * $i;
+    }
+    .falling-#{$i} {
+      transform: translateY(($grid-size / 1.45 - $grid-offset) * $i);
+      transition: 0.3s ease;
+    }
+    .tile {
+      height: 21px;
+      width: 21px;
+    }
+    .pod {
+      background-size: 15px 25px;
     }
   }
 }

@@ -41,10 +41,12 @@ class Board extends React.Component {
 
   componentDidMount () {
     window.addEventListener('mouseup', this.stopDrag)
+    window.addEventListener('touchend', this.stopDrag)
   }
 
   componentWillUnmount () {
     window.removeEventListener('mouseup', this.stopDrag)
+    window.addEventListener('touchend', this.stopDrag)
   }
 
 
@@ -194,7 +196,7 @@ class Board extends React.Component {
   }
 
   render () {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
         <div className='logo'><img src='img/seed-dark.png'/></div>
