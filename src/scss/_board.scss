@@ -1,6 +1,13 @@
 $grid-size: 57px;
 $grid-offset: 4;
 
+.board-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
 .board {
   margin: 12vh auto;
   position: absolute;
@@ -9,6 +16,7 @@ $grid-offset: 4;
   left: 0;
   right: 0;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @for $i from 0 through 7 {

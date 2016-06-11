@@ -1,6 +1,7 @@
 @mixin no-select {
   -webkit-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @mixin weather {

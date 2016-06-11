@@ -10,6 +10,7 @@
   width: 100%;
   height: 80vh;
   text-align: center;
+  @include no-select;
 }
 
 .seed-container {
