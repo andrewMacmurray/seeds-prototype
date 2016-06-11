@@ -198,7 +198,7 @@ class Board extends React.Component {
   render () {
     // console.log(this.props)
     return (
-      <div>
+      <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>
         <div onClick={this.rainFall} className={this.weatherMakerClass('rain')}></div>
         <div onClick={this.shineSun} className={this.weatherMakerClass('sun')}></div>

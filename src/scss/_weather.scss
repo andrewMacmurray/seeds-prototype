@@ -9,6 +9,7 @@
   @include weather;
   cursor: pointer;
   right: 150px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sun-maker {
@@ -16,6 +17,7 @@
   @include weather;
   cursor: pointer;
   left: 150px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .sun-shining {
@@ -50,12 +52,9 @@
 
 @media (max-width: 440px) {
   .rain-maker {
-    left: 45px;
+    right: 55px;
   }
   .sun-maker {
-    float: right;
-    margin-top: -61px;
-    position: inherit;
-    margin-right: 41px;
+    left: 55px;
   }
 }
