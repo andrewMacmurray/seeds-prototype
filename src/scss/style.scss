@@ -11,7 +11,6 @@ html {
   position: relative;
   min-height: 100%;
   -webkit-tap-highlight-color: transparent;
-  position: fixed;
 }
 
 body {
@@ -19,6 +18,7 @@ body {
   background-color: $beige;
   transition: background-color 2s ease;
   margin: 0;
+  position: fixed;
 }
 
 audio {
@@ -55,7 +55,7 @@ p, a {
 }
 
 .menu {
-  position: absolute;
+  position: fixed;
   right: 50px;
   top: 20px;
   z-index: 10;
