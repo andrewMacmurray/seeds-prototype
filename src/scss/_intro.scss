@@ -16,9 +16,12 @@
 .seed-container {
   display: table-cell;
   vertical-align: middle;
-  // animation: exit 3s ease;
   animation-delay: 10s;
   animation-fill-mode: forwards;
+  left: 0;
+  right: 0;
+  position: fixed;
+  top: 15vh;
 }
 
 .title {
@@ -76,4 +79,10 @@
   animation: enter 3s ease;
   animation-delay: 4s;
   animation-fill-mode: forwards;
+}
+
+@media (max-width: 440px) {
+  .intro-seed {
+    max-width: 45px;
+  }
 }
