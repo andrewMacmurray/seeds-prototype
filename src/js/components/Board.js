@@ -133,11 +133,11 @@ class Board extends React.Component {
 
   removeTiles () {
     const { moveArray, board } = this.state
-    const isLeavingArray = mapMinusOnes(moveArray, board)
+    const isLeavingBoard = mapLeavingTiles(moveArray, board)
 
-    this.setState({ isLeavingArray })
-    setTimeout(() => this.fallingTiles(isLeavingArray), 400)
-    setTimeout(() => this.shiftTiles(isLeavingArray), 600)
+    this.setState({ isLeavingArray: isLeavingBoard })
+    setTimeout(() => this.fallingTiles(isLeavingBoard), 400)
+    setTimeout(() => this.shiftTiles(isLeavingBoard), 600)
     setTimeout(() => this.addNewTiles(), 600)
   }
 
@@ -204,14 +204,14 @@ class Board extends React.Component {
                 row.map((tile, j) => {
                   const { isLeavingArray, isDraggingArray, isGrowingArray, isFallingArray } = this.state
                   const tileType = this.setTileType(tile)
-                  return (tile > -1)
+                  return (tile > 0)
                   ? <Seed
                   tileType={tileType}
                   startDrag={this.startDrag}
                   checkTile={this.checkTile}
                   key={'tile-' + i + '-' + j}
-                  isLeavingBool={(isLeavingArray[i][j]) === -1 ? 'leaving' : ''}
-                  isDraggingBool={(isDraggingArray[i][j]) ? 'dragging' : ''}
+                  isLeavingBool={(isLeavingArray[i][j]) === 0 ? 'leaving' : ''}
+                  isDraggingBool={(isDraggingArray[i][j]) === 0 ? 'dragging' : ''}
                   isGrowingBool={(isGrowingArray[i][j]) ? 'growing' : ''}
                   isFalling={this.fallingMagnitudeClass(isFallingArray[i][j])}
                   y={i}

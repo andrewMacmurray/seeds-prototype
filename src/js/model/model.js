@@ -26,15 +26,15 @@ export const validMove = R.allPass([inBounds, isNextTo, sameType])
 // const mapMinusOnes = R.map(zeroToMinusOne)
 // export const makeMinusOnes = R.map(mapMinusOnes) // converts zeroes to minus ones
 
-const isMinusOne = R.equals(-1)
-const tile = (x) => x !== -1
-const filterMinus = R.filter(isMinusOne)
+const isZero = R.equals(0)
+const tile = (x) => x !== 0
+const filterZeroes = R.filter(isZero)
 const filterTiles = R.filter(tile)
-export const shift = (board) => R.concat(filterMinus(board), filterTiles(board))
+export const shift = (board) => R.concat(filterZeroes(board), filterTiles(board))
 export const shiftBoard = R.map(shift) // shift minus 1 tiles to the top of the array
 // console.log(shiftBoard(board), 'filter zeroes', filterTiles(board[0]), 'filter tiles')
 
-const addRandomTile = (x) => isMinusOne(x) ? roundRandom() : x
+const addRandomTile = (x) => isZero(x) ? roundRandom() : x
 const addNewRow = R.map(addRandomTile)
 export const addNewTiles = R.map(addNewRow) // replaces minus 1 tiles with new random tiles
 
@@ -43,14 +43,14 @@ export const mapMinusOnes = (moves, board) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
   R.filter(([y, x]) =>
-    y === i && j === x)(moves).length ? -1 : tile
+    y === i && j === x)(moves).length ? 0 : tile
 )(row))(board)
 
 export const mapLeavingTiles = (moves, board) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
   R.filter(([y, x]) =>
-    y === i && j === x)(moves).length ? -1 : 0
+    y === i && j === x)(moves).length ? 0 : tile
 )(row))(board)
 
 const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
@@ -68,17 +68,17 @@ const sliceStatic = (row) => R.slice(lowestTileIndex(row), row.length, row)
 const mapFalling = R.map(tile)
 
 
-const num = (x) => x === '' ? -1 : parseInt(x)
-const splitSections = R.pipe(R.join(','), R.split('-1,'))
+const num = (x) => x === '' ? 0 : parseInt(x)
+const splitSections = R.pipe(R.join(','), R.split('0,'))
 const cleanSection = R.pipe(R.split(','), R.map(num))
 const cleanSections = R.map(cleanSection)
 export const sections = (row) => cleanSections(splitSections(row))
 
-const hasFallingTile = (x) => x.indexOf(-1) > -1
+const hasFallingTile = (x) => x.indexOf(0) > -1
 const magnitude = (row) => R.filter(hasFallingTile, sections(row)).length
 
 const mapMag = (mg) => R.map(item => {
-  if (item === -1) {
+  if (item === 0) {
     mg--
     return 0
   } else {
