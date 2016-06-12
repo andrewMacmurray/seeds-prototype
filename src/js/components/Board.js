@@ -30,7 +30,6 @@ class Board extends React.Component {
     this.addNewTiles = this.addNewTiles.bind(this)
     this.fallingTiles = this.fallingTiles.bind(this)
     this.shiftTiles = this.shiftTiles.bind(this)
-    this.isLeaving = this.isLeaving.bind(this)
     this._addPowerToWeather = this._addPowerToWeather.bind(this)
     this.calculateWeatherPower = this.calculateWeatherPower.bind(this)
     this.addSeedsToScore = this.addSeedsToScore.bind(this)
@@ -133,20 +132,17 @@ class Board extends React.Component {
   }
 
   removeTiles () {
-    const minusOneBoard = mapMinusOnes(this.state.moveArray, this.state.board)
-    this.isLeaving()
-    setTimeout(() => this.fallingTiles(minusOneBoard), 400)
-    setTimeout(() => this.shiftTiles(minusOneBoard), 600)
+    const { moveArray, board } = this.state
+    const isLeavingArray = mapMinusOnes(moveArray, board)
+
+    this.setState({ isLeavingArray })
+    setTimeout(() => this.fallingTiles(isLeavingArray), 400)
+    setTimeout(() => this.shiftTiles(isLeavingArray), 600)
     setTimeout(() => this.addNewTiles(), 600)
   }
 
   fallingTiles (board) {
     this.setState({ isFallingArray: mapFallingTiles(board) })
-  }
-
-  isLeaving () {
-    const leavingTiles = mapLeavingTiles(this.state.moveArray, this.state.board)
-    this.setState({ isLeavingArray: leavingTiles })
   }
 
   shiftTiles (board) {
@@ -196,7 +192,7 @@ class Board extends React.Component {
   }
 
   render () {
-    // console.log(this.props)
+    // console.log(this.state.isLeavingArray)
     return (
       <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>
@@ -214,7 +210,7 @@ class Board extends React.Component {
                   startDrag={this.startDrag}
                   checkTile={this.checkTile}
                   key={'tile-' + i + '-' + j}
-                  isLeavingBool={(isLeavingArray[i][j]) ? 'leaving' : ''}
+                  isLeavingBool={(isLeavingArray[i][j]) === -1 ? 'leaving' : ''}
                   isDraggingBool={(isDraggingArray[i][j]) ? 'dragging' : ''}
                   isGrowingBool={(isGrowingArray[i][j]) ? 'growing' : ''}
                   isFalling={this.fallingMagnitudeClass(isFallingArray[i][j])}

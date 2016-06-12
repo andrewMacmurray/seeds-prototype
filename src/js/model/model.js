@@ -9,17 +9,6 @@ export const randomBoard = () => R.times(makeRow, 8)
 const falseRow = () => R.times(R.always(false), 8)
 export const falseBoard = () => R.times(falseRow, 8)
 
-const board = [
-  [4, -1, 2, 2, -1, 3, -1, 2],
-  [4, 3, 3, 1, 2, 3, 4, 3],
-  [4, 4, 3, 2, 4, 1, 1, 4],
-  [-1, 2, 4, 1, -1, 3, 2, 2],
-  [4, 1, -1, 1, 2, 2, 4, 1],
-  [3, 3, 4, 3, 2, -1, 1, 3],
-  [2, 2, 4, 2, 2, 1, 2, 2],
-  [3, 3, 2, 3, 1, 1, 2, 3]
-]
-
 // before and after tile values have to match
 export const sameType = ([x2, y2], [x1, y1], board) => board[x2][y2] === board[x1][y1]
 
@@ -61,7 +50,7 @@ export const mapLeavingTiles = (moves, board) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
   R.filter(([y, x]) =>
-    y === i && j === x)(moves).length
+    y === i && j === x)(moves).length ? -1 : 0
 )(row))(board)
 
 const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
@@ -72,20 +61,12 @@ const growSeedBool = (x) => x === 3
 const isGrowingRow = R.map(growSeedBool)
 export const isGrowing = R.map(isGrowingRow)
 
-// const result = mapMinusOnes([[0, 0], [1, 1]], [[0, 1, 2, 3], [0, 1, 2, 3]])
 
 const lowestTileIndex = R.lastIndexOf(-1)
 const sliceFalling = (row) => R.slice(0, lowestTileIndex(row), row)
 const sliceStatic = (row) => R.slice(lowestTileIndex(row), row.length, row)
 const mapFalling = R.map(tile)
-const mapStatic = R.map(R.always(false))
 
-export const isFallingRow = (row) =>
-  lowestTileIndex(row) > -1 ?
-  R.concat(mapFalling(sliceFalling(row)), mapStatic(sliceStatic(row))) :
-  mapStatic(row)
-
-export const isFalling = R.map(isFallingRow)
 
 const num = (x) => x === '' ? -1 : parseInt(x)
 const splitSections = R.pipe(R.join(','), R.split('-1,'))
@@ -106,9 +87,9 @@ const mapMag = (mg) => R.map(item => {
 })
 
 export const fallingRow = (row) => {
-  let mg = magnitude(row)
+  const mg = mapMag(magnitude(row))
   const xs = sections(row)
-  return R.flatten(R.map(mapMag(mg))(xs))
+  return R.flatten(R.map(mg)(xs))
 }
 
 export const mapFallingTiles = R.map(fallingRow)
