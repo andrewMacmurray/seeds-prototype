@@ -3,12 +3,20 @@ import isDragging from './reducer_setDrag.js'
 import weather from './reducer_weatherPower.js'
 import score from './reducer_score.js'
 import view from './reducer_view.js'
+import moves from './reducer_moves.js'
+import board from './reducer_board.js'
+import fallingMagnitude from './reducer_fallingMagnitude.js'
+import leaving from './reducer_isLeaving.js'
 
 const rootReducer = combineReducers({
   isDragging,
   weather,
   score,
-  view
+  view,
+  moves,
+  board,
+  fallingMagnitude,
+  leaving
 })
 
 export default rootReducer
