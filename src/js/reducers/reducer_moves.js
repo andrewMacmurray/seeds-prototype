@@ -5,7 +5,7 @@ const defaultState = { moveArray: [], currTile: [] }
 export default (state = defaultState, action) => {
   switch (action.type) {
     case CHECK_TILE:
-      const { isDragging, tile, currTile, board } = action.payload
+      const { tile, currTile, isDragging, board } = action.payload
       const isValid = isDragging && validMove(tile, currTile, board)
 
       if (state.moveArray.length === 0) {

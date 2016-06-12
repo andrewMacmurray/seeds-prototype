@@ -5,7 +5,7 @@ import score from './reducer_score.js'
 import view from './reducer_view.js'
 
 const rootReducer = combineReducers({
-  isDragging: isDragging,
+  isDragging,
   weather,
   score,
   view

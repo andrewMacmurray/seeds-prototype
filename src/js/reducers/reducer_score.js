@@ -7,9 +7,11 @@ export default (state = 0, action) => {
       const { tileType, moves } = action.payload
 
       if (tileType === 'pod' && moves.length > 0) {
-        return state += (moves.length * 5)
+        const newScore = state += (moves.length * 5)
+        return newScore
       } else if (tileType === 'seedling' && moves.length > 0) {
-        return state += moves.length
+        const newScore = state += moves.length
+        return newScore
       }
 
     default:
