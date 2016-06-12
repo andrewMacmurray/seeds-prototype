@@ -1,3 +1,5 @@
+import { booleanArray, leavingBoard, mapFallingTiles } from '../js/model/model.js'
+
 export const board = [
   [2, 3, 3, 1, 2, 4, 4, 1],
   [2, 4, 2, 3, 2, 4, 1, 1],
@@ -10,48 +12,8 @@ export const board = [
 ]
 
 export const sampleMove1 = [ [0, 0], [1, 0] ]
-export const sampleLeaving1 = [
-  [true, false, false, false, false, false, false, false],
-  [true, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false]
-]
-
-export const isDraggingSample1 = [
-  [true, false, false, false, false, false, false, false],
-  [true, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false]
-]
-
-export const isDraggingSample2 = [
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [true, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false],
-  [false, false, false, false, false, false, false, false]
-]
+export const sampleLeaving1 = booleanArray(leavingBoard(sampleMove1, board))
+export const isDraggingSample2 = booleanArray(leavingBoard([[ 2, 0 ]], board))
 
 export const sampleMove2 = [ [6, 1], [6, 2], [5, 2], [4, 3] ]
-
-export const magnitude2 = [
-  [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-  [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-  [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-  [ 0, 0, 0, 0, 0, 0, 0, 0 ],
-  [ 1, 1, 1, 0, 0, 0, 0, 0 ],
-  [ 1, 1, 0, 0, 0, 0, 0, 0 ],
-  [ 2, 0, 0, 0, 0, 0, 0, 0 ],
-  [ 0, 0, 0, 0, 0, 0, 0, 0 ]
-]
+export const magnitude2 = mapFallingTiles(leavingBoard(sampleMove2, board))

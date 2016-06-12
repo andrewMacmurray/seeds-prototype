@@ -27,8 +27,8 @@ tape('movesReducer should check the current move against the previous one and re
   const action = { type: CHECK_TILE,
     payload: {
       isDragging: true,
-      tile: [2, 0],
-      currTile: [1, 0],
+      tile: [1, 0],
+      currTile: [0, 0],
       board,
       moves: sampleMove1
     }
@@ -40,8 +40,8 @@ tape('movesReducer should check the current move against the previous one and re
   }
   const actual = movesReducer(state, action)
   const expected = {
-    moveArray: sampleMove1.concat([[2, 0]]),
-    currTile: [2, 0],
+    moveArray: sampleMove1.concat([[1, 0]]),
+    currTile: [1, 0],
     isDraggingArray: sampleLeaving1
   }
 

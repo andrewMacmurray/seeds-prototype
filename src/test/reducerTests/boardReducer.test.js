@@ -12,5 +12,9 @@ tape('boardReducer should return default state for unrecognized action', (t) => 
 
   t.deepEqual(actual, expected, 'default state returned')
   t.end()
-  
+
 })
+
+// tape('boardReducer should shift tiles correctly after valid move', (t) => {
+//
+// })
