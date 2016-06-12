@@ -13,7 +13,7 @@ export const sampleMove1 = [ [0, 0], [1, 0] ]
 export const sampleLeaving1 = [
   [true, false, false, false, false, false, false, false],
   [true, false, false, false, false, false, false, false],
-  [true, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false],
@@ -24,7 +24,7 @@ export const sampleLeaving1 = [
 export const isDraggingSample1 = [
   [true, false, false, false, false, false, false, false],
   [true, false, false, false, false, false, false, false],
-  [true, false, false, false, false, false, false, false],
+  [false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false],
@@ -44,3 +44,14 @@ export const isDraggingSample2 = [
 ]
 
 export const sampleMove2 = [ [6, 1], [6, 2], [5, 2], [4, 3] ]
+
+export const magnitude2 = [
+  [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 1, 1, 1, 0, 0, 0, 0, 0 ],
+  [ 1, 1, 0, 0, 0, 0, 0, 0 ],
+  [ 2, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0 ]
+]
