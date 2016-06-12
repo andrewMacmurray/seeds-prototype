@@ -10,5 +10,6 @@ export const ADD_TILES = 'ADD_TILES'
 
 export const RESET_WEATHER = 'RESET_WEATHER'
 export const RESET_LEAVING = 'RESET_LEAVING'
+export const RESET_MAGNITUDE = 'RESET_MAGNITUDE'
 
 export const SET_VIEW = 'SET_VIEW'

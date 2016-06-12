@@ -28,8 +28,8 @@ export function checkTile (tile, currTile, isDragging, board, moves) {
   return { type: action.CHECK_TILE, payload: { tile, currTile, isDragging, board, moves } }
 }
 
-export function shiftTiles (board) {
-  return { type: action.SHIFT_TILES, payload: board }
+export function shiftTiles (moves, board) {
+  return { type: action.SHIFT_TILES, payload: { moves, board } }
 }
 
 export function addTiles (board) {
