@@ -1,60 +1,18 @@
-import { CHECK_TILE, START_DRAG, STOP_DRAG } from '../actions/actionTypes.js'
+import { SHIFT_TILES, ADD_TILES } from '../actions/actionTypes.js'
 import movesReducer from './reducer_moves.js'
 import { randomBoard } from '../model/model.js'
 
-const defaultState = {
-  isDragging: false,
-  board: randomBoard(),
-  moveArray: [],
-  currTile: []
-}
+const defaultState = randomBoard()
 
 export default (state = defaultState, action) => {
-  switch (action.type) {
-    case START_DRAG:
-    const tile = action.payload
-    if (tile) {
-      return {
-        ...state,
-        isDragging: true,
-        moveArray: state.moveArray.concat([tile]),
-        currTile: state.currTile.concat(tile)
-      }
-    }
-    return state
+    switch (action.type) {
+      case SHIFT_TILES:
+        return state
 
-    case CHECK_TILE:
+      case ADD_TILES:
+        return state
 
-    if (state.isDragging) {
-      const tileToCheck = action.payload
-      const { currTile, moveArray } = state
-      const stateToCheck = {
-        currTile,
-        moveArray
-      }
-      const checkTileAction = {
-        type: CHECK_TILE,
-        payload: {
-          isDragging: state.isDragging,
-          tile: tileToCheck,
-          currTile: currTile,
-          board: state.board
-        }
-      }
-      const newState = movesReducer(stateToCheck, checkTileAction)
-      return {
-        ...state,
-        currTile: newState.currTile,
-        moveArray: newState.moveArray
-      }
-    }
-    return state
-
-    case STOP_DRAG:
-
-
-
-    default:
-      return state
+      default:
+        return state
   }
 }
