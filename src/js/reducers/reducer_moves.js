@@ -1,6 +1,11 @@
 import { CHECK_TILE } from '../actions/actionTypes.js'
-import { validMove } from '../model/model.js'
-const defaultState = { moveArray: [], currTile: [] }
+import {
+  validMove,
+  falseBoard,
+  booleanArray,
+  leavingBoard
+} from '../model/model.js'
+const defaultState = { moveArray: [], currTile: [], isDraggingArray: falseBoard() }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
@@ -13,14 +18,17 @@ export default (state = defaultState, action) => {
           ...state,
           moveArray: state.moveArray.concat([tile]),
           currTile: tile,
+          isDraggingArray: booleanArray(leavingBoard([tile], board))
         }
       }
 
       if (isValid) {
+        const moves = state.moveArray.concat([tile])
         return {
           ...state,
-          moveArray: state.moveArray.concat([tile]),
-          currTile: tile
+          moveArray: moves,
+          currTile: tile,
+          isDraggingArray: booleanArray(leavingBoard(moves, board))
         }
       }
 

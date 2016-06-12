@@ -22,9 +22,9 @@ export const isNextTo = R.anyPass([right, down, left, up, topRight, bottomRight,
 export const validMove = R.allPass([inBounds, isNextTo, sameType])
 
 const isZero = R.equals(0)
-const tile = (x) => x !== 0
+const isTile = (tile) => tile !== 0
 const filterZeroes = R.filter(isZero)
-const filterTiles = R.filter(tile)
+const filterTiles = R.filter(isTile)
 export const shift = (board) => R.concat(filterZeroes(board), filterTiles(board))
 export const shiftBoard = R.map(shift) // shift zero tiles to the top of the array
 
@@ -40,7 +40,7 @@ export const leavingBoard = (moves, board) =>
     y === i && j === x)(moves).length ? 0 : tile
 )(row))(board)
 
-export const booleanArray = (board) => board.map(row => row.map(tile => tile === 0))
+export const booleanArray = R.map(R.map(x => x === 0))
 
 const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
 const growRow = R.map(growSeed)

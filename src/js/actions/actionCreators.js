@@ -24,8 +24,8 @@ export function resetWeather (weatherType) {
   return { type: action.RESET_WEATHER, payload: weatherType }
 }
 
-export function checkTile (tile, currTile) {
-  return { type: action.CHECK_TILE, payload: tile, currTile }
+export function checkTile (tile, currTile, isDragging, board, moves) {
+  return { type: action.CHECK_TILE, payload: { tile, currTile, isDragging, board, moves } }
 }
 
 export function setView (view) {
