@@ -28,8 +28,8 @@ export function resetMagnitude () {
   return { type: action.RESET_MAGNITUDE, payload: null }
 }
 
-export function checkTile (tile, currTile, isDragging, board, moves) {
-  return { type: action.CHECK_TILE, payload: { tile, currTile, isDragging, board, moves } }
+export function checkTile (tile, currTile, board) {
+  return { type: action.CHECK_TILE, payload: { tile, currTile, board } }
 }
 
 export function shiftTiles (moves, board) {

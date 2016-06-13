@@ -6,13 +6,13 @@ module.exports = {
     filename: 'app.js',
     path: path.resolve(__dirname, 'public')
   },
+  devtool: 'source-map',
   module: {
     loaders: [
       {
         test: /\.js?$/,
         exclude: path.resolve(__dirname, 'node_modules'),
-        loader: 'react-hot-loader!babel-loader',
-        devtool: 'source-map'
+        loader: 'react-hot-loader!babel-loader'
       },
       {
         test: /\.scss$/,
@@ -22,6 +22,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: [ '', '.js', '.jsx' ]
   }
 }
