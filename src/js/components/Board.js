@@ -7,7 +7,6 @@ import {
   addNewTiles,
   leavingBoard,
   booleanArray,
-  isFalling,
   mapFallingTiles,
   growSeeds,
   isGrowing
@@ -80,8 +79,8 @@ class Board extends React.Component {
   }
 
   getCoord (e) {
-    const x = parseInt(e.target.getAttribute('data-x'), 10)
-    const y = parseInt(e.target.getAttribute('data-y'), 10)
+    const x = parseInt(e.target.getAttribute('data-x'))
+    const y = parseInt(e.target.getAttribute('data-y'))
     return [ y, x ]
   }
 
@@ -134,8 +133,8 @@ class Board extends React.Component {
     this.props.setDrag(true)
     this.setState({
       currTile: this.state.currTile.concat(tile),
-      moveArray: this.state.moveArray.concat([tile]),
-      isDraggingArray: booleanArray(leavingBoard([tile], this.state.board))
+      moveArray: this.state.moveArray.concat([ tile ]),
+      isDraggingArray: booleanArray(leavingBoard([ tile ], this.state.board))
     })
   }
 
@@ -143,7 +142,7 @@ class Board extends React.Component {
     if (this.props.isDragging) {
       const currTile = this.getCoord(e)
       if (validMove(currTile, this.state.currTile, this.state.board)) {
-        const moveArray = this.state.moveArray.concat([currTile])
+        const moveArray = this.state.moveArray.concat([ currTile ])
         const isDraggingArray = booleanArray(leavingBoard(moveArray, this.state.board))
         this.setState({
           currTile,
@@ -215,41 +214,48 @@ class Board extends React.Component {
   }
 
   render () {
-    // console.log(this.props.isDraggingArray)
+    console.log(JSON.stringify(this.props.isDraggingArray))
     return (
       <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>
         <div onClick={this.rainFall} className={this.weatherMakerClass('rain')}></div>
         <div onClick={this.shineSun} className={this.weatherMakerClass('sun')}></div>
         <p className='score'>{this.props.score}</p>
-          <div className='board'>
-            {this.state.board.map((row, i) => (
+        <div className='board'>
+            {this.state.board.map((row, i) =>
                 row.map((tile, j) => {
-                  const { isLeavingArray, isDraggingArray, isGrowingArray, fallingMagnitudeArray } = this.state
+                  const {
+                    isLeavingArray,
+                    isDraggingArray,
+                    isGrowingArray,
+                    fallingMagnitudeArray
+                  } = this.state
                   const tileType = this.setTileType(tile)
-                  return (tile > 0)
+                  return tile > 0
                   ? <Seed
-                  tileType={tileType}
-                  startDrag={this.startDrag}
-                  checkTile={this.checkTile}
-                  key={'tile-' + i + '-' + j}
-                  isLeavingBool={(isLeavingArray[i][j]) ? 'leaving' : ''}
-                  isDraggingBool={(isDraggingArray[i][j]) ? 'dragging' : ''}
-                  isGrowingBool={(isGrowingArray[i][j]) ? 'growing' : ''}
-                  isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
-                  y={i}
-                  x={j}/> : ''
+                    tileType={tileType}
+                    startDrag={this.startDrag}
+                    checkTile={this.checkTile}
+                    key={'tile-' + i + '-' + j}
+                    isLeavingBool={isLeavingArray[i][j] ? 'leaving' : ''}
+                    isDraggingBool={isDraggingArray[i][j] ? 'dragging' : ''}
+                    isGrowingBool={isGrowingArray[i][j] ? 'growing' : ''}
+                    isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
+                    y={i}
+                    x={j}
+                    /> : ''
                 }
               )
             )
-          )}
-          </div>
+          }
+        </div>
       </div>
     )
   }
 }
 
-import isDraggingArray from '../reducers/reducer_isDraggingArray.js'
+import isDraggingArray from '../selectors/selector_isDraggingArray.js'
+import isFallingArray from '../selectors/selector_fallingMagnitude.js'
 
 
 const mapStateToProps = (state) => {
@@ -263,4 +269,15 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { setDrag, addPowerToWeather, resetWeather, updateScore })(Board)
+export default connect(mapStateToProps, {
+  setDrag,
+  stopDrag,
+  resetLeaving,
+  resetMagnitude,
+  checkTile,
+  shiftTiles,
+  addTiles,
+  addPowerToWeather,
+  resetWeather,
+  updateScore
+})(Board)

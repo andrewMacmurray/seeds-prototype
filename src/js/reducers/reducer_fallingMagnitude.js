@@ -4,14 +4,14 @@ import { falseBoard, mapFallingTiles, leavingBoard } from '../model/model.js'
 const defaultState = falseBoard()
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case STOP_DRAG:
+  case STOP_DRAG:
     const { board, moves } = action.payload
-      return mapFallingTiles(leavingBoard(moves, board))
+    return mapFallingTiles(leavingBoard(moves, board))
 
-    case RESET_MAGNITUDE:
-      return defaultState
+  case RESET_MAGNITUDE:
+    return defaultState
 
-    default:
-      return state
+  default:
+    return state
   }
 }
