@@ -11,7 +11,8 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: path.resolve(__dirname, 'node_modules'),
-        loader: 'react-hot-loader!babel-loader'
+        loader: 'react-hot-loader!babel-loader',
+        devtool: 'source-map'
       },
       {
         test: /\.scss$/,

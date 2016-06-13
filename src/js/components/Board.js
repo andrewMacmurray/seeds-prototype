@@ -215,7 +215,7 @@ class Board extends React.Component {
   }
 
   render () {
-    // console.log(this.state.isLeavingArray)
+    // console.log(this.props.isDraggingArray)
     return (
       <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>
@@ -249,9 +249,14 @@ class Board extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+import isDraggingArray from '../reducers/reducer_isDraggingArray.js'
+
+
+const mapStateToProps = (state) => {
   return {
     isDragging: state.isDragging,
+    moves: state.moves,
+    isDraggingArray: isDraggingArray(state),
     sun: state.weather.sun,
     rain: state.weather.rain,
     score: state.score
