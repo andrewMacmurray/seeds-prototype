@@ -1,7 +1,30 @@
 import React from 'react'
-import { validMove, randomBoard, shiftBoard, falseBoard, addNewTiles, leavingBoard, booleanArray, isFalling, mapFallingTiles, growSeeds, isGrowing } from '../model/model.js'
+import {
+  validMove,
+  randomBoard,
+  shiftBoard,
+  falseBoard,
+  addNewTiles,
+  leavingBoard,
+  booleanArray,
+  isFalling,
+  mapFallingTiles,
+  growSeeds,
+  isGrowing
+} from '../model/model.js'
 import { connect } from 'react-redux'
-import { setDrag, addPowerToWeather, resetWeather, updateScore } from '../actions/actionCreators.js'
+import {
+  setDrag,
+  stopDrag,
+  resetLeaving,
+  resetMagnitude,
+  checkTile,
+  shiftTiles,
+  addTiles,
+  addPowerToWeather,
+  resetWeather,
+  updateScore
+} from '../actions/actionCreators.js'
 import Seed from './Seed.js'
 
 class Board extends React.Component {
@@ -59,12 +82,12 @@ class Board extends React.Component {
   getCoord (e) {
     const x = parseInt(e.target.getAttribute('data-x'), 10)
     const y = parseInt(e.target.getAttribute('data-y'), 10)
-    return [y, x]
+    return [ y, x ]
   }
 
   checkMoveType (moves, board) {
     if (moves.length > 0) {
-      const [y, x] = moves[0]
+      const [ y, x ] = moves[0]
       const type = board[y][x]
       if (type === 1) return 'sun'
       else if (type === 2) return 'rain'

@@ -1,4 +1,4 @@
-import { CHECK_TILE } from '../actions/actionTypes.js'
+import { CHECK_TILE, STOP_DRAG } from '../actions/actionTypes.js'
 import {
   validMove,
   falseBoard,
@@ -33,6 +33,9 @@ export default (state = defaultState, action) => {
       }
 
       return state
+
+    case STOP_DRAG:
+      return defaultState
 
     default:
       return state
