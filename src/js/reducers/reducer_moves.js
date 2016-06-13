@@ -1,43 +1,35 @@
 import { CHECK_TILE, STOP_DRAG } from '../actions/actionTypes.js'
-import {
-  validMove,
-  falseBoard,
-  booleanArray,
-  leavingBoard
-} from '../model/model.js'
-const defaultState = { moveArray: [], currTile: [], isDraggingArray: falseBoard() }
+import { validMove } from '../model/model.js'
+const defaultState = { moveArray: [], currTile: [] }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case CHECK_TILE:
-      const { tile, currTile, isDragging, board } = action.payload
-      const isValid = isDragging && validMove(tile, currTile, board)
+  case CHECK_TILE:
+    const { tile, currTile, board } = action.payload
+    const isValid = validMove(tile, currTile, board)
 
-      if (state.moveArray.length === 0) {
-        return {
-          ...state,
-          moveArray: state.moveArray.concat([tile]),
-          currTile: tile,
-          isDraggingArray: booleanArray(leavingBoard([tile], board))
-        }
+    if (state.moveArray.length === 0) {
+      return {
+        ...state,
+        moveArray: state.moveArray.concat([ tile ]),
+        currTile: tile
       }
+    }
 
-      if (isValid) {
-        const moves = state.moveArray.concat([tile])
-        return {
-          ...state,
-          moveArray: moves,
-          currTile: tile,
-          isDraggingArray: booleanArray(leavingBoard(moves, board))
-        }
+    if (isValid) {
+      return {
+        ...state,
+        moveArray: state.moveArray.concat([ tile ]),
+        currTile: tile
       }
+    }
 
-      return state
+    return state
 
-    case STOP_DRAG:
-      return defaultState
+  case STOP_DRAG:
+    return defaultState
 
-    default:
-      return state
+  default:
+    return state
   }
 }
