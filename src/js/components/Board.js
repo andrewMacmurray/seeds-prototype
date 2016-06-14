@@ -19,6 +19,7 @@ import {
   resetMagnitude,
   checkTile,
   shiftTiles,
+  fallTiles,
   addTiles,
   addPowerToWeather,
   resetWeather,
@@ -45,7 +46,7 @@ class Board extends React.Component {
     // resetWeather
     this.setTileType = this.setTileType.bind(this)
     this.getCoord = this.getCoord.bind(this)
-    // this.stopDrag = this.stopDrag.bind(this)
+    this.stopDrag = this.stopDrag.bind(this)
     this.startDrag = this.startDrag.bind(this)
     this.checkTile = this.checkTile.bind(this)
     // this.removeTiles = this.removeTiles.bind(this)
@@ -114,19 +115,30 @@ class Board extends React.Component {
   //   this.props.updateScore(type, moves)
   // }
   //
-  // stopDrag () {
-  //   if (this.state.moveArray.length > 0) {
-  //     this._addPowerToWeather()
-  //     this.addSeedsToScore()
-  //     this.removeTiles()
-  //   }
-  //   this.props.setDrag(false)
+  stopDrag () {
+    // if (this.state.moveArray.length > 0) {
+    //   this._addPowerToWeather()
+    //   this.addSeedsToScore()
+    //   this.removeTiles()
+    // }
+    const { board, moveArray } = this.props
+    this.props.setDrag(false)
+    this.props.stopDrag(board, moveArray)
+    setTimeout(() => this.props.fallTiles(moveArray, board), 300)
+    setTimeout(() => {
+      // const newBoard = this.props.board
+      // const newMoveArray = this.props.moveArray
+      this.props.shiftTiles(moveArray, board)
+      this.props.resetMagnitude()
+      this.props.resetLeaving()
+    }, 600)
+    setTimeout(() => this.props.addTiles(this.props.board), 800)
   //   this.setState({
   //     moveArray: [],
   //     currTile: [],
   //     isDraggingArray: falseBoard()
   //   })
-  // }
+  }
   //
   startDrag (e) {
     const { board, currTile } = this.props
@@ -284,6 +296,7 @@ export default connect(mapStateToProps, {
   resetLeaving,
   resetMagnitude,
   checkTile,
+  fallTiles,
   shiftTiles,
   addTiles,
   addPowerToWeather,

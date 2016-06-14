@@ -32,6 +32,10 @@ export function checkTile (tile, currTile, board) {
   return { type: action.CHECK_TILE, payload: { tile, currTile, board } }
 }
 
+export function fallTiles (moves, board) {
+  return { type: action.FALL_TILES, payload: { moves, board } }
+}
+
 export function shiftTiles (moves, board) {
   return { type: action.SHIFT_TILES, payload: { moves, board } }
 }
