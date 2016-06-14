@@ -4,10 +4,6 @@ export function setDrag (isDragging) {
   return { type: action.SET_DRAG, payload: isDragging }
 }
 
-export function startDrag (tile) {
-  return { type: action.START_DRAG, payload: tile }
-}
-
 export function stopDrag (board, moves) {
   return { type: action.STOP_DRAG, payload: { board, moves } }
 }
@@ -24,12 +20,24 @@ export function resetWeather (weatherType) {
   return { type: action.RESET_WEATHER, payload: weatherType }
 }
 
-export function checkTile (tile, currTile, isDragging, board, moves) {
-  return { type: action.CHECK_TILE, payload: { tile, currTile, isDragging, board, moves } }
+export function resetLeaving () {
+  return { type: action.RESET_LEAVING, payload: null }
 }
 
-export function shiftTiles (board) {
-  return { type: action.SHIFT_TILES, payload: board }
+export function resetMagnitude () {
+  return { type: action.RESET_MAGNITUDE, payload: null }
+}
+
+export function checkTile (tile, currTile, board) {
+  return { type: action.CHECK_TILE, payload: { tile, currTile, board } }
+}
+
+export function fallTiles (moves, board) {
+  return { type: action.FALL_TILES, payload: { moves, board } }
+}
+
+export function shiftTiles (moves, board) {
+  return { type: action.SHIFT_TILES, payload: { moves, board } }
 }
 
 export function addTiles (board) {

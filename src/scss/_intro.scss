@@ -14,14 +14,13 @@
 }
 
 .seed-container {
-  display: table-cell;
-  vertical-align: middle;
   animation-delay: 10s;
   animation-fill-mode: forwards;
-  left: 0;
-  right: 0;
   position: fixed;
-  top: 15vh;
+  top: 50%;
+  margin-top: -60px;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .title {

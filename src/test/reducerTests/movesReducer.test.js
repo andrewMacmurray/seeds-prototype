@@ -10,8 +10,7 @@ tape('movesReducer should return default state if unregognized action', (t) => {
   const action = { type: 'UNKNOWN' }
   const state = {
     moveArray: sampleMove1,
-    currTile: sampleMove1[sampleMove1.length - 1],
-    isDraggingArray: falseBoard()
+    currTile: sampleMove1[sampleMove1.length - 1]
   }
   const actual = movesReducer(state, action)
   const expected = state
@@ -35,14 +34,12 @@ tape('movesReducer should check the current move against the previous one and re
   }
   const state = {
     moveArray: sampleMove1,
-    currTile: sampleMove1[sampleMove1.length - 1],
-    isDraggingArray: falseBoard()
+    currTile: sampleMove1[sampleMove1.length - 1]
   }
   const actual = movesReducer(state, action)
   const expected = {
     moveArray: sampleMove1.concat([[1, 0]]),
-    currTile: [1, 0],
-    isDraggingArray: sampleLeaving1
+    currTile: [1, 0]
   }
 
   t.deepEqual(actual, expected, 'reducer adds valid move to the moves array and updates current tile')
@@ -62,14 +59,12 @@ tape('movesReducer should add a move to move array when no current move and set 
   }
   const state = {
     moveArray: [],
-    currTile: [],
-    isDraggingArray: falseBoard()
+    currTile: []
   }
   const actual = movesReducer(state, action)
   const expected = {
     moveArray: [ [ 2, 0 ] ],
-    currTile: [ 2, 0 ],
-    isDraggingArray: isDraggingSample2
+    currTile: [ 2, 0 ]
   }
 
   t.deepEqual(actual, expected, 'move added correctly when none present')
