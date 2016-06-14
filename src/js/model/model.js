@@ -49,15 +49,21 @@ export const leavingBoard = (moves, board) =>
     y === i && j === x)(moves).length ? 0 : tile
 )(row))(board)
 
+const rain = (x) => x === 2 ? 0 : x
+export const rainRow = R.map(rain)
+export const replaceRain = R.map(rainRow)
+
+// const filterWithIndex = R.addIndex(R.filter)
+// export const allRainTiles = (board) =>
+//   mapWithIndex((row, i)) =>
+//   mapWithIndex((tile, j)) =>
+//   R.filter
+
 export const booleanArray = R.map(R.map(x => x === 0))
 
 const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
 const growRow = R.map(growSeed)
 export const growSeeds = R.map(growRow)
-
-const rainTile = (x) => x === 2
-const rainRow = R.map(rainTile)
-export const removeRain = R.map(rainRow)
 
 const growSeedBool = (x) => x === 3
 const isGrowingRow = R.map(growSeedBool)

@@ -35,6 +35,17 @@ class Board extends React.Component {
   componentDidMount () {
     window.addEventListener('mouseup', this.stopDrag)
     window.addEventListener('touchend', this.stopDrag)
+    // console.log()
+    setTimeout(() => {
+      this.props.removeRain(this.props.board)
+    }, 2000)
+    setTimeout(() => {
+      this.props.fallTiles([], this.props.board)
+      // this.props.shiftTiles([], this.props.board)
+      // this.props.resetMagnitude()
+      // this.props.resetLeaving()
+    }, 2500)
+    // setTimeout(() => this.props.addTiles(this.props.board), 800)
   }
 
   componentWillUnmount () {
