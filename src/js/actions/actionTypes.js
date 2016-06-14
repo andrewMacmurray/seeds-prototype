@@ -9,6 +9,8 @@ export const FALL_TILES = 'FALL_TILES'
 export const SHIFT_TILES = 'SHIFT_TILES'
 export const ADD_TILES = 'ADD_TILES'
 
+export const REMOVE_RAIN = 'REMOVE_RAIN'
+
 export const RESET_WEATHER = 'RESET_WEATHER'
 export const RESET_LEAVING = 'RESET_LEAVING'
 export const RESET_MAGNITUDE = 'RESET_MAGNITUDE'

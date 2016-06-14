@@ -12,7 +12,8 @@ import {
   addTiles,
   addPowerToWeather,
   resetWeather,
-  updateScore
+  updateScore,
+  removeRain
 } from '../actions/actionCreators.js'
 import Seed from './Seed.js'
 
@@ -78,20 +79,22 @@ class Board extends React.Component {
   }
 
   stopDrag () {
-    if (this.props.rain >= 6) this.rainFall()
-    if (this.props.sun >= 6) this.shineSun()
-
-    const { board, moveArray } = this.props
-    this.addSeedsToScore()
+    const { board, moveArray, rain, sun } = this.props
     this.props.setDrag(false)
-    this.props.stopDrag(board, moveArray)
-    setTimeout(() => this.props.fallTiles(moveArray, board), 300)
-    setTimeout(() => {
-      this.props.shiftTiles(moveArray, board)
-      this.props.resetMagnitude()
-      this.props.resetLeaving()
-    }, 600)
-    setTimeout(() => this.props.addTiles(this.props.board), 800)
+    if (moveArray.length > 0) {
+      if (rain >= 6) this.rainFall()
+      if (sun >= 6) this.shineSun()
+
+      this.addSeedsToScore()
+      this.props.stopDrag(board, moveArray)
+      setTimeout(() => this.props.fallTiles(moveArray, board), 300)
+      setTimeout(() => {
+        this.props.shiftTiles(moveArray, board)
+        this.props.resetMagnitude()
+        this.props.resetLeaving()
+      }, 600)
+      setTimeout(() => this.props.addTiles(this.props.board), 800)
+    }
   }
 
   startDrag (e) {
@@ -143,7 +146,7 @@ class Board extends React.Component {
   }
 
   render () {
-    // console.log(JSON.stringify(this.props.isDraggingArray))
+    // console.log(JSON.stringify(this.props.board))
     return (
       <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>
@@ -211,5 +214,6 @@ export default connect(mapStateToProps, {
   addTiles,
   addPowerToWeather,
   resetWeather,
-  updateScore
+  updateScore,
+  removeRain
 })(Board)

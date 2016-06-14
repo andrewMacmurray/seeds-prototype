@@ -17,8 +17,14 @@ const inBounds = ([ x2, y2 ]) => x2 >= 0 && x2 < 8 && y2 >= 0 && y2 < 8
 
 // move is valid if the x and y coordiantes are either plus 1 or minus one of the previous
 export const isNextTo = R.anyPass([
-  right, down, left, up,
-  topRight, bottomRight, bottomLeft, topLeft
+  right,
+  down,
+  left,
+  up,
+  topRight,
+  bottomRight,
+  bottomLeft,
+  topLeft
 ])
 // export const isNextTo = R.anyPass([right, down, left, up]) // restrict to 4 directions
 
@@ -39,7 +45,7 @@ const mapWithIndex = R.addIndex(R.map)
 export const leavingBoard = (moves, board) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
-  R.filter(([y, x]) =>
+  R.filter(([ y, x ]) =>
     y === i && j === x)(moves).length ? 0 : tile
 )(row))(board)
 
@@ -48,6 +54,10 @@ export const booleanArray = R.map(R.map(x => x === 0))
 const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
 const growRow = R.map(growSeed)
 export const growSeeds = R.map(growRow)
+
+const rainTile = (x) => x === 2
+const rainRow = R.map(rainTile)
+export const removeRain = R.map(rainRow)
 
 const growSeedBool = (x) => x === 3
 const isGrowingRow = R.map(growSeedBool)

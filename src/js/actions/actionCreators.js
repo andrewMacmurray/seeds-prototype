@@ -16,6 +16,10 @@ export function addPowerToWeather (weatherType, power) {
   return { type: action.WEATHER_POWER, payload: { weatherType, power } }
 }
 
+export function removeRain (board) {
+  return { type: action.REMOVE_RAIN, payload: { board } }
+}
+
 export function resetWeather (weatherType) {
   return { type: action.RESET_WEATHER, payload: weatherType }
 }

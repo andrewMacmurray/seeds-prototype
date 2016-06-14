@@ -1,9 +1,10 @@
-import { SHIFT_TILES, ADD_TILES } from '../actions/actionTypes.js'
+import { SHIFT_TILES, ADD_TILES, REMOVE_RAIN } from '../actions/actionTypes.js'
 import {
   randomBoard,
   shiftBoard,
   leavingBoard,
-  addNewTiles
+  addNewTiles,
+  // removeRain
 } from '../model/model.js'
 
 const defaultState = randomBoard()
