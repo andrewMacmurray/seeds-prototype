@@ -58,6 +58,14 @@ $grid-offset: 4;
     width: 295px;
   }
 
+  .tile {
+    height: 21px;
+    width: 21px;
+  }
+  .pod {
+    background-size: 15px 25px;
+  }
+
   @for $i from 0 through 7 {
     .x-#{$i} {
       top: ($grid-size / 1.45 - $grid-offset) * $i;
@@ -68,13 +76,6 @@ $grid-offset: 4;
     .falling-#{$i} {
       transform: translateY(($grid-size / 1.45 - $grid-offset) * $i);
       transition: 0.3s ease;
-    }
-    .tile {
-      height: 21px;
-      width: 21px;
-    }
-    .pod {
-      background-size: 15px 25px;
     }
   }
 }
