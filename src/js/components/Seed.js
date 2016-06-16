@@ -17,25 +17,40 @@ export default class Seed extends React.Component {
   }
 
   render () {
-    const seedType = this.props.tileType === 'pod' ? '' : false
-    const classes = classNames(
-      this.props.tileType,
+    const {
+      tileType,
+      x,
+      y,
+      isGrowingBool,
+      isLeavingBool,
+      isDraggingBool,
+      isFalling
+    } = this.props
+    const seedType = tileType === 'pod' ? '' : false
+    const containerClasses = classNames(
+      'tile-container',
+      'x-' + x,
+      'y-' + y
+    )
+    const seedClasses = classNames(
+      tileType,
       seedType,
-      this.props.isGrowingBool,
+      isGrowingBool,
       'tile',
-      this.props.isLeavingBool,
-      'x-' + this.props.x,
-      'y-' + this.props.y,
-      this.props.isDraggingBool,
-      this.props.isFalling
+      isLeavingBool,
+      isDraggingBool,
+      isFalling
     )
     return (
       <div
-        className={classes}
-        id={this.props.id}
-        data-x={this.props.x}
-        data-y={this.props.y}
+        className={containerClasses}
+        data-x={x}
+        data-y={y}
+        data-type={tileType}
       >
+        <div
+          className={seedClasses}
+        ></div>
       </div>
     )
   }
