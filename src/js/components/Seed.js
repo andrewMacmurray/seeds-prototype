@@ -5,13 +5,13 @@ import classNames from 'classnames'
 
 export default class Seed extends React.Component {
   componentDidMount () {
-    const el = ReactDOM.findDOMNode(this)
+    const el = ReactDOM.findDOMNode(this.container)
     addListener(el, 'pointerenter', (e) => this.props.checkTile(e))
     addListener(el, 'pointerdown', (e) => this.props.startDrag(e))
   }
 
   componentWillUnmount () {
-    const el = ReactDOM.findDOMNode(this)
+    const el = ReactDOM.findDOMNode(this.container)
     removeListener(el, 'pointerenter', (e) => this.props.checkTile(e))
     removeListener(el, 'pointerdown', (e) => this.props.startDrag(e))
   }
@@ -43,14 +43,13 @@ export default class Seed extends React.Component {
     )
     return (
       <div
+        ref={(x) => this.container = x}
         className={containerClasses}
         data-x={x}
         data-y={y}
         data-type={tileType}
       >
-        <div
-          className={seedClasses}
-        ></div>
+        <div className={seedClasses}></div>
       </div>
     )
   }
