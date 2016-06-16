@@ -6,7 +6,10 @@ import classNames from 'classnames'
 export default class Seed extends React.Component {
   componentDidMount () {
     const el = ReactDOM.findDOMNode(this.container)
-    addListener(el, 'pointerenter', (e) => this.props.checkTile(e))
+    addListener(el, 'pointerenter', (e) => {
+      e.preventDefault()
+      this.props.checkTile(e)
+    })
     addListener(el, 'pointerdown', (e) => this.props.startDrag(e))
   }
 

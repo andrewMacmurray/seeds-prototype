@@ -35,10 +35,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    view: state.view
-  }
-}
+const mapStateToProps = state => ({ view: state.view })
+
 
 export default connect(mapStateToProps, { setView })(App)
