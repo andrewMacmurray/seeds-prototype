@@ -1,5 +1,6 @@
 import React from 'react'
 import { falseBoard, growSeeds, isGrowing } from '../model/model.js'
+import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import {
   setDrag,
@@ -32,13 +33,11 @@ class Board extends React.Component {
   }
 
   componentDidMount () {
-    window.addEventListener('mouseup', this.stopDrag)
-    window.addEventListener('touchend', this.stopDrag)
+    addListener(window, 'pointerup', this.stopDrag)
   }
 
   componentWillUnmount () {
-    window.removeEventListener('mouseup', this.stopDrag)
-    window.addEventListener('touchend', this.stopDrag)
+    removeListener(window, 'pointerup', this.stopDrag)
   }
 
 
@@ -72,14 +71,14 @@ class Board extends React.Component {
   }
 
   addSeedsToScore () {
-    const type = this.checkMoveType(this.props.moveArray, this.props.board)
-    const moves = this.props.moveArray
-    this.props.updateScore(type, moves)
+    const { moveArray, board } = this.props
+    const type = this.checkMoveType(moveArray, board)
+    this.props.updateScore(type, moveArray)
   }
 
   stopDrag () {
-    if (this.props.rain >= 6) this.rainFall()
-    if (this.props.sun >= 6) this.shineSun()
+    if (this.props.rain >= 8) this.rainFall()
+    if (this.props.sun >= 8) this.shineSun()
 
     const { board, moveArray } = this.props
     this.addSeedsToScore()
@@ -104,6 +103,7 @@ class Board extends React.Component {
 
   checkTile (e) {
     if (this.props.isDragging) {
+      console.log(e)
       const { board, currTile } = this.props
       const tile = this.getCoord(e)
       this.props.checkTile(tile, currTile, board)
