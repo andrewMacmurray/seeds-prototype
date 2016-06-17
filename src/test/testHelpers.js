@@ -1,4 +1,5 @@
-import { booleanArray, leavingBoard, mapFallingTiles, shiftBoard } from '../js/model/model.js'
+import { booleanArray, leavingBoard, shiftBoard } from '../js/model/model.js'
+import { mapFallingTiles } from '../js/model/mapFallingTiles.js'
 
 export const board = [
   [ 2, 3, 3, 1, 2, 4, 4, 1 ],

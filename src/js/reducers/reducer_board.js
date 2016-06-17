@@ -4,9 +4,9 @@ import {
   shiftBoard,
   leavingBoard,
   addNewTiles,
-  removeSeeds,
-  growSeeds
+  removeSeeds
 } from '../model/model.js'
+import { growSeeds } from '../model/growSeeds.js'
 
 const defaultState = randomBoard()
 

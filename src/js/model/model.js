@@ -1,5 +1,14 @@
 import R from 'ramda'
-import { left, right, up, down, topLeft, topRight, bottomLeft, bottomRight } from './directions.js'
+import {
+  left,
+  right,
+  up,
+  down,
+  topLeft,
+  topRight,
+  bottomLeft,
+  bottomRight
+} from './directions.js'
 
 const multiply = (x) => x * 3 + 1
 const roundRandom = R.pipe(Math.random, multiply, Math.round)
@@ -34,6 +43,7 @@ const isZero = R.equals(0)
 const isTile = (tile) => tile !== 0
 const filterZeroes = R.filter(isZero)
 const filterTiles = R.filter(isTile)
+
 export const shift = (board) => R.concat(filterZeroes(board), filterTiles(board))
 export const shiftBoard = R.map(shift) // shift zero tiles to the top of the array
 
@@ -49,43 +59,17 @@ export const leavingBoard = (moves, board) =>
     y === i && j === x)(moves).length ? 0 : tile
 )(row))(board)
 
-const seeds = (x) => x === 3 || x === 4 ? 0 : x
-export const seedsRow = R.map(seeds)
-export const removeSeeds = R.map(seedsRow)
-
+// converts zero tiles to an array of booleans (true if leaving, false if staying)
 export const booleanArray = R.map(R.map(x => x === 0))
 
-const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
-const growRow = R.map(growSeed)
-export const growSeeds = R.map(growRow)
+const removeSeed = (x) => x === 3 || x === 4 ? 0 : x
+export const seedsRow = R.map(removeSeed)
+export const removeSeeds = R.map(seedsRow)
 
-const growSeedBool = (x) => x === 3
-const isGrowingRow = R.map(growSeedBool)
-export const isGrowing = R.map(isGrowingRow)
-
-
-const num = (x) => x === '' ? 0 : parseInt(x)
-const splitSections = R.pipe(R.join(','), R.split('0,'))
-const cleanSection = R.pipe(R.split(','), R.map(num))
-const cleanSections = R.map(cleanSection)
-export const sections = (row) => cleanSections(splitSections(row))
-
-const hasFallingTile = (x) => x.indexOf(0) > -1
-const magnitude = (row) => R.filter(hasFallingTile, sections(row)).length
-
-const mapMag = (mg) => R.map(item => {
-  if (item === 0) {
-    mg--
-    return 0
-  } else {
-    return mg
-  }
-})
-
-export const fallingRow = (row) => {
-  const mg = mapMag(magnitude(row))
-  const xs = sections(row)
-  return R.flatten(R.map(mg)(xs))
-}
-
-export const mapFallingTiles = R.map(fallingRow)
+// const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
+// const growRow = R.map(growSeed)
+// export const growSeeds = R.map(growRow)
+//
+// const growSeedBool = (x) => x === 3
+// const isGrowingRow = R.map(growSeedBool)
+// export const isGrowing = R.map(isGrowingRow)

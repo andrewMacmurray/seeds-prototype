@@ -30,21 +30,12 @@ class Board extends React.Component {
     this.addSeedsToScore = this.addSeedsToScore.bind(this)
     this.shineSun = this.shineSun.bind(this)
     this.rainFall = this.rainFall.bind(this)
+    this.removeTiles = this.removeTiles.bind(this)
     this.fallingMagnitudeClass = this.fallingMagnitudeClass.bind(this)
   }
 
   componentDidMount () {
     addListener(window, 'pointerup', this.stopDrag)
-    setTimeout(() => {
-      this.props.removeSeeds(this.props.board)
-    }, 2000)
-    setTimeout(() => {
-      this.props.fallTiles([], this.props.board)
-      // this.props.shiftTiles([], this.props.board)
-      // this.props.resetMagnitude()
-      // this.props.resetLeaving()
-    }, 2500)
-    // setTimeout(() => this.props.addTiles(this.props.board), 800)
   }
 
   componentWillUnmount () {
@@ -87,6 +78,23 @@ class Board extends React.Component {
     this.props.updateScore(type, moveArray)
   }
 
+  removeTiles (moveArray) {
+    this.props.shiftTiles(moveArray, this.props.board)
+    this.props.resetMagnitude()
+    this.props.resetLeaving()
+  }
+
+  removeSeeds () {
+    this.props.removeSeeds(this.props.board)
+    setTimeout(() => {
+      this.props.fallTiles([], this.props.board)
+      // this.props.shiftTiles([], this.props.board)
+      // this.props.resetMagnitude()
+      // this.props.resetLeaving()
+    }, 300)
+    // setTimeout(() => this.props.addTiles(this.props.board), 800)
+  }
+
   stopDrag () {
     this.props.setDrag(false)
     const { moveArray, rain, sun } = this.props
@@ -96,11 +104,7 @@ class Board extends React.Component {
     this.addSeedsToScore()
     this.props.stopDrag(this.props.board, moveArray)
     setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
-    setTimeout(() => {
-      this.props.shiftTiles(moveArray, this.props.board)
-      this.props.resetMagnitude()
-      this.props.resetLeaving()
-    }, 600)
+    setTimeout(() => this.removeTiles(moveArray), 600)
     setTimeout(() => this.props.addTiles(this.props.board), 800)
   }
 
@@ -194,8 +198,6 @@ class Board extends React.Component {
 }
 
 import isDraggingArray from '../selectors/selector_isDraggingArray.js'
-// import isFallingArray from '../selectors/selector_fallingMagnitude.js'
-
 
 const mapStateToProps = (state) => {
   return {
