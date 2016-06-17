@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import isDragging from './reducer_setDrag.js'
+import updating from './reducer_isUpdating.js'
 import weather from './reducer_weatherPower.js'
 import score from './reducer_score.js'
 import view from './reducer_view.js'
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   moves,
   board,
   fallingMagnitude,
-  leaving
+  leaving,
+  updating
 })
 
 export default rootReducer

@@ -4,6 +4,10 @@ export function setDrag (isDragging) {
   return { type: action.SET_DRAG, payload: isDragging }
 }
 
+export function isUpdating (bool) {
+  return { type: action.IS_UPDATING, payload: bool }
+}
+
 export function stopDrag (board, moves) {
   return { type: action.STOP_DRAG, payload: { board, moves } }
 }

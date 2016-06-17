@@ -1,4 +1,5 @@
 export const SET_DRAG = 'SET_DRAG'
+export const IS_UPDATING = 'IS_UPDATING'
 export const START_DRAG = 'START_DRAG'
 export const STOP_DRAG = 'STOP_DRAG'
 export const CHECK_TILE = 'CHECK_TILE'

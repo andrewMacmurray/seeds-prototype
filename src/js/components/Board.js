@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import {
   setDrag,
   stopDrag,
+  isUpdating,
   resetLeaving,
   resetMagnitude,
   checkTile,
@@ -96,28 +97,37 @@ class Board extends React.Component {
   }
 
   stopDrag () {
-    this.props.setDrag(false)
-    const { moveArray, rain, sun } = this.props
-    if (rain >= 12) this.rainFall()
-    if (sun >= 12) this.shineSun()
+    if (!this.props.updating && this.props.isDragging) {
+      console.log('stop')
+      this.props.setDrag(false)
+      const { moveArray, rain, sun } = this.props
+      if (rain >= 12) this.rainFall()
+      if (sun >= 12) this.shineSun()
 
-    this.addSeedsToScore()
-    this.props.stopDrag(this.props.board, moveArray)
-    setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
-    setTimeout(() => this.removeTiles(moveArray), 600)
-    setTimeout(() => this.props.addTiles(this.props.board), 800)
+      this.addSeedsToScore()
+      this.props.isUpdating(true)
+      this.props.stopDrag(this.props.board, moveArray)
+      setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
+      setTimeout(() => this.removeTiles(moveArray), 600)
+      setTimeout(() => this.props.isUpdating(false), 600)
+      setTimeout(() => this.props.addTiles(this.props.board), 800)
+    }
   }
 
   startDrag (e) {
-    const { board, currTile } = this.props
-    const tile = this.getCoord(e)
-    this.props.setDrag(true)
-    this.props.checkTile(tile, currTile, board)
-    this.updateWeatherPower([ tile ], board)
+    if (!this.props.updating) {
+      console.log('start')
+      const { board, currTile } = this.props
+      const tile = this.getCoord(e)
+      this.props.setDrag(true)
+      this.props.checkTile(tile, currTile, board)
+      this.updateWeatherPower([ tile ], board)
+    }
   }
 
   checkTile (e) {
-    if (this.props.isDragging) {
+    if (this.props.isDragging && !this.props.updating) {
+      console.log('checking')
       const { board, currTile } = this.props
       const tile = this.getCoord(e)
       this.props.checkTile(tile, currTile, board)
@@ -160,6 +170,7 @@ class Board extends React.Component {
 
   render () {
     // console.log(JSON.stringify(this.props.board))
+    // console.log(this.props.updating)
     return (
       <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>
@@ -210,13 +221,15 @@ const mapStateToProps = (state) => {
     rain: state.weather.rain,
     score: state.score,
     board: state.board,
-    isLeavingArray: state.leaving
+    isLeavingArray: state.leaving,
+    updating: state.updating
   }
 }
 
 export default connect(mapStateToProps, {
   setDrag,
   stopDrag,
+  isUpdating,
   resetLeaving,
   resetMagnitude,
   checkTile,
