@@ -5,37 +5,54 @@ import classNames from 'classnames'
 
 export default class Seed extends React.Component {
   componentDidMount () {
-    const el = ReactDOM.findDOMNode(this)
-    addListener(el, 'pointerenter', (e) => this.props.checkTile(e))
+    const el = ReactDOM.findDOMNode(this.container)
+    addListener(el, 'pointerenter', (e) => {
+      e.preventDefault()
+      this.props.checkTile(e)
+    })
     addListener(el, 'pointerdown', (e) => this.props.startDrag(e))
   }
 
   componentWillUnmount () {
-    const el = ReactDOM.findDOMNode(this)
+    const el = ReactDOM.findDOMNode(this.container)
     removeListener(el, 'pointerenter', (e) => this.props.checkTile(e))
     removeListener(el, 'pointerdown', (e) => this.props.startDrag(e))
   }
 
   render () {
-    const seedType = this.props.tileType === 'pod' ? '' : false
-    const classes = classNames(
-      this.props.tileType,
+    const {
+      tileType,
+      x,
+      y,
+      isGrowingBool,
+      isLeavingBool,
+      isDraggingBool,
+      isFalling
+    } = this.props
+    const seedType = tileType === 'pod' ? '' : false
+    const containerClasses = classNames(
+      'tile-container',
+      'x-' + x,
+      'y-' + y
+    )
+    const seedClasses = classNames(
+      tileType,
       seedType,
-      this.props.isGrowingBool,
+      isGrowingBool,
       'tile',
-      this.props.isLeavingBool,
-      'x-' + this.props.x,
-      'y-' + this.props.y,
-      this.props.isDraggingBool,
-      this.props.isFalling
+      isLeavingBool,
+      isDraggingBool,
+      isFalling
     )
     return (
       <div
-        className={classes}
-        id={this.props.id}
-        data-x={this.props.x}
-        data-y={this.props.y}
+        ref={(x) => this.container = x}
+        className={containerClasses}
+        data-x={x}
+        data-y={y}
+        data-type={tileType}
       >
+        <div className={seedClasses}></div>
       </div>
     )
   }
