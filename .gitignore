@@ -35,6 +35,7 @@ node_modules
 audio
 backend/dist
 public/app.js
+public/app.js.map
 dump.rdb
 config.env
 frontend/src/scss/_animate.scss

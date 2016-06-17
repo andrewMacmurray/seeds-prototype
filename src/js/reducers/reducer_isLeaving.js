@@ -1,5 +1,5 @@
-import { STOP_DRAG, RESET_LEAVING, REMOVE_RAIN } from '../actions/actionTypes.js'
-import { falseBoard, leavingBoard, booleanArray, replaceRain } from '../model/model.js'
+import { STOP_DRAG, RESET_LEAVING, REMOVE_SEEDS } from '../actions/actionTypes.js'
+import { falseBoard, leavingBoard, booleanArray, removeSeeds } from '../model/model.js'
 
 const defaultState = falseBoard()
 export default (state = defaultState, action) => {
@@ -11,8 +11,8 @@ export default (state = defaultState, action) => {
   case RESET_LEAVING:
     return defaultState
 
-  case REMOVE_RAIN:
-    return booleanArray(replaceRain(action.payload))
+  case REMOVE_SEEDS:
+    return booleanArray(removeSeeds(action.payload))
 
   default:
     return state

@@ -5,11 +5,12 @@ export const CHECK_TILE = 'CHECK_TILE'
 
 export const UPDATE_SCORE = 'UPDATE_SCORE'
 export const WEATHER_POWER = 'WEATHER_POWER'
+export const GROW_SEEDS = 'GROW_SEEDS'
 export const FALL_TILES = 'FALL_TILES'
 export const SHIFT_TILES = 'SHIFT_TILES'
 export const ADD_TILES = 'ADD_TILES'
 
-export const REMOVE_RAIN = 'REMOVE_RAIN'
+export const REMOVE_SEEDS = 'REMOVE_SEEDS'
 
 export const RESET_WEATHER = 'RESET_WEATHER'
 export const RESET_LEAVING = 'RESET_LEAVING'

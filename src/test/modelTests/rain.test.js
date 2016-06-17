@@ -1,5 +1,5 @@
 import tape from 'tape'
-import { rainRow, replaceRain } from '../../js/model/model.js'
+import { rainRow, removeSeeds } from '../../js/model/model.js'
 import { board } from '../testHelpers.js'
 
 tape('rain row replace all the rain tiles with 0', (t) => {
@@ -11,8 +11,8 @@ tape('rain row replace all the rain tiles with 0', (t) => {
 
 })
 
-tape('replaceRain removes all rain tiles', (t) => {
-  const actual = replaceRain(board)
+tape('removeSeeds removes all rain tiles', (t) => {
+  const actual = removeSeeds(board)
   const expected = [
     [ 0, 3, 3, 1, 0, 4, 4, 1 ],
     [ 0, 4, 0, 3, 0, 4, 1, 1 ],

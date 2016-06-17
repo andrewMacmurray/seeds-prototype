@@ -1,5 +1,5 @@
 import React from 'react'
-import { falseBoard, growSeeds, isGrowing } from '../model/model.js'
+import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import {
   setDrag,
@@ -10,10 +10,11 @@ import {
   shiftTiles,
   fallTiles,
   addTiles,
+  growSeeds,
   addPowerToWeather,
   resetWeather,
   updateScore,
-  removeRain
+  removeSeeds
 } from '../actions/actionCreators.js'
 import Seed from './Seed.js'
 
@@ -33,11 +34,9 @@ class Board extends React.Component {
   }
 
   componentDidMount () {
-    window.addEventListener('mouseup', this.stopDrag)
-    window.addEventListener('touchend', this.stopDrag)
-    // console.log()
+    addListener(window, 'pointerup', this.stopDrag)
     setTimeout(() => {
-      this.props.removeRain(this.props.board)
+      this.props.removeSeeds(this.props.board)
     }, 2000)
     setTimeout(() => {
       this.props.fallTiles([], this.props.board)
@@ -49,8 +48,7 @@ class Board extends React.Component {
   }
 
   componentWillUnmount () {
-    window.removeEventListener('mouseup', this.stopDrag)
-    window.addEventListener('touchend', this.stopDrag)
+    removeListener(window, 'pointerup', this.stopDrag)
   }
 
 
@@ -84,28 +82,26 @@ class Board extends React.Component {
   }
 
   addSeedsToScore () {
-    const type = this.checkMoveType(this.props.moveArray, this.props.board)
-    const moves = this.props.moveArray
-    this.props.updateScore(type, moves)
+    const { moveArray, board } = this.props
+    const type = this.checkMoveType(moveArray, board)
+    this.props.updateScore(type, moveArray)
   }
 
   stopDrag () {
-    const { board, moveArray, rain, sun } = this.props
     this.props.setDrag(false)
-    if (moveArray.length > 0) {
-      if (rain >= 6) this.rainFall()
-      if (sun >= 6) this.shineSun()
+    const { moveArray, rain, sun } = this.props
+    if (rain >= 12) this.rainFall()
+    if (sun >= 12) this.shineSun()
 
-      this.addSeedsToScore()
-      this.props.stopDrag(board, moveArray)
-      setTimeout(() => this.props.fallTiles(moveArray, board), 300)
-      setTimeout(() => {
-        this.props.shiftTiles(moveArray, board)
-        this.props.resetMagnitude()
-        this.props.resetLeaving()
-      }, 600)
-      setTimeout(() => this.props.addTiles(this.props.board), 800)
-    }
+    this.addSeedsToScore()
+    this.props.stopDrag(this.props.board, moveArray)
+    setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
+    setTimeout(() => {
+      this.props.shiftTiles(moveArray, this.props.board)
+      this.props.resetMagnitude()
+      this.props.resetLeaving()
+    }, 600)
+    setTimeout(() => this.props.addTiles(this.props.board), 800)
   }
 
   startDrag (e) {
@@ -133,6 +129,7 @@ class Board extends React.Component {
 
   shineSun () {
     this.weather('sun-shining')
+    this.props.growSeeds(this.props.board)
     this.props.resetWeather('sun')
     // const newBoard = growSeeds(this.props.board)
     // const isGrowingBoard = isGrowing(this.props.board)
@@ -142,6 +139,7 @@ class Board extends React.Component {
 
   rainFall () {
     this.weather('rain-falling')
+    this.props.growSeeds(this.props.board)
     this.props.resetWeather('rain')
     // console.log(this.props.rain)
     // const newBoard = growSeeds(this.props.board)
@@ -153,7 +151,7 @@ class Board extends React.Component {
   }
 
   weatherMakerClass (type) {
-    return type + '-maker power-' + (this.props[type] < 6 ? this.props[type] : 6 + ' max-' + type)
+    return type + '-maker power-' + (this.props[type] < 12 ? this.props[type] : 12 + ' max-' + type)
   }
 
   render () {
@@ -221,10 +219,11 @@ export default connect(mapStateToProps, {
   resetMagnitude,
   checkTile,
   fallTiles,
+  growSeeds,
   shiftTiles,
   addTiles,
   addPowerToWeather,
   resetWeather,
   updateScore,
-  removeRain
+  removeSeeds
 })(Board)

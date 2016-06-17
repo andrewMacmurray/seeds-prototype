@@ -19,6 +19,7 @@ body {
   transition: background-color 2s ease;
   margin: 0;
   position: fixed;
+  overflow: hidden;
 }
 
 audio {
@@ -92,6 +93,9 @@ p, a {
 }
 
 @media (max-width: 440px) {
+  .board {
+    margin: 9vh auto;
+  }
   .menu {
     right: 20px;
     top: 10px;

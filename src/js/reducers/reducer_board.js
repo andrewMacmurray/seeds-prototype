@@ -1,10 +1,11 @@
-import { SHIFT_TILES, ADD_TILES } from '../actions/actionTypes.js'
+import { SHIFT_TILES, ADD_TILES, GROW_SEEDS } from '../actions/actionTypes.js'
 import {
   randomBoard,
   shiftBoard,
   leavingBoard,
   addNewTiles,
-  replaceRain
+  removeSeeds,
+  growSeeds
 } from '../model/model.js'
 
 const defaultState = randomBoard()
@@ -15,10 +16,13 @@ export default (state = defaultState, action) => {
     const { moves, board } = action.payload
     return moves.length > 0 ?
       shiftBoard(leavingBoard(moves, board)) :
-      shiftBoard(replaceRain(board))
+      shiftBoard(removeSeeds(board))
 
   case ADD_TILES:
     return addNewTiles(action.payload)
+
+  case GROW_SEEDS:
+    return growSeeds(action.payload)
 
   default:
     return state
