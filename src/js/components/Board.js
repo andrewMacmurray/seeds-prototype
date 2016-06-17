@@ -103,7 +103,6 @@ class Board extends React.Component {
 
   checkTile (e) {
     if (this.props.isDragging) {
-      console.log(e)
       const { board, currTile } = this.props
       const tile = this.getCoord(e)
       this.props.checkTile(tile, currTile, board)
