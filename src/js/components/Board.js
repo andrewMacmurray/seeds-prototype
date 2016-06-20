@@ -98,7 +98,6 @@ class Board extends React.Component {
 
   stopDrag () {
     if (!this.props.updating && this.props.isDragging) {
-      console.log('stop')
       this.props.setDrag(false)
       const { moveArray, rain, sun } = this.props
       if (rain >= 12) this.rainFall()
@@ -116,7 +115,6 @@ class Board extends React.Component {
 
   startDrag (e) {
     if (!this.props.updating) {
-      console.log('start')
       const { board, currTile } = this.props
       const tile = this.getCoord(e)
       this.props.setDrag(true)
@@ -127,7 +125,6 @@ class Board extends React.Component {
 
   checkTile (e) {
     if (this.props.isDragging && !this.props.updating) {
-      console.log('checking')
       const { board, currTile } = this.props
       const tile = this.getCoord(e)
       this.props.checkTile(tile, currTile, board)

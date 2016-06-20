@@ -1,5 +1,5 @@
 // require('./modelTests/model.test.js')
-require('./modelTests/rain.test.js')
+require('./modelTests/model.growing.test.js')
 // require('./reducerTests/movesReducer.test.js')
 // require('./reducerTests/fallingMagnitudeReducer.test.js')
 // require('./reducerTests/isLeavingReducer.test.js')
