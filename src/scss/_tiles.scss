@@ -112,11 +112,16 @@
 
 .pod.leaving {
   transition: 0.5s ease;
-  top: -170px;
-  left: 198px;
+  transform: translate(100px, -100px);
   opacity: 0;
 }
 
 .growing {
   // animation: grow-seed 0.5s ease;
+}
+
+@media (max-width: 440px) {
+  .pod.dragging {
+    background-size: 9px 14px;
+  }
 }
