@@ -45,13 +45,20 @@ const filterZeroes = R.filter(isZero)
 const filterTiles = R.filter(isTile)
 
 export const shift = (board) => R.concat(filterZeroes(board), filterTiles(board))
-export const shiftBoard = R.map(shift) // shift zero tiles to the top of the array
+
+// shift zero tiles to the top of the array
+export const shiftBoard = R.map(shift)
 
 const addRandomTile = (x) => isZero(x) ? roundRandom() : x
 const addNewRow = R.map(addRandomTile)
-export const addNewTiles = R.map(addNewRow) // replaces zero (leaving) tiles with new random tiles
+
+// replaces zero (leaving) tiles with new random tiles
+export const addNewTiles = R.map(addNewRow)
+
 
 const mapWithIndex = R.addIndex(R.map)
+
+// converts the tiles on the board to zero that match the coordiantes in the array of moves
 export const leavingBoard = (moves, board) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
