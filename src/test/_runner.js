@@ -1,5 +1,6 @@
-// require('./model.test.js')
-require('./reducerTests/movesReducer.test.js')
+// require('./modelTests/model.test.js')
+require('./modelTests/model.growing.test.js')
+// require('./reducerTests/movesReducer.test.js')
 // require('./reducerTests/fallingMagnitudeReducer.test.js')
 // require('./reducerTests/isLeavingReducer.test.js')
 // require('./reducerTests/boardReducer.test.js')

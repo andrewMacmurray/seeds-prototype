@@ -1,18 +1,3 @@
-.pod {
-  background: url(img/seed.svg);
-  background-position: 50%, 50%;
-  background-size: 20px 30px;
-  /*transform: scale(1.3)!important;*/
-  background-repeat: no-repeat;
-}
-
-.circle {
-  background: url(img/seed-circle.svg);
-  background-position: 50%, 50%;
-  background-size: 18px 30px;
-  background-repeat: no-repeat;
-}
-
 @keyframes grow-seed {
   0% {
     opacity: 1;
@@ -33,7 +18,7 @@
   51% {
     opacity: 1;
     transform: scale(0.1);
-    background: url(img/seed.svg);
+    background: url(/img/seed.svg);
     background-position: 50%, 50%;
     background-size: 18px 30px;
     background-repeat: no-repeat;
@@ -41,7 +26,7 @@
   100% {
     opacity: 1;
     transform: scale(1);
-    background: url(img/seed.svg);
+    background: url(/img/seed.svg);
     background-position: 50%, 50%;
     background-size: 18px 30px;
     background-repeat: no-repeat;

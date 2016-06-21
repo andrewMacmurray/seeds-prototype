@@ -24,9 +24,9 @@
   background-color: $sun-background;
 }
 
-@for $i from 0 through 8 {
+@for $i from 0 through 12 {
   .power-#{$i} {
-    transform: scale($i * 1.2);
+    transform: scale($i * 0.6);
   }
 }
 

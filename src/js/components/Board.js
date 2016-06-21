@@ -1,19 +1,22 @@
 import React from 'react'
-import { falseBoard, growSeeds, isGrowing } from '../model/model.js'
 import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import {
   setDrag,
   stopDrag,
+  isUpdating,
   resetLeaving,
   resetMagnitude,
   checkTile,
   shiftTiles,
   fallTiles,
   addTiles,
+  growSeeds,
   addPowerToWeather,
   resetWeather,
-  updateScore
+  updateScore,
+  removeSeeds,
+  transformBoard
 } from '../actions/actionCreators.js'
 import Seed from './Seed.js'
 
@@ -29,6 +32,7 @@ class Board extends React.Component {
     this.addSeedsToScore = this.addSeedsToScore.bind(this)
     this.shineSun = this.shineSun.bind(this)
     this.rainFall = this.rainFall.bind(this)
+    this.removeTiles = this.removeTiles.bind(this)
     this.fallingMagnitudeClass = this.fallingMagnitudeClass.bind(this)
   }
 
@@ -76,33 +80,52 @@ class Board extends React.Component {
     this.props.updateScore(type, moveArray)
   }
 
-  stopDrag () {
-    if (this.props.rain >= 8) this.rainFall()
-    if (this.props.sun >= 8) this.shineSun()
+  removeTiles (moveArray) {
+    this.props.shiftTiles(moveArray, this.props.board)
+    this.props.resetMagnitude()
+    this.props.resetLeaving()
+  }
 
-    const { board, moveArray } = this.props
-    this.addSeedsToScore()
-    this.props.setDrag(false)
-    this.props.stopDrag(board, moveArray)
-    setTimeout(() => this.props.fallTiles(moveArray, board), 300)
+  removeSeeds () {
+    this.props.removeSeeds(this.props.board)
     setTimeout(() => {
-      this.props.shiftTiles(moveArray, board)
-      this.props.resetMagnitude()
-      this.props.resetLeaving()
-    }, 600)
-    setTimeout(() => this.props.addTiles(this.props.board), 800)
+      this.props.fallTiles([], this.props.board)
+      // this.props.shiftTiles([], this.props.board)
+      // this.props.resetMagnitude()
+      // this.props.resetLeaving()
+    }, 300)
+    // setTimeout(() => this.props.addTiles(this.props.board), 800)
+  }
+
+  stopDrag () {
+    if (!this.props.updating && this.props.isDragging) {
+      this.props.setDrag(false)
+      const { moveArray, rain, sun } = this.props
+      if (rain >= 12) this.rainFall()
+      if (sun >= 12) this.shineSun()
+
+      this.addSeedsToScore()
+      this.props.isUpdating(true)
+      this.props.stopDrag(this.props.board, moveArray)
+      setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
+      setTimeout(() => this.removeTiles(moveArray), 600)
+      setTimeout(() => this.props.isUpdating(false), 600)
+      setTimeout(() => this.props.addTiles(this.props.board), 800)
+    }
   }
 
   startDrag (e) {
-    const { board, currTile } = this.props
-    const tile = this.getCoord(e)
-    this.props.setDrag(true)
-    this.props.checkTile(tile, currTile, board)
-    this.updateWeatherPower([ tile ], board)
+    if (!this.props.updating) {
+      const { board, currTile } = this.props
+      const tile = this.getCoord(e)
+      this.props.setDrag(true)
+      this.props.checkTile(tile, currTile, board)
+      this.updateWeatherPower([ tile ], board)
+    }
   }
 
   checkTile (e) {
-    if (this.props.isDragging) {
+    if (this.props.isDragging && !this.props.updating) {
       const { board, currTile } = this.props
       const tile = this.getCoord(e)
       this.props.checkTile(tile, currTile, board)
@@ -118,19 +141,20 @@ class Board extends React.Component {
 
   shineSun () {
     this.weather('sun-shining')
+    this.props.growSeeds(this.props.board)
+    setTimeout(() =>
+      this.props.transformBoard(this.props.transformMoves, this.props.board, 4),
+    500)
     this.props.resetWeather('sun')
-    // const newBoard = growSeeds(this.props.board)
-    // const isGrowingBoard = isGrowing(this.props.board)
-    // this.setState({ board: newBoard, isGrowingArray: isGrowingBoard })
-    // setTimeout(() => this.setState({ isGrowingArray: falseBoard() }), 500)
   }
 
   rainFall () {
     this.weather('rain-falling')
+    this.props.growSeeds(this.props.board)
+    setTimeout(() =>
+      this.props.transformBoard(this.props.transformMoves, this.props.board, 4),
+    500)
     this.props.resetWeather('rain')
-    // console.log(this.props.rain)
-    // const newBoard = growSeeds(this.props.board)
-    // this.setState({ board: newBoard })
   }
 
   fallingMagnitudeClass (tile) {
@@ -138,11 +162,12 @@ class Board extends React.Component {
   }
 
   weatherMakerClass (type) {
-    return type + '-maker power-' + (this.props[type] < 6 ? this.props[type] : 6 + ' max-' + type)
+    return type + '-maker power-' + (this.props[type] < 12 ? this.props[type] : 12 + ' max-' + type)
   }
 
   render () {
-    // console.log(JSON.stringify(this.props.isDraggingArray))
+    // console.log(JSON.stringify(this.props.board))
+    // console.log(this.props.updating)
     return (
       <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>
@@ -181,8 +206,6 @@ class Board extends React.Component {
 }
 
 import isDraggingArray from '../selectors/selector_isDraggingArray.js'
-// import isFallingArray from '../selectors/selector_fallingMagnitude.js'
-
 
 const mapStateToProps = (state) => {
   return {
@@ -195,20 +218,26 @@ const mapStateToProps = (state) => {
     rain: state.weather.rain,
     score: state.score,
     board: state.board,
-    isLeavingArray: state.leaving
+    isLeavingArray: state.leaving,
+    updating: state.updating,
+    transformMoves: state.transformMoves
   }
 }
 
 export default connect(mapStateToProps, {
   setDrag,
   stopDrag,
+  isUpdating,
   resetLeaving,
   resetMagnitude,
   checkTile,
   fallTiles,
+  growSeeds,
   shiftTiles,
   addTiles,
   addPowerToWeather,
   resetWeather,
-  updateScore
+  updateScore,
+  removeSeeds,
+  transformBoard
 })(Board)
