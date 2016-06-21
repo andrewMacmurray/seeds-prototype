@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'public')
   },
   devtool: 'source-map',
+  publicPath: './public/',
   module: {
     loaders: [
       {
@@ -18,6 +19,10 @@ module.exports = {
         test: /\.scss$/,
         exclude: path.resolve(__dirname, 'node_modules'),
         loader: 'style-loader!css-loader!sass-loader'
+      },
+      {
+        test: /\.(png|jpg|svg)$/,
+        loader: 'url-loader?limit=100000'
       }
     ]
   },
