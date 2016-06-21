@@ -15,7 +15,8 @@ import {
   addPowerToWeather,
   resetWeather,
   updateScore,
-  removeSeeds
+  removeSeeds,
+  transformBoard
 } from '../actions/actionCreators.js'
 import Seed from './Seed.js'
 
@@ -141,6 +142,7 @@ class Board extends React.Component {
   shineSun () {
     this.weather('sun-shining')
     this.props.growSeeds(this.props.board)
+    setTimeout(() => this.props.transformBoard(this.props.transformMoves, this.props.board, 4), 500)
     this.props.resetWeather('sun')
     // const newBoard = growSeeds(this.props.board)
     // const isGrowingBoard = isGrowing(this.props.board)
@@ -151,6 +153,7 @@ class Board extends React.Component {
   rainFall () {
     this.weather('rain-falling')
     this.props.growSeeds(this.props.board)
+    this.props.transformBoard(this.props.transformMoves, this.props.board, 4)
     this.props.resetWeather('rain')
     // console.log(this.props.rain)
     // const newBoard = growSeeds(this.props.board)
@@ -219,7 +222,8 @@ const mapStateToProps = (state) => {
     score: state.score,
     board: state.board,
     isLeavingArray: state.leaving,
-    updating: state.updating
+    updating: state.updating,
+    transformMoves: state.transformMoves
   }
 }
 
@@ -237,5 +241,6 @@ export default connect(mapStateToProps, {
   addPowerToWeather,
   resetWeather,
   updateScore,
-  removeSeeds
+  removeSeeds,
+  transformBoard
 })(Board)

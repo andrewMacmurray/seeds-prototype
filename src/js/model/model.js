@@ -59,11 +59,11 @@ export const addNewTiles = R.map(addNewRow)
 const mapWithIndex = R.addIndex(R.map)
 
 // converts the tiles on the board to zero that match the coordiantes in the array of moves
-export const leavingBoard = (moves, board) =>
+export const transformBoard = (moves, board, transformNumber) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
   R.filter(([ y, x ]) =>
-    y === i && j === x)(moves).length ? 0 : tile
+    y === i && j === x)(moves).length ? transformNumber : tile
 )(row))(board)
 
 // converts zero tiles to an array of booleans (true if leaving, false if staying)

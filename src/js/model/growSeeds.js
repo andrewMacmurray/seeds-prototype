@@ -1,9 +1,5 @@
 import R from 'ramda'
 
-const growSeed = (x) => x === 3 && Math.random() >= 0.5 ? 4 : x
-const growRow = R.map(growSeed)
-export const growSeeds = R.map(growRow)
-
 const _growSeed = (tile, i, j) => tile === 3 && Math.random() >= 0.5 ? [ i, j ] : 0
 const mapWithIndex = R.addIndex(R.map)
 const growMovesOnBoard = (board) =>

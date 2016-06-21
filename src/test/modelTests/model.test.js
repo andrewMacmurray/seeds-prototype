@@ -126,7 +126,7 @@ tape('shift and shiftBoard function should shift zeroes to end of array', (t) =>
     [0, 1, 1, 1, 1, 2, 2, 2],
     [1, 3, 2, 2, 1, 3, 2, 2]
   ]
-  actual = shiftBoard(leavingBoard)
+  actual = shiftBoard(transformBoard)
   t.deepEqual(actual, expected, 'shiftBoard shifts entire boards 0s to the end')
 
   t.end()

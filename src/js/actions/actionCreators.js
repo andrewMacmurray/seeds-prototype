@@ -24,6 +24,14 @@ export function growSeeds (board) {
   return { type: action.GROW_SEEDS, payload: board }
 }
 
+export function resetGrowSeeds () {
+  return { type: action.RESET_GROW_SEEDS, payload: null }
+}
+
+export function transformBoard (transformMoves, board, transformNumber) {
+  return { type: action.TRANSFORM_BOARD, payload: { transformMoves, board, transformNumber } }
+}
+
 export function removeSeeds (board) {
   return { type: action.REMOVE_SEEDS, payload: board }
 }
