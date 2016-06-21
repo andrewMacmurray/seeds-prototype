@@ -142,22 +142,19 @@ class Board extends React.Component {
   shineSun () {
     this.weather('sun-shining')
     this.props.growSeeds(this.props.board)
-    setTimeout(() => this.props.transformBoard(this.props.transformMoves, this.props.board, 4), 500)
+    setTimeout(() =>
+      this.props.transformBoard(this.props.transformMoves, this.props.board, 4),
+    500)
     this.props.resetWeather('sun')
-    // const newBoard = growSeeds(this.props.board)
-    // const isGrowingBoard = isGrowing(this.props.board)
-    // this.setState({ board: newBoard, isGrowingArray: isGrowingBoard })
-    // setTimeout(() => this.setState({ isGrowingArray: falseBoard() }), 500)
   }
 
   rainFall () {
     this.weather('rain-falling')
     this.props.growSeeds(this.props.board)
-    this.props.transformBoard(this.props.transformMoves, this.props.board, 4)
+    setTimeout(() =>
+      this.props.transformBoard(this.props.transformMoves, this.props.board, 4),
+    500)
     this.props.resetWeather('rain')
-    // console.log(this.props.rain)
-    // const newBoard = growSeeds(this.props.board)
-    // this.setState({ board: newBoard })
   }
 
   fallingMagnitudeClass (tile) {
