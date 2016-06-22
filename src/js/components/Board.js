@@ -25,15 +25,14 @@ import Seed from './Seed.js'
 class Board extends React.Component {
   constructor () {
     super()
-    this.setTileType = this.setTileType.bind(this)
+    this.getTileClass = this.getTileClass.bind(this)
     this.getCoord = this.getCoord.bind(this)
     this.stopDrag = this.stopDrag.bind(this)
     this.startDrag = this.startDrag.bind(this)
     this.checkTile = this.checkTile.bind(this)
     this.updateWeatherPower = this.updateWeatherPower.bind(this)
     this.addSeedsToScore = this.addSeedsToScore.bind(this)
-    this.shineSun = this.shineSun.bind(this)
-    this.rainFall = this.rainFall.bind(this)
+    this.triggerWeather = this.triggerWeather.bind(this)
     this.removeTiles = this.removeTiles.bind(this)
     this.fallingMagnitudeClass = this.fallingMagnitudeClass.bind(this)
   }
@@ -48,7 +47,7 @@ class Board extends React.Component {
   }
 
 
-  setTileType (num) {
+  getTileClass (num) {
     if (num === 1) return 'sun'
     else if (num === 2) return 'rain'
     else if (num === 3) return 'seedling'
@@ -65,10 +64,7 @@ class Board extends React.Component {
     if (moves.length > 0) {
       const [ y, x ] = moves[0]
       const type = board[y][x]
-      if (type === 1) return 'sun'
-      else if (type === 2) return 'rain'
-      else if (type === 3) return 'seedling'
-      else if (type === 4) return 'pod'
+      return this.getTileClass(type)
     }
   }
 
@@ -90,23 +86,23 @@ class Board extends React.Component {
     this.props.resetLeaving()
   }
 
-  removeSeeds () {
-    this.props.removeSeeds(this.props.board)
-    setTimeout(() => {
-      this.props.fallTiles([], this.props.board)
-      // this.props.shiftTiles([], this.props.board)
-      // this.props.resetMagnitude()
-      // this.props.resetLeaving()
-    }, 300)
-    // setTimeout(() => this.props.addTiles(this.props.board), 800)
-  }
+  // removeSeeds () {
+  //   this.props.removeSeeds(this.props.board)
+  //   setTimeout(() => {
+  //     this.props.fallTiles([], this.props.board)
+  //     // this.props.shiftTiles([], this.props.board)
+  //     // this.props.resetMagnitude()
+  //     // this.props.resetLeaving()
+  //   }, 300)
+  //   // setTimeout(() => this.props.addTiles(this.props.board), 800)
+  // }
 
   stopDrag () {
     if (!this.props.updating && this.props.isDragging) {
       this.props.setDrag(false)
       const { moveArray, rain, sun } = this.props
-      if (rain >= 12) this.rainFall()
-      if (sun >= 12) this.shineSun()
+      if (rain >= 12) this.triggerWeather('rain')
+      if (sun >= 12) this.triggerWeather('sun')
 
       this.addSeedsToScore()
       this.props.isUpdating(true)
@@ -137,28 +133,22 @@ class Board extends React.Component {
     }
   }
 
-  weather (type) {
+  animateBackground (type) {
+    const weatherClass = type === 'rain' ? 'rain-falling' : 'sun-shining'
     const body = document.body.classList
-    body.add(type)
-    setTimeout(() => body.remove(type), 3000)
+    body.add(weatherClass)
+    setTimeout(() => body.remove(weatherClass), 3000)
   }
 
-  shineSun () {
-    this.weather('sun-shining')
+  triggerWeather (type) {
+    this.animateBackground(type)
     this.props.growSeeds(this.props.board)
-    setTimeout(() =>
-      this.props.transformBoard(this.props.transformMoves, this.props.board, 4),
-    500)
-    this.props.resetWeather('sun')
-  }
-
-  rainFall () {
-    this.weather('rain-falling')
-    this.props.growSeeds(this.props.board)
-    setTimeout(() =>
-      this.props.transformBoard(this.props.transformMoves, this.props.board, 4),
-    500)
-    this.props.resetWeather('rain')
+    setTimeout(() => this.props.transformBoard(
+      this.props.transformMoves,
+      this.props.board,
+      4
+    ), 500)
+    this.props.resetWeather(type)
   }
 
   fallingMagnitudeClass (tile) {
@@ -186,7 +176,7 @@ class Board extends React.Component {
                     isDraggingArray,
                     fallingMagnitudeArray
                   } = this.props
-                  const tileType = this.setTileType(tile)
+                  const tileType = this.getTileClass(tile)
                   return tile > 0
                   ? <Seed
                     tileType={tileType}
