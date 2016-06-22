@@ -182,22 +182,13 @@ class Board extends React.Component {
 
 import isDraggingArray from '../selectors/selector_isDraggingArray.js'
 
-const mapStateToProps = (state) => {
-  return {
-    isDragging: state.isDragging,
-    currTile: state.moves.currTile,
-    moveArray: state.moves.moveArray,
-    isDraggingArray: isDraggingArray(state),
-    fallingMagnitudeArray: state.fallingMagnitude,
-    isEnteringArray: state.isEnteringArray,
-    sun: state.weather.sun,
-    rain: state.weather.rain,
-    score: state.score,
-    board: state.board,
-    isLeavingArray: state.leaving,
-    updating: state.updating,
-    transformMoves: state.transformMoves,
-  }
-}
+const mapStateToProps = (state) => ({
+  ...state,
+  currTile: state.moves.currTile,
+  moveArray: state.moves.moveArray,
+  isDraggingArray: isDraggingArray(state),
+  sun: state.weather.sun,
+  rain: state.weather.rain
+})
 
 export default connect(mapStateToProps, actions)(Board)

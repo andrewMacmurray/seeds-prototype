@@ -6,20 +6,19 @@ export default (state = defaultState, action) => {
   switch (action.type) {
   case CHECK_TILE:
     const { tile, currTile, board } = action.payload
+    const { moveArray } = state
     const isValid = validMove(tile, currTile, board)
 
-    if (state.moveArray.length === 0) {
+    if (moveArray.length === 0) {
       return {
-        ...state,
-        moveArray: state.moveArray.concat([ tile ]),
+        moveArray: moveArray.concat([ tile ]),
         currTile: tile
       }
     }
 
     if (isValid) {
       return {
-        ...state,
-        moveArray: state.moveArray.concat([ tile ]),
+        moveArray: moveArray.concat([ tile ]),
         currTile: tile
       }
     }
