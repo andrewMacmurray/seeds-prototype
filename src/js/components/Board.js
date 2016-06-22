@@ -1,25 +1,7 @@
 import React from 'react'
 import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
-import {
-  setDrag,
-  stopDrag,
-  isUpdating,
-  resetLeaving,
-  resetMagnitude,
-  checkTile,
-  shiftTiles,
-  fallTiles,
-  addTiles,
-  growSeeds,
-  setEntering,
-  resetEntering,
-  addPowerToWeather,
-  resetWeather,
-  updateScore,
-  removeSeeds,
-  transformBoard
-} from '../actions/actionCreators.js'
+import * as actions from '../actions/actionCreators.js'
 import Seed from './Seed.js'
 
 class Board extends React.Component {
@@ -45,7 +27,6 @@ class Board extends React.Component {
   componentWillUnmount () {
     removeListener(window, 'pointerup', this.stopDrag)
   }
-
 
   getTileClass (num) {
     if (num === 1) return 'sun'
@@ -219,22 +200,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, {
-  setDrag,
-  stopDrag,
-  isUpdating,
-  resetLeaving,
-  resetMagnitude,
-  checkTile,
-  fallTiles,
-  growSeeds,
-  shiftTiles,
-  setEntering,
-  resetEntering,
-  addTiles,
-  addPowerToWeather,
-  resetWeather,
-  updateScore,
-  removeSeeds,
-  transformBoard
-})(Board)
+export default connect(mapStateToProps, actions)(Board)
