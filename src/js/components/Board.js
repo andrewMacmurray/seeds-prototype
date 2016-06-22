@@ -12,6 +12,8 @@ import {
   fallTiles,
   addTiles,
   growSeeds,
+  setEntering,
+  resetEntering,
   addPowerToWeather,
   resetWeather,
   updateScore,
@@ -38,6 +40,7 @@ class Board extends React.Component {
 
   componentDidMount () {
     addListener(window, 'pointerup', this.stopDrag)
+    setTimeout(() => this.props.resetEntering(), 300)
   }
 
   componentWillUnmount () {
@@ -82,6 +85,7 @@ class Board extends React.Component {
 
   removeTiles (moveArray) {
     this.props.shiftTiles(moveArray, this.props.board)
+    this.props.setEntering(this.props.board)
     this.props.resetMagnitude()
     this.props.resetLeaving()
   }
@@ -214,13 +218,14 @@ const mapStateToProps = (state) => {
     moveArray: state.moves.moveArray,
     isDraggingArray: isDraggingArray(state),
     fallingMagnitudeArray: state.fallingMagnitude,
+    isEnteringArray: state.isEnteringArray,
     sun: state.weather.sun,
     rain: state.weather.rain,
     score: state.score,
     board: state.board,
     isLeavingArray: state.leaving,
     updating: state.updating,
-    transformMoves: state.transformMoves
+    transformMoves: state.transformMoves,
   }
 }
 
@@ -234,6 +239,8 @@ export default connect(mapStateToProps, {
   fallTiles,
   growSeeds,
   shiftTiles,
+  setEntering,
+  resetEntering,
   addTiles,
   addPowerToWeather,
   resetWeather,

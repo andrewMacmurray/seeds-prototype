@@ -17,6 +17,7 @@ export const randomBoard = () => R.times(makeRow, 8)
 
 const falseRow = () => R.times(R.always(false), 8)
 export const falseBoard = () => R.times(falseRow, 8)
+export const trueBoard = R.map(R.map(() => true))(falseBoard())
 
 // before and after tile values have to match
 export const sameType = ([ x2, y2 ], [ x1, y1 ], board) => board[x2][y2] === board[x1][y1]
@@ -54,7 +55,6 @@ const addNewRow = R.map(addRandomTile)
 
 // replaces zero (leaving) tiles with new random tiles
 export const addNewTiles = R.map(addNewRow)
-
 
 const mapWithIndex = R.addIndex(R.map)
 

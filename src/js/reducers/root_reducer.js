@@ -9,6 +9,7 @@ import board from './reducer_board.js'
 import fallingMagnitude from './reducer_fallingMagnitude.js'
 import transformMoves from './reducer_transformMoves.js'
 import leaving from './reducer_isLeaving.js'
+import isEnteringArray from './reducer_isEntering.js'
 
 const rootReducer = combineReducers({
   isDragging,
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   fallingMagnitude,
   leaving,
   updating,
-  transformMoves
+  transformMoves,
+  isEnteringArray
 })
 
 export default rootReducer

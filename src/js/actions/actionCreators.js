@@ -16,6 +16,14 @@ export function updateScore (tileType, moves) {
   return { type: action.UPDATE_SCORE, payload: { moves, tileType } }
 }
 
+export function setEntering (board) {
+  return { type: action.SET_ENTERING, payload: board }
+}
+
+export function resetEntering () {
+  return { type: action.RESET_ENTERING, payload: null }
+}
+
 export function addPowerToWeather (weatherType, power) {
   return { type: action.WEATHER_POWER, payload: { weatherType, power } }
 }
