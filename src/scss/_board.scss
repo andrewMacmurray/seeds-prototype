@@ -28,7 +28,7 @@ $grid-offset: 4;
   }
   .falling-#{$i} {
     transform: translateY(($grid-size - $grid-offset) * $i);
-    transition: 0.3s ease;
+    transition: transform 0.3s ease;
   }
 }
 
@@ -47,7 +47,7 @@ $grid-offset: 4;
     }
     .falling-#{$i} {
       transform: translateY(($grid-size / 1.1 - $grid-offset) * $i);
-      transition: 0.3s ease;
+      transition: transform 0.3s ease;
     }
   }
 }
@@ -75,7 +75,7 @@ $grid-offset: 4;
     }
     .falling-#{$i} {
       transform: translateY(($grid-size / 1.38 - $grid-offset) * $i);
-      transition: 0.3s ease;
+      transition: transform 0.3s ease;
     }
   }
 }
