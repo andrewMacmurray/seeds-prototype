@@ -67,17 +67,6 @@ class Board extends React.Component {
     this.props.resetLeaving()
   }
 
-  // removeSeeds () {
-  //   this.props.removeSeeds(this.props.board)
-  //   setTimeout(() => {
-  //     this.props.fallTiles([], this.props.board)
-  //     // this.props.shiftTiles([], this.props.board)
-  //     // this.props.resetMagnitude()
-  //     // this.props.resetLeaving()
-  //   }, 300)
-  //   // setTimeout(() => this.props.addTiles(this.props.board), 800)
-  // }
-
   stopDrag () {
     if (!this.props.updating && this.props.isDragging) {
       this.props.setDrag(false)
