@@ -2,7 +2,7 @@ import React from 'react'
 import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import * as actions from '../actions/actionCreators.js'
-import Seed from './Seed.js'
+import Tile from './Tile.js'
 
 class Board extends React.Component {
   constructor () {
@@ -159,7 +159,7 @@ class Board extends React.Component {
                   } = this.props
                   const tileType = this.getTileClass(tile)
                   return tile > 0
-                  ? <Seed
+                  ? <Tile
                     tileType={tileType}
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}

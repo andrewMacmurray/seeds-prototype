@@ -35,7 +35,7 @@ export default class Seed extends React.Component {
       'x-' + x,
       'y-' + y
     )
-    const seedClasses = classNames(
+    const tileClasses = classNames(
       tileType,
       seedType,
       isGrowingBool,
@@ -52,7 +52,7 @@ export default class Seed extends React.Component {
         data-y={y}
         data-type={tileType}
       >
-        <div className={seedClasses}></div>
+        <div className={tileClasses}></div>
       </div>
     )
   }
