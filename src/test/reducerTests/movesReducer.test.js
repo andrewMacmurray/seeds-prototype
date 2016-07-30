@@ -1,7 +1,6 @@
 import tape from 'tape'
 import movesReducer from '../../js/reducers/reducer_moves.js'
 import { CHECK_TILE } from '../../js/actions/actionTypes.js'
-import { falseBoard } from '../../js/model/model.js'
 import { board, sampleMove1, sampleLeaving1, isDraggingSample2 } from '../testHelpers.js'
 
 

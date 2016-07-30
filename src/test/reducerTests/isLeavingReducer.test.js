@@ -3,8 +3,8 @@ import leavingReducer from '../../js/reducers/reducer_isLeaving.js'
 import { STOP_DRAG, RESET_LEAVING } from '../../js/actions/actionTypes.js'
 
 import { board, sampleMove1, sampleLeaving1 } from '../testHelpers.js'
-import { falseBoard } from '../../js/model/model.js'
-const defaultLeaving = falseBoard()
+import { falseBoard } from '../model/constants.js'
+const defaultLeaving = falseBoard
 
 tape('leavingReducer should return default state with unrecoginised action', (t) => {
 

@@ -1,7 +1,8 @@
 import { STOP_DRAG, RESET_LEAVING, REMOVE_SEEDS } from '../actions/actionTypes.js'
-import { falseBoard, transformBoard, booleanArray, removeSeeds } from '../model/model.js'
+import { transformBoard, booleanArray, removeSeeds } from '../model/model.js'
+import { falseBoard } from '../model/constants.js'
 
-const defaultState = falseBoard()
+const defaultState = falseBoard
 export default (state = defaultState, action) => {
   switch (action.type) {
   case STOP_DRAG:

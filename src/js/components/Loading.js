@@ -1,7 +1,7 @@
 import React from 'react'
 import TwinSeed from './Seeds/TwinSeed.js'
 
-export default (props) => {
+export default () => {
   const randomBackground = () => Math.random() > 0.45 ? 'rain-falling' : 'sun-shining'
   return (
     <div className={'loading-screen ' + randomBackground()}>
