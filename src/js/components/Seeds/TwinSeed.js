@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default (props) => (
+export default (props) =>
   <svg className={props.seedType}
     data-x={props['data-x']}
     data-y={props['data-y']}
@@ -20,4 +20,3 @@ export default (props) => (
       d='M120 132c0-48-54-124-58-128v186C94 190 120 164 120 132z'
     />
   </svg>
-)
