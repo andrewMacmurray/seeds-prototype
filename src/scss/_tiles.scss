@@ -19,8 +19,11 @@
   box-sizing: border-box;
   opacity: 1;
   transform: scale(1);
-  animation: bounceInDown 0.6s ease;
   @include no-select;
+}
+
+.entering {
+  animation: bounceInDown 0.6s ease;
 }
 
 .sun {
