@@ -32,6 +32,10 @@
   opacity: 1;
 }
 
+.grow-seed {
+  animation: grow-seed 0.6s ease;
+}
+
 .sun::after {
   // width: 70px;
   // height: 10px;

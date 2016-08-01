@@ -8,9 +8,9 @@ export default (state = defaultState, action) => {
   switch (action.type) {
   case FALL_TILES:
     const { board, moves } = action.payload
-    return moves.length > 0 ?
-      mapFallingTiles(transformBoard(moves, board, 0)) :
-      mapFallingTiles(removeSeeds(board))
+    return moves.length > 0
+      ? mapFallingTiles(transformBoard(moves, board, 0))
+      : mapFallingTiles(removeSeeds(board))
 
   case RESET_MAGNITUDE:
     return defaultState
