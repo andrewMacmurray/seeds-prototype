@@ -11,3 +11,8 @@ const growMovesOnBoard = (board) =>
 const collapseArr = reduce(concat, [])
 const filterForTiles = filter(x => x !== 0)
 export const growingMoveArray = compose(filterForTiles, collapseArr, growMovesOnBoard)
+
+export const isGrowingArray = (moves, board) =>
+  mapWithIndex((row, i) =>
+  mapWithIndex((tile, j) =>
+  filter(([ y, x ]) => y === j && x === i)(moves).length > 0)(row))(board)

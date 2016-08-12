@@ -1,16 +1,15 @@
 import { createSelector } from 'reselect'
-import { transformBoard, booleanSeeds } from '../model/model.js'
+import { isGrowingArray } from '../model/growSeeds.js'
 
-const transformMoves = (state) => state.transformMoves
-const board = (state) => state.board
-const isGrowingArray = createSelector(
-  [ transformMoves, board ],
-  (transform) => {
-    const [ x, y ] = transform[0]
-    if (board[x][y] === '3') {
-      
-    }
+const _board = (state) => state.board
+const _growingMoves = (state) => state.growingMoves
+
+const _isGrowingArray = createSelector(
+  [ _growingMoves, _board ],
+  (growingMoves, board) => {
+    console.log(growingMoves)
+    return isGrowingArray(growingMoves, board)
   }
 )
 
-export default isGrowingArray
+export default _isGrowingArray
