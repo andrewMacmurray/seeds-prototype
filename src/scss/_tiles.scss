@@ -27,7 +27,11 @@
 }
 
 .sun {
-  background-color: $orange;
+  // background-color: $orange;
+  background-image: url(/img/sun2.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   transform: scale(1);
   opacity: 1;
 }
@@ -56,15 +60,20 @@
 }
 
 .rain {
-  background-color: $blue;
+  // background-color: $blue;
+  background-image: url(/img/rain12.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   transform: scale(1);
   opacity: 1;
 }
 
 .rain:hover,
 .rain.dragging {
-  background-color: $rain-hover;
-  transition: background-color 0.3s ease;
+  // background-color: $rain-hover;
+  transition: 0.3s ease;
+  // animation: rubberBand 0.1s ease;
 }
 
 .seedling {
