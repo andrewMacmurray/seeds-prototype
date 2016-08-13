@@ -1,21 +1,22 @@
+@import 'variables';
 @keyframes grow-seed {
   0% {
     opacity: 1;
     transform: scale(1);
-    background: rgb(120, 193, 67);
+    background: $green;
     background-position: 50%, 50%;
     background-size: 18px 30px;
     background-repeat: no-repeat;
   }
-  50% {
+  70% {
     opacity: 0;
-    transform: scale(3);
-    background: rgb(120, 193, 67);
+    transform: scale(2);
+    background: $green;
     background-position: 50%, 50%;
     background-size: 18px 30px;
     background-repeat: no-repeat;
   }
-  51% {
+  71% {
     opacity: 1;
     transform: scale(0.1);
     background: url(/img/seed.svg);
