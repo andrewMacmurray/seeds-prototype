@@ -27,6 +27,7 @@ export default class Seed extends React.Component {
       isGrowingBool,
       isLeavingBool,
       isDraggingBool,
+      isEnteringBool,
       isFalling
     } = this.props
     const seedType = tileType === 'pod' ? '' : false
@@ -42,6 +43,7 @@ export default class Seed extends React.Component {
       'tile',
       isLeavingBool,
       isDraggingBool,
+      isEnteringBool,
       isFalling
     )
     return (

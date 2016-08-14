@@ -6,10 +6,8 @@ import {
   addNewTiles,
   removeSeeds
 } from '../model/model.js'
-// import { growSeeds } from '../model/growSeeds.js'
 
 const defaultState = randomBoard()
-
 export default (state = defaultState, action) => {
   let moves, board, transformNumber, transformMoves
 

@@ -4,14 +4,14 @@ import { transformBoard } from '../model/model.js'
 import { falseBoard } from '../model/constants.js'
 import { mapFallingTiles } from '../model/mapFallingTiles.js'
 
-const board = (state) => state.board
-const moveArray = (state) => state.moves.moveArray
-const isLeavingArray = (state) => state.isLeavingArray
+const _board = (state) => state.board
+const _moveArray = (state) => state.moves.moveArray
+const _isLeavingArray = (state) => state.isLeavingArray
 
 const defaultState = falseBoard
 const fallingMagnitudeArray = createSelector(
-  [ board, moveArray, isLeavingArray ],
-  (board, moveArray, isLeavingArray) => { // eslint-disable-line
+  [ _board, _moveArray, _isLeavingArray ],
+  (board, moveArray, isLeavingArray) => {
     switch (isLeavingArray) {
     case STOP_DRAG:
       return mapFallingTiles(transformBoard(moveArray, board, 0))

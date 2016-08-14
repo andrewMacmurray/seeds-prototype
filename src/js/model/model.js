@@ -54,7 +54,8 @@ export const addNewTiles = map(addNewRow)
 
 const mapWithIndex = addIndex(map)
 
-// converts the tiles on the board to zero that match the coordiantes in the array of moves
+// converts the tiles on the board to a new number
+// where the board coordiantes match the coordiantes in an array of moves
 export const transformBoard = (moves, board, transformNumber) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
