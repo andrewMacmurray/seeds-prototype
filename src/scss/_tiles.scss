@@ -18,12 +18,7 @@
   position: absolute;
   box-sizing: border-box;
   opacity: 1;
-  transform: scale(1);
   @include no-select;
-}
-
-.entering {
-  animation: bounceInDown 0.6s ease;
 }
 
 .sun {
@@ -33,11 +28,6 @@
   background-position: center;
   transform: scale(1);
   opacity: 1;
-}
-
-.grow-seed {
-  animation: grow-seed 0.3s ease;
-  animation-fill-mode: forwards;
 }
 
 .sun::after {
@@ -52,12 +42,6 @@
   // transform: rotateZ(43deg);
 }
 
-.sun:hover,
-.sun.dragging {
-  // background-color: $sun-hover;
-  // transition: background-color 0.3s ease;
-}
-
 .rain {
   background-image: url(/img/rain12.png);
   background-size: contain;
@@ -67,20 +51,8 @@
   opacity: 1;
 }
 
-.rain:hover,
-.rain.dragging {
-  transition: 0.3s ease;
-}
-
 .seedling {
   background-color: $green;
-}
-
-
-.seedling:hover,
-.seedling.dragging {
-  background-color: $seedling-hover;
-  transition: background-color 0.3s ease;
 }
 
 .pod {
@@ -101,6 +73,9 @@
 }
 
 // animations
+.entering {
+  animation: bounceInDown 0.6s ease;
+}
 
 .sun.leaving {
   transition: 0.5s ease;
@@ -128,8 +103,10 @@
 
 .growing {
   animation: grow-seed 0.5s ease;
+  animation-fill-mode: forwards;
 }
 
+// seed pods
 .pod {
   background: url(/img/seed.svg);
   background-position: 50%, 50%;
