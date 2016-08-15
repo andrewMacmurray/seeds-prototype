@@ -1,5 +1,4 @@
-$grid-size: 57px;
-$grid-offset: 4;
+@import 'variables';
 
 .board-container {
   position: fixed;
@@ -27,8 +26,7 @@ $grid-offset: 4;
     left: $grid-size * $i;
   }
   .falling-#{$i} {
-    transform: translateY(($grid-size - $grid-offset) * $i);
-    transition: transform 0.3s ease;
+    animation: bounceInDown-#{$i} 0.3s;
   }
 }
 
@@ -46,8 +44,7 @@ $grid-offset: 4;
       left: $grid-size / 1.1 * $i;
     }
     .falling-#{$i} {
-      transform: translateY(($grid-size / 1.1 - $grid-offset) * $i);
-      transition: transform 0.3s ease;
+      animation: bounceInDown-#{$i} 0.3s;
     }
   }
 }
