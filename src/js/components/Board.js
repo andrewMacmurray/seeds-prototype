@@ -29,10 +29,13 @@ class Board extends React.Component {
   }
 
   getTileClass (num) {
-    if (num === 1) return 'sun'
-    else if (num === 2) return 'rain'
-    else if (num === 3) return 'seedling'
-    else if (num === 4) return 'pod'
+    const tileClassMap = {
+      1: 'sun',
+      2: 'rain',
+      3: 'seedling',
+      4: 'pod'
+    }
+    return tileClassMap[num]
   }
 
   getCoord (e) {
@@ -81,7 +84,8 @@ class Board extends React.Component {
       setTimeout(() => this.removeTiles(moveArray), 600)
       setTimeout(() => this.props.isUpdating(false), 600)
       setTimeout(() => this.props.addTiles(this.props.board), 800)
-      setTimeout(() => this.props.resetEntering(), 1300)
+      setTimeout(() => this.props.resetGrowSeeds(), 1400)
+      setTimeout(() => this.props.resetEntering(), 1500)
     }
   }
 
@@ -113,12 +117,8 @@ class Board extends React.Component {
 
   triggerWeather (type) {
     this.animateBackground(type)
-    this.props.growSeeds(this.props.board)
-    setTimeout(() => this.props.transformBoard(
-      this.props.transformMoves,
-      this.props.board,
-      4
-    ), 500)
+    setTimeout(() => this.props.growSeeds(this.props.board), 700)
+    setTimeout(() => this.props.transformBoard(this.props.growingMoves, this.props.board, 4), 1200)
     this.props.resetWeather(type)
   }
 
@@ -131,6 +131,7 @@ class Board extends React.Component {
   }
 
   render () {
+    // console.log(JSON.stringify(this.props.isEnteringArray))
     return (
       <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>
@@ -144,7 +145,8 @@ class Board extends React.Component {
                     isLeavingArray,
                     isDraggingArray,
                     fallingMagnitudeArray,
-                    isEnteringArray
+                    isEnteringArray,
+                    isGrowingArray
                   } = this.props
                   const tileType = this.getTileClass(tile)
                   return tile > 0
@@ -156,6 +158,7 @@ class Board extends React.Component {
                     isLeavingBool={isLeavingArray[i][j] ? 'leaving' : ''}
                     isDraggingBool={isDraggingArray[i][j] ? 'dragging' : ''}
                     isEnteringBool={isEnteringArray[i][j] ? 'entering' : ''}
+                    isGrowingBool={isGrowingArray[i][j] ? 'growing' : ''}
                     isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
                     y={i}
                     x={j}
@@ -171,6 +174,7 @@ class Board extends React.Component {
 }
 
 import isDraggingArray from '../selectors/selector_isDraggingArray.js'
+import isGrowingArray from '../selectors/selector_isGrowingArray.js'
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -178,7 +182,8 @@ const mapStateToProps = (state) => ({
   moveArray: state.moves.moveArray,
   isDraggingArray: isDraggingArray(state),
   sun: state.weather.sun,
-  rain: state.weather.rain
+  rain: state.weather.rain,
+  isGrowingArray: isGrowingArray(state)
 })
 
 export default connect(mapStateToProps, actions)(Board)
