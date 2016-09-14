@@ -1,6 +1,7 @@
 @import 'animate';
 @import 'customAnimations';
 @import 'mixins';
+@import 'variables';
 
 .tile-container {
   position: absolute;
@@ -22,10 +23,7 @@
 }
 
 .sun {
-  background-image: url(/img/sun2.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: $orange;
   transform: scale(1);
   opacity: 1;
 }
@@ -43,10 +41,7 @@
 }
 
 .rain {
-  background-image: url(/img/rain12.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-color: $blue;
   transform: scale(1);
   opacity: 1;
 }
@@ -102,7 +97,7 @@
 }
 
 .growing {
-  animation: grow-seed 0.5s ease;
+  animation: grow-seed 1s ease;
   animation-fill-mode: forwards;
 }
 

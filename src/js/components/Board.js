@@ -84,8 +84,8 @@ class Board extends React.Component {
       setTimeout(() => this.removeTiles(moveArray), 600)
       setTimeout(() => this.props.isUpdating(false), 600)
       setTimeout(() => this.props.addTiles(this.props.board), 800)
-      setTimeout(() => this.props.resetGrowSeeds(), 1400)
-      setTimeout(() => this.props.resetEntering(), 1500)
+      setTimeout(() => this.props.resetGrowSeeds(), 1500)
+      setTimeout(() => this.props.resetEntering(), 1800)
     }
   }
 

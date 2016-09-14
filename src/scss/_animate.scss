@@ -1,3 +1,4 @@
+@import 'variables';
 @-webkit-keyframes bounceInDown {
   from, 60%, 75%, 90%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -32,6 +33,7 @@
   }
 }
 
+
 @keyframes bounceInDown {
   from, 60%, 75%, 90%, to {
     -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
@@ -63,6 +65,29 @@
   to {
     -webkit-transform: none;
     transform: none;
+  }
+}
+
+@for $i from 1 through 7 {
+  @keyframes bounceInDown-#{$i} {
+    $height: ($grid-size / 1.1 - $grid-offset) * $i;
+    $offset: 10px;
+
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    60% {
+      transform: translate3d(0, ($height + $offset), 0);
+    }
+
+    85% {
+      transform: translate3d(0, ($height - ($offset / 2) + 2), 0);
+    }
+
+    to {
+      transform: translate3d(0, ($height), 0);
+    }
   }
 }
 
