@@ -5,9 +5,9 @@ const _board = (state) => state.board
 const _growingMoves = (state) => state.growingMoves
 
 const _isGrowingArray = createSelector(
-  [ _growingMoves, _board ],
-  (growingMoves, board) => {
-    return isGrowingArray(growingMoves, board)
+  [ _board, _growingMoves ],
+  (board, growingMoves) => {
+    return isGrowingArray(board, growingMoves)
   }
 )
 
