@@ -3,15 +3,15 @@
   0% {
     opacity: 1;
     transform: scale(1);
-    background: $green;
+    background: #78C143;
     background-position: 50%, 50%;
     background-size: 18px 30px;
     background-repeat: no-repeat;
   }
   70% {
     opacity: 0;
-    transform: scale(2);
-    background: $green;
+    transform: scale(4);
+    background: #78C143;
     background-position: 50%, 50%;
     background-size: 18px 30px;
     background-repeat: no-repeat;
