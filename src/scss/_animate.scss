@@ -71,28 +71,21 @@
 @for $i from 1 through 7 {
   @keyframes bounceInDown-#{$i} {
     $height: ($grid-size / 1.1 - $grid-offset) * $i;
-    $offset: 3px;
-
-    -webkit-animation-timing-function: cubic-bezier(1, 0, 0, 1);
-    animation-timing-function: cubic-bezier(1, 0, 0, 1);
+    $offset: 10px;
 
     0% {
-      -webkit-transform: translate3d(0, 0, 0);
       transform: translate3d(0, 0, 0);
     }
 
     60% {
-      -webkit-transform: translate3d(0, ($height + $offset), 0);
       transform: translate3d(0, ($height + $offset), 0);
     }
 
-    80% {
-      -webkit-transform: translate3d(0, ($height - $offset + 1), 0);
-      transform: translate3d(0, ($height - $offset - 1), 0);
+    85% {
+      transform: translate3d(0, ($height - ($offset / 2) + 2), 0);
     }
 
     to {
-      -webkit-transform: translate3d(0, ($height), 0);
       transform: translate3d(0, ($height), 0);
     }
   }
