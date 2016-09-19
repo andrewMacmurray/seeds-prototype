@@ -12,14 +12,9 @@ const $text = text.map((t, i) => <p className='intro-text' key={i}>{t}</p>)
 const startInterval = (props) => setInterval(props.stepIntroText, 8000)
 
 class Intro extends React.Component {
-  constructor () {
-    super()
-    this.state = { interval: '' }
-  }
-
-  componentDidMount () {
-    const textStep = startInterval(this.props)
-    this.setState({ interval: textStep })
+  constructor (props) {
+    super(props)
+    this.state = { interval: startInterval(props) }
   }
 
   render () {
