@@ -1,6 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setView, stepIntroText } from '../actions/actionCreators.js'
+import {
+  setView,
+  stepIntroText
+} from '../actions/actionCreators.js'
 
 const text = [
   'our world is dying...',
@@ -9,7 +12,7 @@ const text = [
 ]
 
 const $text = text.map((t, i) => <p className='intro-text' key={i}>{t}</p>)
-const startInterval = (props) => setInterval(props.stepIntroText, 8000)
+const startInterval = (props) => setInterval(props.stepIntroText, 6000)
 
 class Intro extends React.Component {
   constructor (props) {

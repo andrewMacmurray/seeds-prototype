@@ -1,4 +1,4 @@
-import { STEP_INTRO_TEXT } from '../actions/actionTypes.js'
+import { STEP_INTRO_TEXT, RESET_INTRO_STEP } from '../actions/actionTypes.js'
 
 const defaultState = {
   introTextStep: 0
@@ -10,6 +10,11 @@ export default (state = defaultState, action) => {
     return {
       ...state,
       introTextStep: state.introTextStep + 1
+    }
+  case RESET_INTRO_STEP:
+    return {
+      ...state,
+      introTextStep: 0
     }
   default:
     return state

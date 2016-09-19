@@ -5,7 +5,7 @@ import Loading from './Loading.js'
 import Intro from './Intro.js'
 
 import { connect } from 'react-redux'
-import { setView } from '../actions/actionCreators.js'
+import { setView, resetIntroStep } from '../actions/actionCreators.js'
 
 import '../../scss/style.scss'
 
@@ -20,8 +20,13 @@ class App extends React.Component {
     return viewMap[this.props.view]
   }
 
+  componentDidMount () {
+    setTimeout(() => this.props.setView('title'), 3000)
+  }
+
   loadView (view) {
     this.props.setView('loading')
+    this.props.resetIntroStep()
     setTimeout(() => this.props.setView(view), 3000)
   }
 
@@ -41,4 +46,4 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({ view: state.view })
 
-export default connect(mapStateToProps, { setView })(App)
+export default connect(mapStateToProps, { setView, resetIntroStep })(App)

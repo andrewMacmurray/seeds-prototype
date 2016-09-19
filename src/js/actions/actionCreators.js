@@ -4,6 +4,10 @@ export function stepIntroText () {
   return { type: types.STEP_INTRO_TEXT }
 }
 
+export function resetIntroStep () {
+  return { type: types.RESET_INTRO_STEP }
+}
+
 export function setDrag (isDragging) {
   return { type: types.SET_DRAG, payload: isDragging }
 }
