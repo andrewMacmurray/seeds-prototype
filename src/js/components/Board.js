@@ -131,7 +131,6 @@ class Board extends React.Component {
   }
 
   render () {
-    // console.log(JSON.stringify(this.props.isEnteringArray))
     return (
       <div className='board-container'>
         <div className='logo'><img src='img/seed-dark.png'/></div>

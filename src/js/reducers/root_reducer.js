@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import text from './reducer_text.js'
 import isDragging from './reducer_setDrag.js'
 import updating from './reducer_isUpdating.js'
 import weather from './reducer_weatherPower.js'
@@ -12,6 +13,7 @@ import isLeavingArray from './reducer_isLeaving.js'
 import isEnteringArray from './reducer_isEntering.js'
 
 const rootReducer = combineReducers({
+  text,
   isDragging,
   weather,
   score,

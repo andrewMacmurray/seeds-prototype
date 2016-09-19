@@ -1,38 +1,38 @@
 import React from 'react'
-import TwinSeed from './Seeds/TwinSeed.js'
-import CircleSeed from './Seeds/CircleSeed.js'
-import SingleSeed from './Seeds/SingleSeed.js'
-
 import { connect } from 'react-redux'
-import { setView } from '../actions/actionCreators.js'
+import { setView, stepIntroText } from '../actions/actionCreators.js'
+
+const text = [
+  'our world is dying...',
+  'we must gather many seeds...',
+  'so a new one can be reborn...'
+]
+
+const $text = text.map((t, i) => <p className='intro-text' key={i}>{t}</p>)
+const startInterval = (props) => setInterval(props.stepIntroText, 8000)
 
 class Intro extends React.Component {
-  loadView (view) {
-    this.props.setView('loading')
-    setTimeout(() => this.props.setView(view), 3000)
+  constructor () {
+    super()
+    this.state = { interval: '' }
+  }
+
+  componentDidMount () {
+    const textStep = startInterval(this.props)
+    this.setState({ interval: textStep })
   }
 
   render () {
+    const { introTextStep } = this.props.text
+    if (introTextStep >= text.length) clearInterval(this.state.interval)
     return (
       <div className='intro'>
-        <div className='seed-container'>
-          <CircleSeed seedType='three intro-seed' />
-          <TwinSeed seedType='two twin-dark intro-seed'/>
-          <TwinSeed seedType='one twin-light intro-seed'/>
-          <TwinSeed seedType='two twin-red intro-seed'/>
-          <SingleSeed seedType='three intro-seed' />
-          <p className='title'>seed</p>
-          <p className='begin' onClick={() => this.loadView('board')}>begin</p>
-        </div>
+        {$text[introTextStep]}
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    view: state.view
-  }
-}
+const mapStateToProps = state => ({ ...state })
 
-export default connect(mapStateToProps, { setView })(Intro)
+export default connect(mapStateToProps, { setView, stepIntroText })(Intro)
