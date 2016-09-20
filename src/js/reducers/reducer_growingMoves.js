@@ -5,9 +5,11 @@ const defaultState = []
 export default (state = defaultState, action) => {
   switch (action.type) {
   case GROW_SEEDS:
-    return growingMoveArray(action.payload)
+    return action.payload
+
   case RESET_GROW_SEEDS:
     return defaultState
+
   default:
     return state
   }

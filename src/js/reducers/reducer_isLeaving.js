@@ -12,7 +12,7 @@ export default (state = defaultState, action) => {
     return defaultState
 
   case REMOVE_SEEDS:
-    return booleanArray(removeSeeds(action.payload))
+    return action.payload
 
   default:
     return state

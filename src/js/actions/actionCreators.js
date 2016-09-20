@@ -1,5 +1,14 @@
 import * as types from './actionTypes.js'
-import { booleanArray, transformBoard } from '../model/model.js'
+import {
+  booleanArray,
+  transformBoard,
+  removeSeedsFromBoard,
+  addNewTiles,
+  shiftBoard,
+  validMove
+} from '../model/model.js'
+import { mapFallingTiles } from '../model/mapFallingTiles.js'
+import { growingMoveArray } from '../model/growSeeds.js'
 import { falseBoard, trueBoard } from '../model/constants.js'
 import { createAction } from 'redux-actions'
 import { identity, lensProp, view } from 'ramda'
@@ -14,15 +23,12 @@ export const resetLeaving = createAction(types.RESET_LEAVING)
 export const resetMagnitude = createAction(types.RESET_MAGNITUDE)
 export const setView = createAction(types.SET_VIEW, identity)
 
-export const stopDrag = (board, moves) => {
-  const boardWithRemovedTiles = booleanArray(transformBoard(moves, board, 0))
-  return {
-    type: types.STOP_DRAG,
-    payload: boardWithRemovedTiles
-  }
-}
+export const stopDrag = createAction(
+  types.STOP_DRAG,
+  (board, moves) => booleanArray(transformBoard(moves, board, 0))
+)
 
-export function updateScore (tileType, moves, score) {
+export const updateScore = (tileType, moves, score) => {
   const scores = {
     pod: score + moves.length * 5,
     seedling: score + moves.length
@@ -34,12 +40,10 @@ export function updateScore (tileType, moves, score) {
   }
 }
 
-export const setEntering = (board) => {
-  return {
-    type: types.SET_ENTERING,
-    payload: booleanArray(board)
-  }
-}
+export const setEntering = createAction(
+  types.SET_ENTERING,
+  board => booleanArray(board)
+)
 
 const sunAndRain = view(lensProp('weather'))
 export const addPowerToWeather = (weatherType, power) => (dispatch, getState) => {
@@ -54,17 +58,20 @@ export const addPowerToWeather = (weatherType, power) => (dispatch, getState) =>
   })
 }
 
-export function growSeeds (board) {
-  return { type: types.GROW_SEEDS, payload: board }
-}
+export const growSeeds = createAction(
+  types.GROW_SEEDS,
+  board => growingMoveArray(board)
+)
 
-export function transformBoardAction (transformMoves, board, transformNumber) {
-  return { type: types.TRANSFORM_BOARD, payload: { transformMoves, board, transformNumber } }
-}
+export const transformBoardAction = createAction(
+  types.TRANSFORM_BOARD,
+  (moves, board, number) => transformBoard(moves, board, number)
+)
 
-export function removeSeeds (board) {
-  return { type: types.REMOVE_SEEDS, payload: board }
-}
+export const removeSeeds = createAction(
+  types.REMOVE_SEEDS,
+  board => booleanArray(removeSeedsFromBoard(board))
+)
 
 export const resetWeather = (weatherType) => (dispatch, getState) => {
   const { sun, rain } = sunAndRain(getState())
@@ -78,18 +85,54 @@ export const resetWeather = (weatherType) => (dispatch, getState) => {
   })
 }
 
-export function checkTile (tile, currTile, board) {
-  return { type: types.CHECK_TILE, payload: { tile, currTile, board } }
+export const checkTile = (tile) => (dispatch, getState) => {
+  const { board, moves: { currTile, moveArray } } = getState()
+  const isValid = validMove(tile, currTile, board)
+  let nextMoves = {
+    moveArray,
+    currTile
+  }
+
+  if (moveArray.length === 0) {
+    nextMoves = {
+      moveArray: moveArray.concat([ tile ]),
+      currTile: tile
+    }
+  }
+
+  if (isValid) {
+    nextMoves = {
+      moveArray: moveArray.concat([ tile ]),
+      currTile: tile
+    }
+  }
+  dispatch({
+    type: types.CHECK_TILE,
+    payload: nextMoves
+  })
 }
 
-export function fallTiles (moves, board) {
-  return { type: types.FALL_TILES, payload: { moves, board } }
+export const fallTiles = (moves, board) => {
+  const newboard = moves.length > 0
+    ? mapFallingTiles(transformBoard(moves, board, 0))
+    : mapFallingTiles(removeSeedsFromBoard(board))
+  return {
+    type: types.FALL_TILES,
+    payload: newboard
+  }
 }
 
-export function shiftTiles (moves, board) {
-  return { type: types.SHIFT_TILES, payload: { moves, board } }
+export const shiftTiles = (moves, board) => {
+  const newboard = moves.length > 0
+    ? shiftBoard(transformBoard(moves, board, 0))
+    : shiftBoard(removeSeedsFromBoard(board))
+  return {
+    type: types.SHIFT_TILES,
+    payload: newboard
+  }
 }
 
-export function addTiles (board) {
-  return { type: types.ADD_TILES, payload: board }
-}
+export const addTiles = createAction(
+  types.ADD_TILES,
+  (board) => addNewTiles(board)
+)

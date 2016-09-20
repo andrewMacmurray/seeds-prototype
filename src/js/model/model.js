@@ -68,4 +68,4 @@ export const booleanArray = map(map(x => x === 0))
 
 const removeSeed = (x) => x === 3 || x === 4 ? 0 : x
 export const seedsRow = map(removeSeed)
-export const removeSeeds = map(seedsRow)
+export const removeSeedsFromBoard = map(seedsRow)
