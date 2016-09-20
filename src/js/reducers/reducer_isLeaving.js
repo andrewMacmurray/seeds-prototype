@@ -6,8 +6,7 @@ const defaultState = falseBoard
 export default (state = defaultState, action) => {
   switch (action.type) {
   case STOP_DRAG:
-    const { moves, board } = action.payload
-    return booleanArray(transformBoard(moves, board, 0))
+    return action.payload
 
   case RESET_LEAVING:
     return defaultState

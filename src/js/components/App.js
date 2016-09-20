@@ -20,9 +20,9 @@ class App extends React.Component {
     return viewMap[this.props.view]
   }
 
-  componentDidMount () {
-    setTimeout(() => this.props.setView('title'), 3000)
-  }
+  // componentDidMount () {
+  //   setTimeout(() => this.props.setView('title'), 3000)
+  // }
 
   loadView (view) {
     this.props.setView('loading')

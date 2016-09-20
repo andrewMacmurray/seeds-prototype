@@ -58,9 +58,9 @@ class Board extends React.Component {
   }
 
   addSeedsToScore () {
-    const { moveArray, board } = this.props
+    const { moveArray, board, score } = this.props
     const type = this.checkMoveType(moveArray, board)
-    this.props.updateScore(type, moveArray)
+    this.props.updateScore(type, moveArray, score)
   }
 
   removeTiles (moveArray) {
@@ -118,7 +118,7 @@ class Board extends React.Component {
   triggerWeather (type) {
     this.animateBackground(type)
     setTimeout(() => this.props.growSeeds(this.props.board), 700)
-    setTimeout(() => this.props.transformBoard(this.props.growingMoves, this.props.board, 4), 1200)
+    setTimeout(() => this.props.transformBoardAction(this.props.growingMoves, this.props.board, 4), 1200)
     this.props.resetWeather(type)
   }
 
