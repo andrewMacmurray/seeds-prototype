@@ -1,4 +1,4 @@
-import { WEATHER_POWER, RESET_WEATHER } from '../actions/actionTypes.js'
+import { WEATHER_POWER, RESET_WEATHER } from '../../actions/actionTypes.js'
 
 const defaultState = { rain: 0, sun: 0 }
 

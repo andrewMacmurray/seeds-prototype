@@ -1,13 +1,16 @@
 import React from 'react'
 import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
+import tileClassMap from '../constants/tileClasses.js'
+
 import * as actions from '../actions/actionCreators.js'
+import allActions from '../redux/allActions.js'
+
 import Tile from './Tile.js'
 
 class Board extends React.Component {
   constructor () {
     super()
-    this.getTileClass = this.getTileClass.bind(this)
     this.getCoord = this.getCoord.bind(this)
     this.stopDrag = this.stopDrag.bind(this)
     this.startDrag = this.startDrag.bind(this)
@@ -28,16 +31,6 @@ class Board extends React.Component {
     removeListener(window, 'pointerup', this.stopDrag)
   }
 
-  getTileClass (num) {
-    const tileClassMap = {
-      1: 'sun',
-      2: 'rain',
-      3: 'seedling',
-      4: 'pod'
-    }
-    return tileClassMap[num]
-  }
-
   getCoord (e) {
     const x = parseInt(e.target.getAttribute('data-x'))
     const y = parseInt(e.target.getAttribute('data-y'))
@@ -48,24 +41,23 @@ class Board extends React.Component {
     if (moves.length > 0) {
       const [ y, x ] = moves[0]
       const type = board[y][x]
-      return this.getTileClass(type)
+      return tileClassMap[type]
     }
   }
 
-  updateWeatherPower (moves, board) {
-    const type = this.checkMoveType(moves, board)
-    this.props.addPowerToWeather(type)
+  updateWeatherPower () {
+    const { moveType, addPowerToWeather } = this.props
+    addPowerToWeather(moveType)
   }
 
   addSeedsToScore () {
-    const { moveArray, board, score } = this.props
-    const type = this.checkMoveType(moveArray, board)
-    this.props.updateScore(type, moveArray, score)
+    const { moveType, updateScore } = this.props
+    updateScore(moveType)
   }
 
   removeTiles (moveArray) {
     this.props.shiftTiles(moveArray, this.props.board)
-    this.props.setEntering(this.props.board)
+    this.props.setEntering()
     this.props.resetMagnitude()
     this.props.resetLeaving()
   }
@@ -95,7 +87,7 @@ class Board extends React.Component {
       const tile = this.getCoord(e)
       this.props.setDrag(true)
       this.props.checkTile(tile)
-      this.updateWeatherPower([ tile ], board)
+      this.updateWeatherPower()
     }
   }
 
@@ -104,7 +96,7 @@ class Board extends React.Component {
       const { board, currTile } = this.props
       const tile = this.getCoord(e)
       this.props.checkTile(tile)
-      this.updateWeatherPower(this.props.moveArray, board)
+      this.updateWeatherPower()
     }
   }
 
@@ -147,7 +139,7 @@ class Board extends React.Component {
                     isEnteringArray,
                     isGrowingArray
                   } = this.props
-                  const tileType = this.getTileClass(tile)
+                  const tileType = tileClassMap[tile]
                   return tile > 0
                   ? <Tile
                     tileType={tileType}
@@ -174,6 +166,7 @@ class Board extends React.Component {
 
 import isDraggingArray from '../selectors/selector_isDraggingArray.js'
 import isGrowingArray from '../selectors/selector_isGrowingArray.js'
+import moveType from '../selectors/selector_moveType.js'
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -182,7 +175,12 @@ const mapStateToProps = (state) => ({
   isDraggingArray: isDraggingArray(state),
   sun: state.weather.sun,
   rain: state.weather.rain,
-  isGrowingArray: isGrowingArray(state)
+  isGrowingArray: isGrowingArray(state),
+  moveType: moveType(state)
 })
 
-export default connect(mapStateToProps, actions)(Board)
+const combinedActions = {
+  ...actions,
+  ...allActions
+}
+export default connect(mapStateToProps, combinedActions)(Board)

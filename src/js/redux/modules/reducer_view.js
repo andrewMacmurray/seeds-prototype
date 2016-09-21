@@ -1,4 +1,4 @@
-import { SET_VIEW } from '../actions/actionTypes.js'
+import { SET_VIEW } from '../../actions/actionTypes.js'
 
 export default (state = 'board', action) => {
   switch (action.type) {

@@ -1,4 +1,4 @@
-import { STEP_INTRO_TEXT, RESET_INTRO_STEP } from '../actions/actionTypes.js'
+import { STEP_INTRO_TEXT, RESET_INTRO_STEP } from '../../actions/actionTypes.js'
 
 const defaultState = {
   introTextStep: 0

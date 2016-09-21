@@ -1,4 +1,4 @@
-import { UPDATE_SCORE } from '../actions/actionTypes.js'
+import { UPDATE_SCORE } from '../../actions/actionTypes.js'
 
 export default (state = 0, action) => {
   switch (action.type) {
