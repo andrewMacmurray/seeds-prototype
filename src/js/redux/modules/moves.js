@@ -3,7 +3,7 @@ import { validMove } from '../../model/model.js'
 
 // action types
 const CHECK_TILE = 'CHECK_TILE'
-const STOP_DRAG = 'STOP_DRAG'
+const RESET_MOVES = 'RESET_MOVES'
 
 // reducer
 const defaultState = { moveArray: [], currTile: [] }
@@ -13,7 +13,7 @@ export default (state = defaultState, action) => {
   case CHECK_TILE:
     return action.payload
 
-  case STOP_DRAG:
+  case RESET_MOVES:
     return defaultState
 
   default:
@@ -46,3 +46,5 @@ export const checkTile = (tile) => (dispatch, getState) => {
     payload: nextMoves
   })
 }
+
+export const resetMoves = createAction(RESET_MOVES)

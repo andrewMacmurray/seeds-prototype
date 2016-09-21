@@ -70,6 +70,7 @@ class Board extends React.Component {
       this.addSeedsToScore()
       this.props.isUpdating(true)
       this.props.stopDrag(this.props.board, moveArray)
+      this.props.resetMoves()
       setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
       setTimeout(() => this.removeTiles(moveArray), 600)
       setTimeout(() => this.props.isUpdating(false), 600)
