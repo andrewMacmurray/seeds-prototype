@@ -1,4 +1,4 @@
-import { booleanArray, transformBoard, shiftBoard } from '../js/model/model.js'
+import { booleanArray, transformTiles, shiftBoard } from '../js/model/model.js'
 import { mapFallingTiles } from '../js/model/mapFallingTiles.js'
 
 export const board = [
@@ -13,12 +13,12 @@ export const board = [
 ]
 
 export const sampleMove1 = [ [ 0, 0 ], [ 1, 0 ] ]
-export const leaving1 = transformBoard(sampleMove1, board, 0)
+export const leaving1 = transformTiles(sampleMove1, board, 0)
 export const sampleLeaving1 = booleanArray(leaving1)
 
-export const isDraggingSample2 = booleanArray(transformBoard([ [ 2, 0 ] ], board, 0))
+export const isDraggingSample2 = booleanArray(transformTiles([ [ 2, 0 ] ], board, 0))
 
 export const sampleMove2 = [ [ 6, 1 ], [ 6, 2 ], [ 5, 2 ], [ 4, 3 ] ]
-export const leaving2 = transformBoard(sampleMove2, board)
+export const leaving2 = transformTiles(sampleMove2, board)
 export const shiftedBoard = shiftBoard(leaving2)
-export const magnitude2 = mapFallingTiles(transformBoard(sampleMove2, board, 0))
+export const magnitude2 = mapFallingTiles(transformTiles(sampleMove2, board, 0))

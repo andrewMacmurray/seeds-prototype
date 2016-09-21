@@ -56,7 +56,7 @@ const mapWithIndex = addIndex(map)
 
 // converts the tiles on the board to a new number
 // where the board coordiantes match the coordiantes in an array of moves
-export const transformBoard = (moves, board, transformNumber) =>
+export const transformTiles = (moves, board, transformNumber) =>
   mapWithIndex((row, i) =>
   mapWithIndex((tile, j) =>
   filter(([ y, x ]) =>
@@ -68,4 +68,4 @@ export const booleanArray = map(map(x => x === 0))
 
 const removeSeed = (x) => x === 3 || x === 4 ? 0 : x
 export const seedsRow = map(removeSeed)
-export const removeSeeds = map(seedsRow)
+export const removeSeedsFromBoard = map(seedsRow)

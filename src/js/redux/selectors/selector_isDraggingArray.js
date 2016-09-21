@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { booleanArray, transformBoard } from '../model/model.js'
-import { falseBoard } from '../model/constants.js'
+import { booleanArray, transformTiles } from '../../model/model.js'
+import { falseBoard } from '../../model/constants.js'
 
 const _moveArray = (state) => state.moves.moveArray
 const _board = (state) => state.board
@@ -10,7 +10,7 @@ const isDraggingArray = createSelector(
   [ _moveArray, _board ],
   (moveArray, board) =>
     moveArray.length > 0 ?
-      booleanArray(transformBoard(moveArray, board, 0)) :
+      booleanArray(transformTiles(moveArray, board, 0)) :
       defaultState
 )
 
