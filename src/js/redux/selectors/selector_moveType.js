@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import tileClassMap from '../constants/tileClasses.js'
+import tileClassMap from '../../constants/tileClasses.js'
 
 const _board = state => state.board
 const _moveArray = state => state.moves.moveArray

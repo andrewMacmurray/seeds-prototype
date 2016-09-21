@@ -69,7 +69,7 @@ class Board extends React.Component {
 
       this.addSeedsToScore()
       this.props.isUpdating(true)
-      this.props.stopDrag(this.props.board, moveArray)
+      this.props.setLeavingTiles(this.props.board, moveArray)
       this.props.resetMoves()
       setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
       setTimeout(() => this.removeTiles(moveArray), 600)
@@ -163,9 +163,9 @@ class Board extends React.Component {
   }
 }
 
-import isDraggingArray from '../selectors/selector_isDraggingArray.js'
-import isGrowingArray from '../selectors/selector_isGrowingArray.js'
-import moveType from '../selectors/selector_moveType.js'
+import isDraggingArray from '../redux/selectors/selector_isDraggingArray.js'
+import isGrowingArray from '../redux/selectors/selector_isGrowingArray.js'
+import moveType from '../redux/selectors/selector_moveType.js'
 
 const mapStateToProps = (state) => ({
   ...state,

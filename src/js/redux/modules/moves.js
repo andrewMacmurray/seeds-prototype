@@ -8,7 +8,6 @@ const RESET_MOVES = 'RESET_MOVES'
 // reducer
 const defaultState = { moveArray: [], currTile: [] }
 export default (state = defaultState, action) => {
-  console.log(action.type)
   switch (action.type) {
   case CHECK_TILE:
     return action.payload

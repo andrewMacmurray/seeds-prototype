@@ -3,7 +3,7 @@ import { transformTiles, booleanArray, removeSeedsFromBoard } from '../../model/
 import { falseBoard } from '../../model/constants.js'
 
 // action types
-const STOP_DRAG = 'STOP_DRAG'
+const SET_LEAVING_TILES = 'SET_LEAVING_TILES'
 const RESET_LEAVING = 'RESET_LEAVING'
 const REMOVE_SEEDS = 'REMOVE_SEEDS'
 
@@ -14,7 +14,7 @@ export default (state = defaultState, action) => {
   case RESET_LEAVING:
     return defaultState
 
-  case STOP_DRAG:
+  case SET_LEAVING_TILES:
     return action.payload
 
   case REMOVE_SEEDS:
@@ -28,8 +28,8 @@ export default (state = defaultState, action) => {
 // actions
 export const resetLeaving = createAction(RESET_LEAVING)
 
-export const stopDrag = createAction(
-  STOP_DRAG,
+export const setLeavingTiles = createAction(
+  SET_LEAVING_TILES,
   (board, moves) => booleanArray(transformTiles(moves, board, 0))
 )
 

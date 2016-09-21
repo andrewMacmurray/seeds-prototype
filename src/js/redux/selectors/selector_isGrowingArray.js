@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect'
-import { isGrowingArray } from '../model/growSeeds.js'
+import { isGrowingArray } from '../../model/growSeeds.js'
 
 const _board = (state) => state.board
 const _growingMoves = (state) => state.growingMoves
