@@ -5,6 +5,11 @@ import * as isEntering from './modules/isEntering.js'
 import * as isLeaving from './modules/isLeaving.js'
 import * as isUpdating from './modules/isUpdating.js'
 import * as moves from './modules/moves.js'
+import * as score from './modules/score.js'
+import * as setDrag from './modules/setDrag.js'
+import * as weatherPower from './modules/weatherPower.js'
+import * as view from './modules/view.js'
+import * as text from './modules/text.js'
 
 export default {
   ...board,
@@ -13,5 +18,9 @@ export default {
   ...isEntering,
   ...isLeaving,
   ...isUpdating,
-  ...moves
+  ...moves,
+  ...score,
+  ...setDrag,
+  ...weatherPower,
+  ...view
 }

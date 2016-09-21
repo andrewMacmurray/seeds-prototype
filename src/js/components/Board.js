@@ -2,8 +2,6 @@ import React from 'react'
 import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import tileClassMap from '../constants/tileClasses.js'
-
-import * as actions from '../actions/actionCreators.js'
 import allActions from '../redux/allActions.js'
 
 import Tile from './Tile.js'
@@ -110,7 +108,7 @@ class Board extends React.Component {
   triggerWeather (type) {
     this.animateBackground(type)
     setTimeout(() => this.props.growSeeds(this.props.board), 700)
-    setTimeout(() => this.props.transformBoardAction(this.props.growingMoves, this.props.board, 4), 1200)
+    setTimeout(() => this.props.transformBoard(this.props.growingMoves, this.props.board, 4), 1200)
     this.props.resetWeather(type)
   }
 
@@ -179,8 +177,4 @@ const mapStateToProps = (state) => ({
   moveType: moveType(state)
 })
 
-const combinedActions = {
-  ...actions,
-  ...allActions
-}
-export default connect(mapStateToProps, combinedActions)(Board)
+export default connect(mapStateToProps, allActions)(Board)

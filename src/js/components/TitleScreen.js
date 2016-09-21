@@ -4,7 +4,7 @@ import CircleSeed from './Seeds/CircleSeed.js'
 import SingleSeed from './Seeds/SingleSeed.js'
 
 import { connect } from 'react-redux'
-import { setView } from '../actions/actionCreators.js'
+import { setView } from '../redux/allActions.js'
 
 class TitleScreen extends React.Component {
   render () {

@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { transformBoard, removeSeeds } from '../../model/model.js'
+import { transformTiles, removeSeeds } from '../../model/model.js'
 import { falseBoard } from '../../model/constants.js'
 import { mapFallingTiles } from '../../model/mapFallingTiles.js'
 
@@ -27,7 +27,7 @@ export const resetMagnitude = createAction(RESET_MAGNITUDE)
 
 export const fallTiles = (moves, board) => {
   const newboard = moves.length > 0
-    ? mapFallingTiles(transformBoard(moves, board, 0))
+    ? mapFallingTiles(transformTiles(moves, board, 0))
     : mapFallingTiles(removeSeedsFromBoard(board))
   return {
     type: FALL_TILES,

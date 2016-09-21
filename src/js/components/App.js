@@ -5,7 +5,7 @@ import Loading from './Loading.js'
 import Intro from './Intro.js'
 
 import { connect } from 'react-redux'
-import { setView, resetIntroStep } from '../actions/actionCreators.js'
+import { setView, resetIntroStep } from '../redux/allActions.js'
 
 import '../../scss/style.scss'
 

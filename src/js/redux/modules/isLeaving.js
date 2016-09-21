@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { transformBoard, booleanArray, removeSeedsFromBoard } from '../../model/model.js'
+import { transformTiles, booleanArray, removeSeedsFromBoard } from '../../model/model.js'
 import { falseBoard } from '../../model/constants.js'
 
 // action types
@@ -30,7 +30,7 @@ export const resetLeaving = createAction(RESET_LEAVING)
 
 export const stopDrag = createAction(
   STOP_DRAG,
-  (board, moves) => booleanArray(transformBoard(moves, board, 0))
+  (board, moves) => booleanArray(transformTiles(moves, board, 0))
 )
 
 export const removeSeeds = createAction(
