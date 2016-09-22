@@ -1,39 +1,41 @@
 import * as _ from '../allActions.js'
 import { wait } from '../helpers'
 
-export default (moveType) => (dispatch, getState) => {
+export default (moveType) => (dsp, getState) => {
   const { updating, isDragging, weather: { rain, sun } } = getState()
 
   if (!updating && isDragging) {
     if (rain >= 12 || sun >= 12) {
-      dispatch(_.resetWeather(moveType))
+      dsp(_.resetWeather(moveType))
       wait(700)
-      .then(() => dispatch(_.growSeeds()))
+      .then(() => dsp(_.growSeeds()))
       .then(() => wait(500))
-      .then(() => dispatch(_.transformBoard(4)))
+      .then(() => dsp(_.transformBoard(4)))
     }
 
-    dispatch(_.setDrag(false))
-    dispatch(_.updateScore(moveType))
-    dispatch(_.isUpdating(true))
-    dispatch(_.setLeavingTiles())
+    dsp(_.setDrag(false))
+    dsp(_.updateScore(moveType))
+    dsp(_.isUpdating(true))
+    dsp(_.setLeavingTiles())
 
     wait(300)
-      .then(() => dispatch(_.fallTiles()))
+      .then(() => dsp(_.fallTiles()))
       .then(() => wait(300))
       .then(() => {
-        dispatch(_.shiftTiles())
-        dispatch(_.setEntering())
-        dispatch(_.resetMagnitude())
-        dispatch(_.resetLeaving())
-        dispatch(_.isUpdating(false))
-        return dispatch(_.resetMoves())
+        dsp(_.isUpdating(false))
+        return [
+          _.shiftTiles(),
+          _.setEntering(),
+          _.resetMagnitude(),
+          _.resetLeaving(),
+          _.resetMoves()
+        ].map(dsp)
       })
       .then(() => wait(200))
-      .then(() => dispatch(_.addTiles()))
+      .then(() => dsp(_.addTiles()))
       .then(() => wait(700))
-      .then(() => dispatch(_.resetGrowSeeds()))
+      .then(() => dsp(_.resetGrowSeeds()))
       .then(() => wait(300))
-      .then(() => dispatch(_.resetEntering()))
+      .then(() => dsp(_.resetEntering()))
   }
 }
