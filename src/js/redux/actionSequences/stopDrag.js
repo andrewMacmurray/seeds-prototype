@@ -1,41 +1,41 @@
 import * as _ from '../allActions.js'
 import { wait } from '../helpers'
 
-export default (moveType) => (dsp, getState) => {
+export default (moveType) => (dispatch, getState) => {
   const { updating, isDragging, weather: { rain, sun } } = getState()
 
   if (!updating && isDragging) {
     if (rain >= 12 || sun >= 12) {
-      dsp(_.resetWeather(moveType))
+      dispatch(_.resetWeather(moveType))
       wait(700)
-      .then(() => dsp(_.growSeeds()))
+      .then(() => dispatch(_.growSeeds()))
       .then(() => wait(500))
-      .then(() => dsp(_.transformBoard(4)))
+      .then(() => dispatch(_.transformBoard(4)))
     }
 
-    dsp(_.setDrag(false))
-    dsp(_.updateScore(moveType))
-    dsp(_.isUpdating(true))
-    dsp(_.setLeavingTiles())
+    dispatch(_.setDrag(false))
+    dispatch(_.updateScore(moveType))
+    dispatch(_.isUpdating(true))
+    dispatch(_.setLeavingTiles())
 
     wait(300)
-      .then(() => dsp(_.fallTiles()))
+      .then(() => dispatch(_.fallTiles()))
       .then(() => wait(300))
       .then(() => {
-        dsp(_.isUpdating(false))
+        dispatch(_.isUpdating(false))
         return [
           _.shiftTiles(),
           _.setEntering(),
           _.resetMagnitude(),
           _.resetLeaving(),
           _.resetMoves()
-        ].map(dsp)
+        ].map(dispatch)
       })
       .then(() => wait(200))
-      .then(() => dsp(_.addTiles()))
+      .then(() => dispatch(_.addTiles()))
       .then(() => wait(700))
-      .then(() => dsp(_.resetGrowSeeds()))
+      .then(() => dispatch(_.resetGrowSeeds()))
       .then(() => wait(300))
-      .then(() => dsp(_.resetEntering()))
+      .then(() => dispatch(_.resetEntering()))
   }
 }

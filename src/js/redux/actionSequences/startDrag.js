@@ -1,10 +1,10 @@
 import * as _ from '../allActions.js'
 
-export default (tile, moveType) => (dsp, getState) => {
+export default (tile, moveType) => (dispatch, getState) => {
   const { updating } = getState()
   if (!updating) {
-    dsp(_.setDrag(true))
-    dsp(_.checkTile(tile))
-    dsp(_.addPowerToWeather(moveType))
+    dispatch(_.setDrag(true))
+    dispatch(_.checkTile(tile))
+    dispatch(_.addPowerToWeather(moveType))
   }
 }
