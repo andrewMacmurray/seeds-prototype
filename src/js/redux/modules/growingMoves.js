@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { growingMoveArray } from '../../model/growSeeds.js'
+import { growingMoveArray } from '../../model'
 
 // action types
 const GROW_SEEDS = 'GROW_SEEDS'

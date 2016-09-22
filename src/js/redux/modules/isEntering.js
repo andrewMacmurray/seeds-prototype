@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions'
-import { falseBoard, trueBoard } from '../../model/constants.js'
-import { booleanArray } from '../../model/model.js'
+import { falseBoard, trueBoard, booleanArray } from '../../model'
 
 // action types
 const SET_ENTERING = 'SET_ENTERING'

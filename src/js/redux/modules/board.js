@@ -1,4 +1,10 @@
-import { randomBoard, shiftBoard, transformTiles, removeSeedsFromBoard, addNewTiles } from '../../model/model.js'
+import {
+  randomBoard,
+  transformTiles,
+  removeSeedsFromBoard,
+  shiftBoard,
+  addNewTiles
+} from '../../model'
 import { createAction } from 'redux-actions'
 
 // action types

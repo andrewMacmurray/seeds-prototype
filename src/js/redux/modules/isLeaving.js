@@ -1,6 +1,5 @@
 import { createAction } from 'redux-actions'
-import { transformTiles, booleanArray, removeSeedsFromBoard } from '../../model/model.js'
-import { falseBoard } from '../../model/constants.js'
+import { transformTiles, booleanArray, removeSeedsFromBoard, falseBoard } from '../../model'
 
 // action types
 const SET_LEAVING_TILES = 'SET_LEAVING_TILES'

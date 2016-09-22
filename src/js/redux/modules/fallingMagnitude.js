@@ -1,7 +1,10 @@
 import { createAction } from 'redux-actions'
-import { transformTiles, removeSeeds } from '../../model/model.js'
-import { falseBoard } from '../../model/constants.js'
-import { mapFallingTiles } from '../../model/mapFallingTiles.js'
+import {
+  transformTiles,
+  removeSeedsFromBoard,
+  falseBoard,
+  mapFallingTiles
+} from '../../model'
 
 // action types
 const FALL_TILES = 'FALL_TILES'

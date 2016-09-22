@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { validMove } from '../../model/model.js'
+import { validMove } from '../../model'
 
 // action types
 const CHECK_TILE = 'CHECK_TILE'
