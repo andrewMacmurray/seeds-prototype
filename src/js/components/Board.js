@@ -106,13 +106,13 @@ class Board extends React.Component {
 
   triggerWeather (type) {
     this.animateBackground(type)
-    setTimeout(() => this.props.growSeeds(this.props.board), 700)
-    setTimeout(() => this.props.transformBoard(this.props.growingMoves, this.props.board, 4), 1200)
+    setTimeout(() => this.props.growSeeds(), 700)
+    setTimeout(() => this.props.transformBoard(4), 1200)
     this.props.resetWeather(type)
   }
 
   fallingMagnitudeClass (tile) {
-    return tile ? 'falling-' + tile : ''
+    return tile ? `falling-${tile}` : ''
   }
 
   weatherMakerClass (type) {

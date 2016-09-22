@@ -51,7 +51,10 @@ export const addTiles = () => (dispatch, getState) => {
   })
 }
 
-export const transformBoard = createAction(
-  TRANSFORM_BOARD,
-  (moves, board, number) => transformTiles(moves, board, number)
-)
+export const transformBoard = (number) => (dispatch, getState) => {
+  const { board, growingMoves } = getState()
+  dispatch({
+    type: TRANSFORM_BOARD,
+    payload: transformTiles(growingMoves, board, number)
+  })
+}

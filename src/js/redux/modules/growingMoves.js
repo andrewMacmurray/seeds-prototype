@@ -23,7 +23,10 @@ export default (state = defaultState, action) => {
 // actions
 export const resetGrowSeeds = createAction(RESET_GROW_SEEDS)
 
-export const growSeeds = createAction(
-  GROW_SEEDS,
-  board => growingMoveArray(board)
-)
+export const growSeeds = () => (dispatch, getState) => {
+  const { board } = getState()
+  dispatch({
+    type: GROW_SEEDS,
+    payload: growingMoveArray(board)
+  })
+}
