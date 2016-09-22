@@ -53,8 +53,8 @@ class Board extends React.Component {
     updateScore(moveType)
   }
 
-  removeTiles (moveArray) {
-    this.props.shiftTiles(moveArray, this.props.board)
+  removeTiles () {
+    this.props.shiftTiles()
     this.props.setEntering()
     this.props.resetMagnitude()
     this.props.resetLeaving()
@@ -71,10 +71,10 @@ class Board extends React.Component {
       this.props.isUpdating(true)
       this.props.setLeavingTiles()
       setTimeout(() => this.props.fallTiles(), 300)
-      setTimeout(() => this.removeTiles(this.props.moveArray), 600)
+      setTimeout(() => this.removeTiles(), 600)
       setTimeout(() => this.props.isUpdating(false), 600)
       setTimeout(() => this.props.resetMoves(), 600)
-      setTimeout(() => this.props.addTiles(this.props.board), 800)
+      setTimeout(() => this.props.addTiles(), 800)
       setTimeout(() => this.props.resetGrowSeeds(), 1500)
       setTimeout(() => this.props.resetEntering(), 1800)
     }
