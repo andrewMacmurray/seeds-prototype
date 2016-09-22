@@ -28,12 +28,13 @@ export default (state = defaultState, action) => {
 // actions
 export const resetMagnitude = createAction(RESET_MAGNITUDE)
 
-export const fallTiles = (moves, board) => {
-  const newboard = moves.length > 0
-    ? mapFallingTiles(transformTiles(moves, board, 0))
+export const fallTiles = () => (dispatch, getState) => {
+  const { board, moves: { moveArray } } = getState()
+  const newboard = moveArray.length > 0
+    ? mapFallingTiles(transformTiles(moveArray, board, 0))
     : mapFallingTiles(removeSeedsFromBoard(board))
-  return {
+  dispatch({
     type: FALL_TILES,
     payload: newboard
-  }
+  })
 }

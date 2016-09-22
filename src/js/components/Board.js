@@ -63,17 +63,17 @@ class Board extends React.Component {
   stopDrag () {
     if (!this.props.updating && this.props.isDragging) {
       this.props.setDrag(false)
-      const { moveArray, rain, sun } = this.props
+      const { rain, sun } = this.props
       if (rain >= 12) this.triggerWeather('rain')
       if (sun >= 12) this.triggerWeather('sun')
 
       this.addSeedsToScore()
       this.props.isUpdating(true)
-      this.props.setLeavingTiles(this.props.board, moveArray)
-      this.props.resetMoves()
-      setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
-      setTimeout(() => this.removeTiles(moveArray), 600)
+      this.props.setLeavingTiles()
+      setTimeout(() => this.props.fallTiles(), 300)
+      setTimeout(() => this.removeTiles(this.props.moveArray), 600)
       setTimeout(() => this.props.isUpdating(false), 600)
+      setTimeout(() => this.props.resetMoves(), 600)
       setTimeout(() => this.props.addTiles(this.props.board), 800)
       setTimeout(() => this.props.resetGrowSeeds(), 1500)
       setTimeout(() => this.props.resetEntering(), 1800)
@@ -82,7 +82,6 @@ class Board extends React.Component {
 
   startDrag (e) {
     if (!this.props.updating) {
-      const { board } = this.props
       const tile = this.getCoord(e)
       this.props.setDrag(true)
       this.props.checkTile(tile)
@@ -92,7 +91,6 @@ class Board extends React.Component {
 
   checkTile (e) {
     if (this.props.isDragging && !this.props.updating) {
-      const { board, currTile } = this.props
       const tile = this.getCoord(e)
       this.props.checkTile(tile)
       this.updateWeatherPower()
