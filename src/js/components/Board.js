@@ -3,30 +3,29 @@ import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import tileClassMap from '../constants/tileClasses.js'
 import allActions from '../redux/allActions.js'
-
+import stopDrag from '../redux/actionSequences/stopDrag.js'
 import Tile from './Tile.js'
 
 class Board extends React.Component {
   constructor () {
     super()
     this.getCoord = this.getCoord.bind(this)
-    this.stopDrag = this.stopDrag.bind(this)
     this.startDrag = this.startDrag.bind(this)
     this.checkTile = this.checkTile.bind(this)
     this.updateWeatherPower = this.updateWeatherPower.bind(this)
-    this.addSeedsToScore = this.addSeedsToScore.bind(this)
     this.triggerWeather = this.triggerWeather.bind(this)
-    this.removeTiles = this.removeTiles.bind(this)
     this.fallingMagnitudeClass = this.fallingMagnitudeClass.bind(this)
   }
 
   componentDidMount () {
-    addListener(window, 'pointerup', this.stopDrag)
-    setTimeout(() => this.props.resetEntering(), 600)
+    const { stopDrag, resetEntering } = this.props
+    addListener(window, 'pointerup', () => stopDrag(this.props.moveType))
+    setTimeout(() => resetEntering(), 600)
   }
 
   componentWillUnmount () {
-    removeListener(window, 'pointerup', this.stopDrag)
+    const { stopDrag } = this.props
+    removeListener(window, 'pointerup', () => stopDrag(this.props.moveType))
   }
 
   getCoord (e) {
@@ -35,49 +34,9 @@ class Board extends React.Component {
     return [ y, x ]
   }
 
-  checkMoveType (moves, board) {
-    if (moves.length > 0) {
-      const [ y, x ] = moves[0]
-      const type = board[y][x]
-      return tileClassMap[type]
-    }
-  }
-
   updateWeatherPower () {
     const { moveType, addPowerToWeather } = this.props
     addPowerToWeather(moveType)
-  }
-
-  addSeedsToScore () {
-    const { moveType, updateScore } = this.props
-    updateScore(moveType)
-  }
-
-  removeTiles () {
-    this.props.shiftTiles()
-    this.props.setEntering()
-    this.props.resetMagnitude()
-    this.props.resetLeaving()
-  }
-
-  stopDrag () {
-    if (!this.props.updating && this.props.isDragging) {
-      this.props.setDrag(false)
-      const { rain, sun } = this.props
-      if (rain >= 12) this.triggerWeather('rain')
-      if (sun >= 12) this.triggerWeather('sun')
-
-      this.addSeedsToScore()
-      this.props.isUpdating(true)
-      this.props.setLeavingTiles()
-      setTimeout(() => this.props.fallTiles(), 300)
-      setTimeout(() => this.removeTiles(), 600)
-      setTimeout(() => this.props.isUpdating(false), 600)
-      setTimeout(() => this.props.resetMoves(), 600)
-      setTimeout(() => this.props.addTiles(), 800)
-      setTimeout(() => this.props.resetGrowSeeds(), 1500)
-      setTimeout(() => this.props.resetEntering(), 1800)
-    }
   }
 
   startDrag (e) {
@@ -98,7 +57,9 @@ class Board extends React.Component {
   }
 
   animateBackground (type) {
-    const weatherClass = type === 'rain' ? 'rain-falling' : 'sun-shining'
+    const weatherClass = type === 'rain'
+      ? 'rain-falling'
+      : 'sun-shining'
     const body = document.body.classList
     body.add(weatherClass)
     setTimeout(() => body.remove(weatherClass), 3000)
@@ -176,4 +137,4 @@ const mapStateToProps = (state) => ({
   moveType: moveType(state)
 })
 
-export default connect(mapStateToProps, allActions)(Board)
+export default connect(mapStateToProps, { ...allActions, stopDrag })(Board)
