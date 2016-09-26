@@ -1,7 +1,10 @@
 import { createAction } from 'redux-actions'
-import { transformTiles, removeSeeds } from '../../model/model.js'
-import { falseBoard } from '../../model/constants.js'
-import { mapFallingTiles } from '../../model/mapFallingTiles.js'
+import {
+  transformTiles,
+  removeSeedsFromBoard,
+  falseBoard,
+  mapFallingTiles
+} from '../../model'
 
 // action types
 const FALL_TILES = 'FALL_TILES'
@@ -25,12 +28,13 @@ export default (state = defaultState, action) => {
 // actions
 export const resetMagnitude = createAction(RESET_MAGNITUDE)
 
-export const fallTiles = (moves, board) => {
-  const newboard = moves.length > 0
-    ? mapFallingTiles(transformTiles(moves, board, 0))
+export const fallTiles = () => (dispatch, getState) => {
+  const { board, moves: { moveArray } } = getState()
+  const newboard = moveArray.length > 0
+    ? mapFallingTiles(transformTiles(moveArray, board, 0))
     : mapFallingTiles(removeSeedsFromBoard(board))
-  return {
+  dispatch({
     type: FALL_TILES,
     payload: newboard
-  }
+  })
 }

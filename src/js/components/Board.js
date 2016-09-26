@@ -2,31 +2,26 @@ import React from 'react'
 import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import tileClassMap from '../constants/tileClasses.js'
-import allActions from '../redux/allActions.js'
-
 import Tile from './Tile.js'
 
 class Board extends React.Component {
   constructor () {
     super()
     this.getCoord = this.getCoord.bind(this)
-    this.stopDrag = this.stopDrag.bind(this)
     this.startDrag = this.startDrag.bind(this)
     this.checkTile = this.checkTile.bind(this)
-    this.updateWeatherPower = this.updateWeatherPower.bind(this)
-    this.addSeedsToScore = this.addSeedsToScore.bind(this)
+    this.stopSequence = this.stopSequence.bind(this)
     this.triggerWeather = this.triggerWeather.bind(this)
-    this.removeTiles = this.removeTiles.bind(this)
     this.fallingMagnitudeClass = this.fallingMagnitudeClass.bind(this)
   }
 
   componentDidMount () {
-    addListener(window, 'pointerup', this.stopDrag)
-    setTimeout(() => this.props.resetEntering(), 600)
+    addListener(window, 'pointerup', this.stopSequence)
+    setTimeout(this.props.resetEntering, 600)
   }
 
   componentWillUnmount () {
-    removeListener(window, 'pointerup', this.stopDrag)
+    removeListener(window, 'pointerup', this.stopSequence)
   }
 
   getCoord (e) {
@@ -35,86 +30,42 @@ class Board extends React.Component {
     return [ y, x ]
   }
 
-  checkMoveType (moves, board) {
-    if (moves.length > 0) {
-      const [ y, x ] = moves[0]
-      const type = board[y][x]
-      return tileClassMap[type]
-    }
-  }
-
-  updateWeatherPower () {
-    const { moveType, addPowerToWeather } = this.props
-    addPowerToWeather(moveType)
-  }
-
-  addSeedsToScore () {
-    const { moveType, updateScore } = this.props
-    updateScore(moveType)
-  }
-
-  removeTiles (moveArray) {
-    this.props.shiftTiles(moveArray, this.props.board)
-    this.props.setEntering()
-    this.props.resetMagnitude()
-    this.props.resetLeaving()
-  }
-
-  stopDrag () {
-    if (!this.props.updating && this.props.isDragging) {
-      this.props.setDrag(false)
-      const { moveArray, rain, sun } = this.props
-      if (rain >= 12) this.triggerWeather('rain')
-      if (sun >= 12) this.triggerWeather('sun')
-
-      this.addSeedsToScore()
-      this.props.isUpdating(true)
-      this.props.setLeavingTiles(this.props.board, moveArray)
-      this.props.resetMoves()
-      setTimeout(() => this.props.fallTiles(moveArray, this.props.board), 300)
-      setTimeout(() => this.removeTiles(moveArray), 600)
-      setTimeout(() => this.props.isUpdating(false), 600)
-      setTimeout(() => this.props.addTiles(this.props.board), 800)
-      setTimeout(() => this.props.resetGrowSeeds(), 1500)
-      setTimeout(() => this.props.resetEntering(), 1800)
-    }
+  getTileAndType (e) {
+    return [ this.getCoord(e), this.props.moveType ]
   }
 
   startDrag (e) {
-    if (!this.props.updating) {
-      const { board } = this.props
-      const tile = this.getCoord(e)
-      this.props.setDrag(true)
-      this.props.checkTile(tile)
-      this.updateWeatherPower()
-    }
+    const [ tile, moveType ] = this.getTileAndType(e)
+    this.props.startDrag(tile, moveType)
   }
 
   checkTile (e) {
-    if (this.props.isDragging && !this.props.updating) {
-      const { board, currTile } = this.props
-      const tile = this.getCoord(e)
-      this.props.checkTile(tile)
-      this.updateWeatherPower()
-    }
+    const [ tile, moveType ] = this.getTileAndType(e)
+    this.props.checkTile(tile, moveType)
+  }
+
+  stopSequence () {
+    this.triggerWeather()
+    this.props.stopDrag(this.props.moveType)
   }
 
   animateBackground (type) {
-    const weatherClass = type === 'rain' ? 'rain-falling' : 'sun-shining'
+    const weatherClass = type === 'rain'
+      ? 'rain-falling'
+      : 'sun-shining'
     const body = document.body.classList
     body.add(weatherClass)
     setTimeout(() => body.remove(weatherClass), 3000)
   }
 
-  triggerWeather (type) {
-    this.animateBackground(type)
-    setTimeout(() => this.props.growSeeds(this.props.board), 700)
-    setTimeout(() => this.props.transformBoard(this.props.growingMoves, this.props.board, 4), 1200)
-    this.props.resetWeather(type)
+  triggerWeather () {
+    const { sun, rain } = this.props
+    if (sun > 12) this.animateBackground('sun')
+    if (rain > 12) this.animateBackground('rain')
   }
 
   fallingMagnitudeClass (tile) {
-    return tile ? 'falling-' + tile : ''
+    return tile ? `falling-${tile}` : ''
   }
 
   weatherMakerClass (type) {
@@ -178,4 +129,9 @@ const mapStateToProps = (state) => ({
   moveType: moveType(state)
 })
 
-export default connect(mapStateToProps, allActions)(Board)
+import stopDrag from '../redux/actionSequences/stopDrag.js'
+import startDrag from '../redux/actionSequences/startDrag.js'
+import checkTile from '../redux/actionSequences/checkTile.js'
+import { resetEntering } from '../redux/allActions.js'
+
+export default connect(mapStateToProps, { resetEntering, stopDrag, startDrag, checkTile })(Board)

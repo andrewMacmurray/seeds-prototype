@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect'
-import { booleanArray, transformTiles } from '../../model/model.js'
-import { falseBoard } from '../../model/constants.js'
+import { booleanArray, transformTiles, falseBoard } from '../../model'
 
 const _moveArray = (state) => state.moves.moveArray
 const _board = (state) => state.board

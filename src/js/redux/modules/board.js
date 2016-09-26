@@ -1,4 +1,10 @@
-import { randomBoard, shiftBoard, transformTiles, removeSeedsFromBoard, addNewTiles } from '../../model/model.js'
+import {
+  randomBoard,
+  transformTiles,
+  removeSeedsFromBoard,
+  shiftBoard,
+  addNewTiles
+} from '../../model'
 import { createAction } from 'redux-actions'
 
 // action types
@@ -25,22 +31,30 @@ export default (state = defaultState, action) => {
 }
 
 // actions
-export const shiftTiles = (moves, board) => {
-  const newboard = moves.length > 0
-    ? shiftBoard(transformTiles(moves, board, 0))
+export const shiftTiles = () => (dispatch, getState) => {
+  const { board, moves: { moveArray } } = getState()
+
+  const newboard = moveArray.length > 0
+    ? shiftBoard(transformTiles(moveArray, board, 0))
     : shiftBoard(removeSeedsFromBoard(board))
-  return {
+  dispatch({
     type: SHIFT_TILES,
     payload: newboard
-  }
+  })
 }
 
-export const addTiles = createAction(
-  ADD_TILES,
-  (board) => addNewTiles(board)
-)
+export const addTiles = () => (dispatch, getState) => {
+  const { board } = getState()
+  dispatch({
+    type: ADD_TILES,
+    payload: addNewTiles(board)
+  })
+}
 
-export const transformBoard = createAction(
-  TRANSFORM_BOARD,
-  (moves, board, number) => transformTiles(moves, board, number)
-)
+export const transformBoard = (number) => (dispatch, getState) => {
+  const { board, growingMoves } = getState()
+  dispatch({
+    type: TRANSFORM_BOARD,
+    payload: transformTiles(growingMoves, board, number)
+  })
+}
