@@ -1,22 +1,22 @@
 import { createAction } from 'redux-actions'
 
 // action types
-const STEP_INTRO_TEXT = 'STEP_INTRO_TEXT'
-const RESET_INTRO_STEP = 'RESET_INTRO_STEP'
+const SET_INTRO_TEXT = 'SET_INTRO_TEXT'
+const RESET_INTRO_TEXT = 'RESET_INTRO_TEXT'
 
 // reducer
-const defaultState = { introTextStep: 0 }
+const defaultState = { introText: '' }
 export default (state = defaultState, action) => {
   switch (action.type) {
-  case STEP_INTRO_TEXT:
+  case SET_INTRO_TEXT:
     return {
       ...state,
-      introTextStep: state.introTextStep + 1
+      introText: action.payload
     }
-  case RESET_INTRO_STEP:
+  case RESET_INTRO_TEXT:
     return {
       ...state,
-      introTextStep: 0
+      introText: ''
     }
   default:
     return state
@@ -24,5 +24,5 @@ export default (state = defaultState, action) => {
 }
 
 // actions
-export const stepIntroText = createAction(STEP_INTRO_TEXT)
-export const resetIntroStep = createAction(RESET_INTRO_STEP)
+export const setIntroText = createAction(SET_INTRO_TEXT, x => x)
+export const resetIntroText = createAction(RESET_INTRO_TEXT)
