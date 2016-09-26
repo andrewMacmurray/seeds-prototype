@@ -16,9 +16,8 @@ class Board extends React.Component {
   }
 
   componentDidMount () {
-    const { resetEntering } = this.props
     addListener(window, 'pointerup', this.stopSequence)
-    setTimeout(() => resetEntering(), 600)
+    setTimeout(this.props.resetEntering, 600)
   }
 
   componentWillUnmount () {
