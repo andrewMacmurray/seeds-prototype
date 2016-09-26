@@ -2,10 +2,6 @@ import React from 'react'
 import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import tileClassMap from '../constants/tileClasses.js'
-import { resetEntering } from '../redux/allActions.js'
-import stopDrag from '../redux/actionSequences/stopDrag.js'
-import startDrag from '../redux/actionSequences/startDrag.js'
-import checkTile from '../redux/actionSequences/checkTile.js'
 import Tile from './Tile.js'
 
 class Board extends React.Component {
@@ -14,19 +10,19 @@ class Board extends React.Component {
     this.getCoord = this.getCoord.bind(this)
     this.startDrag = this.startDrag.bind(this)
     this.checkTile = this.checkTile.bind(this)
+    this.stopSequence = this.stopSequence.bind(this)
     this.triggerWeather = this.triggerWeather.bind(this)
     this.fallingMagnitudeClass = this.fallingMagnitudeClass.bind(this)
   }
 
   componentDidMount () {
-    const { stopDrag, resetEntering } = this.props
-    addListener(window, 'pointerup', () => stopDrag(this.props.moveType))
+    const { resetEntering } = this.props
+    addListener(window, 'pointerup', this.stopSequence)
     setTimeout(() => resetEntering(), 600)
   }
 
   componentWillUnmount () {
-    const { stopDrag } = this.props
-    removeListener(window, 'pointerup', () => stopDrag(this.props.moveType))
+    removeListener(window, 'pointerup', this.stopSequence)
   }
 
   getCoord (e) {
@@ -49,6 +45,11 @@ class Board extends React.Component {
     this.props.checkTile(tile, moveType)
   }
 
+  stopSequence () {
+    this.triggerWeather()
+    this.props.stopDrag(this.props.moveType)
+  }
+
   animateBackground (type) {
     const weatherClass = type === 'rain'
       ? 'rain-falling'
@@ -58,8 +59,10 @@ class Board extends React.Component {
     setTimeout(() => body.remove(weatherClass), 3000)
   }
 
-  triggerWeather (type) {
-    this.animateBackground(type)
+  triggerWeather () {
+    const { sun, rain } = this.props
+    if (sun > 12) this.animateBackground('sun')
+    if (rain > 12) this.animateBackground('rain')
   }
 
   fallingMagnitudeClass (tile) {
@@ -126,5 +129,10 @@ const mapStateToProps = (state) => ({
   isGrowingArray: isGrowingArray(state),
   moveType: moveType(state)
 })
+
+import stopDrag from '../redux/actionSequences/stopDrag.js'
+import startDrag from '../redux/actionSequences/startDrag.js'
+import checkTile from '../redux/actionSequences/checkTile.js'
+import { resetEntering } from '../redux/allActions.js'
 
 export default connect(mapStateToProps, { resetEntering, stopDrag, startDrag, checkTile })(Board)
