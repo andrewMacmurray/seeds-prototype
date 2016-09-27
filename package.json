@@ -44,6 +44,7 @@
   "dependencies": {
     "classnames": "^2.2.3",
     "env2": "^2.0.7",
+    "extends-promise": "^1.5.1",
     "hapi": "^13.2.2",
     "inert": "^3.2.0",
     "ramda": "^0.21.0",

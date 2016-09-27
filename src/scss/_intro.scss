@@ -19,15 +19,15 @@
 
 @keyframes fade-in-out {
   0% { opacity: 0 }
-  50% { opacity: 1 }
-  70% { opacity: 1 }
+  40% { opacity: 1 }
+  80% { opacity: 1 }
   100% { opacity: 0 }
 }
 
 .intro-text {
   font-size: 1.4em;
   letter-spacing: 1.4px;
-  animation: fade-in-out 6s ease-in-out infinite;
+  animation: fade-in-out 5s ease-in-out infinite;
 }
 
 .seed-container {
