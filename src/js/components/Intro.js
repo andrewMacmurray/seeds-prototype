@@ -1,31 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {
-  setView,
-  stepIntroText
-} from '../actions/actionCreators.js'
-
-const text = [
-  'our world is dying...',
-  'we must gather many seeds...',
-  'so a new one can be reborn...'
-]
-
-const $text = text.map((t, i) => <p className='intro-text' key={i}>{t}</p>)
-const startInterval = (props) => setInterval(props.stepIntroText, 6000)
+import introSequence from '../redux/actionSequences/introText.js'
 
 class Intro extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = { interval: startInterval(props) }
+  componentWillMount () {
+    this.props.introSequence()
   }
 
   render () {
-    const { introTextStep } = this.props.text
-    if (introTextStep >= text.length) clearInterval(this.state.interval)
+    const { introText } = this.props.text
     return (
       <div className='intro'>
-        {$text[introTextStep]}
+        <p className='intro-text'>{introText}</p>
       </div>
     )
   }
@@ -33,4 +19,4 @@ class Intro extends React.Component {
 
 const mapStateToProps = state => ({ ...state })
 
-export default connect(mapStateToProps, { setView, stepIntroText })(Intro)
+export default connect(mapStateToProps, { introSequence })(Intro)
