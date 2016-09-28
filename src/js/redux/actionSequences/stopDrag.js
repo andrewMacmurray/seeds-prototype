@@ -6,11 +6,11 @@ export default (moveType) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const { updating, isDragging, weather: { rain, sun }, moves: { moveArray } } = getState()
 
-
   if (!updating && isDragging) {
 
     if (moveArray.length === 1) {
-      return Promise.resolve()
+      return Promise
+        .resolve()
         .then(_dispatch(_.setDrag, false))
         .then(_dispatch(_.resetMoves))
     }
@@ -25,7 +25,8 @@ export default (moveType) => (dispatch, getState) => {
         .then(_dispatch(_.transformBoard, 4))
     }
 
-    return Promise.resolve()
+    return Promise
+      .resolve()
       .then(batch(dispatch, [
         _.setDrag, false,
         _.updateScore, moveType,

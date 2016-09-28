@@ -19,7 +19,9 @@ export default () => (dispatch) => {
     .then(_dispatch(_.setIntroText, text[2]))
     .delay(5000)
     .then(_dispatch(_.resetIntroText))
-    .then(_dispatch(_.setView, 'loading'))
-    .delay(3000)
+    .then(_dispatch(_.showLoadingScreen))
+    .delay(2500)
     .then(_dispatch(_.setView, 'board'))
+    .delay(500)
+    .then(_dispatch(_.hideLoadingScreen))
 }

@@ -10,6 +10,7 @@ import * as setDrag from './modules/setDrag.js'
 import * as weatherPower from './modules/weatherPower.js'
 import * as view from './modules/view.js'
 import * as text from './modules/text.js'
+import * as loading from './modules/loadingScreen.js'
 
 module.exports = {
   ...text,
@@ -23,5 +24,6 @@ module.exports = {
   ...score,
   ...setDrag,
   ...weatherPower,
-  ...view
+  ...view,
+  ...loading
 }

@@ -11,6 +11,7 @@ import fallingMagnitudeArray from './modules/fallingMagnitude.js'
 import growingMoves from './modules/growingMoves.js'
 import isLeavingArray from './modules/isLeaving.js'
 import isEnteringArray from './modules/isEntering.js'
+import loadingScreen from './modules/loadingScreen.js'
 
 const rootReducer = combineReducers({
   text,
@@ -24,7 +25,8 @@ const rootReducer = combineReducers({
   isLeavingArray,
   updating,
   growingMoves,
-  isEnteringArray
+  isEnteringArray,
+  loadingScreen
 })
 
 export default rootReducer
