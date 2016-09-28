@@ -1,6 +1,6 @@
 import * as _ from '../allActions.js'
 import Promise from 'extends-promise'
-import { makeLazyDispatcher, batch } from '../helpers.js'
+import { makeLazyDispatcher } from '../helpers.js'
 
 const text = [
   'our world is dying...',
@@ -11,11 +11,6 @@ const text = [
 export default () => (dispatch) => {
   const _dispatch = makeLazyDispatcher(dispatch)
 
-  const transition = batch(dispatch, [
-    _.resetIntroText,
-    _.setView, 'loading'
-  ])
-
   dispatch(_.resetIntroText())
   dispatch(_.setIntroText(text[0]))
   Promise.delay(5000)
@@ -23,7 +18,8 @@ export default () => (dispatch) => {
     .delay(5000)
     .then(_dispatch(_.setIntroText, text[2]))
     .delay(5000)
-    .then(transition)
+    .then(_dispatch(_.resetIntroText))
+    .then(_dispatch(_.setView, 'loading'))
     .delay(3000)
     .then(_dispatch(_.setView, 'board'))
 }
