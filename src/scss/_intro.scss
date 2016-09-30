@@ -1,6 +1,3 @@
-@import 'variables';
-@import 'mixins';
-
 .info {
   letter-spacing: 2px;
 }
@@ -19,7 +16,7 @@
 
 @keyframes fade-in-out {
   0% { opacity: 0 }
-  40% { opacity: 1 }
+  20% { opacity: 1 }
   80% { opacity: 1 }
   100% { opacity: 0 }
 }
@@ -27,19 +24,17 @@
 .intro-text {
   font-size: 1.4em;
   letter-spacing: 1.4px;
-  animation: fade-in-out 5s ease-in-out infinite;
+  animation: fade-in-out 4s ease-in-out infinite;
 }
 
 .seed-container {
-  animation-delay: 10s;
-  animation-fill-mode: forwards;
 }
 
 .title {
   font-size: 25px;
   letter-spacing: 4px;
-  animation: enter 2s ease;
-  animation-delay: 2s;
+  animation: enter 1s ease;
+  animation-delay: 3s;
   animation-fill-mode: forwards;
   opacity: 0;
 }
@@ -49,7 +44,7 @@
   margin-top: 65px;
   letter-spacing: 4px;
   animation: enter 2s ease;
-  animation-delay: 6s;
+  animation-delay: 3s;
   animation-fill-mode: forwards;
   opacity: 0;
   text-transform: uppercase;
@@ -75,21 +70,16 @@
   100% { opacity: 0; }
 }
 
-.one.intro-seed {
-  animation: enter 3s ease;
-  animation-fill-mode: forwards;
-}
+$sequence: '.one', '.two', '.three';
 
-.two.intro-seed {
-  animation: enter 3s ease;
-  animation-delay: 3s;
-  animation-fill-mode: forwards;
-}
+@each $class in $sequence {
+  $i: index($sequence, $class);
 
-.three.intro-seed {
-  animation: enter 3s ease;
-  animation-delay: 4s;
-  animation-fill-mode: forwards;
+  #{$class} {
+    animation: enter 3s ease;
+    animation-fill-mode: forwards;
+    animation-delay: $i / 2 + 0.1s;
+  }
 }
 
 @media (max-width: 440px) {

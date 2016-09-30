@@ -15,7 +15,7 @@ export default (moveType) => (dispatch, getState) => {
         .then(_dispatch(_.resetMoves))
     }
 
-    if (rain >= 12 || sun >= 12) {
+    if (rain > 12 || sun > 12) {
       Promise
         .resolve()
         .then(_dispatch(_.resetWeather, moveType))

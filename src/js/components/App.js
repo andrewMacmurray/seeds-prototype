@@ -22,7 +22,7 @@ class App extends React.Component {
 
   loadView (view) {
     this.props.flashLoadingScreen(Math.random())
-    setTimeout(() => this.props.setView(view), 1000)
+    setTimeout(() => this.props.setView(view), 1800)
   }
 
   renderLoadingScreen () {

@@ -1,5 +1,7 @@
 @import 'variables';
 @import 'mixins';
+@import 'animate';
+@import 'customAnimations';
 @import 'tiles';
 @import 'seeds';
 @import 'board';
@@ -14,6 +16,7 @@ html {
 }
 
 body {
+  background: $beige;
   font-family: $main-font;
   background-color: $beige;
   transition: background-color 2s ease;
