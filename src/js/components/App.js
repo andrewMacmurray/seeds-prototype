@@ -40,7 +40,7 @@ class App extends React.Component {
           <p className='menu-item' onClick={() => this.loadView('title')}>Intro</p>
           <p className='menu-item' onClick={() => this.loadView('board')}>Begin</p>
         </div>
-        <audio src='./audio/martin-buttrich.mp3' controls />
+        <audio src='./audio/martin-buttrich.mp3' controls autoPlay={this.props.audio.playing} />
         {this.router()}
       </div>
     )

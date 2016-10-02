@@ -1,6 +1,6 @@
 import * as _ from '../allActions.js'
 import Promise from 'extends-promise'
-import { makeLazyDispatcher } from '../helpers.js'
+import { makeLazyDispatcher } from '../_helpers.js'
 
 const text = [
   'our world is dying...',
@@ -20,8 +20,8 @@ export default () => (dispatch) => {
     .delay(4000)
     .then(_dispatch(_.resetIntroText))
     .then(_dispatch(_.showLoadingScreen))
-    .delay(2500)
+    .delay(1800)
     .then(_dispatch(_.setView, 'board'))
-    .delay(500)
+    .delay(1200)
     .then(_dispatch(_.hideLoadingScreen))
 }

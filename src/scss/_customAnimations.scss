@@ -1,3 +1,36 @@
+@keyframes fade-in-out {
+  0% { opacity: 0 }
+  20% { opacity: 1 }
+  80% { opacity: 1 }
+  100% { opacity: 0 }
+}
+
+.fade-in-out {
+  animation-name: fade-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes enter {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.enter {
+  animation-name: enter;
+  animation-fill-mode: forwards;
+}
+
+@keyframes leave {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.leave {
+  animation-name: leave;
+  animation-fill-mode: forwards;
+}
+
+
 @keyframes grow-seed {
   0% {
     opacity: 1;
@@ -38,5 +71,15 @@
     background-position: 50%, 50%;
     background-size: 18px 30px;
     background-repeat: no-repeat;
+  }
+}
+
+@for $i from 1 through 12 {
+  $d: $i / 2;
+  .duration-#{$d} {
+    animation-duration: $d + 0.001s;
+  }
+  .delay-#{$d} {
+    animation-delay: $d + 0.001s;
   }
 }
