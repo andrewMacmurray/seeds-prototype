@@ -9,16 +9,18 @@ export default (seedMoves) => (dispatch) => {
     .resolve()
     .then(batch(dispatch, [
       _.setLeavingTiles, seedMoves,
+      _.isUpdating, true,
       _.updateScore, { args: [ 'pod', seedMoves ] }
     ]))
-    .delay(800)
+    .delay(1400)
     .then(_dispatch(_.fallTiles, seedMoves))
     .delay(300)
     .then(batch(dispatch, [
       _.shiftTiles, seedMoves,
       _.setEntering,
       _.resetMagnitude,
-      _.resetLeaving
+      _.resetLeaving,
+      _.isUpdating, false
     ]))
     .delay(200)
     .then(_dispatch(_.addTiles))

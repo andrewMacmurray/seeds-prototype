@@ -92,7 +92,7 @@ class Board extends React.Component {
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}
                     key={'tile-' + i + '-' + j}
-                    isLeavingBool={isLeavingArray[i][j] ? `leaving delay-${j}` : ''}
+                    isLeavingBool={isLeavingArray[i][j] ? `leaving delay-${i + j}` : ''}
                     isDraggingBool={isDraggingArray[i][j] ? 'dragging' : ''}
                     isEnteringBool={isEnteringArray[i][j] ? 'entering' : ''}
                     isGrowingBool={isGrowingArray[i][j] ? 'growing' : ''}

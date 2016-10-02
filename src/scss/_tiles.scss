@@ -91,12 +91,12 @@
   opacity: 0;
 }
 
-@for $i from 1 through 8 {
+@for $i from 1 through 16 {
   .pod.leaving.delay-#{$i} {
-    transition: 0.5s ease;
+    transition: 0.5s ease-in-out;
     transform: translate(100px, -100px);
     opacity: 0;
-    transition-delay: $i * 0.05s;
+    transition-delay: $i * 0.08s;
   }
 }
 
