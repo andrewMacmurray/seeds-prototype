@@ -1,4 +1,4 @@
-import * as text from './modules/text.js'
+import * as intro from './modules/intro.js'
 import * as audio from './modules/audio.js'
 import * as board from './modules/board.js'
 import * as fallingMagnitude from './modules/fallingMagnitude.js'
@@ -14,7 +14,7 @@ import * as view from './modules/view.js'
 import * as loading from './modules/loadingScreen.js'
 
 module.exports = {
-  ...text,
+  ...intro,
   ...audio,
   ...board,
   ...fallingMagnitude,

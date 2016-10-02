@@ -18,11 +18,19 @@
 .intro-text {
   font-size: 1.4em;
   letter-spacing: 1.4px;
-  animation: fade-in-out 4s ease-in-out infinite;
 }
 
-.seed-container {
+.same-line {
+  height: 4.2em;
+
+  .intro-text {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
 }
+
 
 .title {
   font-size: 25px;

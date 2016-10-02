@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import text from './modules/text.js'
+import intro from './modules/intro.js'
 import audio from './modules/audio.js'
 import isDragging from './modules/setDrag.js'
 import updating from './modules/isUpdating.js'
@@ -15,7 +15,7 @@ import isEnteringArray from './modules/isEntering.js'
 import loadingScreen from './modules/loadingScreen.js'
 
 const rootReducer = combineReducers({
-  text,
+  intro,
   audio,
   isDragging,
   weather,
