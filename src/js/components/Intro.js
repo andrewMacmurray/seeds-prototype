@@ -14,11 +14,11 @@ const text = [
 ]
 
 const seeds = [
-  <CircleSeed key={0} seedType='small' />,
-  <TwinSeed key={1} seedType='small twin-light' />,
-  <TwinSeed key={2} seedType='small twin-dark' />,
-  <TwinSeed key={3} seedType='small twin-red' />,
-  <SingleSeed key={4} seedType='small' />
+  <CircleSeed key={0} seedType='small intro-seed' />,
+  <TwinSeed key={1} seedType='small intro-seed twin-light' />,
+  <TwinSeed key={2} seedType='small intro-seed twin-dark' />,
+  <TwinSeed key={3} seedType='small intro-seed twin-red' />,
+  <SingleSeed key={4} seedType='small intro-seed' />
 ]
 
 const animations = {

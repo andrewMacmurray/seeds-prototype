@@ -54,6 +54,12 @@ p, a {
   }
 }
 
+.audio-controls {
+  position: fixed;
+  bottom: 0.5em;
+  right: 1.2em;
+}
+
 @keyframes fadeIn {
   0% {opacity: 0}
   100% {opacity: 1}

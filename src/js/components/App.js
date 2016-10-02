@@ -3,9 +3,10 @@ import Board from './Board.js'
 import TitleScreen from './TitleScreen.js'
 import Loading from './Loading.js'
 import Intro from './Intro.js'
+import Audio from './Audio.js'
 
 import { connect } from 'react-redux'
-import { setView } from '../redux/allActions.js'
+import { setView, playAudio, stopAudio } from '../redux/allActions.js'
 import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
 
 import '../../scss/style.scss'
@@ -40,8 +41,12 @@ class App extends React.Component {
           <p className='menu-item' onClick={() => this.loadView('title')}>Intro</p>
           <p className='menu-item' onClick={() => this.loadView('board')}>Begin</p>
         </div>
-        <audio src='./audio/martin-buttrich.mp3' controls autoPlay={this.props.audio.playing} />
+        <Audio />
         {this.router()}
+        <div className='audio-controls'>
+          <p className='menu-item' onClick={this.props.playAudio}>play</p>
+          <p className='menu-item' onClick={this.props.stopAudio}>pause</p>
+        </div>
       </div>
     )
   }
@@ -49,4 +54,4 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({ ...state })
 
-export default connect(mapStateToProps, { setView, flashLoadingScreen })(App)
+export default connect(mapStateToProps, { setView, flashLoadingScreen, stopAudio, playAudio })(App)

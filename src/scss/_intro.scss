@@ -16,7 +16,7 @@
 }
 
 .intro-text {
-  font-size: 1.4em;
+  font-size: 1em;
   letter-spacing: 1.4px;
 }
 
@@ -50,8 +50,8 @@
 
 
 .intro-seed {
-  max-width: 4em;
-  max-height: 10em;
+  max-width: 2.9em;
+  max-height: 7em;
   margin: 0 10px;
   opacity: 0;
 }
@@ -76,8 +76,13 @@ $sequence: 'one', 'two', 'three';
   }
 }
 
-@media (max-width: 440px) {
+@media (min-width: 550px) {
+  .intro-text {
+    font-size: 1.4em;
+  }
+
   .intro-seed {
-    max-width: 45px;
+    max-width: 4em;
+    max-height: 10em;
   }
 }
