@@ -1,5 +1,4 @@
 import { lensProp, view } from 'ramda'
-import { createAction } from 'redux-actions'
 
 // action types
 const WEATHER_POWER = 'WEATHER_POWER'
@@ -21,14 +20,25 @@ export default (state = defaultState, action) => {
 }
 
 const sunAndRain = view(lensProp('weather'))
+const add = (weather) => (type, x) => type === weather ? x + 1 : x
+const addRain = add('rain')
+const addSun = add('sun')
 
 // actions
 export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
-  const { sun, rain } = sunAndRain(getState())
-  const newWeatherPower = {
-    sun: weatherType === 'sun' ? sun + 1 : sun,
-    rain: weatherType === 'rain' ? rain + 1 : rain
+  const state = getState()
+  const { sun, rain } = sunAndRain(state)
+  const { moves: { moveArray } } = state
+
+  const addPower = {
+    sun: addSun(weatherType, sun),
+    rain: addRain(weatherType, rain)
   }
+
+  const newWeatherPower = moveArray.length > 1
+    ? addPower
+    : { sun, rain }
+
   dispatch({
     type: WEATHER_POWER,
     payload: newWeatherPower

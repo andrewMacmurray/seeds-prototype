@@ -3,9 +3,11 @@ import Board from './Board.js'
 import TitleScreen from './TitleScreen.js'
 import Loading from './Loading.js'
 import Intro from './Intro.js'
+import Audio from './Audio.js'
 
 import { connect } from 'react-redux'
-import { setView } from '../redux/allActions.js'
+import { setView, playAudio, stopAudio } from '../redux/allActions.js'
+import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
 
 import '../../scss/style.scss'
 
@@ -14,31 +16,42 @@ class App extends React.Component {
     const viewMap = {
       title: <TitleScreen />,
       board: <Board />,
-      loading: <Loading />,
       intro: <Intro />
     }
     return viewMap[this.props.view]
   }
 
   loadView (view) {
-    this.props.setView('loading')
-    setTimeout(() => this.props.setView(view), 3000)
+    this.props.flashLoadingScreen(Math.random())
+    setTimeout(() => this.props.setView(view), 1800)
+  }
+
+  renderLoadingScreen () {
+    const { visible, background } = this.props.loadingScreen
+    return visible
+      ? <Loading background={background} />
+      : ''
   }
 
   render () {
     return (
       <div>
+        {this.renderLoadingScreen()}
         <div className='menu'>
           <p className='menu-item' onClick={() => this.loadView('title')}>Intro</p>
           <p className='menu-item' onClick={() => this.loadView('board')}>Begin</p>
         </div>
-        <audio src='./audio/martin-buttrich.mp3' controls />
+        <Audio />
         {this.router()}
+        <div className='audio-controls'>
+          <p className='menu-item' onClick={this.props.playAudio}>play</p>
+          <p className='menu-item' onClick={this.props.stopAudio}>pause</p>
+        </div>
       </div>
     )
   }
 }
 
-const mapStateToProps = state => ({ view: state.view })
+const mapStateToProps = state => ({ ...state })
 
-export default connect(mapStateToProps, { setView })(App)
+export default connect(mapStateToProps, { setView, flashLoadingScreen, stopAudio, playAudio })(App)

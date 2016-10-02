@@ -1,5 +1,7 @@
 @import 'variables';
 @import 'mixins';
+@import 'animate';
+@import 'customAnimations';
 @import 'tiles';
 @import 'seeds';
 @import 'board';
@@ -14,6 +16,7 @@ html {
 }
 
 body {
+  background: $beige;
   font-family: $main-font;
   background-color: $beige;
   transition: background-color 2s ease;
@@ -49,6 +52,12 @@ p, a {
   img {
     width: 100%;
   }
+}
+
+.audio-controls {
+  position: fixed;
+  bottom: 0.5em;
+  right: 1.2em;
 }
 
 @keyframes fadeIn {

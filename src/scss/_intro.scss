@@ -1,12 +1,10 @@
-@import 'variables';
-@import 'mixins';
-
 .info {
   letter-spacing: 2px;
 }
 
 .intro {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 80vh;
   position: relative;
@@ -17,30 +15,26 @@
   @include no-select;
 }
 
-@keyframes fade-in-out {
-  0% { opacity: 0 }
-  40% { opacity: 1 }
-  80% { opacity: 1 }
-  100% { opacity: 0 }
-}
-
 .intro-text {
-  font-size: 1.4em;
+  font-size: 1em;
   letter-spacing: 1.4px;
-  animation: fade-in-out 5s ease-in-out infinite;
 }
 
-.seed-container {
-  animation-delay: 10s;
-  animation-fill-mode: forwards;
+.same-line {
+  height: 4.2em;
+
+  .intro-text {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    right: 0;
+  }
 }
+
 
 .title {
   font-size: 25px;
   letter-spacing: 4px;
-  animation: enter 2s ease;
-  animation-delay: 2s;
-  animation-fill-mode: forwards;
   opacity: 0;
 }
 
@@ -48,9 +42,6 @@
   font-size: 16px;
   margin-top: 65px;
   letter-spacing: 4px;
-  animation: enter 2s ease;
-  animation-delay: 6s;
-  animation-fill-mode: forwards;
   opacity: 0;
   text-transform: uppercase;
   cursor: pointer;
@@ -59,41 +50,39 @@
 
 
 .intro-seed {
-  max-width: 60px;
-  max-height: 120px;
+  max-width: 2.9em;
+  max-height: 7em;
   margin: 0 10px;
   opacity: 0;
 }
 
-@keyframes enter {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+$sequence: 'one', 'two', 'three';
+
+@each $class in $sequence {
+  $i: index($sequence, $class);
+
+  .forwards.#{$class} {
+    opacity: 0;
+    animation: enter 3s ease;
+    animation-fill-mode: forwards;
+    animation-delay: $i / 2 + 0.1s;
+  }
+
+  .backwards.#{$class} {
+    opacity: 1;
+    animation: leave 2s ease;
+    animation-fill-mode: forwards;
+    animation-delay: 2s - $i / 2;
+  }
 }
 
-@keyframes exit {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
-}
+@media (min-width: 550px) {
+  .intro-text {
+    font-size: 1.4em;
+  }
 
-.one.intro-seed {
-  animation: enter 3s ease;
-  animation-fill-mode: forwards;
-}
-
-.two.intro-seed {
-  animation: enter 3s ease;
-  animation-delay: 3s;
-  animation-fill-mode: forwards;
-}
-
-.three.intro-seed {
-  animation: enter 3s ease;
-  animation-delay: 4s;
-  animation-fill-mode: forwards;
-}
-
-@media (max-width: 440px) {
   .intro-seed {
-    max-width: 45px;
+    max-width: 4em;
+    max-height: 10em;
   }
 }

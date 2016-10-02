@@ -5,15 +5,6 @@ import tileClassMap from '../constants/tileClasses.js'
 import Tile from './Tile.js'
 
 class Board extends React.Component {
-  constructor () {
-    super()
-    this.getCoord = this.getCoord.bind(this)
-    this.startDrag = this.startDrag.bind(this)
-    this.checkTile = this.checkTile.bind(this)
-    this.stopSequence = this.stopSequence.bind(this)
-    this.triggerWeather = this.triggerWeather.bind(this)
-    this.fallingMagnitudeClass = this.fallingMagnitudeClass.bind(this)
-  }
 
   componentDidMount () {
     addListener(window, 'pointerup', this.stopSequence)
@@ -24,7 +15,7 @@ class Board extends React.Component {
     removeListener(window, 'pointerup', this.stopSequence)
   }
 
-  getCoord (e) {
+  getCoord = (e) => {
     const x = parseInt(e.target.getAttribute('data-x'))
     const y = parseInt(e.target.getAttribute('data-y'))
     return [ y, x ]
@@ -34,17 +25,17 @@ class Board extends React.Component {
     return [ this.getCoord(e), this.props.moveType ]
   }
 
-  startDrag (e) {
+  startDrag = (e) => {
     const [ tile, moveType ] = this.getTileAndType(e)
     this.props.startDrag(tile, moveType)
   }
 
-  checkTile (e) {
+  checkTile = (e) => {
     const [ tile, moveType ] = this.getTileAndType(e)
     this.props.checkTile(tile, moveType)
   }
 
-  stopSequence () {
+  stopSequence = () => {
     this.triggerWeather()
     this.props.stopDrag(this.props.moveType)
   }
@@ -58,13 +49,13 @@ class Board extends React.Component {
     setTimeout(() => body.remove(weatherClass), 3000)
   }
 
-  triggerWeather () {
+  triggerWeather = () => {
     const { sun, rain } = this.props
     if (sun > 12) this.animateBackground('sun')
     if (rain > 12) this.animateBackground('rain')
   }
 
-  fallingMagnitudeClass (tile) {
+  fallingMagnitudeClass = (tile) => {
     return tile ? `falling-${tile}` : ''
   }
 

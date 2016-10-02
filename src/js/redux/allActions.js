@@ -1,3 +1,5 @@
+import * as intro from './modules/intro.js'
+import * as audio from './modules/audio.js'
 import * as board from './modules/board.js'
 import * as fallingMagnitude from './modules/fallingMagnitude.js'
 import * as growingMoves from './modules/growingMoves.js'
@@ -9,10 +11,11 @@ import * as score from './modules/score.js'
 import * as setDrag from './modules/setDrag.js'
 import * as weatherPower from './modules/weatherPower.js'
 import * as view from './modules/view.js'
-import * as text from './modules/text.js'
+import * as loading from './modules/loadingScreen.js'
 
 module.exports = {
-  ...text,
+  ...intro,
+  ...audio,
   ...board,
   ...fallingMagnitude,
   ...growingMoves,
@@ -23,5 +26,6 @@ module.exports = {
   ...score,
   ...setDrag,
   ...weatherPower,
-  ...view
+  ...view,
+  ...loading
 }

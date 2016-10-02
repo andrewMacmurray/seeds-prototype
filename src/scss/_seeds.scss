@@ -1,5 +1,3 @@
-@import 'variables';
-
 .twin-dark {
   .left {
     fill: $dark-brown;
@@ -25,4 +23,10 @@
   .right {
     fill: $brown;
   }
+}
+
+.small {
+  width: 4em;
+  height: 10em;
+  margin: 0 10px;
 }

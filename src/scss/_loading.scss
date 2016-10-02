@@ -1,5 +1,3 @@
-@import 'variables';
-
 .loading-screen {
   height: 100vh;
   width: 100%;
@@ -7,6 +5,7 @@
   animation: loading 3s linear;
   animation-fill-mode: forwards;
   opacity: 0;
+  z-index: 100;
 }
 
 .loading-icon {
