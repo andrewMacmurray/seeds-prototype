@@ -1,5 +1,5 @@
 import Promise from 'bluebird'
-import { makeLazyDispatcher, batch } from '../_helpers.js'
+import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 import * as _ from '../allActions.js'
 
 export default (seedMoves) => (dispatch) => {
@@ -11,7 +11,7 @@ export default (seedMoves) => (dispatch) => {
       _.setLeavingTiles, seedMoves,
       _.updateScore, { args: [ 'pod', seedMoves ] }
     ]))
-    .delay(300)
+    .delay(800)
     .then(_dispatch(_.fallTiles, seedMoves))
     .delay(300)
     .then(batch(dispatch, [
