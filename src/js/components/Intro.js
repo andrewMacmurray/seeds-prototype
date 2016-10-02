@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-// import CssTransitionGroup from 'react-addons-css-transition-group'
 import { VelocityComponent } from 'velocity-react'
 import introSequence from '../redux/actionSequences/introSequence.js'
 import TwinSeed from '../components/Seeds/TwinSeed.js'
@@ -8,9 +7,9 @@ import SingleSeed from '../components/Seeds/SingleSeed.js'
 import CircleSeed from '../components/Seeds/CircleSeed.js'
 
 const text = [
-  'our world is dying...',
-  'we must gather many seeds...',
-  'so a new one can be reborn...'
+  'our world is dying....',
+  'we must gather many seeds....',
+  'so a new one can be reborn....'
 ]
 
 const seeds = [

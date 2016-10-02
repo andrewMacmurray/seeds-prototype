@@ -12,15 +12,15 @@ export default (state = 0, action) => {
 }
 
 // actions
-export const updateScore = (tileType) => (dispatch, getState) => {
-  const { moves: { moveArray }, score } = getState()
+export const updateScore = (tileType, moves) => (dispatch, getState) => {
+  const { score } = getState()
   const scores = {
-    pod: score + moveArray.length * 5,
-    seedling: score + moveArray.length
+    pod: score + moves.length * 5,
+    seedling: score + moves.length
   }
   const scoreType = scores[tileType] || score
   dispatch({
     type: UPDATE_SCORE,
-    payload: moveArray.length ? scoreType : score
+    payload: moves.length ? scoreType : score
   })
 }

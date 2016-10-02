@@ -81,7 +81,7 @@
 
 .seedling.leaving {
   transition: 0.5s ease;
-  transform: scale(1.5);
+  transform: scale(4);
   opacity: 0;
 }
 
@@ -89,6 +89,15 @@
   transition: 0.5s ease;
   transform: translate(100px, -100px);
   opacity: 0;
+}
+
+@for $i from 1 through 16 {
+  .pod.leaving.delay-#{$i} {
+    transition: 0.5s ease-in-out;
+    transform: translate(100px, -100px);
+    opacity: 0;
+    transition-delay: $i * 0.08s;
+  }
 }
 
 .growing {

@@ -1,6 +1,6 @@
 import * as _ from '../allActions.js'
 import Promise from 'extends-promise'
-import { makeLazyDispatcher } from '../_helpers.js'
+import { makeLazyDispatcher } from '../_thunkHelpers.js'
 
 export default () => (dispatch) => {
   const _dispatch = makeLazyDispatcher(dispatch)

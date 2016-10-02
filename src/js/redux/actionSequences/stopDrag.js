@@ -1,6 +1,6 @@
 import * as _ from '../allActions.js'
 import Promise from 'extends-promise'
-import { makeLazyDispatcher, batch } from '../_helpers.js'
+import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
 export default (moveType) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
@@ -22,30 +22,30 @@ export default (moveType) => (dispatch, getState) => {
         .delay(700)
         .then(_dispatch(_.growSeeds))
         .delay(500)
-        .then(_dispatch(_.transformBoard, 4))
+        .then(_dispatch(_.growSeedsOnBoard))
     }
 
     return Promise
       .resolve()
       .then(batch(dispatch, [
         _.setDrag, false,
-        _.updateScore, moveType,
+        _.updateScore, { args: [ moveType, moveArray ] },
         _.isUpdating, true,
-        _.setLeavingTiles
+        _.setLeavingTiles, moveArray
       ]))
       .delay(300)
-      .then(_dispatch(_.fallTiles))
+      .then(_dispatch(_.fallTiles, moveArray))
       .delay(300)
       .then(batch(dispatch, [
-        _.shiftTiles,
+        _.shiftTiles, moveArray,
         _.setEntering,
         _.resetMagnitude,
         _.resetLeaving,
-        _.resetMoves,
-        _.isUpdating, false
+        _.resetMoves
       ]))
       .delay(200)
       .then(_dispatch(_.addTiles))
+      .then(_dispatch(_.isUpdating, false))
       .delay(700)
       .then(_dispatch(_.resetGrowSeeds))
       .delay(300)
