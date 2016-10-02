@@ -7,7 +7,10 @@ export default (seedMoves) => (dispatch) => {
 
   return Promise
     .resolve()
-    .then(_dispatch(_.setLeavingTiles, seedMoves))
+    .then(batch(dispatch, [
+      _.setLeavingTiles, seedMoves,
+      _.updateScore, { args: [ 'pod', seedMoves ] }
+    ]))
     .delay(300)
     .then(_dispatch(_.fallTiles, seedMoves))
     .delay(300)

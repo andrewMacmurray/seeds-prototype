@@ -29,7 +29,7 @@ export default (moveType) => (dispatch, getState) => {
       .resolve()
       .then(batch(dispatch, [
         _.setDrag, false,
-        _.updateScore, moveType,
+        _.updateScore, { args: [ moveType, moveArray ] },
         _.isUpdating, true,
         _.setLeavingTiles, moveArray
       ]))
@@ -41,11 +41,11 @@ export default (moveType) => (dispatch, getState) => {
         _.setEntering,
         _.resetMagnitude,
         _.resetLeaving,
-        _.resetMoves,
-        _.isUpdating, false
+        _.resetMoves
       ]))
       .delay(200)
       .then(_dispatch(_.addTiles))
+      .then(_dispatch(_.isUpdating, false))
       .delay(700)
       .then(_dispatch(_.resetGrowSeeds))
       .delay(300)
