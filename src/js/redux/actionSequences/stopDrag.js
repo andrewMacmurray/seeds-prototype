@@ -22,7 +22,7 @@ export default (moveType) => (dispatch, getState) => {
         .delay(700)
         .then(_dispatch(_.growSeeds))
         .delay(500)
-        .then(_dispatch(_.transformBoard, 4))
+        .then(_dispatch(_.growSeedsOnBoard))
     }
 
     return Promise
@@ -31,13 +31,13 @@ export default (moveType) => (dispatch, getState) => {
         _.setDrag, false,
         _.updateScore, moveType,
         _.isUpdating, true,
-        _.setLeavingTiles
+        _.setLeavingTiles, moveArray
       ]))
       .delay(300)
-      .then(_dispatch(_.fallTiles))
+      .then(_dispatch(_.fallTiles, moveArray))
       .delay(300)
       .then(batch(dispatch, [
-        _.shiftTiles,
+        _.shiftTiles, moveArray,
         _.setEntering,
         _.resetMagnitude,
         _.resetLeaving,

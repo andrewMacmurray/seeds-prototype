@@ -12,7 +12,20 @@ const mapBoard = (transformFn, extraData) =>
 const growMovesOnBoard = mapBoard(growSeedMove)
 
 const filterForTiles = filter(x => x !== 0)
-export const growingMoveArray = compose(filterForTiles, unnest, growMovesOnBoard)
+export const growingMoveArray = compose(
+  filterForTiles,
+  unnest,
+  growMovesOnBoard
+)
 
 const isTileGrowing = (_, i, j, moves) => filter(([ y, x ]) => x === j && y === i)(moves).length > 0
 export const isGrowingArray = (board, moves) => mapBoard(isTileGrowing, moves)(board)
+
+const isSeed = (tile, i, j) => tile === 4 ? [ i, j ] : 0
+const seedMovesOnBoard = mapBoard(isSeed)
+
+export const getSeedMoves = compose(
+  filterForTiles,
+  unnest,
+  seedMovesOnBoard
+)

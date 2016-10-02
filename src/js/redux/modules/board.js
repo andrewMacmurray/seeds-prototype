@@ -1,16 +1,15 @@
 import {
   randomBoard,
   transformTiles,
-  removeSeedsFromBoard,
   shiftBoard,
   addNewTiles
 } from '../../model'
-import { createAction } from 'redux-actions'
 
 // action types
 const SHIFT_TILES = 'SHIFT_TILES'
 const ADD_TILES = 'ADD_TILES'
-const TRANSFORM_BOARD = 'TRANSFORM_BOARD'
+const GROW_SEEDS_ON_BOARD = 'GROW_SEEDS_ON_BOARD'
+const REMOVE_SEEDS_FROM_BOARD = 'REMOVE_SEEDS_FROM_BOARD'
 
 // reducer
 const defaultState = randomBoard()
@@ -22,7 +21,10 @@ export default (state = defaultState, action) => {
   case ADD_TILES:
     return action.payload
 
-  case TRANSFORM_BOARD:
+  case GROW_SEEDS_ON_BOARD:
+    return action.payload
+
+  case REMOVE_SEEDS_FROM_BOARD:
     return action.payload
 
   default:
@@ -31,15 +33,11 @@ export default (state = defaultState, action) => {
 }
 
 // actions
-export const shiftTiles = () => (dispatch, getState) => {
-  const { board, moves: { moveArray } } = getState()
-
-  const newboard = moveArray.length > 0
-    ? shiftBoard(transformTiles(moveArray, board, 0))
-    : shiftBoard(removeSeedsFromBoard(board))
+export const shiftTiles = (moves) => (dispatch, getState) => {
+  const { board } = getState()
   dispatch({
     type: SHIFT_TILES,
-    payload: newboard
+    payload: shiftBoard(transformTiles(moves, board, 0))
   })
 }
 
@@ -51,10 +49,18 @@ export const addTiles = () => (dispatch, getState) => {
   })
 }
 
-export const transformBoard = (number) => (dispatch, getState) => {
+export const growSeedsOnBoard = () => (dispatch, getState) => {
   const { board, growingMoves } = getState()
   dispatch({
-    type: TRANSFORM_BOARD,
-    payload: transformTiles(growingMoves, board, number)
+    type: GROW_SEEDS_ON_BOARD,
+    payload: transformTiles(growingMoves, board, 4)
+  })
+}
+
+export const removeSeedsFromBoard = (moves) => (dispatch, getState) => {
+  const { board } = getState()
+  dispatch({
+    type: REMOVE_SEEDS_FROM_BOARD,
+    payload: transformTiles(moves, board, 0)
   })
 }

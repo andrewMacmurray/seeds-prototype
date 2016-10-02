@@ -27,11 +27,11 @@ export default (state = defaultState, action) => {
 // actions
 export const resetLeaving = createAction(RESET_LEAVING)
 
-export const setLeavingTiles = () => (dispatch, getState) => {
-  const { board, moves: { moveArray } } = getState()
+export const setLeavingTiles = (moves) => (dispatch, getState) => {
+  const { board } = getState()
   dispatch({
     type: SET_LEAVING_TILES,
-    payload: booleanArray(transformTiles(moveArray, board, 0))
+    payload: booleanArray(transformTiles(moves, board, 0))
   })
 }
 
