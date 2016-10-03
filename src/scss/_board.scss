@@ -26,15 +26,8 @@
   .falling-#{$i} {
     animation: bounceInDown-#{$i} 0.4s ease-in-out;
   }
-}
 
-@media (max-height: 650px) {
-  .board {
-    height: 365px;
-    width: 410px;
-  }
-
-  @for $i from 0 through 7 {
+  @media (max-height: 650px) {
     .x-#{$i} {
       top: ($grid-size / 1.1 - $grid-offset) * $i;
     }
@@ -42,8 +35,29 @@
       left: $grid-size / 1.1 * $i;
     }
     .falling-#{$i} {
-      animation: bounceInDown-#{$i} 0.3s;
+      transform: translateY(($grid-size / 1.38 - $grid-offset) * $i);
+      transition: transform 0.3s ease;
     }
+  }
+
+  @media (max-width: 440px) {
+    .x-#{$i} {
+      top: ($grid-size / 1.38 - $grid-offset) * $i;
+    }
+    .y-#{$i} {
+      left: $grid-size / 1.38 * $i;
+    }
+    .falling-#{$i} {
+      transform: translateY(($grid-size / 1.38 - $grid-offset) * $i);
+      transition: transform 0.3s ease;
+    }
+  }
+}
+
+@media (max-height: 650px) {
+  .board {
+    height: 365px;
+    width: 410px;
   }
 }
 
@@ -59,18 +73,5 @@
 
   .pod {
     background-size: 15px 25px;
-  }
-
-  @for $i from 0 through 7 {
-    .x-#{$i} {
-      top: ($grid-size / 1.38 - $grid-offset) * $i;
-    }
-    .y-#{$i} {
-      left: $grid-size / 1.38 * $i;
-    }
-    .falling-#{$i} {
-      transform: translateY(($grid-size / 1.38 - $grid-offset) * $i);
-      transition: transform 0.3s ease;
-    }
   }
 }
