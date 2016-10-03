@@ -19,48 +19,48 @@
 }
 
 
-@keyframes grow-seed {
-  0% {
-    opacity: 1;
-    transform: scale(1);
-    background: #78C143;
-    background-position: 50%, 50%;
-    background-size: 18px 30px;
-    background-repeat: no-repeat;
-  }
-  70% {
-    opacity: 0;
-    transform: scale(4);
-    background: #78C143;
-    background-position: 50%, 50%;
-    background-size: 18px 30px;
-    background-repeat: no-repeat;
-  }
-  71% {
-    opacity: 1;
-    transform: scale(0.1);
-    background: url(/img/seed.svg);
-    background-position: 50%, 50%;
-    background-size: 18px 30px;
-    background-repeat: no-repeat;
-  }
-  85% {
-    opacity: 1;
-    transform: scale(1.3);
-    background: url(/img/seed.svg);
-    background-position: 50%, 50%;
-    background-size: 18px 30px;
-    background-repeat: no-repeat;
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    background: url(/img/seed.svg);
-    background-position: 50%, 50%;
-    background-size: 18px 30px;
-    background-repeat: no-repeat;
-  }
-}
+// @keyframes grow-seed {
+//   0% {
+//     opacity: 1;
+//     transform: scale(1);
+//     background: #78C143;
+//     background-position: 50%, 50%;
+//     background-size: 18px 30px;
+//     background-repeat: no-repeat;
+//   }
+//   70% {
+//     opacity: 0;
+//     transform: scale(4);
+//     background: #78C143;
+//     background-position: 50%, 50%;
+//     background-size: 18px 30px;
+//     background-repeat: no-repeat;
+//   }
+//   71% {
+//     opacity: 1;
+//     transform: scale(0.1);
+//     background: url(/img/seed.svg);
+//     background-position: 50%, 50%;
+//     background-size: 18px 30px;
+//     background-repeat: no-repeat;
+//   }
+//   85% {
+//     opacity: 1;
+//     transform: scale(1.3);
+//     background: url(/img/seed.svg);
+//     background-position: 50%, 50%;
+//     background-size: 18px 30px;
+//     background-repeat: no-repeat;
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: scale(1);
+//     background: url(/img/seed.svg);
+//     background-position: 50%, 50%;
+//     background-size: 18px 30px;
+//     background-repeat: no-repeat;
+//   }
+// }
 
 @for $i from 1 through 12 {
   $d: $i / 2;
