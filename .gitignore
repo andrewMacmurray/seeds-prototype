@@ -36,7 +36,3 @@ audio
 backend/dist
 public/app.js
 public/app.js.map
-public/external.css
-dump.rdb
-config.env
-frontend/src/scss/_animate.scss
