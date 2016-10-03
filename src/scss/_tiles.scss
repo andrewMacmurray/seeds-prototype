@@ -103,22 +103,23 @@
 .growing {
   animation: grow-seed 1s ease;
   animation-fill-mode: forwards;
+  will-change: background-size, background, transform;
 }
 
 // seed pods
-.pod {
-  background: url(/img/seed.svg);
-  background-position: 50%, 50%;
-  background-size: 20px 30px;
-  background-repeat: no-repeat;
-}
-
-.circle {
-  background: url(/img/seed-circle.svg);
-  background-position: 50%, 50%;
-  background-size: 18px 30px;
-  background-repeat: no-repeat;
-}
+// .pod {
+//   background: url(/img/seed.svg);
+//   background-position: 50%, 50%;
+//   background-size: 20px 30px;
+//   background-repeat: no-repeat;
+// }
+//
+// .circle {
+//   background: url(/img/seed-circle.svg);
+//   background-position: 50%, 50%;
+//   background-size: 18px 30px;
+//   background-repeat: no-repeat;
+// }
 
 @media (max-width: 440px) {
   .pod.dragging {

@@ -1,5 +1,5 @@
+import Promise from 'bluebird'
 import * as _ from '../allActions.js'
-import Promise from 'extends-promise'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
 export default (moveType) => (dispatch, getState) => {
@@ -21,15 +21,18 @@ export default (moveType) => (dispatch, getState) => {
         .then(_dispatch(_.resetWeather, moveType))
         .delay(700)
         .then(_dispatch(_.growSeeds))
-        .delay(500)
-        .then(_dispatch(_.growSeedsOnBoard))
+        .delay(1000)
+        .then(batch(dispatch, [
+          _.growSeedsOnBoard,
+          _.resetGrowSeeds
+        ]))
     }
 
     return Promise
       .resolve()
       .then(batch(dispatch, [
         _.setDrag, false,
-        _.updateScore, { args: [ moveType, moveArray ] },
+        _.updateScore, moveType, moveArray,
         _.isUpdating, true,
         _.setLeavingTiles, moveArray
       ]))
@@ -46,9 +49,7 @@ export default (moveType) => (dispatch, getState) => {
       .delay(200)
       .then(_dispatch(_.addTiles))
       .then(_dispatch(_.isUpdating, false))
-      .delay(700)
-      .then(_dispatch(_.resetGrowSeeds))
-      .delay(300)
+      .delay(1000)
       .then(_dispatch(_.resetEntering))
   }
 }
