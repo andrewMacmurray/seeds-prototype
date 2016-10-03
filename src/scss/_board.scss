@@ -18,16 +18,17 @@
 
 @for $i from 0 through 7 {
   .x-#{$i} {
-    top: ($grid-size - $grid-offset) * $i;
+    top: ($grid-size / 1.38 - $grid-offset) * $i;
   }
   .y-#{$i} {
-    left: $grid-size * $i;
+    left: $grid-size / 1.38 * $i;
   }
   .falling-#{$i} {
-    animation: bounceInDown-#{$i} 0.4s ease-in-out;
+    transform: translateY(($grid-size / 1.38 - $grid-offset) * $i);
+    transition: transform 0.3s ease;
   }
 
-  @media (max-height: 650px) {
+  @media (min-height: 650px) {
     .x-#{$i} {
       top: ($grid-size / 1.1 - $grid-offset) * $i;
     }
@@ -35,21 +36,20 @@
       left: $grid-size / 1.1 * $i;
     }
     .falling-#{$i} {
-      transform: translateY(($grid-size / 1.38 - $grid-offset) * $i);
+      transform: translateY(($grid-size / 1.1 - $grid-offset) * $i);
       transition: transform 0.3s ease;
     }
   }
 
-  @media (max-width: 440px) {
+  @media (min-width: 440px) {
     .x-#{$i} {
-      top: ($grid-size / 1.38 - $grid-offset) * $i;
+      top: ($grid-size - $grid-offset) * $i;
     }
     .y-#{$i} {
-      left: $grid-size / 1.38 * $i;
+      left: $grid-size * $i;
     }
     .falling-#{$i} {
-      transform: translateY(($grid-size / 1.38 - $grid-offset) * $i);
-      transition: transform 0.3s ease;
+      animation: bounceInDown-#{$i} 0.4s ease-in-out;
     }
   }
 }
