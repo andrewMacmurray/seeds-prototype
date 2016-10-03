@@ -1,5 +1,5 @@
+import Promise from 'bluebird'
 import * as _ from '../allActions.js'
-import Promise from 'extends-promise'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
 export default (moveType) => (dispatch, getState) => {
@@ -29,7 +29,7 @@ export default (moveType) => (dispatch, getState) => {
       .resolve()
       .then(batch(dispatch, [
         _.setDrag, false,
-        _.updateScore, { args: [ moveType, moveArray ] },
+        _.updateScore, moveType, moveArray,
         _.isUpdating, true,
         _.setLeavingTiles, moveArray
       ]))

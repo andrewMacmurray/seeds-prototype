@@ -1,4 +1,4 @@
-import Promise from 'extends-promise'
+import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { makeLazyDispatcher } from '../_thunkHelpers.js'
 

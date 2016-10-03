@@ -10,7 +10,7 @@ export default (seedMoves) => (dispatch) => {
     .then(batch(dispatch, [
       _.setLeavingTiles, seedMoves,
       _.isUpdating, true,
-      _.updateScore, { args: [ 'pod', seedMoves ] }
+      _.updateScore, 'pod', seedMoves
     ]))
     .delay(1400)
     .then(_dispatch(_.fallTiles, seedMoves))
