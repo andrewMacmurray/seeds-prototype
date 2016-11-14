@@ -1,4 +1,4 @@
-$main-font: Rubik, droid Sans, Helvetica Neue, Helvetica, Arial;
+$main-font: Ek Mukta, Rubik, droid Sans, Helvetica Neue, Helvetica, Arial;
 
 // colors
 
@@ -6,12 +6,16 @@ $main-font: Rubik, droid Sans, Helvetica Neue, Helvetica, Arial;
 $orange: #FFA000;
 $blue: #26AAE1;
 $green: #78C143;
+$darker-green: #71af44;
 $brown: #7B4728;
 
 // board backgrounds
 $beige: #FFFBB3;
 $sun-background: #FFA828;
 $rain-background: #61BCFF;
+
+// gradient backgrounds
+$seedling-background: linear-gradient(90deg, $green, $green 50%, $darker-green 51%, $darker-green);
 
 // hover colors
 $rain-hover: #26DACC;
