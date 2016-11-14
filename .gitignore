@@ -34,5 +34,4 @@ node_modules
 
 backend/dist
 public/app.js.map
-dump.rdb
 config.env

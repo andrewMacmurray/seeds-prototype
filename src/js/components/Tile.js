@@ -3,20 +3,26 @@ import ReactDOM from 'react-dom'
 import { addListener, removeListener } from 'spur-events'
 import classNames from 'classnames'
 
-export default class Seed extends React.Component {
+export default class Seed extends React.PureComponent {
   componentDidMount () {
-    const el = ReactDOM.findDOMNode(this.container)
-    addListener(el, 'pointerenter', (e) => {
-      e.preventDefault()
-      this.props.checkTile(e)
-    })
-    addListener(el, 'pointerdown', (e) => this.props.startDrag(e))
+    const $el = this.getContainer()
+    addListener($el, 'pointerenter', this.pointerEnterListener)
+    addListener($el, 'pointerdown', this.props.startDrag)
   }
 
   componentWillUnmount () {
-    const el = ReactDOM.findDOMNode(this.container)
-    removeListener(el, 'pointerenter', (e) => this.props.checkTile(e))
-    removeListener(el, 'pointerdown', (e) => this.props.startDrag(e))
+    const $el = this.getContainer()
+    removeListener($el, 'pointerenter')
+    removeListener($el, 'pointerdown')
+  }
+
+  pointerEnterListener = (e) => {
+    e.preventDefault()
+    this.props.checkTile(e)
+  }
+
+  getContainer () {
+    return ReactDOM.findDOMNode(this.container)
   }
 
   render () {

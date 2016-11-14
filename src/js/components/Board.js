@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import tileClassMap from '../constants/tileClasses.js'
 import Tile from './Tile.js'
 
-class Board extends React.Component {
+class Board extends React.PureComponent {
 
   componentDidMount () {
     addListener(window, 'pointerup', this.stopSequence)
