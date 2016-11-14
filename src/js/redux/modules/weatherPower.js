@@ -1,4 +1,4 @@
-import { lensProp, view } from 'ramda'
+import { prop } from 'ramda'
 
 // action types
 const WEATHER_POWER = 'WEATHER_POWER'
@@ -19,7 +19,7 @@ export default (state = defaultState, action) => {
   }
 }
 
-const sunAndRain = view(lensProp('weather'))
+const sunAndRain = prop('weather')
 const add = (weather) => (type, x) => type === weather ? x + 1 : x
 const addRain = add('rain')
 const addSun = add('sun')
@@ -28,16 +28,11 @@ const addSun = add('sun')
 export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
   const state = getState()
   const { sun, rain } = sunAndRain(state)
-  const { moves: { moveArray } } = state
 
-  const addPower = {
+  const newWeatherPower = {
     sun: addSun(weatherType, sun),
     rain: addRain(weatherType, rain)
   }
-
-  const newWeatherPower = moveArray.length > 1
-    ? addPower
-    : { sun, rain }
 
   dispatch({
     type: WEATHER_POWER,

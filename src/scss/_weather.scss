@@ -1,5 +1,5 @@
 .rain-falling {
-  background-color: $rain-background;
+  background: $rain-background;
 }
 
 .rain-maker {
@@ -19,7 +19,7 @@
 }
 
 .sun-shining {
-  background-color: $sun-background;
+  background: $sun-background;
 }
 
 @for $i from 0 through 12 {
