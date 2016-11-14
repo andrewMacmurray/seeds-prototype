@@ -20,12 +20,12 @@ export default (moveType) => (dispatch, getState) => {
         .resolve()
         .then(_dispatch(_.resetWeather, moveType))
         .delay(700)
-        .then(_dispatch(_.growSeeds))
-        .delay(1000)
         .then(batch(dispatch, [
-          _.growSeedsOnBoard,
-          _.resetGrowSeeds
+          _.growSeeds,
+          _.growSeedsOnBoard
         ]))
+        .delay(1000)
+        .then(_dispatch(_.resetGrowSeeds))
     }
 
     return Promise
