@@ -23,7 +23,7 @@ class Audio extends React.Component {
 
   render () {
     return (
-      <audio src='./audio/martin-buttrich.mp3' />
+      <audio preload='auto' src='./audio/martin-buttrich.mp3' />
     )
   }
 }

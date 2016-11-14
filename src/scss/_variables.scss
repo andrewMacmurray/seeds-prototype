@@ -13,9 +13,12 @@ $brown: #7B4728;
 $beige: #FFFBB3;
 $sun-background: #FFA828;
 $rain-background: #61BCFF;
+$dark-blue: #1e406b;
+$midnight-blue: #011025;
 
 // gradient backgrounds
 $seedling-background: linear-gradient(90deg, $green, $green 50%, $darker-green 51%, $darker-green);
+$midnight-background: linear-gradient(0deg, $dark-blue, $midnight-blue);
 
 // hover colors
 $rain-hover: #26DACC;
