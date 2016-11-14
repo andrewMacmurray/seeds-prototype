@@ -44,6 +44,6 @@
 .pod {
   background: url(img/seed.svg);
   background-position: center;
-  background-size: 20px 30px;
+  background-size: contain;
   background-repeat: no-repeat;
 }
