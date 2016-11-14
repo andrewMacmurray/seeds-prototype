@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node lib/server.js",
     "dev": "webpack-dev-server --hot --inline --content-base public/",
-    "watch": "webpack -p --watch --progress",
+    "watch": "webpack --watch --progress",
     "test": "nodemon src/test/_runner.js --exec babel-node --presets es2015, stage-1"
   },
   "repository": {
