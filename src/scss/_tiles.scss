@@ -103,10 +103,15 @@
   }
 }
 
-.growing {
-  animation: grow-seed 1s ease;
+.pod.growing {
+  animation: elasticBounceIn 0.5s ease;
   animation-fill-mode: forwards;
-  will-change: background-size, background, transform;
+}
+
+.seedling.growing {
+  transform: scale(4);
+  opacity: 0;
+  transition: 0.5s ease-out;
 }
 
 // seed pods
