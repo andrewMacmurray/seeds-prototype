@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node lib/server.js",
-    "dev": "webpack-dev-server --hot --inline --content-base public/",
+    "dev": "webpack-dev-server --host 0.0.0.0 --hot --inline --content-base public/",
     "watch": "webpack --watch --progress",
     "test": "nodemon src/test/_runner.js --exec babel-node --presets es2015, stage-1"
   },

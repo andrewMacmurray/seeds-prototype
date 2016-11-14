@@ -36,8 +36,9 @@ class Board extends React.PureComponent {
   }
 
   stopSequence = () => {
+    const { moveType, seedlingCount } = this.props
     this.triggerWeather()
-    this.props.stopDrag(this.props.moveType)
+    this.props.stopDrag(moveType, seedlingCount)
   }
 
   animateBackground (type) {
@@ -114,6 +115,7 @@ import isDraggingArray from '../redux/selectors/selector_isDraggingArray.js'
 import isGrowingArray from '../redux/selectors/selector_isGrowingArray.js'
 import moveType from '../redux/selectors/selector_moveType.js'
 import seedMoves from '../redux/selectors/selector_seedMoves.js'
+import seedlingCount from '../redux/selectors/selector_seedlingCount.js'
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -124,6 +126,7 @@ const mapStateToProps = (state) => ({
   rain: state.weather.rain,
   isGrowingArray: isGrowingArray(state),
   moveType: moveType(state),
+  seedlingCount: seedlingCount(state),
   seedMoves: seedMoves(state)
 })
 
