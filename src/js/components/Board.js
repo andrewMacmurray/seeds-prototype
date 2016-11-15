@@ -72,9 +72,11 @@ class Board extends React.PureComponent {
   render () {
     return (
       <div className='board-container'>
-        <div onClick={this.harvestSeeds} className='logo'><img src='img/seed-dark.png'/></div>
-        <div className={this.weatherMakerClass('rain')}></div>
-        <div className={this.weatherMakerClass('sun')}></div>
+        <div className='top-bar-container'>
+          <div className={this.weatherMakerClass('rain')}></div>
+          <div onClick={this.harvestSeeds} className='logo'><img src='img/seed-dark.png'/></div>
+          <div className={this.weatherMakerClass('sun')}></div>
+        </div>
         <p className='score'>{this.props.score}</p>
         <div className='board'>
             {this.props.board.map((row, i) =>

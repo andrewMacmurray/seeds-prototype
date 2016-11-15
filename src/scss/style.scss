@@ -44,8 +44,8 @@ p, a {
 
 .logo {
   text-align: center;
-  width: 50px;
-  margin: 60px auto 0;
+  width: 40px;
+  margin: 0 auto;
   -webkit-user-select: none;
   opacity: 0;
   animation: fadeIn 0.3s ease-in;
@@ -69,8 +69,8 @@ p, a {
 
 .menu {
   position: fixed;
-  right: 50px;
-  top: 20px;
+  right: 20px;
+  top: 10px;
   z-index: 10;
   @include no-select;
 }
@@ -80,6 +80,9 @@ p, a {
   margin-left: 32px;
   font-size: 12px;
   letter-spacing: 3px;
+  font-size: 10px;
+  margin-left: 15px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   cursor: pointer;
   @include no-select;
@@ -93,28 +96,20 @@ p, a {
   @include no-select;
 }
 
-@media (max-height: 650px) {
+@media (min-height: $height-m), (min-width: $width-m) {
   .logo {
-    width: 40px;
-    margin: 40px auto 0;
-  }
-
-  .board {
-    margin: 9vh auto;
+    width: 50px;
   }
 }
 
-@media (max-width: 440px) {
-  .board {
-    margin: 9vh auto;
-  }
+@media (min-width: $width-m) and (min-height: $height-m) {
   .menu {
-    right: 20px;
-    top: 10px;
+    right: 50px;
+    top: 20px;
   }
   .menu-item {
-    font-size: 10px;
-    margin-left: 15px;
-    letter-spacing: 2px;
+    margin-left: 32px;
+    font-size: 12px;
+    letter-spacing: 3px;
   }
 }

@@ -3,10 +3,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: $grid-small;
+  height: $grid-small;
 }
-
 
 .tile {
   border-radius: 50%;
@@ -129,7 +128,12 @@
 //   background-repeat: no-repeat;
 // }
 
-@media (min-width: 440px) {
+@media (min-width: $width-m) and (min-height: $height-m) {
+  .tile-container {
+    width: $grid-medium;
+    height: $grid-medium;
+  }
+
   .sun, .rain {
     padding: 10px;
   }

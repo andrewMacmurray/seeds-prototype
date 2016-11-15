@@ -16,7 +16,7 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
         .then(_dispatch(_.growSeeds, seedlingCount))
         .delay(500)
         .then(_dispatch(_.growSeedsOnBoard))
-        .delay(1200)
+        .delay(500)
         .then(_dispatch(_.resetGrowSeeds))
     }
 
