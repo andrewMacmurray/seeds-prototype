@@ -2,35 +2,23 @@ import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
-export default (moveType, seedlingCount) => (dispatch, getState) => {
+export default (moveType) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { updating, isDragging, weather: { rain, sun }, moves: { moveArray } } = getState()
+  const { updating, isDragging, moves: { moveArray } } = getState()
 
   if (!updating && isDragging) {
-
-    if (rain > 12 || sun > 12) {
-      Promise
-        .resolve()
-        .then(_dispatch(_.resetWeather, moveType))
-        .delay(800)
-        .then(_dispatch(_.growSeeds, seedlingCount))
-        .delay(500)
-        .then(_dispatch(_.growSeedsOnBoard))
-        .delay(1200)
-        .then(_dispatch(_.resetGrowSeeds))
-    }
-
-    return Promise
+    Promise
       .resolve()
       .then(batch(dispatch, [
         _.setDrag, false,
+        _.addPowerToWeather, moveType,
         _.updateScore, moveType, moveArray,
         _.isUpdating, true,
         _.setLeavingTiles, moveArray
       ]))
       .delay(300)
       .then(_dispatch(_.fallTiles, moveArray))
-      .delay(300)
+      .delay(600)
       .then(batch(dispatch, [
         _.shiftTiles, moveArray,
         _.setEntering,

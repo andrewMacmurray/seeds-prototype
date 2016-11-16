@@ -14,6 +14,7 @@ $beige: #FFFBB3;
 $sun-background: #FFA828;
 $rain-background: #61BCFF;
 $dark-blue: #1e406b;
+$rain-blue: #0267b1;
 $midnight-blue: #011025;
 
 // gradient backgrounds
@@ -36,5 +37,30 @@ $mustard: #F5993D;
 $dusty-red: #EB4C48;
 
 // grid size
-$grid-size: 57px;
-$grid-offset: 4;
+$grid-large: 60px;
+$grid-medium: $grid-large / 1.1;
+$grid-small: $grid-large / 1.45;
+$grid-xs: $grid-large / 1.6;
+
+$grid-offset-large: 12;
+$grid-offset-medium: 8;
+$grid-offset-small: 4;
+
+$board-height-xs: $grid-xs * 8;
+$board-width-xs: $grid-xs * 8;
+
+$board-height-small: $grid-small * 8;
+$board-width-small: $grid-small * 8;
+
+$board-height-medium: $grid-medium * 8;
+$board-width-medium: $grid-medium * 8;
+
+$board-height-large: $grid-large * 8;
+$board-width-large: $grid-large * 8;
+
+// breakpoints
+$height-m: 670px;
+$width-m: 550px;
+
+$height-l: 900px;
+$width-l: 1000px;

@@ -1,18 +1,37 @@
 import { prop } from 'ramda'
+import { createAction } from 'redux-actions'
 
 // action types
 const WEATHER_POWER = 'WEATHER_POWER'
 const RESET_WEATHER = 'RESET_WEATHER'
+const SET_RAINING_STATE = 'SET_RAINING_STATE'
 
 // reducer
-const defaultState = { rain: 0, sun: 0 }
+const defaultState = {
+  rain: 0,
+  sun: 0,
+  isRaining: false
+}
+
 export default (state = defaultState, action) => {
   switch (action.type) {
   case WEATHER_POWER:
-    return action.payload
+    return {
+      ...state,
+      ...action.payload
+    }
 
   case RESET_WEATHER:
-    return action.payload
+    return {
+      ...state,
+      ...action.payload
+    }
+
+  case SET_RAINING_STATE:
+    return {
+      ...state,
+      isRaining: action.payload
+    }
 
   default:
     return state
@@ -20,7 +39,9 @@ export default (state = defaultState, action) => {
 }
 
 const sunAndRain = prop('weather')
-const add = (weather) => (type, x) => type === weather ? x + 1 : x
+const add = (weather) => (type, power, moves) => type === weather
+  ? power + moves.length
+  : power
 const addRain = add('rain')
 const addSun = add('sun')
 
@@ -28,10 +49,11 @@ const addSun = add('sun')
 export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
   const state = getState()
   const { sun, rain } = sunAndRain(state)
+  const { moves: { moveArray } } = state
 
   const newWeatherPower = {
-    sun: addSun(weatherType, sun),
-    rain: addRain(weatherType, rain)
+    sun: addSun(weatherType, sun, moveArray),
+    rain: addRain(weatherType, rain, moveArray)
   }
 
   dispatch({
@@ -41,7 +63,9 @@ export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
 }
 
 export const resetWeather = (weatherType) => (dispatch, getState) => {
-  const { sun, rain } = sunAndRain(getState())
+  const state = getState()
+  const { sun, rain } = sunAndRain(state)
+
   const newWeatherPower = {
     sun: weatherType === 'sun' ? 0 : sun,
     rain: weatherType === 'rain' ? 0 : rain
@@ -51,3 +75,5 @@ export const resetWeather = (weatherType) => (dispatch, getState) => {
     payload: newWeatherPower
   })
 }
+
+export const setRainingState = createAction(SET_RAINING_STATE, x => x)

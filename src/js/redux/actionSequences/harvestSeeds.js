@@ -2,10 +2,12 @@ import Promise from 'bluebird'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 import * as _ from '../allActions.js'
 
-export default (seedMoves) => (dispatch) => {
+export default (seedMoves) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
+  const { updating } = getState()
 
-  return Promise
+  if (!updating) {
+    return Promise
     .resolve()
     .then(batch(dispatch, [
       _.setLeavingTiles, seedMoves,
@@ -26,4 +28,5 @@ export default (seedMoves) => (dispatch) => {
     .then(_dispatch(_.addTiles))
     .delay(700)
     .then(_dispatch(_.resetEntering))
+  }
 }
