@@ -2,14 +2,22 @@
   position: fixed;
   left: 0;
   right: 0;
+  margin: 0em 0;
   -webkit-tap-highlight-color: transparent;
 }
 
+.top-bar-container {
+  width: 16.7em;
+  margin: 40px auto 0;
+  display: flex;
+  align-items: center;
+}
+
 .board {
-  margin: 12vh auto;
+  height: $board-height-small;
+  width: $board-width-small;
+  margin: 4em auto;
   position: absolute;
-  height: $grid-size * 7;
-  width: 450px;
   left: 0;
   right: 0;
   cursor: pointer;
@@ -18,52 +26,44 @@
 
 @for $i from 0 through 7 {
   .x-#{$i} {
-    top: ($grid-size / 1.38 - $grid-offset) * $i;
+    top: ($grid-small - $grid-offset-small) * $i;
   }
   .y-#{$i} {
-    left: $grid-size / 1.38 * $i;
+    left: $grid-small * $i;
   }
   .falling-#{$i} {
-    transform: translateY(($grid-size / 1.38 - $grid-offset) * $i);
+    transform: translateY(($grid-small - $grid-offset-small) * $i);
     transition: transform 0.3s ease;
   }
 
-  @media (min-height: 650px) {
+  @media (min-height: $height-m) and (min-width: $width-m) {
     .x-#{$i} {
-      top: ($grid-size / 1.1 - $grid-offset) * $i;
+      top: ($grid-medium - $grid-offset-small) * $i;
     }
     .y-#{$i} {
-      left: $grid-size / 1.1 * $i;
-    }
-    .falling-#{$i} {
-      transform: translateY(($grid-size / 1.1 - $grid-offset) * $i);
-      transition: transform 0.3s ease;
-    }
-  }
-
-  @media (min-width: 440px) {
-    .x-#{$i} {
-      top: ($grid-size - $grid-offset) * $i;
-    }
-    .y-#{$i} {
-      left: $grid-size * $i;
+      left: $grid-medium * $i;
     }
     .falling-#{$i} {
       animation: bounceInDown-#{$i} 0.4s ease-in-out;
+      animation-fill-mode: both;
     }
   }
 }
 
-@media (max-height: 650px) {
+@media (min-height: $height-m) and (min-width: $width-m) {
   .board {
-    height: 365px;
-    width: 410px;
+    height: $board-height-medium;
+    width: $board-width-medium;
+  }
+
+  .top-bar-container {
+    width: 24.5em;
+    margin: 60px auto 0;
   }
 }
 
-@media (max-width: 440px) {
-  .board {
-    height: 250px;
-    width: 335px;
+@media (min-height: $height-l) {
+  .board-container {
+    margin: 5em 0;
   }
 }

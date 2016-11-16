@@ -3,6 +3,7 @@ import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import tileClassMap from '../constants/tileClasses.js'
 import Tile from './Tile.js'
+import RainCurtain from './RainCurtain.js'
 
 class Board extends React.PureComponent {
 
@@ -37,7 +38,6 @@ class Board extends React.PureComponent {
 
   stopSequence = () => {
     const { moveType, seedlingCount } = this.props
-    this.triggerWeather()
     this.props.stopDrag(moveType, seedlingCount)
   }
 
@@ -50,10 +50,11 @@ class Board extends React.PureComponent {
     setTimeout(() => body.remove(weatherClass), 3000)
   }
 
-  triggerWeather = () => {
-    const { sun, rain } = this.props
-    if (sun > 12) this.animateBackground('sun')
-    if (rain > 12) this.animateBackground('rain')
+  triggerWeather = (weatherType) => {
+    const { sun, rain, seedlingCount } = this.props
+    if (sun >= 8) this.animateBackground('sun')
+    if (rain >= 8) this.animateBackground('rain')
+    this.props.triggerWeather(weatherType, seedlingCount)
   }
 
   harvestSeeds = () => {
@@ -70,22 +71,33 @@ class Board extends React.PureComponent {
   }
 
   render () {
+    const {
+      isLeavingArray,
+      isDraggingArray,
+      fallingMagnitudeArray,
+      isEnteringArray,
+      isGrowingArray,
+      isRaining
+    } = this.props
+
     return (
       <div className='board-container'>
-        <div onClick={this.harvestSeeds} className='logo'><img src='img/seed-dark.png'/></div>
-        <div className={this.weatherMakerClass('rain')}></div>
-        <div className={this.weatherMakerClass('sun')}></div>
+        <RainCurtain isRaining={isRaining} />
+        <div className='top-bar-container'>
+          <div
+            onClick={() => this.triggerWeather('rain')}
+            className={this.weatherMakerClass('rain')}
+          />
+          <div onClick={this.harvestSeeds} className='logo'><img src='img/seed-dark.png'/></div>
+          <div
+            onClick={() => this.triggerWeather('sun')}
+            className={this.weatherMakerClass('sun')}
+          />
+        </div>
         <p className='score'>{this.props.score}</p>
         <div className='board'>
             {this.props.board.map((row, i) =>
                 row.map((tile, j) => {
-                  const {
-                    isLeavingArray,
-                    isDraggingArray,
-                    fallingMagnitudeArray,
-                    isEnteringArray,
-                    isGrowingArray
-                  } = this.props
                   const tileType = tileClassMap[tile]
                   return tile > 0
                   ? <Tile
@@ -93,10 +105,10 @@ class Board extends React.PureComponent {
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}
                     key={'tile-' + i + '-' + j}
-                    isLeavingBool={isLeavingArray[i][j] ? `leaving delay-${i + j}` : ''}
-                    isDraggingBool={isDraggingArray[i][j] ? 'dragging' : ''}
-                    isEnteringBool={isEnteringArray[i][j] ? 'entering' : ''}
-                    isGrowingBool={isGrowingArray[i][j] ? 'growing' : ''}
+                    isLeaving={isLeavingArray[i][j] ? `leaving delay-${i + j}` : ''}
+                    isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
+                    isEntering={isEnteringArray[i][j] ? 'entering' : ''}
+                    isGrowing={isGrowingArray[i][j] ? 'growing' : ''}
                     isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
                     y={i}
                     x={j}
@@ -134,6 +146,7 @@ import stopDrag from '../redux/actionSequences/stopDrag.js'
 import startDrag from '../redux/actionSequences/startDrag.js'
 import checkTile from '../redux/actionSequences/checkTile.js'
 import harvestSeeds from '../redux/actionSequences/harvestSeeds.js'
+import triggerWeather from '../redux/actionSequences/triggerWeather.js'
 import { resetEntering } from '../redux/allActions.js'
 
 export default connect(mapStateToProps, {
@@ -141,5 +154,6 @@ export default connect(mapStateToProps, {
   stopDrag,
   startDrag,
   harvestSeeds,
-  checkTile
+  checkTile,
+  triggerWeather
 })(Board)

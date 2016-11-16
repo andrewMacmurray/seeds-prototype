@@ -9,7 +9,7 @@ import * as isUpdating from './modules/isUpdating.js'
 import * as moves from './modules/moves.js'
 import * as score from './modules/score.js'
 import * as setDrag from './modules/setDrag.js'
-import * as weatherPower from './modules/weatherPower.js'
+import * as weather from './modules/weather.js'
 import * as view from './modules/view.js'
 import * as loading from './modules/loadingScreen.js'
 
@@ -25,7 +25,7 @@ module.exports = {
   ...moves,
   ...score,
   ...setDrag,
-  ...weatherPower,
+  ...weather,
   ...view,
   ...loading
 }
