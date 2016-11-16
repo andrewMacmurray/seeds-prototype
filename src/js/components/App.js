@@ -4,6 +4,7 @@ import TitleScreen from './TitleScreen.js'
 import Loading from './Loading.js'
 import Intro from './Intro.js'
 import Audio from './Audio.js'
+import RainCurtain from './RainCurtain.js'
 
 import { connect } from 'react-redux'
 import { setView, playAudio, stopAudio } from '../redux/allActions.js'
@@ -34,6 +35,7 @@ class App extends React.Component {
   }
 
   render () {
+    const { isRaining } = this.props.weather
     return (
       <div>
         {this.renderLoadingScreen()}
@@ -43,6 +45,7 @@ class App extends React.Component {
         </div>
         <Audio />
         {this.router()}
+        <RainCurtain isRaining={isRaining} />
         <div className='audio-controls'>
           <p className='menu-item' onClick={this.props.playAudio}>play</p>
           <p className='menu-item' onClick={this.props.stopAudio}>pause</p>

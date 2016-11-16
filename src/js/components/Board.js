@@ -3,7 +3,6 @@ import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import tileClassMap from '../constants/tileClasses.js'
 import Tile from './Tile.js'
-import RainCurtain from './RainCurtain.js'
 
 class Board extends React.PureComponent {
 
@@ -76,13 +75,11 @@ class Board extends React.PureComponent {
       isDraggingArray,
       fallingMagnitudeArray,
       isEnteringArray,
-      isGrowingArray,
-      isRaining
+      isGrowingArray
     } = this.props
 
     return (
       <div className='board-container'>
-        <RainCurtain isRaining={isRaining} />
         <div className='top-bar-container'>
           <div
             onClick={() => this.triggerWeather('rain')}
