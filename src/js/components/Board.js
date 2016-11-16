@@ -37,7 +37,6 @@ class Board extends React.PureComponent {
 
   stopSequence = () => {
     const { moveType, seedlingCount } = this.props
-    this.triggerWeather()
     this.props.stopDrag(moveType, seedlingCount)
   }
 
@@ -50,10 +49,12 @@ class Board extends React.PureComponent {
     setTimeout(() => body.remove(weatherClass), 3000)
   }
 
-  triggerWeather = () => {
-    const { sun, rain } = this.props
+  triggerWeather = (weatherType) => {
+    console.log('triggered', weatherType)
+    const { sun, rain, seedlingCount } = this.props
     if (sun > 12) this.animateBackground('sun')
     if (rain > 12) this.animateBackground('rain')
+    this.props.triggerWeather(weatherType, seedlingCount)
   }
 
   harvestSeeds = () => {
@@ -73,9 +74,15 @@ class Board extends React.PureComponent {
     return (
       <div className='board-container'>
         <div className='top-bar-container'>
-          <div className={this.weatherMakerClass('rain')}></div>
+          <div
+            onClick={() => this.triggerWeather('rain')}
+            className={this.weatherMakerClass('rain')}
+          />
           <div onClick={this.harvestSeeds} className='logo'><img src='img/seed-dark.png'/></div>
-          <div className={this.weatherMakerClass('sun')}></div>
+          <div
+            onClick={() => this.triggerWeather('sun')}
+            className={this.weatherMakerClass('sun')}
+          />
         </div>
         <p className='score'>{this.props.score}</p>
         <div className='board'>
@@ -95,10 +102,10 @@ class Board extends React.PureComponent {
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}
                     key={'tile-' + i + '-' + j}
-                    isLeavingBool={isLeavingArray[i][j] ? `leaving delay-${i + j}` : ''}
-                    isDraggingBool={isDraggingArray[i][j] ? 'dragging' : ''}
-                    isEnteringBool={isEnteringArray[i][j] ? 'entering' : ''}
-                    isGrowingBool={isGrowingArray[i][j] ? 'growing' : ''}
+                    isLeaving={isLeavingArray[i][j] ? `leaving delay-${i + j}` : ''}
+                    isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
+                    isEntering={isEnteringArray[i][j] ? 'entering' : ''}
+                    isGrowing={isGrowingArray[i][j] ? 'growing' : ''}
                     isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
                     y={i}
                     x={j}
@@ -136,6 +143,7 @@ import stopDrag from '../redux/actionSequences/stopDrag.js'
 import startDrag from '../redux/actionSequences/startDrag.js'
 import checkTile from '../redux/actionSequences/checkTile.js'
 import harvestSeeds from '../redux/actionSequences/harvestSeeds.js'
+import triggerWeather from '../redux/actionSequences/triggerWeather.js'
 import { resetEntering } from '../redux/allActions.js'
 
 export default connect(mapStateToProps, {
@@ -143,5 +151,6 @@ export default connect(mapStateToProps, {
   stopDrag,
   startDrag,
   harvestSeeds,
-  checkTile
+  checkTile,
+  triggerWeather
 })(Board)

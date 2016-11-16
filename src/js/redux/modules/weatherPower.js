@@ -20,7 +20,9 @@ export default (state = defaultState, action) => {
 }
 
 const sunAndRain = prop('weather')
-const add = (weather) => (type, x) => type === weather ? x + 1 : x
+const add = (weather) => (type, power, moves) => type === weather
+  ? power + moves.length
+  : power
 const addRain = add('rain')
 const addSun = add('sun')
 
@@ -28,10 +30,11 @@ const addSun = add('sun')
 export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
   const state = getState()
   const { sun, rain } = sunAndRain(state)
+  const { moves: { moveArray } } = state
 
   const newWeatherPower = {
-    sun: addSun(weatherType, sun),
-    rain: addRain(weatherType, rain)
+    sun: addSun(weatherType, sun, moveArray),
+    rain: addRain(weatherType, rain, moveArray)
   }
 
   dispatch({
@@ -41,7 +44,9 @@ export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
 }
 
 export const resetWeather = (weatherType) => (dispatch, getState) => {
-  const { sun, rain } = sunAndRain(getState())
+  const state = getState()
+  const { sun, rain } = sunAndRain(state)
+
   const newWeatherPower = {
     sun: weatherType === 'sun' ? 0 : sun,
     rain: weatherType === 'rain' ? 0 : rain

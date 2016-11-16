@@ -30,10 +30,10 @@ export default class Seed extends React.PureComponent {
       tileType,
       x,
       y,
-      isGrowingBool,
-      isLeavingBool,
-      isDraggingBool,
-      isEnteringBool,
+      isGrowing,
+      isLeaving,
+      isDragging,
+      isEntering,
       isFalling
     } = this.props
     const seedType = tileType === 'pod' ? '' : false
@@ -45,11 +45,11 @@ export default class Seed extends React.PureComponent {
     const tileClasses = classNames(
       tileType,
       seedType,
-      isGrowingBool,
+      isGrowing,
       'tile',
-      isLeavingBool,
-      isDraggingBool,
-      isEnteringBool,
+      isLeaving,
+      isDragging,
+      isEntering,
       isFalling
     )
     return (

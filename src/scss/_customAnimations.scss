@@ -34,6 +34,7 @@
   100% { transform: scale(1) }
 }
 
+// TODO: need to remove, refactor splash screen to use velocity-react
 @for $i from 1 through 12 {
   $d: $i / 2;
   .duration-#{$d} {

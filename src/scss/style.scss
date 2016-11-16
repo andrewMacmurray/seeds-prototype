@@ -96,7 +96,7 @@ p, a {
   @include no-select;
 }
 
-@media (min-height: $height-m), (min-width: $width-m) {
+@media (min-height: $height-m) and (min-width: $width-m) {
   .logo {
     width: 50px;
   }

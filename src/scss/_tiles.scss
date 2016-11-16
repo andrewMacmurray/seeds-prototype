@@ -22,22 +22,10 @@
   opacity: 1;
 }
 
-.sun::after {
-  // width: 70px;
-  // height: 10px;
-  // background-color: #F26521;
-  // margin: 10px;
-  // border: 78px;
-  // position: absolute;
-  // content: '';
-  // transform-origin: 9% 60%;
-  // transform: rotateZ(43deg);
-}
-
 .rain {
   padding: 7px;
   background-color: $blue;
-  transform: scale(1);
+  transform: translate(0, 0) scale(1);
   opacity: 1;
 }
 
@@ -52,16 +40,12 @@
   opacity: 1;
 }
 
-.pod.dragging {
-  transition: background-size 0.1s ease;
-  background-size: 9px 14px;
-}
-
 .rain.dragging,
 .sun.dragging,
-.seedling.dragging {
+.seedling.dragging,
+.pod.dragging {
   transition: 0.3s ease;
-  transform: scale(0.5);
+  transform: translate(0, 0) scale(0.5);
 }
 
 // animations
@@ -69,16 +53,27 @@
   animation: bounceInDown 0.6s ease;
 }
 
-.sun.leaving {
-  transition: 0.5s ease;
-  opacity: 0;
-  transform: scale(3);
-}
+@for $i from 0 through 7 {
+  @for $j from 0 through 7 {
+    .y-#{$i}.x-#{$j} {
 
-.rain.leaving {
-  transition: 0.5s ease;
-  opacity: 0;
-  transform: scale(3);
+      .rain.leaving {
+        $x: $grid-small * (-$i) + 20px;
+        $y: $grid-small * (-$j) - 110px;
+        transform: translate($x, $y) scale(0.3);
+        transition: 1s ease;
+      }
+
+      .sun.leaving {
+        $i2: 7 - $i;
+
+        $x: $grid-small * ($i2) - 20px;
+        $y: $grid-small * (-$j) - 110px;
+        transition: 1s ease-in-out;
+        transform: translate($x, $y) scale(0.3);
+      }
+    }
+  }
 }
 
 .seedling.leaving {
@@ -113,21 +108,6 @@
   transition: 0.5s ease-out;
 }
 
-// seed pods
-// .pod {
-//   background: url(/img/seed.svg);
-//   background-position: 50%, 50%;
-//   background-size: 20px 30px;
-//   background-repeat: no-repeat;
-// }
-//
-// .circle {
-//   background: url(/img/seed-circle.svg);
-//   background-position: 50%, 50%;
-//   background-size: 18px 30px;
-//   background-repeat: no-repeat;
-// }
-
 @media (min-width: $width-m) and (min-height: $height-m) {
   .tile-container {
     width: $grid-medium;
@@ -139,14 +119,33 @@
   }
 
   .seedling {
-    padding: 12px;
+    padding: 13px;
   }
 
   .pod {
     padding: 19px;
   }
 
-  .pod.dragging {
-    background-size: 13px 22px;
+  @for $i from 0 through 7 {
+    @for $j from 0 through 7 {
+      .y-#{$i}.x-#{$j} {
+
+        .rain.leaving {
+          $x: $grid-medium * (-$i);
+          $y: $grid-medium * (-$j) - 120px;
+          transition: 1s ease-in-out;
+          transform: translate($x, $y) scale(0.2);
+        }
+
+        .sun.leaving {
+          $i2: 7 - $i;
+
+          $x: $grid-medium * ($i2);
+          $y: $grid-medium * (-$j) - 120px;
+          transition: 1s ease-in-out;
+          transform: translate($x, $y) scale(1);
+        }
+      }
+    }
   }
 }
