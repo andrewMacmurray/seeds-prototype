@@ -37,6 +37,7 @@
 .rain-curtain {
   transition: 2s ease;
   position: fixed;
+  z-index: 0;
   display: flex;
   justify-content: center;
   top: 0;
