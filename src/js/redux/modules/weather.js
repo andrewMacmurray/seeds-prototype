@@ -1,18 +1,37 @@
 import { prop } from 'ramda'
+import { createAction } from 'redux-actions'
 
 // action types
 const WEATHER_POWER = 'WEATHER_POWER'
 const RESET_WEATHER = 'RESET_WEATHER'
+const SET_RAINING_STATE = 'SET_RAINING_STATE'
 
 // reducer
-const defaultState = { rain: 0, sun: 0 }
+const defaultState = {
+  rain: 0,
+  sun: 0,
+  isRaining: false
+}
+
 export default (state = defaultState, action) => {
   switch (action.type) {
   case WEATHER_POWER:
-    return action.payload
+    return {
+      ...state,
+      ...action.payload
+    }
 
   case RESET_WEATHER:
-    return action.payload
+    return {
+      ...state,
+      ...action.payload
+    }
+
+  case SET_RAINING_STATE:
+    return {
+      ...state,
+      isRaining: action.payload
+    }
 
   default:
     return state
@@ -56,3 +75,5 @@ export const resetWeather = (weatherType) => (dispatch, getState) => {
     payload: newWeatherPower
   })
 }
+
+export const setRainingState = createAction(SET_RAINING_STATE, x => x)

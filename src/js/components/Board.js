@@ -3,6 +3,7 @@ import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
 import tileClassMap from '../constants/tileClasses.js'
 import Tile from './Tile.js'
+import RainCurtain from './RainCurtain.js'
 
 class Board extends React.PureComponent {
 
@@ -50,10 +51,9 @@ class Board extends React.PureComponent {
   }
 
   triggerWeather = (weatherType) => {
-    console.log('triggered', weatherType)
     const { sun, rain, seedlingCount } = this.props
-    if (sun > 12) this.animateBackground('sun')
-    if (rain > 12) this.animateBackground('rain')
+    if (sun >= 8) this.animateBackground('sun')
+    if (rain >= 8) this.animateBackground('rain')
     this.props.triggerWeather(weatherType, seedlingCount)
   }
 
@@ -73,6 +73,7 @@ class Board extends React.PureComponent {
   render () {
     return (
       <div className='board-container'>
+        <RainCurtain isRaining={this.props.weather.isRaining} />
         <div className='top-bar-container'>
           <div
             onClick={() => this.triggerWeather('rain')}

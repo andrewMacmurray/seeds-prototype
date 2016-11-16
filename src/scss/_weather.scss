@@ -34,6 +34,42 @@
   animation: sun-pulse 1s infinite linear;
 }
 
+.rain-curtain {
+  transition: 2s ease;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 100vh;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+}
+
+.rain-drop {
+  width: 2px;
+  height: 20px;
+  background-color: $rain-blue;
+  margin: 0 1em;
+  will-change: translateY, opacity;
+}
+
+@for $i from 1 through 16 {
+  .rain-drop:nth-child(#{$i}) {
+    animation: fall 0.5s linear infinite;
+    animation-delay: $i * 0.3s;
+  }
+}
+
 @keyframes rain-pulse {
   0% { background-color: $rain-background; }
   50% { background-color: rgb(71, 139, 255); }
@@ -44,4 +80,10 @@
   0% { background-color: $sun-background; }
   50% { background-color: rgb(249, 93, 52); }
   100% { background-color: $sun-background; }
+}
+
+@media (min-height: $height-m), (min-width: $width-m) {
+  .rain-curtain {
+    width: 100%;
+  }
 }

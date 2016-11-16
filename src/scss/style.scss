@@ -42,6 +42,10 @@ p, a {
   color: $text-yellow;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .logo {
   text-align: center;
   width: 40px;
