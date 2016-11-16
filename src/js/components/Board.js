@@ -71,9 +71,18 @@ class Board extends React.PureComponent {
   }
 
   render () {
+    const {
+      isLeavingArray,
+      isDraggingArray,
+      fallingMagnitudeArray,
+      isEnteringArray,
+      isGrowingArray,
+      isRaining
+    } = this.props
+
     return (
       <div className='board-container'>
-        <RainCurtain isRaining={this.props.weather.isRaining} />
+        <RainCurtain isRaining={isRaining} />
         <div className='top-bar-container'>
           <div
             onClick={() => this.triggerWeather('rain')}
@@ -89,13 +98,6 @@ class Board extends React.PureComponent {
         <div className='board'>
             {this.props.board.map((row, i) =>
                 row.map((tile, j) => {
-                  const {
-                    isLeavingArray,
-                    isDraggingArray,
-                    fallingMagnitudeArray,
-                    isEnteringArray,
-                    isGrowingArray
-                  } = this.props
                   const tileType = tileClassMap[tile]
                   return tile > 0
                   ? <Tile
