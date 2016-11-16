@@ -38602,25 +38602,29 @@
 
 	var _Board2 = _interopRequireDefault(_Board);
 
-	var _TitleScreen = __webpack_require__(402);
+	var _TitleScreen = __webpack_require__(401);
 
 	var _TitleScreen2 = _interopRequireDefault(_TitleScreen);
 
-	var _Loading = __webpack_require__(406);
+	var _Loading = __webpack_require__(405);
 
 	var _Loading2 = _interopRequireDefault(_Loading);
 
-	var _Intro = __webpack_require__(407);
+	var _Intro = __webpack_require__(406);
 
 	var _Intro2 = _interopRequireDefault(_Intro);
 
-	var _Audio = __webpack_require__(493);
+	var _Audio = __webpack_require__(492);
 
 	var _Audio2 = _interopRequireDefault(_Audio);
 
+	var _RainCurtain = __webpack_require__(493);
+
+	var _RainCurtain2 = _interopRequireDefault(_RainCurtain);
+
 	var _reactRedux = __webpack_require__(172);
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	var _flashLoadingScreen = __webpack_require__(494);
 
@@ -38679,6 +38683,8 @@
 	    value: function render() {
 	      var _this3 = this;
 
+	      var isRaining = this.props.weather.isRaining;
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -38703,6 +38709,7 @@
 	        ),
 	        _react2.default.createElement(_Audio2.default, null),
 	        this.router(),
+	        _react2.default.createElement(_RainCurtain2.default, { isRaining: isRaining }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'audio-controls' },
@@ -38766,51 +38773,47 @@
 
 	var _Tile2 = _interopRequireDefault(_Tile);
 
-	var _RainCurtain = __webpack_require__(386);
-
-	var _RainCurtain2 = _interopRequireDefault(_RainCurtain);
-
-	var _selector_isDraggingArray = __webpack_require__(387);
+	var _selector_isDraggingArray = __webpack_require__(386);
 
 	var _selector_isDraggingArray2 = _interopRequireDefault(_selector_isDraggingArray);
 
-	var _selector_isGrowingArray = __webpack_require__(389);
+	var _selector_isGrowingArray = __webpack_require__(388);
 
 	var _selector_isGrowingArray2 = _interopRequireDefault(_selector_isGrowingArray);
 
-	var _selector_moveType = __webpack_require__(390);
+	var _selector_moveType = __webpack_require__(389);
 
 	var _selector_moveType2 = _interopRequireDefault(_selector_moveType);
 
-	var _selector_seedMoves = __webpack_require__(391);
+	var _selector_seedMoves = __webpack_require__(390);
 
 	var _selector_seedMoves2 = _interopRequireDefault(_selector_seedMoves);
 
-	var _selector_seedlingCount = __webpack_require__(392);
+	var _selector_seedlingCount = __webpack_require__(391);
 
 	var _selector_seedlingCount2 = _interopRequireDefault(_selector_seedlingCount);
 
-	var _stopDrag = __webpack_require__(393);
+	var _stopDrag = __webpack_require__(392);
 
 	var _stopDrag2 = _interopRequireDefault(_stopDrag);
 
-	var _startDrag = __webpack_require__(398);
+	var _startDrag = __webpack_require__(397);
 
 	var _startDrag2 = _interopRequireDefault(_startDrag);
 
-	var _checkTile = __webpack_require__(399);
+	var _checkTile = __webpack_require__(398);
 
 	var _checkTile2 = _interopRequireDefault(_checkTile);
 
-	var _harvestSeeds = __webpack_require__(400);
+	var _harvestSeeds = __webpack_require__(399);
 
 	var _harvestSeeds2 = _interopRequireDefault(_harvestSeeds);
 
-	var _triggerWeather = __webpack_require__(401);
+	var _triggerWeather = __webpack_require__(400);
 
 	var _triggerWeather2 = _interopRequireDefault(_triggerWeather);
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38922,13 +38925,11 @@
 	      var fallingMagnitudeArray = _props.fallingMagnitudeArray;
 	      var isEnteringArray = _props.isEnteringArray;
 	      var isGrowingArray = _props.isGrowingArray;
-	      var isRaining = _props.weather.isRaining;
 
 
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'board-container' },
-	        _react2.default.createElement(_RainCurtain2.default, { isRaining: isRaining }),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'top-bar-container' },
@@ -40269,40 +40270,7 @@
 	  value: true
 	});
 
-	var _ramda = __webpack_require__(349);
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (props) {
-	  var visibility = props.isRaining ? '' : 'hidden';
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'rain-curtain ' + visibility },
-	    (0, _ramda.times)(function (i) {
-	      return _react2.default.createElement('div', { key: i, className: 'rain-drop' });
-	    }, 16)
-	  );
-	};
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "RainCurtain.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 387 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _reselect = __webpack_require__(388);
+	var _reselect = __webpack_require__(387);
 
 	var _model = __webpack_require__(353);
 
@@ -40323,7 +40291,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "selector_isDraggingArray.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 388 */
+/* 387 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -40443,7 +40411,7 @@
 	}
 
 /***/ },
-/* 389 */
+/* 388 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -40454,7 +40422,7 @@
 	  value: true
 	});
 
-	var _reselect = __webpack_require__(388);
+	var _reselect = __webpack_require__(387);
 
 	var _model = __webpack_require__(353);
 
@@ -40474,14 +40442,14 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "selector_isGrowingArray.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 390 */
+/* 389 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
-	var _reselect = __webpack_require__(388);
+	var _reselect = __webpack_require__(387);
 
 	var _tileClasses = __webpack_require__(383);
 
@@ -40504,14 +40472,14 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "selector_moveType.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 391 */
+/* 390 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
-	var _reselect = __webpack_require__(388);
+	var _reselect = __webpack_require__(387);
 
 	var _model = __webpack_require__(353);
 
@@ -40524,14 +40492,14 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "selector_seedMoves.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 392 */
+/* 391 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
 	'use strict';
 
-	var _reselect = __webpack_require__(388);
+	var _reselect = __webpack_require__(387);
 
 	var _index = __webpack_require__(353);
 
@@ -40544,7 +40512,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "selector_seedlingCount.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 393 */
+/* 392 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -40555,15 +40523,15 @@
 	  value: true
 	});
 
-	var _bluebird = __webpack_require__(394);
+	var _bluebird = __webpack_require__(393);
 
 	var _bluebird2 = _interopRequireDefault(_bluebird);
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	var _ = _interopRequireWildcard(_allActions);
 
-	var _thunkHelpers = __webpack_require__(397);
+	var _thunkHelpers = __webpack_require__(396);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -40589,7 +40557,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "stopDrag.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 394 */
+/* 393 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, global, setImmediate) {/* @preserve
@@ -46190,10 +46158,10 @@
 
 	},{"./es5":13}]},{},[4])(4)
 	});                    ;if (typeof window !== 'undefined' && window !== null) {                               window.P = window.Promise;                                                     } else if (typeof self !== 'undefined' && self !== null) {                             self.P = self.Promise;                                                         }
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), (function() { return this; }()), __webpack_require__(395).setImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), (function() { return this; }()), __webpack_require__(394).setImmediate))
 
 /***/ },
-/* 395 */
+/* 394 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(3).nextTick;
@@ -46272,10 +46240,10 @@
 	exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
 	  delete immediateIds[id];
 	};
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(395).setImmediate, __webpack_require__(395).clearImmediate))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(394).setImmediate, __webpack_require__(394).clearImmediate))
 
 /***/ },
-/* 396 */
+/* 395 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46347,7 +46315,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "allActions.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 397 */
+/* 396 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46419,7 +46387,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "_thunkHelpers.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 398 */
+/* 397 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46432,7 +46400,7 @@
 
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	var _ = _interopRequireWildcard(_allActions);
 
@@ -46459,7 +46427,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "startDrag.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 399 */
+/* 398 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46470,7 +46438,7 @@
 	  value: true
 	});
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	var _ = _interopRequireWildcard(_allActions);
 
@@ -46493,7 +46461,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "checkTile.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 400 */
+/* 399 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46504,13 +46472,13 @@
 	  value: true
 	});
 
-	var _bluebird = __webpack_require__(394);
+	var _bluebird = __webpack_require__(393);
 
 	var _bluebird2 = _interopRequireDefault(_bluebird);
 
-	var _thunkHelpers = __webpack_require__(397);
+	var _thunkHelpers = __webpack_require__(396);
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	var _ = _interopRequireWildcard(_allActions);
 
@@ -46536,7 +46504,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "harvestSeeds.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 401 */
+/* 400 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46547,15 +46515,15 @@
 	  value: true
 	});
 
-	var _bluebird = __webpack_require__(394);
+	var _bluebird = __webpack_require__(393);
 
 	var _bluebird2 = _interopRequireDefault(_bluebird);
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	var _ = _interopRequireWildcard(_allActions);
 
-	var _thunkHelpers = __webpack_require__(397);
+	var _thunkHelpers = __webpack_require__(396);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -46585,7 +46553,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "triggerWeather.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 402 */
+/* 401 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46604,15 +46572,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _TwinSeed = __webpack_require__(403);
+	var _TwinSeed = __webpack_require__(402);
 
 	var _TwinSeed2 = _interopRequireDefault(_TwinSeed);
 
-	var _CircleSeed = __webpack_require__(404);
+	var _CircleSeed = __webpack_require__(403);
 
 	var _CircleSeed2 = _interopRequireDefault(_CircleSeed);
 
-	var _SingleSeed = __webpack_require__(405);
+	var _SingleSeed = __webpack_require__(404);
 
 	var _SingleSeed2 = _interopRequireDefault(_SingleSeed);
 
@@ -46622,7 +46590,7 @@
 
 	var _reactRedux = __webpack_require__(172);
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46721,7 +46689,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "TitleScreen.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 403 */
+/* 402 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46765,7 +46733,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "TwinSeed.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 404 */
+/* 403 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46803,7 +46771,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "CircleSeed.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 405 */
+/* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46836,7 +46804,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "SingleSeed.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 406 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46851,7 +46819,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _TwinSeed = __webpack_require__(403);
+	var _TwinSeed = __webpack_require__(402);
 
 	var _TwinSeed2 = _interopRequireDefault(_TwinSeed);
 
@@ -46878,7 +46846,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Loading.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 407 */
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -46899,21 +46867,21 @@
 
 	var _reactRedux = __webpack_require__(172);
 
-	var _velocityReact = __webpack_require__(408);
+	var _velocityReact = __webpack_require__(407);
 
-	var _introSequence = __webpack_require__(492);
+	var _introSequence = __webpack_require__(491);
 
 	var _introSequence2 = _interopRequireDefault(_introSequence);
 
-	var _TwinSeed = __webpack_require__(403);
+	var _TwinSeed = __webpack_require__(402);
 
 	var _TwinSeed2 = _interopRequireDefault(_TwinSeed);
 
-	var _SingleSeed = __webpack_require__(405);
+	var _SingleSeed = __webpack_require__(404);
 
 	var _SingleSeed2 = _interopRequireDefault(_SingleSeed);
 
-	var _CircleSeed = __webpack_require__(404);
+	var _CircleSeed = __webpack_require__(403);
 
 	var _CircleSeed2 = _interopRequireDefault(_CircleSeed);
 
@@ -47027,7 +46995,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Intro.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 408 */
+/* 407 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Convenience main entrypoint if you are running with destructuring support:
@@ -47045,14 +47013,14 @@
 	//   require('velocity-animate/velocity.ui');
 
 	module.exports = {
-	  VelocityComponent: __webpack_require__(409),
-	  VelocityTransitionGroup: __webpack_require__(461),
-	  velocityHelpers: __webpack_require__(491),
+	  VelocityComponent: __webpack_require__(408),
+	  VelocityTransitionGroup: __webpack_require__(460),
+	  velocityHelpers: __webpack_require__(490),
 	};
 
 
 /***/ },
-/* 409 */
+/* 408 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -47091,14 +47059,14 @@
 	*/
 
 	var _ = {
-	  forEach: __webpack_require__(410),
-	  isEqual: __webpack_require__(436),
-	  keys: __webpack_require__(418),
-	  omit: __webpack_require__(444),
+	  forEach: __webpack_require__(409),
+	  isEqual: __webpack_require__(435),
+	  keys: __webpack_require__(417),
+	  omit: __webpack_require__(443),
 	};
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
-	var Velocity = __webpack_require__(459);
+	var Velocity = __webpack_require__(458);
 
 	var VelocityComponent = React.createClass({
 	  displayName: 'VelocityComponent',
@@ -47225,12 +47193,12 @@
 
 
 /***/ },
-/* 410 */
+/* 409 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayEach = __webpack_require__(411),
-	    baseEach = __webpack_require__(412),
-	    createForEach = __webpack_require__(433);
+	var arrayEach = __webpack_require__(410),
+	    baseEach = __webpack_require__(411),
+	    createForEach = __webpack_require__(432);
 
 	/**
 	 * Iterates over elements of `collection` invoking `iteratee` for each element.
@@ -47268,7 +47236,7 @@
 
 
 /***/ },
-/* 411 */
+/* 410 */
 /***/ function(module, exports) {
 
 	/**
@@ -47296,11 +47264,11 @@
 
 
 /***/ },
-/* 412 */
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseForOwn = __webpack_require__(413),
-	    createBaseEach = __webpack_require__(432);
+	var baseForOwn = __webpack_require__(412),
+	    createBaseEach = __webpack_require__(431);
 
 	/**
 	 * The base implementation of `_.forEach` without support for callback
@@ -47317,11 +47285,11 @@
 
 
 /***/ },
-/* 413 */
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseFor = __webpack_require__(414),
-	    keys = __webpack_require__(418);
+	var baseFor = __webpack_require__(413),
+	    keys = __webpack_require__(417);
 
 	/**
 	 * The base implementation of `_.forOwn` without support for callback
@@ -47340,10 +47308,10 @@
 
 
 /***/ },
-/* 414 */
+/* 413 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var createBaseFor = __webpack_require__(415);
+	var createBaseFor = __webpack_require__(414);
 
 	/**
 	 * The base implementation of `baseForIn` and `baseForOwn` which iterates
@@ -47363,10 +47331,10 @@
 
 
 /***/ },
-/* 415 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toObject = __webpack_require__(416);
+	var toObject = __webpack_require__(415);
 
 	/**
 	 * Creates a base function for `_.forIn` or `_.forInRight`.
@@ -47396,10 +47364,10 @@
 
 
 /***/ },
-/* 416 */
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(417);
+	var isObject = __webpack_require__(416);
 
 	/**
 	 * Converts `value` to an object if it's not one.
@@ -47416,7 +47384,7 @@
 
 
 /***/ },
-/* 417 */
+/* 416 */
 /***/ function(module, exports) {
 
 	/**
@@ -47450,13 +47418,13 @@
 
 
 /***/ },
-/* 418 */
+/* 417 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(419),
-	    isArrayLike = __webpack_require__(423),
-	    isObject = __webpack_require__(417),
-	    shimKeys = __webpack_require__(427);
+	var getNative = __webpack_require__(418),
+	    isArrayLike = __webpack_require__(422),
+	    isObject = __webpack_require__(416),
+	    shimKeys = __webpack_require__(426);
 
 	/* Native method references for those with the same name as other `lodash` methods. */
 	var nativeKeys = getNative(Object, 'keys');
@@ -47501,10 +47469,10 @@
 
 
 /***/ },
-/* 419 */
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isNative = __webpack_require__(420);
+	var isNative = __webpack_require__(419);
 
 	/**
 	 * Gets the native function at `key` of `object`.
@@ -47523,11 +47491,11 @@
 
 
 /***/ },
-/* 420 */
+/* 419 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(421),
-	    isObjectLike = __webpack_require__(422);
+	var isFunction = __webpack_require__(420),
+	    isObjectLike = __webpack_require__(421);
 
 	/** Used to detect host constructors (Safari > 5). */
 	var reIsHostCtor = /^\[object .+?Constructor\]$/;
@@ -47577,10 +47545,10 @@
 
 
 /***/ },
-/* 421 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(417);
+	var isObject = __webpack_require__(416);
 
 	/** `Object#toString` result references. */
 	var funcTag = '[object Function]';
@@ -47621,7 +47589,7 @@
 
 
 /***/ },
-/* 422 */
+/* 421 */
 /***/ function(module, exports) {
 
 	/**
@@ -47639,11 +47607,11 @@
 
 
 /***/ },
-/* 423 */
+/* 422 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getLength = __webpack_require__(424),
-	    isLength = __webpack_require__(426);
+	var getLength = __webpack_require__(423),
+	    isLength = __webpack_require__(425);
 
 	/**
 	 * Checks if `value` is array-like.
@@ -47660,10 +47628,10 @@
 
 
 /***/ },
-/* 424 */
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseProperty = __webpack_require__(425);
+	var baseProperty = __webpack_require__(424);
 
 	/**
 	 * Gets the "length" property value of `object`.
@@ -47681,7 +47649,7 @@
 
 
 /***/ },
-/* 425 */
+/* 424 */
 /***/ function(module, exports) {
 
 	/**
@@ -47701,7 +47669,7 @@
 
 
 /***/ },
-/* 426 */
+/* 425 */
 /***/ function(module, exports) {
 
 	/**
@@ -47727,14 +47695,14 @@
 
 
 /***/ },
-/* 427 */
+/* 426 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArguments = __webpack_require__(428),
-	    isArray = __webpack_require__(429),
-	    isIndex = __webpack_require__(430),
-	    isLength = __webpack_require__(426),
-	    keysIn = __webpack_require__(431);
+	var isArguments = __webpack_require__(427),
+	    isArray = __webpack_require__(428),
+	    isIndex = __webpack_require__(429),
+	    isLength = __webpack_require__(425),
+	    keysIn = __webpack_require__(430);
 
 	/** Used for native method references. */
 	var objectProto = Object.prototype;
@@ -47774,11 +47742,11 @@
 
 
 /***/ },
-/* 428 */
+/* 427 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLike = __webpack_require__(423),
-	    isObjectLike = __webpack_require__(422);
+	var isArrayLike = __webpack_require__(422),
+	    isObjectLike = __webpack_require__(421);
 
 	/** Used for native method references. */
 	var objectProto = Object.prototype;
@@ -47814,12 +47782,12 @@
 
 
 /***/ },
-/* 429 */
+/* 428 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(419),
-	    isLength = __webpack_require__(426),
-	    isObjectLike = __webpack_require__(422);
+	var getNative = __webpack_require__(418),
+	    isLength = __webpack_require__(425),
+	    isObjectLike = __webpack_require__(421);
 
 	/** `Object#toString` result references. */
 	var arrayTag = '[object Array]';
@@ -47860,7 +47828,7 @@
 
 
 /***/ },
-/* 430 */
+/* 429 */
 /***/ function(module, exports) {
 
 	/** Used to detect unsigned integer values. */
@@ -47890,14 +47858,14 @@
 
 
 /***/ },
-/* 431 */
+/* 430 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArguments = __webpack_require__(428),
-	    isArray = __webpack_require__(429),
-	    isIndex = __webpack_require__(430),
-	    isLength = __webpack_require__(426),
-	    isObject = __webpack_require__(417);
+	var isArguments = __webpack_require__(427),
+	    isArray = __webpack_require__(428),
+	    isIndex = __webpack_require__(429),
+	    isLength = __webpack_require__(425),
+	    isObject = __webpack_require__(416);
 
 	/** Used for native method references. */
 	var objectProto = Object.prototype;
@@ -47960,12 +47928,12 @@
 
 
 /***/ },
-/* 432 */
+/* 431 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getLength = __webpack_require__(424),
-	    isLength = __webpack_require__(426),
-	    toObject = __webpack_require__(416);
+	var getLength = __webpack_require__(423),
+	    isLength = __webpack_require__(425),
+	    toObject = __webpack_require__(415);
 
 	/**
 	 * Creates a `baseEach` or `baseEachRight` function.
@@ -47997,11 +47965,11 @@
 
 
 /***/ },
-/* 433 */
+/* 432 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var bindCallback = __webpack_require__(434),
-	    isArray = __webpack_require__(429);
+	var bindCallback = __webpack_require__(433),
+	    isArray = __webpack_require__(428);
 
 	/**
 	 * Creates a function for `_.forEach` or `_.forEachRight`.
@@ -48023,10 +47991,10 @@
 
 
 /***/ },
-/* 434 */
+/* 433 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var identity = __webpack_require__(435);
+	var identity = __webpack_require__(434);
 
 	/**
 	 * A specialized version of `baseCallback` which only supports `this` binding
@@ -48068,7 +48036,7 @@
 
 
 /***/ },
-/* 435 */
+/* 434 */
 /***/ function(module, exports) {
 
 	/**
@@ -48094,11 +48062,11 @@
 
 
 /***/ },
-/* 436 */
+/* 435 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsEqual = __webpack_require__(437),
-	    bindCallback = __webpack_require__(434);
+	var baseIsEqual = __webpack_require__(436),
+	    bindCallback = __webpack_require__(433);
 
 	/**
 	 * Performs a deep comparison between two values to determine if they are
@@ -48154,12 +48122,12 @@
 
 
 /***/ },
-/* 437 */
+/* 436 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsEqualDeep = __webpack_require__(438),
-	    isObject = __webpack_require__(417),
-	    isObjectLike = __webpack_require__(422);
+	var baseIsEqualDeep = __webpack_require__(437),
+	    isObject = __webpack_require__(416),
+	    isObjectLike = __webpack_require__(421);
 
 	/**
 	 * The base implementation of `_.isEqual` without support for `this` binding
@@ -48188,14 +48156,14 @@
 
 
 /***/ },
-/* 438 */
+/* 437 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var equalArrays = __webpack_require__(439),
-	    equalByTag = __webpack_require__(441),
-	    equalObjects = __webpack_require__(442),
-	    isArray = __webpack_require__(429),
-	    isTypedArray = __webpack_require__(443);
+	var equalArrays = __webpack_require__(438),
+	    equalByTag = __webpack_require__(440),
+	    equalObjects = __webpack_require__(441),
+	    isArray = __webpack_require__(428),
+	    isTypedArray = __webpack_require__(442);
 
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]',
@@ -48296,10 +48264,10 @@
 
 
 /***/ },
-/* 439 */
+/* 438 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arraySome = __webpack_require__(440);
+	var arraySome = __webpack_require__(439);
 
 	/**
 	 * A specialized version of `baseIsEqualDeep` for arrays with support for
@@ -48353,7 +48321,7 @@
 
 
 /***/ },
-/* 440 */
+/* 439 */
 /***/ function(module, exports) {
 
 	/**
@@ -48382,7 +48350,7 @@
 
 
 /***/ },
-/* 441 */
+/* 440 */
 /***/ function(module, exports) {
 
 	/** `Object#toString` result references. */
@@ -48436,10 +48404,10 @@
 
 
 /***/ },
-/* 442 */
+/* 441 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var keys = __webpack_require__(418);
+	var keys = __webpack_require__(417);
 
 	/** Used for native method references. */
 	var objectProto = Object.prototype;
@@ -48509,11 +48477,11 @@
 
 
 /***/ },
-/* 443 */
+/* 442 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isLength = __webpack_require__(426),
-	    isObjectLike = __webpack_require__(422);
+	var isLength = __webpack_require__(425),
+	    isObjectLike = __webpack_require__(421);
 
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]',
@@ -48589,17 +48557,17 @@
 
 
 /***/ },
-/* 444 */
+/* 443 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayMap = __webpack_require__(445),
-	    baseDifference = __webpack_require__(446),
-	    baseFlatten = __webpack_require__(453),
-	    bindCallback = __webpack_require__(434),
-	    keysIn = __webpack_require__(431),
-	    pickByArray = __webpack_require__(455),
-	    pickByCallback = __webpack_require__(456),
-	    restParam = __webpack_require__(458);
+	var arrayMap = __webpack_require__(444),
+	    baseDifference = __webpack_require__(445),
+	    baseFlatten = __webpack_require__(452),
+	    bindCallback = __webpack_require__(433),
+	    keysIn = __webpack_require__(430),
+	    pickByArray = __webpack_require__(454),
+	    pickByCallback = __webpack_require__(455),
+	    restParam = __webpack_require__(457);
 
 	/**
 	 * The opposite of `_.pick`; this method creates an object composed of the
@@ -48642,7 +48610,7 @@
 
 
 /***/ },
-/* 445 */
+/* 444 */
 /***/ function(module, exports) {
 
 	/**
@@ -48669,12 +48637,12 @@
 
 
 /***/ },
-/* 446 */
+/* 445 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIndexOf = __webpack_require__(447),
-	    cacheIndexOf = __webpack_require__(449),
-	    createCache = __webpack_require__(450);
+	var baseIndexOf = __webpack_require__(446),
+	    cacheIndexOf = __webpack_require__(448),
+	    createCache = __webpack_require__(449);
 
 	/** Used as the size to enable large array optimizations. */
 	var LARGE_ARRAY_SIZE = 200;
@@ -48730,10 +48698,10 @@
 
 
 /***/ },
-/* 447 */
+/* 446 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var indexOfNaN = __webpack_require__(448);
+	var indexOfNaN = __webpack_require__(447);
 
 	/**
 	 * The base implementation of `_.indexOf` without support for binary searches.
@@ -48763,7 +48731,7 @@
 
 
 /***/ },
-/* 448 */
+/* 447 */
 /***/ function(module, exports) {
 
 	/**
@@ -48792,10 +48760,10 @@
 
 
 /***/ },
-/* 449 */
+/* 448 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(417);
+	var isObject = __webpack_require__(416);
 
 	/**
 	 * Checks if `value` is in `cache` mimicking the return signature of
@@ -48817,11 +48785,11 @@
 
 
 /***/ },
-/* 450 */
+/* 449 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {var SetCache = __webpack_require__(451),
-	    getNative = __webpack_require__(419);
+	/* WEBPACK VAR INJECTION */(function(global) {var SetCache = __webpack_require__(450),
+	    getNative = __webpack_require__(418);
 
 	/** Native method references. */
 	var Set = getNative(global, 'Set');
@@ -48845,11 +48813,11 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 451 */
+/* 450 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(global) {var cachePush = __webpack_require__(452),
-	    getNative = __webpack_require__(419);
+	/* WEBPACK VAR INJECTION */(function(global) {var cachePush = __webpack_require__(451),
+	    getNative = __webpack_require__(418);
 
 	/** Native method references. */
 	var Set = getNative(global, 'Set');
@@ -48881,10 +48849,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 452 */
+/* 451 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(417);
+	var isObject = __webpack_require__(416);
 
 	/**
 	 * Adds `value` to the cache.
@@ -48907,14 +48875,14 @@
 
 
 /***/ },
-/* 453 */
+/* 452 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayPush = __webpack_require__(454),
-	    isArguments = __webpack_require__(428),
-	    isArray = __webpack_require__(429),
-	    isArrayLike = __webpack_require__(423),
-	    isObjectLike = __webpack_require__(422);
+	var arrayPush = __webpack_require__(453),
+	    isArguments = __webpack_require__(427),
+	    isArray = __webpack_require__(428),
+	    isArrayLike = __webpack_require__(422),
+	    isObjectLike = __webpack_require__(421);
 
 	/**
 	 * The base implementation of `_.flatten` with added support for restricting
@@ -48954,7 +48922,7 @@
 
 
 /***/ },
-/* 454 */
+/* 453 */
 /***/ function(module, exports) {
 
 	/**
@@ -48980,10 +48948,10 @@
 
 
 /***/ },
-/* 455 */
+/* 454 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toObject = __webpack_require__(416);
+	var toObject = __webpack_require__(415);
 
 	/**
 	 * A specialized version of `_.pick` which picks `object` properties specified
@@ -49014,10 +48982,10 @@
 
 
 /***/ },
-/* 456 */
+/* 455 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseForIn = __webpack_require__(457);
+	var baseForIn = __webpack_require__(456);
 
 	/**
 	 * A specialized version of `_.pick` which picks `object` properties `predicate`
@@ -49042,11 +49010,11 @@
 
 
 /***/ },
-/* 457 */
+/* 456 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseFor = __webpack_require__(414),
-	    keysIn = __webpack_require__(431);
+	var baseFor = __webpack_require__(413),
+	    keysIn = __webpack_require__(430);
 
 	/**
 	 * The base implementation of `_.forIn` without support for callback
@@ -49065,7 +49033,7 @@
 
 
 /***/ },
-/* 458 */
+/* 457 */
 /***/ function(module, exports) {
 
 	/** Used as the `TypeError` message for "Functions" methods. */
@@ -49129,7 +49097,7 @@
 
 
 /***/ },
-/* 459 */
+/* 458 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {// Shim to avoid requiring Velocity in Node environments, since it
@@ -49147,14 +49115,14 @@
 	  var g = (window.jQuery || window.Zepto || window);
 
 	  // require Velocity if it doesn't already exist
-	  module.exports = g.Velocity ? g.Velocity : __webpack_require__(460);
+	  module.exports = g.Velocity ? g.Velocity : __webpack_require__(459);
 
 	}
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 460 */
+/* 459 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! VelocityJS.org (1.2.3). (C) 2014 Julian Shapiro. MIT @license: en.wikipedia.org/wiki/MIT_License */
@@ -53045,7 +53013,7 @@
 	will produce an inaccurate conversion value. The same issue exists with the cx/cy attributes of SVG circles and ellipses. */
 
 /***/ },
-/* 461 */
+/* 460 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -53091,18 +53059,18 @@
 	*/
 
 	var _ = {
-	  each: __webpack_require__(462),
-	  extend: __webpack_require__(463),
-	  forEach: __webpack_require__(410),
-	  isEqual: __webpack_require__(436),
-	  keys: __webpack_require__(418),
-	  omit: __webpack_require__(444),
-	  pluck: __webpack_require__(470),
+	  each: __webpack_require__(461),
+	  extend: __webpack_require__(462),
+	  forEach: __webpack_require__(409),
+	  isEqual: __webpack_require__(435),
+	  keys: __webpack_require__(417),
+	  omit: __webpack_require__(443),
+	  pluck: __webpack_require__(469),
 	};
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(34);
-	var ReactTransitionGroup = __webpack_require__(488);
-	var Velocity = __webpack_require__(459);
+	var ReactTransitionGroup = __webpack_require__(487);
+	var Velocity = __webpack_require__(458);
 
 	// Shim requestAnimationFrame for browsers that don't support it, in particular IE 9.
 	var shimRequestAnimationFrame =
@@ -53438,26 +53406,26 @@
 
 
 /***/ },
+/* 461 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(409);
+
+
+/***/ },
 /* 462 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(410);
+	module.exports = __webpack_require__(463);
 
 
 /***/ },
 /* 463 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(464);
-
-
-/***/ },
-/* 464 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var assignWith = __webpack_require__(465),
-	    baseAssign = __webpack_require__(466),
-	    createAssigner = __webpack_require__(468);
+	var assignWith = __webpack_require__(464),
+	    baseAssign = __webpack_require__(465),
+	    createAssigner = __webpack_require__(467);
 
 	/**
 	 * Assigns own enumerable properties of source object(s) to the destination
@@ -53501,10 +53469,10 @@
 
 
 /***/ },
-/* 465 */
+/* 464 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var keys = __webpack_require__(418);
+	var keys = __webpack_require__(417);
 
 	/**
 	 * A specialized version of `_.assign` for customizing assigned values without
@@ -53539,11 +53507,11 @@
 
 
 /***/ },
-/* 466 */
+/* 465 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseCopy = __webpack_require__(467),
-	    keys = __webpack_require__(418);
+	var baseCopy = __webpack_require__(466),
+	    keys = __webpack_require__(417);
 
 	/**
 	 * The base implementation of `_.assign` without support for argument juggling,
@@ -53564,7 +53532,7 @@
 
 
 /***/ },
-/* 467 */
+/* 466 */
 /***/ function(module, exports) {
 
 	/**
@@ -53593,12 +53561,12 @@
 
 
 /***/ },
-/* 468 */
+/* 467 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var bindCallback = __webpack_require__(434),
-	    isIterateeCall = __webpack_require__(469),
-	    restParam = __webpack_require__(458);
+	var bindCallback = __webpack_require__(433),
+	    isIterateeCall = __webpack_require__(468),
+	    restParam = __webpack_require__(457);
 
 	/**
 	 * Creates a `_.assign`, `_.defaults`, or `_.merge` function.
@@ -53640,12 +53608,12 @@
 
 
 /***/ },
-/* 469 */
+/* 468 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLike = __webpack_require__(423),
-	    isIndex = __webpack_require__(430),
-	    isObject = __webpack_require__(417);
+	var isArrayLike = __webpack_require__(422),
+	    isIndex = __webpack_require__(429),
+	    isObject = __webpack_require__(416);
 
 	/**
 	 * Checks if the provided arguments are from an iteratee call.
@@ -53674,11 +53642,11 @@
 
 
 /***/ },
-/* 470 */
+/* 469 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var map = __webpack_require__(471),
-	    property = __webpack_require__(485);
+	var map = __webpack_require__(470),
+	    property = __webpack_require__(484);
 
 	/**
 	 * Gets the property value of `path` from all elements in `collection`.
@@ -53711,13 +53679,13 @@
 
 
 /***/ },
-/* 471 */
+/* 470 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayMap = __webpack_require__(445),
-	    baseCallback = __webpack_require__(472),
-	    baseMap = __webpack_require__(487),
-	    isArray = __webpack_require__(429);
+	var arrayMap = __webpack_require__(444),
+	    baseCallback = __webpack_require__(471),
+	    baseMap = __webpack_require__(486),
+	    isArray = __webpack_require__(428);
 
 	/**
 	 * Creates an array of values by running each element in `collection` through
@@ -53785,14 +53753,14 @@
 
 
 /***/ },
-/* 472 */
+/* 471 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseMatches = __webpack_require__(473),
-	    baseMatchesProperty = __webpack_require__(478),
-	    bindCallback = __webpack_require__(434),
-	    identity = __webpack_require__(435),
-	    property = __webpack_require__(485);
+	var baseMatches = __webpack_require__(472),
+	    baseMatchesProperty = __webpack_require__(477),
+	    bindCallback = __webpack_require__(433),
+	    identity = __webpack_require__(434),
+	    property = __webpack_require__(484);
 
 	/**
 	 * The base implementation of `_.callback` which supports specifying the
@@ -53826,12 +53794,12 @@
 
 
 /***/ },
-/* 473 */
+/* 472 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsMatch = __webpack_require__(474),
-	    getMatchData = __webpack_require__(475),
-	    toObject = __webpack_require__(416);
+	var baseIsMatch = __webpack_require__(473),
+	    getMatchData = __webpack_require__(474),
+	    toObject = __webpack_require__(415);
 
 	/**
 	 * The base implementation of `_.matches` which does not clone `source`.
@@ -53862,11 +53830,11 @@
 
 
 /***/ },
-/* 474 */
+/* 473 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsEqual = __webpack_require__(437),
-	    toObject = __webpack_require__(416);
+	var baseIsEqual = __webpack_require__(436),
+	    toObject = __webpack_require__(415);
 
 	/**
 	 * The base implementation of `_.isMatch` without support for callback
@@ -53920,11 +53888,11 @@
 
 
 /***/ },
-/* 475 */
+/* 474 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isStrictComparable = __webpack_require__(476),
-	    pairs = __webpack_require__(477);
+	var isStrictComparable = __webpack_require__(475),
+	    pairs = __webpack_require__(476);
 
 	/**
 	 * Gets the propery names, values, and compare flags of `object`.
@@ -53947,10 +53915,10 @@
 
 
 /***/ },
-/* 476 */
+/* 475 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(417);
+	var isObject = __webpack_require__(416);
 
 	/**
 	 * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
@@ -53968,11 +53936,11 @@
 
 
 /***/ },
-/* 477 */
+/* 476 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var keys = __webpack_require__(418),
-	    toObject = __webpack_require__(416);
+	var keys = __webpack_require__(417),
+	    toObject = __webpack_require__(415);
 
 	/**
 	 * Creates a two dimensional array of the key-value pairs for `object`,
@@ -54007,18 +53975,18 @@
 
 
 /***/ },
-/* 478 */
+/* 477 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGet = __webpack_require__(479),
-	    baseIsEqual = __webpack_require__(437),
-	    baseSlice = __webpack_require__(480),
-	    isArray = __webpack_require__(429),
-	    isKey = __webpack_require__(481),
-	    isStrictComparable = __webpack_require__(476),
-	    last = __webpack_require__(482),
-	    toObject = __webpack_require__(416),
-	    toPath = __webpack_require__(483);
+	var baseGet = __webpack_require__(478),
+	    baseIsEqual = __webpack_require__(436),
+	    baseSlice = __webpack_require__(479),
+	    isArray = __webpack_require__(428),
+	    isKey = __webpack_require__(480),
+	    isStrictComparable = __webpack_require__(475),
+	    last = __webpack_require__(481),
+	    toObject = __webpack_require__(415),
+	    toPath = __webpack_require__(482);
 
 	/**
 	 * The base implementation of `_.matchesProperty` which does not clone `srcValue`.
@@ -54058,10 +54026,10 @@
 
 
 /***/ },
-/* 479 */
+/* 478 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var toObject = __webpack_require__(416);
+	var toObject = __webpack_require__(415);
 
 	/**
 	 * The base implementation of `get` without support for string paths
@@ -54093,7 +54061,7 @@
 
 
 /***/ },
-/* 480 */
+/* 479 */
 /***/ function(module, exports) {
 
 	/**
@@ -54131,11 +54099,11 @@
 
 
 /***/ },
-/* 481 */
+/* 480 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArray = __webpack_require__(429),
-	    toObject = __webpack_require__(416);
+	var isArray = __webpack_require__(428),
+	    toObject = __webpack_require__(415);
 
 	/** Used to match property names within property paths. */
 	var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\n\\]|\\.)*?\1)\]/,
@@ -54165,7 +54133,7 @@
 
 
 /***/ },
-/* 482 */
+/* 481 */
 /***/ function(module, exports) {
 
 	/**
@@ -54190,11 +54158,11 @@
 
 
 /***/ },
-/* 483 */
+/* 482 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseToString = __webpack_require__(484),
-	    isArray = __webpack_require__(429);
+	var baseToString = __webpack_require__(483),
+	    isArray = __webpack_require__(428);
 
 	/** Used to match property names within property paths. */
 	var rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\n\\]|\\.)*?)\2)\]/g;
@@ -54224,7 +54192,7 @@
 
 
 /***/ },
-/* 484 */
+/* 483 */
 /***/ function(module, exports) {
 
 	/**
@@ -54243,12 +54211,12 @@
 
 
 /***/ },
-/* 485 */
+/* 484 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseProperty = __webpack_require__(425),
-	    basePropertyDeep = __webpack_require__(486),
-	    isKey = __webpack_require__(481);
+	var baseProperty = __webpack_require__(424),
+	    basePropertyDeep = __webpack_require__(485),
+	    isKey = __webpack_require__(480);
 
 	/**
 	 * Creates a function that returns the property value at `path` on a
@@ -54280,11 +54248,11 @@
 
 
 /***/ },
-/* 486 */
+/* 485 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGet = __webpack_require__(479),
-	    toPath = __webpack_require__(483);
+	var baseGet = __webpack_require__(478),
+	    toPath = __webpack_require__(482);
 
 	/**
 	 * A specialized version of `baseProperty` which supports deep paths.
@@ -54305,11 +54273,11 @@
 
 
 /***/ },
-/* 487 */
+/* 486 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseEach = __webpack_require__(412),
-	    isArrayLike = __webpack_require__(423);
+	var baseEach = __webpack_require__(411),
+	    isArrayLike = __webpack_require__(422);
 
 	/**
 	 * The base implementation of `_.map` without support for callback shorthands
@@ -54334,13 +54302,13 @@
 
 
 /***/ },
-/* 488 */
+/* 487 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(489);
+	module.exports = __webpack_require__(488);
 
 /***/ },
-/* 489 */
+/* 488 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -54360,7 +54328,7 @@
 
 	var React = __webpack_require__(2);
 	var ReactInstanceMap = __webpack_require__(119);
-	var ReactTransitionChildMapping = __webpack_require__(490);
+	var ReactTransitionChildMapping = __webpack_require__(489);
 
 	var emptyFunction = __webpack_require__(12);
 
@@ -54592,7 +54560,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 490 */
+/* 489 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -54701,15 +54669,15 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 491 */
+/* 490 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Copyright (c) 2015 Twitter, Inc. and other contributors
 
 	var _ = {
-	  isObject: __webpack_require__(417),
+	  isObject: __webpack_require__(416),
 	};
-	var Velocity = __webpack_require__(459);
+	var Velocity = __webpack_require__(458);
 
 	var effectCounter = 0;
 
@@ -54787,7 +54755,7 @@
 
 
 /***/ },
-/* 492 */
+/* 491 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -54798,15 +54766,15 @@
 	  value: true
 	});
 
-	var _bluebird = __webpack_require__(394);
+	var _bluebird = __webpack_require__(393);
 
 	var _bluebird2 = _interopRequireDefault(_bluebird);
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	var _ = _interopRequireWildcard(_allActions);
 
-	var _thunkHelpers = __webpack_require__(397);
+	var _thunkHelpers = __webpack_require__(396);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -54826,7 +54794,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "introSequence.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 493 */
+/* 492 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -54906,6 +54874,39 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Audio.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
+/* 493 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _ramda = __webpack_require__(349);
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (props) {
+	  var visibility = props.isRaining ? '' : 'hidden';
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'rain-curtain ' + visibility },
+	    (0, _ramda.times)(function (i) {
+	      return _react2.default.createElement('div', { key: i, className: 'rain-drop' });
+	    }, 16)
+	  );
+	};
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andymac/Desktop/Git Projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "RainCurtain.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
 /* 494 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -54917,15 +54918,15 @@
 	  value: true
 	});
 
-	var _bluebird = __webpack_require__(394);
+	var _bluebird = __webpack_require__(393);
 
 	var _bluebird2 = _interopRequireDefault(_bluebird);
 
-	var _allActions = __webpack_require__(396);
+	var _allActions = __webpack_require__(395);
 
 	var _ = _interopRequireWildcard(_allActions);
 
-	var _thunkHelpers = __webpack_require__(397);
+	var _thunkHelpers = __webpack_require__(396);
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -54976,7 +54977,7 @@
 
 
 	// module
-	exports.push([module.id, "@-webkit-keyframes bounceInDown {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -3000px, 0);\n    transform: translate3d(0, -3000px, 0); }\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 25px, 0);\n    transform: translate3d(0, 25px, 0); }\n  75% {\n    -webkit-transform: translate3d(0, -10px, 0);\n    transform: translate3d(0, -10px, 0); }\n  90% {\n    -webkit-transform: translate3d(0, 5px, 0);\n    transform: translate3d(0, 5px, 0); }\n  to {\n    -webkit-transform: none;\n    transform: none; } }\n\n@keyframes bounceInDown {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -3000px, 0);\n    transform: translate3d(0, -3000px, 0); }\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 25px, 0);\n    transform: translate3d(0, 25px, 0); }\n  75% {\n    -webkit-transform: translate3d(0, -10px, 0);\n    transform: translate3d(0, -10px, 0); }\n  90% {\n    -webkit-transform: translate3d(0, 5px, 0);\n    transform: translate3d(0, 5px, 0); }\n  to {\n    -webkit-transform: none;\n    transform: none; } }\n\n@keyframes bounceInDown-1 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 60.54545px, 0); }\n  85% {\n    transform: translate3d(0, 47.54545px, 0); }\n  to {\n    transform: translate3d(0, 50.54545px, 0); } }\n\n@keyframes bounceInDown-2 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 111.09091px, 0); }\n  85% {\n    transform: translate3d(0, 98.09091px, 0); }\n  to {\n    transform: translate3d(0, 101.09091px, 0); } }\n\n@keyframes bounceInDown-3 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 161.63636px, 0); }\n  85% {\n    transform: translate3d(0, 148.63636px, 0); }\n  to {\n    transform: translate3d(0, 151.63636px, 0); } }\n\n@keyframes bounceInDown-4 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 212.18182px, 0); }\n  85% {\n    transform: translate3d(0, 199.18182px, 0); }\n  to {\n    transform: translate3d(0, 202.18182px, 0); } }\n\n@keyframes bounceInDown-5 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 262.72727px, 0); }\n  85% {\n    transform: translate3d(0, 249.72727px, 0); }\n  to {\n    transform: translate3d(0, 252.72727px, 0); } }\n\n@keyframes bounceInDown-6 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 313.27273px, 0); }\n  85% {\n    transform: translate3d(0, 300.27273px, 0); }\n  to {\n    transform: translate3d(0, 303.27273px, 0); } }\n\n@keyframes bounceInDown-7 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 363.81818px, 0); }\n  85% {\n    transform: translate3d(0, 350.81818px, 0); }\n  to {\n    transform: translate3d(0, 353.81818px, 0); } }\n\n.bounceInDown {\n  -webkit-animation-name: bounceInDown;\n  animation-name: bounceInDown; }\n\n@-webkit-keyframes pulse {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); }\n  50% {\n    -webkit-transform: scale3d(1.05, 1.05, 1.05);\n    transform: scale3d(1.05, 1.05, 1.05); }\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); } }\n\n@keyframes pulse {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); }\n  50% {\n    -webkit-transform: scale3d(1.05, 1.05, 1.05);\n    transform: scale3d(1.05, 1.05, 1.05); }\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); } }\n\n.pulse {\n  -webkit-animation-name: pulse;\n  animation-name: pulse; }\n\n@-webkit-keyframes rubberBand {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); }\n  30% {\n    -webkit-transform: scale3d(1.25, 0.75, 1);\n    transform: scale3d(1.25, 0.75, 1); }\n  40% {\n    -webkit-transform: scale3d(0.75, 1.25, 1);\n    transform: scale3d(0.75, 1.25, 1); }\n  50% {\n    -webkit-transform: scale3d(1.15, 0.85, 1);\n    transform: scale3d(1.15, 0.85, 1); }\n  65% {\n    -webkit-transform: scale3d(0.95, 1.05, 1);\n    transform: scale3d(0.95, 1.05, 1); }\n  75% {\n    -webkit-transform: scale3d(1.05, 0.95, 1);\n    transform: scale3d(1.05, 0.95, 1); }\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); } }\n\n@keyframes rubberBand {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); }\n  30% {\n    -webkit-transform: scale3d(1.25, 0.75, 1);\n    transform: scale3d(1.25, 0.75, 1); }\n  40% {\n    -webkit-transform: scale3d(0.75, 1.25, 1);\n    transform: scale3d(0.75, 1.25, 1); }\n  50% {\n    -webkit-transform: scale3d(1.15, 0.85, 1);\n    transform: scale3d(1.15, 0.85, 1); }\n  65% {\n    -webkit-transform: scale3d(0.95, 1.05, 1);\n    transform: scale3d(0.95, 1.05, 1); }\n  75% {\n    -webkit-transform: scale3d(1.05, 0.95, 1);\n    transform: scale3d(1.05, 0.95, 1); }\n  to {\n    -webkit-transform: scale3d(0.6, 0.6, 0.6);\n    transform: scale3d(0.6, 0.6, 0.6); } }\n\n.rubberBand {\n  -webkit-animation-name: rubberBand;\n  animation-name: rubberBand; }\n\n@keyframes enter {\n  0% {\n    opacity: 0; }\n  100% {\n    opacity: 1; } }\n\n.enter {\n  animation-name: enter;\n  animation-fill-mode: forwards; }\n\n@keyframes leave {\n  0% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\n.leave {\n  animation-name: leave;\n  animation-fill-mode: forwards; }\n\n@keyframes doubleElasticBounceIn {\n  0% {\n    transform: scale(0); }\n  20% {\n    transform: scale(0.5); }\n  36% {\n    transform: scale(1.5); }\n  52% {\n    transform: scale(0.8); }\n  68% {\n    transform: scale(1.2); }\n  84% {\n    transform: scale(0.9); }\n  100% {\n    transform: scale(1); } }\n\n@keyframes elasticBounceIn {\n  0% {\n    transform: scale(0); }\n  50% {\n    transform: scale(1.3); }\n  100% {\n    transform: scale(1); } }\n\n.duration-0.5 {\n  animation-duration: 0.501s; }\n\n.delay-0.5 {\n  animation-delay: 0.501s; }\n\n.duration-1 {\n  animation-duration: 1.001s; }\n\n.delay-1 {\n  animation-delay: 1.001s; }\n\n.duration-1.5 {\n  animation-duration: 1.501s; }\n\n.delay-1.5 {\n  animation-delay: 1.501s; }\n\n.duration-2 {\n  animation-duration: 2.001s; }\n\n.delay-2 {\n  animation-delay: 2.001s; }\n\n.duration-2.5 {\n  animation-duration: 2.501s; }\n\n.delay-2.5 {\n  animation-delay: 2.501s; }\n\n.duration-3 {\n  animation-duration: 3.001s; }\n\n.delay-3 {\n  animation-delay: 3.001s; }\n\n.duration-3.5 {\n  animation-duration: 3.501s; }\n\n.delay-3.5 {\n  animation-delay: 3.501s; }\n\n.duration-4 {\n  animation-duration: 4.001s; }\n\n.delay-4 {\n  animation-delay: 4.001s; }\n\n.duration-4.5 {\n  animation-duration: 4.501s; }\n\n.delay-4.5 {\n  animation-delay: 4.501s; }\n\n.duration-5 {\n  animation-duration: 5.001s; }\n\n.delay-5 {\n  animation-delay: 5.001s; }\n\n.duration-5.5 {\n  animation-duration: 5.501s; }\n\n.delay-5.5 {\n  animation-delay: 5.501s; }\n\n.duration-6 {\n  animation-duration: 6.001s; }\n\n.delay-6 {\n  animation-delay: 6.001s; }\n\n.tile-container {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 41.37931px;\n  height: 41.37931px; }\n\n.tile {\n  border-radius: 50%;\n  z-index: -1;\n  box-sizing: border-box;\n  opacity: 1;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.sun {\n  padding: 7px;\n  background-color: #FFA000;\n  transform: scale(1);\n  opacity: 1; }\n\n.rain {\n  padding: 7px;\n  background-color: #26AAE1;\n  transform: translate(0, 0) scale(1);\n  opacity: 1; }\n\n.seedling {\n  padding: 10px;\n  background: linear-gradient(90deg, #78C143, #78C143 50%, #71af44 51%, #71af44); }\n\n.pod {\n  padding: 14px;\n  transform: scale(1);\n  opacity: 1; }\n\n.rain.dragging,\n.sun.dragging,\n.seedling.dragging,\n.pod.dragging {\n  transition: 0.3s ease;\n  transform: translate(0, 0) scale(0.5); }\n\n.entering {\n  animation: bounceInDown 0.6s ease; }\n\n.y-0.x-0 .rain.leaving {\n  transform: translate(20px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -110px) scale(0.3); }\n\n.y-0.x-1 .rain.leaving {\n  transform: translate(20px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -151.37931px) scale(0.3); }\n\n.y-0.x-2 .rain.leaving {\n  transform: translate(20px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -192.75862px) scale(0.3); }\n\n.y-0.x-3 .rain.leaving {\n  transform: translate(20px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -234.13793px) scale(0.3); }\n\n.y-0.x-4 .rain.leaving {\n  transform: translate(20px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -275.51724px) scale(0.3); }\n\n.y-0.x-5 .rain.leaving {\n  transform: translate(20px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -316.89655px) scale(0.3); }\n\n.y-0.x-6 .rain.leaving {\n  transform: translate(20px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -358.27586px) scale(0.3); }\n\n.y-0.x-7 .rain.leaving {\n  transform: translate(20px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -399.65517px) scale(0.3); }\n\n.y-1.x-0 .rain.leaving {\n  transform: translate(-21.37931px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -110px) scale(0.3); }\n\n.y-1.x-1 .rain.leaving {\n  transform: translate(-21.37931px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -151.37931px) scale(0.3); }\n\n.y-1.x-2 .rain.leaving {\n  transform: translate(-21.37931px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -192.75862px) scale(0.3); }\n\n.y-1.x-3 .rain.leaving {\n  transform: translate(-21.37931px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -234.13793px) scale(0.3); }\n\n.y-1.x-4 .rain.leaving {\n  transform: translate(-21.37931px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -275.51724px) scale(0.3); }\n\n.y-1.x-5 .rain.leaving {\n  transform: translate(-21.37931px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -316.89655px) scale(0.3); }\n\n.y-1.x-6 .rain.leaving {\n  transform: translate(-21.37931px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -358.27586px) scale(0.3); }\n\n.y-1.x-7 .rain.leaving {\n  transform: translate(-21.37931px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -399.65517px) scale(0.3); }\n\n.y-2.x-0 .rain.leaving {\n  transform: translate(-62.75862px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -110px) scale(0.3); }\n\n.y-2.x-1 .rain.leaving {\n  transform: translate(-62.75862px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -151.37931px) scale(0.3); }\n\n.y-2.x-2 .rain.leaving {\n  transform: translate(-62.75862px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -192.75862px) scale(0.3); }\n\n.y-2.x-3 .rain.leaving {\n  transform: translate(-62.75862px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -234.13793px) scale(0.3); }\n\n.y-2.x-4 .rain.leaving {\n  transform: translate(-62.75862px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -275.51724px) scale(0.3); }\n\n.y-2.x-5 .rain.leaving {\n  transform: translate(-62.75862px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -316.89655px) scale(0.3); }\n\n.y-2.x-6 .rain.leaving {\n  transform: translate(-62.75862px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -358.27586px) scale(0.3); }\n\n.y-2.x-7 .rain.leaving {\n  transform: translate(-62.75862px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -399.65517px) scale(0.3); }\n\n.y-3.x-0 .rain.leaving {\n  transform: translate(-104.13793px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -110px) scale(0.3); }\n\n.y-3.x-1 .rain.leaving {\n  transform: translate(-104.13793px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -151.37931px) scale(0.3); }\n\n.y-3.x-2 .rain.leaving {\n  transform: translate(-104.13793px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -192.75862px) scale(0.3); }\n\n.y-3.x-3 .rain.leaving {\n  transform: translate(-104.13793px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -234.13793px) scale(0.3); }\n\n.y-3.x-4 .rain.leaving {\n  transform: translate(-104.13793px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -275.51724px) scale(0.3); }\n\n.y-3.x-5 .rain.leaving {\n  transform: translate(-104.13793px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -316.89655px) scale(0.3); }\n\n.y-3.x-6 .rain.leaving {\n  transform: translate(-104.13793px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -358.27586px) scale(0.3); }\n\n.y-3.x-7 .rain.leaving {\n  transform: translate(-104.13793px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -399.65517px) scale(0.3); }\n\n.y-4.x-0 .rain.leaving {\n  transform: translate(-145.51724px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -110px) scale(0.3); }\n\n.y-4.x-1 .rain.leaving {\n  transform: translate(-145.51724px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -151.37931px) scale(0.3); }\n\n.y-4.x-2 .rain.leaving {\n  transform: translate(-145.51724px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -192.75862px) scale(0.3); }\n\n.y-4.x-3 .rain.leaving {\n  transform: translate(-145.51724px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -234.13793px) scale(0.3); }\n\n.y-4.x-4 .rain.leaving {\n  transform: translate(-145.51724px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -275.51724px) scale(0.3); }\n\n.y-4.x-5 .rain.leaving {\n  transform: translate(-145.51724px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -316.89655px) scale(0.3); }\n\n.y-4.x-6 .rain.leaving {\n  transform: translate(-145.51724px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -358.27586px) scale(0.3); }\n\n.y-4.x-7 .rain.leaving {\n  transform: translate(-145.51724px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -399.65517px) scale(0.3); }\n\n.y-5.x-0 .rain.leaving {\n  transform: translate(-186.89655px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -110px) scale(0.3); }\n\n.y-5.x-1 .rain.leaving {\n  transform: translate(-186.89655px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -151.37931px) scale(0.3); }\n\n.y-5.x-2 .rain.leaving {\n  transform: translate(-186.89655px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -192.75862px) scale(0.3); }\n\n.y-5.x-3 .rain.leaving {\n  transform: translate(-186.89655px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -234.13793px) scale(0.3); }\n\n.y-5.x-4 .rain.leaving {\n  transform: translate(-186.89655px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -275.51724px) scale(0.3); }\n\n.y-5.x-5 .rain.leaving {\n  transform: translate(-186.89655px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -316.89655px) scale(0.3); }\n\n.y-5.x-6 .rain.leaving {\n  transform: translate(-186.89655px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -358.27586px) scale(0.3); }\n\n.y-5.x-7 .rain.leaving {\n  transform: translate(-186.89655px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -399.65517px) scale(0.3); }\n\n.y-6.x-0 .rain.leaving {\n  transform: translate(-228.27586px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -110px) scale(0.3); }\n\n.y-6.x-1 .rain.leaving {\n  transform: translate(-228.27586px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -151.37931px) scale(0.3); }\n\n.y-6.x-2 .rain.leaving {\n  transform: translate(-228.27586px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -192.75862px) scale(0.3); }\n\n.y-6.x-3 .rain.leaving {\n  transform: translate(-228.27586px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -234.13793px) scale(0.3); }\n\n.y-6.x-4 .rain.leaving {\n  transform: translate(-228.27586px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -275.51724px) scale(0.3); }\n\n.y-6.x-5 .rain.leaving {\n  transform: translate(-228.27586px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -316.89655px) scale(0.3); }\n\n.y-6.x-6 .rain.leaving {\n  transform: translate(-228.27586px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -358.27586px) scale(0.3); }\n\n.y-6.x-7 .rain.leaving {\n  transform: translate(-228.27586px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -399.65517px) scale(0.3); }\n\n.y-7.x-0 .rain.leaving {\n  transform: translate(-269.65517px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -110px) scale(0.3); }\n\n.y-7.x-1 .rain.leaving {\n  transform: translate(-269.65517px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -151.37931px) scale(0.3); }\n\n.y-7.x-2 .rain.leaving {\n  transform: translate(-269.65517px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -192.75862px) scale(0.3); }\n\n.y-7.x-3 .rain.leaving {\n  transform: translate(-269.65517px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -234.13793px) scale(0.3); }\n\n.y-7.x-4 .rain.leaving {\n  transform: translate(-269.65517px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -275.51724px) scale(0.3); }\n\n.y-7.x-5 .rain.leaving {\n  transform: translate(-269.65517px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -316.89655px) scale(0.3); }\n\n.y-7.x-6 .rain.leaving {\n  transform: translate(-269.65517px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -358.27586px) scale(0.3); }\n\n.y-7.x-7 .rain.leaving {\n  transform: translate(-269.65517px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -399.65517px) scale(0.3); }\n\n.seedling.leaving {\n  transition: 0.5s ease;\n  transform: scale(4);\n  opacity: 0; }\n\n.pod.leaving {\n  transition: 0.5s ease;\n  transform: translate(100px, -100px);\n  opacity: 0; }\n\n.pod.leaving.delay-1 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.08s; }\n\n.pod.leaving.delay-2 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.16s; }\n\n.pod.leaving.delay-3 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.24s; }\n\n.pod.leaving.delay-4 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.32s; }\n\n.pod.leaving.delay-5 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.4s; }\n\n.pod.leaving.delay-6 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.48s; }\n\n.pod.leaving.delay-7 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.56s; }\n\n.pod.leaving.delay-8 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.64s; }\n\n.pod.leaving.delay-9 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.72s; }\n\n.pod.leaving.delay-10 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.8s; }\n\n.pod.leaving.delay-11 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.88s; }\n\n.pod.leaving.delay-12 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.96s; }\n\n.pod.leaving.delay-13 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 1.04s; }\n\n.pod.leaving.delay-14 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 1.12s; }\n\n.pod.leaving.delay-15 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 1.2s; }\n\n.pod.leaving.delay-16 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 1.28s; }\n\n.pod.growing {\n  animation: elasticBounceIn 0.5s ease;\n  animation-fill-mode: forwards; }\n\n.seedling.growing {\n  transform: scale(4);\n  opacity: 0;\n  transition: 0.5s ease-out; }\n\n@media (min-width: 550px) and (min-height: 670px) {\n  .tile-container {\n    width: 54.54545px;\n    height: 54.54545px; }\n  .sun, .rain {\n    padding: 10px; }\n  .seedling {\n    padding: 13px; }\n  .pod {\n    padding: 19px; }\n  .y-0.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -120px) scale(0.2); }\n  .y-0.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -120px) scale(1); }\n  .y-0.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -174.54545px) scale(0.2); }\n  .y-0.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -174.54545px) scale(1); }\n  .y-0.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -229.09091px) scale(0.2); }\n  .y-0.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -229.09091px) scale(1); }\n  .y-0.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -283.63636px) scale(0.2); }\n  .y-0.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -283.63636px) scale(1); }\n  .y-0.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -338.18182px) scale(0.2); }\n  .y-0.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -338.18182px) scale(1); }\n  .y-0.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -392.72727px) scale(0.2); }\n  .y-0.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -392.72727px) scale(1); }\n  .y-0.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -447.27273px) scale(0.2); }\n  .y-0.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -447.27273px) scale(1); }\n  .y-0.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -501.81818px) scale(0.2); }\n  .y-0.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -501.81818px) scale(1); }\n  .y-1.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -120px) scale(0.2); }\n  .y-1.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -120px) scale(1); }\n  .y-1.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -174.54545px) scale(0.2); }\n  .y-1.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -174.54545px) scale(1); }\n  .y-1.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -229.09091px) scale(0.2); }\n  .y-1.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -229.09091px) scale(1); }\n  .y-1.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -283.63636px) scale(0.2); }\n  .y-1.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -283.63636px) scale(1); }\n  .y-1.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -338.18182px) scale(0.2); }\n  .y-1.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -338.18182px) scale(1); }\n  .y-1.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -392.72727px) scale(0.2); }\n  .y-1.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -392.72727px) scale(1); }\n  .y-1.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -447.27273px) scale(0.2); }\n  .y-1.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -447.27273px) scale(1); }\n  .y-1.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -501.81818px) scale(0.2); }\n  .y-1.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -501.81818px) scale(1); }\n  .y-2.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -120px) scale(0.2); }\n  .y-2.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -120px) scale(1); }\n  .y-2.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -174.54545px) scale(0.2); }\n  .y-2.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -174.54545px) scale(1); }\n  .y-2.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -229.09091px) scale(0.2); }\n  .y-2.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -229.09091px) scale(1); }\n  .y-2.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -283.63636px) scale(0.2); }\n  .y-2.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -283.63636px) scale(1); }\n  .y-2.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -338.18182px) scale(0.2); }\n  .y-2.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -338.18182px) scale(1); }\n  .y-2.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -392.72727px) scale(0.2); }\n  .y-2.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -392.72727px) scale(1); }\n  .y-2.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -447.27273px) scale(0.2); }\n  .y-2.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -447.27273px) scale(1); }\n  .y-2.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -501.81818px) scale(0.2); }\n  .y-2.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -501.81818px) scale(1); }\n  .y-3.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -120px) scale(0.2); }\n  .y-3.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -120px) scale(1); }\n  .y-3.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -174.54545px) scale(0.2); }\n  .y-3.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -174.54545px) scale(1); }\n  .y-3.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -229.09091px) scale(0.2); }\n  .y-3.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -229.09091px) scale(1); }\n  .y-3.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -283.63636px) scale(0.2); }\n  .y-3.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -283.63636px) scale(1); }\n  .y-3.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -338.18182px) scale(0.2); }\n  .y-3.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -338.18182px) scale(1); }\n  .y-3.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -392.72727px) scale(0.2); }\n  .y-3.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -392.72727px) scale(1); }\n  .y-3.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -447.27273px) scale(0.2); }\n  .y-3.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -447.27273px) scale(1); }\n  .y-3.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -501.81818px) scale(0.2); }\n  .y-3.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -501.81818px) scale(1); }\n  .y-4.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -120px) scale(0.2); }\n  .y-4.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -120px) scale(1); }\n  .y-4.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -174.54545px) scale(0.2); }\n  .y-4.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -174.54545px) scale(1); }\n  .y-4.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -229.09091px) scale(0.2); }\n  .y-4.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -229.09091px) scale(1); }\n  .y-4.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -283.63636px) scale(0.2); }\n  .y-4.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -283.63636px) scale(1); }\n  .y-4.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -338.18182px) scale(0.2); }\n  .y-4.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -338.18182px) scale(1); }\n  .y-4.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -392.72727px) scale(0.2); }\n  .y-4.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -392.72727px) scale(1); }\n  .y-4.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -447.27273px) scale(0.2); }\n  .y-4.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -447.27273px) scale(1); }\n  .y-4.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -501.81818px) scale(0.2); }\n  .y-4.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -501.81818px) scale(1); }\n  .y-5.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -120px) scale(0.2); }\n  .y-5.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -120px) scale(1); }\n  .y-5.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -174.54545px) scale(0.2); }\n  .y-5.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -174.54545px) scale(1); }\n  .y-5.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -229.09091px) scale(0.2); }\n  .y-5.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -229.09091px) scale(1); }\n  .y-5.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -283.63636px) scale(0.2); }\n  .y-5.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -283.63636px) scale(1); }\n  .y-5.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -338.18182px) scale(0.2); }\n  .y-5.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -338.18182px) scale(1); }\n  .y-5.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -392.72727px) scale(0.2); }\n  .y-5.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -392.72727px) scale(1); }\n  .y-5.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -447.27273px) scale(0.2); }\n  .y-5.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -447.27273px) scale(1); }\n  .y-5.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -501.81818px) scale(0.2); }\n  .y-5.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -501.81818px) scale(1); }\n  .y-6.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -120px) scale(0.2); }\n  .y-6.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -120px) scale(1); }\n  .y-6.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -174.54545px) scale(0.2); }\n  .y-6.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -174.54545px) scale(1); }\n  .y-6.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -229.09091px) scale(0.2); }\n  .y-6.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -229.09091px) scale(1); }\n  .y-6.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -283.63636px) scale(0.2); }\n  .y-6.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -283.63636px) scale(1); }\n  .y-6.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -338.18182px) scale(0.2); }\n  .y-6.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -338.18182px) scale(1); }\n  .y-6.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -392.72727px) scale(0.2); }\n  .y-6.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -392.72727px) scale(1); }\n  .y-6.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -447.27273px) scale(0.2); }\n  .y-6.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -447.27273px) scale(1); }\n  .y-6.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -501.81818px) scale(0.2); }\n  .y-6.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -501.81818px) scale(1); }\n  .y-7.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -120px) scale(0.2); }\n  .y-7.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -120px) scale(1); }\n  .y-7.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -174.54545px) scale(0.2); }\n  .y-7.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -174.54545px) scale(1); }\n  .y-7.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -229.09091px) scale(0.2); }\n  .y-7.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -229.09091px) scale(1); }\n  .y-7.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -283.63636px) scale(0.2); }\n  .y-7.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -283.63636px) scale(1); }\n  .y-7.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -338.18182px) scale(0.2); }\n  .y-7.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -338.18182px) scale(1); }\n  .y-7.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -392.72727px) scale(0.2); }\n  .y-7.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -392.72727px) scale(1); }\n  .y-7.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -447.27273px) scale(0.2); }\n  .y-7.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -447.27273px) scale(1); }\n  .y-7.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -501.81818px) scale(0.2); }\n  .y-7.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -501.81818px) scale(1); } }\n\n.twin-dark .left {\n  fill: #3A2315; }\n\n.twin-dark .right {\n  fill: #A77B52; }\n\n.twin-light .left {\n  fill: #F5993D; }\n\n.twin-light .right {\n  fill: #EB4C48; }\n\n.twin-red .left {\n  fill: #F22B21; }\n\n.twin-red .right {\n  fill: #7B4728; }\n\n.small {\n  width: 4em;\n  height: 10em;\n  margin: 0 5px; }\n\n.board-container {\n  position: fixed;\n  left: 0;\n  right: 0;\n  margin: 0em 0;\n  -webkit-tap-highlight-color: transparent; }\n\n.top-bar-container {\n  width: 16.7em;\n  margin: 40px auto 0;\n  display: flex;\n  align-items: center; }\n\n.board {\n  height: 331.03448px;\n  width: 331.03448px;\n  margin: 4em auto;\n  position: absolute;\n  left: 0;\n  right: 0;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent; }\n\n.x-0 {\n  top: 0px; }\n\n.y-0 {\n  left: 0px; }\n\n.falling-0 {\n  transform: translateY(0px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-0 {\n    top: 0px; }\n  .y-0 {\n    left: 0px; }\n  .falling-0 {\n    animation: bounceInDown-0 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-1 {\n  top: 37.37931px; }\n\n.y-1 {\n  left: 41.37931px; }\n\n.falling-1 {\n  transform: translateY(37.37931px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-1 {\n    top: 50.54545px; }\n  .y-1 {\n    left: 54.54545px; }\n  .falling-1 {\n    animation: bounceInDown-1 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-2 {\n  top: 74.75862px; }\n\n.y-2 {\n  left: 82.75862px; }\n\n.falling-2 {\n  transform: translateY(74.75862px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-2 {\n    top: 101.09091px; }\n  .y-2 {\n    left: 109.09091px; }\n  .falling-2 {\n    animation: bounceInDown-2 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-3 {\n  top: 112.13793px; }\n\n.y-3 {\n  left: 124.13793px; }\n\n.falling-3 {\n  transform: translateY(112.13793px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-3 {\n    top: 151.63636px; }\n  .y-3 {\n    left: 163.63636px; }\n  .falling-3 {\n    animation: bounceInDown-3 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-4 {\n  top: 149.51724px; }\n\n.y-4 {\n  left: 165.51724px; }\n\n.falling-4 {\n  transform: translateY(149.51724px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-4 {\n    top: 202.18182px; }\n  .y-4 {\n    left: 218.18182px; }\n  .falling-4 {\n    animation: bounceInDown-4 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-5 {\n  top: 186.89655px; }\n\n.y-5 {\n  left: 206.89655px; }\n\n.falling-5 {\n  transform: translateY(186.89655px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-5 {\n    top: 252.72727px; }\n  .y-5 {\n    left: 272.72727px; }\n  .falling-5 {\n    animation: bounceInDown-5 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-6 {\n  top: 224.27586px; }\n\n.y-6 {\n  left: 248.27586px; }\n\n.falling-6 {\n  transform: translateY(224.27586px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-6 {\n    top: 303.27273px; }\n  .y-6 {\n    left: 327.27273px; }\n  .falling-6 {\n    animation: bounceInDown-6 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-7 {\n  top: 261.65517px; }\n\n.y-7 {\n  left: 289.65517px; }\n\n.falling-7 {\n  transform: translateY(261.65517px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-7 {\n    top: 353.81818px; }\n  .y-7 {\n    left: 381.81818px; }\n  .falling-7 {\n    animation: bounceInDown-7 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .board {\n    height: 436.36364px;\n    width: 436.36364px; }\n  .top-bar-container {\n    width: 24.5em;\n    margin: 60px auto 0; } }\n\n@media (min-height: 900px) {\n  .board-container {\n    margin: 5em 0; } }\n\n.rain-falling {\n  background: #61BCFF; }\n\n.rain-maker {\n  background-color: #61BCFF;\n  width: 10px;\n  height: 10px;\n  border-radius: 5px;\n  transform: scale(1);\n  transition: 0.6s ease-in-out;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent; }\n\n.sun-maker {\n  background-color: #FFA828;\n  width: 10px;\n  height: 10px;\n  border-radius: 5px;\n  transform: scale(1);\n  transition: 0.6s ease-in-out;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent; }\n\n.sun-shining {\n  background: #FFA828; }\n\n.power-0 {\n  transform: scale(0); }\n\n.power-1 {\n  transform: scale(0.6); }\n\n.power-2 {\n  transform: scale(1.2); }\n\n.power-3 {\n  transform: scale(1.8); }\n\n.power-4 {\n  transform: scale(2.4); }\n\n.power-5 {\n  transform: scale(3); }\n\n.power-6 {\n  transform: scale(3.6); }\n\n.power-7 {\n  transform: scale(4.2); }\n\n.power-8 {\n  transform: scale(4.8); }\n\n.power-9 {\n  transform: scale(5.4); }\n\n.power-10 {\n  transform: scale(6); }\n\n.power-11 {\n  transform: scale(6.6); }\n\n.power-12 {\n  transform: scale(7.2); }\n\n.power-13 {\n  transform: scale(7.8); }\n\n.max-rain {\n  animation: rain-pulse 1s infinite linear; }\n\n.max-sun {\n  animation: sun-pulse 1s infinite linear; }\n\n.rain-curtain {\n  transition: 2s ease;\n  position: fixed;\n  display: flex;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  height: 100vh; }\n\n@keyframes fall {\n  0% {\n    transform: translateY(0);\n    opacity: 1; }\n  100% {\n    transform: translateY(1000px);\n    opacity: 0; } }\n\n.rain-drop {\n  width: 2px;\n  height: 20px;\n  background-color: #0267b1;\n  margin: 0 1em;\n  will-change: translateY, opacity; }\n\n.rain-drop:nth-child(1) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 0.3s; }\n\n.rain-drop:nth-child(2) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 0.6s; }\n\n.rain-drop:nth-child(3) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 0.9s; }\n\n.rain-drop:nth-child(4) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 1.2s; }\n\n.rain-drop:nth-child(5) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 1.5s; }\n\n.rain-drop:nth-child(6) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 1.8s; }\n\n.rain-drop:nth-child(7) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 2.1s; }\n\n.rain-drop:nth-child(8) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 2.4s; }\n\n.rain-drop:nth-child(9) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 2.7s; }\n\n.rain-drop:nth-child(10) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 3s; }\n\n.rain-drop:nth-child(11) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 3.3s; }\n\n.rain-drop:nth-child(12) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 3.6s; }\n\n.rain-drop:nth-child(13) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 3.9s; }\n\n.rain-drop:nth-child(14) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 4.2s; }\n\n.rain-drop:nth-child(15) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 4.5s; }\n\n.rain-drop:nth-child(16) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 4.8s; }\n\n@keyframes rain-pulse {\n  0% {\n    background-color: #61BCFF; }\n  50% {\n    background-color: #478bff; }\n  100% {\n    background-color: #61BCFF; } }\n\n@keyframes sun-pulse {\n  0% {\n    background-color: #FFA828; }\n  50% {\n    background-color: #f95d34; }\n  100% {\n    background-color: #FFA828; } }\n\n@media (min-height: 670px), (min-width: 550px) {\n  .rain-curtain {\n    width: 100%; } }\n\n.info {\n  letter-spacing: 2px; }\n\n.intro {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 80vh;\n  position: relative;\n  align-items: center;\n  text-align: center;\n  justify-content: center;\n  text-align: center;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.intro-text {\n  margin: 0;\n  font-size: 1.25em;\n  letter-spacing: 1.4px; }\n\n.same-line {\n  height: 4.2em; }\n  .same-line .intro-text {\n    margin: 1em 0;\n    position: absolute;\n    width: 100%;\n    left: 0;\n    right: 0; }\n\n.title {\n  font-size: 25px;\n  letter-spacing: 4px;\n  opacity: 0; }\n\n.begin {\n  font-size: 16px;\n  margin-top: 65px;\n  letter-spacing: 4px;\n  opacity: 0;\n  text-transform: uppercase;\n  cursor: pointer;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.intro-seed {\n  max-width: 2.9em;\n  max-height: 7em;\n  margin: 0 6.5px;\n  opacity: 0; }\n\n.forwards.one {\n  opacity: 0;\n  animation: enter 3s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 0.6s; }\n\n.backwards.one {\n  opacity: 1;\n  animation: leave 2s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 1.5s; }\n\n.forwards.two {\n  opacity: 0;\n  animation: enter 3s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 1.1s; }\n\n.backwards.two {\n  opacity: 1;\n  animation: leave 2s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 1s; }\n\n.forwards.three {\n  opacity: 0;\n  animation: enter 3s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 1.6s; }\n\n.backwards.three {\n  opacity: 1;\n  animation: leave 2s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 0.5s; }\n\n@media (min-width: 550px) {\n  .intro-text {\n    font-size: 1.4em; }\n  .intro-seed {\n    max-width: 4em;\n    max-height: 10em; } }\n\n.loading-screen {\n  height: 100vh;\n  width: 100%;\n  position: fixed;\n  animation: loading 3s linear;\n  animation-fill-mode: forwards;\n  opacity: 0;\n  z-index: 100; }\n\n.loading-icon {\n  text-align: center;\n  margin-top: 30vh; }\n  .loading-icon svg {\n    max-width: 50px; }\n\n@keyframes loading {\n  0% {\n    opacity: 0; }\n  10% {\n    opacity: 1; }\n  80% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\nhtml {\n  position: relative;\n  min-height: 100%;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #FFFBB3;\n  font-family: Ek Mukta, Rubik, droid Sans, Helvetica Neue, Helvetica, Arial;\n  font-weight: 500;\n  background-color: #FFFBB3;\n  transition: background-color 2s ease;\n  margin: 0;\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  overflow: hidden; }\n\naudio {\n  position: fixed;\n  bottom: 0;\n  right: 0; }\n\na {\n  text-decoration: none; }\n\np, a {\n  color: #D6A614; }\n\n.hidden {\n  opacity: 0; }\n\n.logo {\n  text-align: center;\n  width: 40px;\n  margin: 0 auto;\n  -webkit-user-select: none;\n  opacity: 0;\n  animation: fadeIn 0.3s ease-in;\n  animation-fill-mode: forwards; }\n  .logo img {\n    width: 100%; }\n\n.audio-controls {\n  position: fixed;\n  bottom: 0.5em;\n  right: 1.2em; }\n\n@keyframes fadeIn {\n  0% {\n    opacity: 0; }\n  100% {\n    opacity: 1; } }\n\n.menu {\n  position: fixed;\n  right: 20px;\n  top: 10px;\n  z-index: 10;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.menu-item {\n  display: inline-block;\n  margin-left: 32px;\n  font-size: 12px;\n  letter-spacing: 3px;\n  font-size: 10px;\n  margin-left: 15px;\n  letter-spacing: 2px;\n  text-transform: uppercase;\n  cursor: pointer;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.score {\n  position: absolute;\n  text-align: center;\n  left: 0;\n  right: 0;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .logo {\n    width: 50px; } }\n\n@media (min-width: 550px) and (min-height: 670px) {\n  .menu {\n    right: 50px;\n    top: 20px; }\n  .menu-item {\n    margin-left: 32px;\n    font-size: 12px;\n    letter-spacing: 3px; } }\n", ""]);
+	exports.push([module.id, "@-webkit-keyframes bounceInDown {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -3000px, 0);\n    transform: translate3d(0, -3000px, 0); }\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 25px, 0);\n    transform: translate3d(0, 25px, 0); }\n  75% {\n    -webkit-transform: translate3d(0, -10px, 0);\n    transform: translate3d(0, -10px, 0); }\n  90% {\n    -webkit-transform: translate3d(0, 5px, 0);\n    transform: translate3d(0, 5px, 0); }\n  to {\n    -webkit-transform: none;\n    transform: none; } }\n\n@keyframes bounceInDown {\n  from, 60%, 75%, 90%, to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -3000px, 0);\n    transform: translate3d(0, -3000px, 0); }\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 25px, 0);\n    transform: translate3d(0, 25px, 0); }\n  75% {\n    -webkit-transform: translate3d(0, -10px, 0);\n    transform: translate3d(0, -10px, 0); }\n  90% {\n    -webkit-transform: translate3d(0, 5px, 0);\n    transform: translate3d(0, 5px, 0); }\n  to {\n    -webkit-transform: none;\n    transform: none; } }\n\n@keyframes bounceInDown-1 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 60.54545px, 0); }\n  85% {\n    transform: translate3d(0, 47.54545px, 0); }\n  to {\n    transform: translate3d(0, 50.54545px, 0); } }\n\n@keyframes bounceInDown-2 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 111.09091px, 0); }\n  85% {\n    transform: translate3d(0, 98.09091px, 0); }\n  to {\n    transform: translate3d(0, 101.09091px, 0); } }\n\n@keyframes bounceInDown-3 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 161.63636px, 0); }\n  85% {\n    transform: translate3d(0, 148.63636px, 0); }\n  to {\n    transform: translate3d(0, 151.63636px, 0); } }\n\n@keyframes bounceInDown-4 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 212.18182px, 0); }\n  85% {\n    transform: translate3d(0, 199.18182px, 0); }\n  to {\n    transform: translate3d(0, 202.18182px, 0); } }\n\n@keyframes bounceInDown-5 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 262.72727px, 0); }\n  85% {\n    transform: translate3d(0, 249.72727px, 0); }\n  to {\n    transform: translate3d(0, 252.72727px, 0); } }\n\n@keyframes bounceInDown-6 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 313.27273px, 0); }\n  85% {\n    transform: translate3d(0, 300.27273px, 0); }\n  to {\n    transform: translate3d(0, 303.27273px, 0); } }\n\n@keyframes bounceInDown-7 {\n  0% {\n    transform: translate3d(0, 0, 0); }\n  60% {\n    transform: translate3d(0, 363.81818px, 0); }\n  85% {\n    transform: translate3d(0, 350.81818px, 0); }\n  to {\n    transform: translate3d(0, 353.81818px, 0); } }\n\n.bounceInDown {\n  -webkit-animation-name: bounceInDown;\n  animation-name: bounceInDown; }\n\n@-webkit-keyframes pulse {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); }\n  50% {\n    -webkit-transform: scale3d(1.05, 1.05, 1.05);\n    transform: scale3d(1.05, 1.05, 1.05); }\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); } }\n\n@keyframes pulse {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); }\n  50% {\n    -webkit-transform: scale3d(1.05, 1.05, 1.05);\n    transform: scale3d(1.05, 1.05, 1.05); }\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); } }\n\n.pulse {\n  -webkit-animation-name: pulse;\n  animation-name: pulse; }\n\n@-webkit-keyframes rubberBand {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); }\n  30% {\n    -webkit-transform: scale3d(1.25, 0.75, 1);\n    transform: scale3d(1.25, 0.75, 1); }\n  40% {\n    -webkit-transform: scale3d(0.75, 1.25, 1);\n    transform: scale3d(0.75, 1.25, 1); }\n  50% {\n    -webkit-transform: scale3d(1.15, 0.85, 1);\n    transform: scale3d(1.15, 0.85, 1); }\n  65% {\n    -webkit-transform: scale3d(0.95, 1.05, 1);\n    transform: scale3d(0.95, 1.05, 1); }\n  75% {\n    -webkit-transform: scale3d(1.05, 0.95, 1);\n    transform: scale3d(1.05, 0.95, 1); }\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); } }\n\n@keyframes rubberBand {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1); }\n  30% {\n    -webkit-transform: scale3d(1.25, 0.75, 1);\n    transform: scale3d(1.25, 0.75, 1); }\n  40% {\n    -webkit-transform: scale3d(0.75, 1.25, 1);\n    transform: scale3d(0.75, 1.25, 1); }\n  50% {\n    -webkit-transform: scale3d(1.15, 0.85, 1);\n    transform: scale3d(1.15, 0.85, 1); }\n  65% {\n    -webkit-transform: scale3d(0.95, 1.05, 1);\n    transform: scale3d(0.95, 1.05, 1); }\n  75% {\n    -webkit-transform: scale3d(1.05, 0.95, 1);\n    transform: scale3d(1.05, 0.95, 1); }\n  to {\n    -webkit-transform: scale3d(0.6, 0.6, 0.6);\n    transform: scale3d(0.6, 0.6, 0.6); } }\n\n.rubberBand {\n  -webkit-animation-name: rubberBand;\n  animation-name: rubberBand; }\n\n@keyframes enter {\n  0% {\n    opacity: 0; }\n  100% {\n    opacity: 1; } }\n\n.enter {\n  animation-name: enter;\n  animation-fill-mode: forwards; }\n\n@keyframes leave {\n  0% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\n.leave {\n  animation-name: leave;\n  animation-fill-mode: forwards; }\n\n@keyframes doubleElasticBounceIn {\n  0% {\n    transform: scale(0); }\n  20% {\n    transform: scale(0.5); }\n  36% {\n    transform: scale(1.5); }\n  52% {\n    transform: scale(0.8); }\n  68% {\n    transform: scale(1.2); }\n  84% {\n    transform: scale(0.9); }\n  100% {\n    transform: scale(1); } }\n\n@keyframes elasticBounceIn {\n  0% {\n    transform: scale(0); }\n  50% {\n    transform: scale(1.3); }\n  100% {\n    transform: scale(1); } }\n\n.duration-0.5 {\n  animation-duration: 0.501s; }\n\n.delay-0.5 {\n  animation-delay: 0.501s; }\n\n.duration-1 {\n  animation-duration: 1.001s; }\n\n.delay-1 {\n  animation-delay: 1.001s; }\n\n.duration-1.5 {\n  animation-duration: 1.501s; }\n\n.delay-1.5 {\n  animation-delay: 1.501s; }\n\n.duration-2 {\n  animation-duration: 2.001s; }\n\n.delay-2 {\n  animation-delay: 2.001s; }\n\n.duration-2.5 {\n  animation-duration: 2.501s; }\n\n.delay-2.5 {\n  animation-delay: 2.501s; }\n\n.duration-3 {\n  animation-duration: 3.001s; }\n\n.delay-3 {\n  animation-delay: 3.001s; }\n\n.duration-3.5 {\n  animation-duration: 3.501s; }\n\n.delay-3.5 {\n  animation-delay: 3.501s; }\n\n.duration-4 {\n  animation-duration: 4.001s; }\n\n.delay-4 {\n  animation-delay: 4.001s; }\n\n.duration-4.5 {\n  animation-duration: 4.501s; }\n\n.delay-4.5 {\n  animation-delay: 4.501s; }\n\n.duration-5 {\n  animation-duration: 5.001s; }\n\n.delay-5 {\n  animation-delay: 5.001s; }\n\n.duration-5.5 {\n  animation-duration: 5.501s; }\n\n.delay-5.5 {\n  animation-delay: 5.501s; }\n\n.duration-6 {\n  animation-duration: 6.001s; }\n\n.delay-6 {\n  animation-delay: 6.001s; }\n\n.tile-container {\n  position: absolute;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 41.37931px;\n  height: 41.37931px; }\n\n.tile {\n  border-radius: 50%;\n  z-index: -1;\n  box-sizing: border-box;\n  opacity: 1;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.sun {\n  padding: 7px;\n  background-color: #FFA000;\n  transform: scale(1);\n  opacity: 1; }\n\n.rain {\n  padding: 7px;\n  background-color: #26AAE1;\n  transform: translate(0, 0) scale(1);\n  opacity: 1; }\n\n.seedling {\n  padding: 10px;\n  background: linear-gradient(90deg, #78C143, #78C143 50%, #71af44 51%, #71af44); }\n\n.pod {\n  padding: 14px;\n  transform: scale(1);\n  opacity: 1; }\n\n.rain.dragging,\n.sun.dragging,\n.seedling.dragging,\n.pod.dragging {\n  transition: 0.3s ease;\n  transform: translate(0, 0) scale(0.5); }\n\n.entering {\n  animation: bounceInDown 0.6s ease; }\n\n.y-0.x-0 .rain.leaving {\n  transform: translate(20px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -110px) scale(0.3); }\n\n.y-0.x-1 .rain.leaving {\n  transform: translate(20px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -151.37931px) scale(0.3); }\n\n.y-0.x-2 .rain.leaving {\n  transform: translate(20px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -192.75862px) scale(0.3); }\n\n.y-0.x-3 .rain.leaving {\n  transform: translate(20px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -234.13793px) scale(0.3); }\n\n.y-0.x-4 .rain.leaving {\n  transform: translate(20px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -275.51724px) scale(0.3); }\n\n.y-0.x-5 .rain.leaving {\n  transform: translate(20px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -316.89655px) scale(0.3); }\n\n.y-0.x-6 .rain.leaving {\n  transform: translate(20px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -358.27586px) scale(0.3); }\n\n.y-0.x-7 .rain.leaving {\n  transform: translate(20px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-0.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(269.65517px, -399.65517px) scale(0.3); }\n\n.y-1.x-0 .rain.leaving {\n  transform: translate(-21.37931px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -110px) scale(0.3); }\n\n.y-1.x-1 .rain.leaving {\n  transform: translate(-21.37931px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -151.37931px) scale(0.3); }\n\n.y-1.x-2 .rain.leaving {\n  transform: translate(-21.37931px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -192.75862px) scale(0.3); }\n\n.y-1.x-3 .rain.leaving {\n  transform: translate(-21.37931px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -234.13793px) scale(0.3); }\n\n.y-1.x-4 .rain.leaving {\n  transform: translate(-21.37931px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -275.51724px) scale(0.3); }\n\n.y-1.x-5 .rain.leaving {\n  transform: translate(-21.37931px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -316.89655px) scale(0.3); }\n\n.y-1.x-6 .rain.leaving {\n  transform: translate(-21.37931px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -358.27586px) scale(0.3); }\n\n.y-1.x-7 .rain.leaving {\n  transform: translate(-21.37931px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-1.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(228.27586px, -399.65517px) scale(0.3); }\n\n.y-2.x-0 .rain.leaving {\n  transform: translate(-62.75862px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -110px) scale(0.3); }\n\n.y-2.x-1 .rain.leaving {\n  transform: translate(-62.75862px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -151.37931px) scale(0.3); }\n\n.y-2.x-2 .rain.leaving {\n  transform: translate(-62.75862px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -192.75862px) scale(0.3); }\n\n.y-2.x-3 .rain.leaving {\n  transform: translate(-62.75862px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -234.13793px) scale(0.3); }\n\n.y-2.x-4 .rain.leaving {\n  transform: translate(-62.75862px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -275.51724px) scale(0.3); }\n\n.y-2.x-5 .rain.leaving {\n  transform: translate(-62.75862px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -316.89655px) scale(0.3); }\n\n.y-2.x-6 .rain.leaving {\n  transform: translate(-62.75862px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -358.27586px) scale(0.3); }\n\n.y-2.x-7 .rain.leaving {\n  transform: translate(-62.75862px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-2.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(186.89655px, -399.65517px) scale(0.3); }\n\n.y-3.x-0 .rain.leaving {\n  transform: translate(-104.13793px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -110px) scale(0.3); }\n\n.y-3.x-1 .rain.leaving {\n  transform: translate(-104.13793px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -151.37931px) scale(0.3); }\n\n.y-3.x-2 .rain.leaving {\n  transform: translate(-104.13793px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -192.75862px) scale(0.3); }\n\n.y-3.x-3 .rain.leaving {\n  transform: translate(-104.13793px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -234.13793px) scale(0.3); }\n\n.y-3.x-4 .rain.leaving {\n  transform: translate(-104.13793px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -275.51724px) scale(0.3); }\n\n.y-3.x-5 .rain.leaving {\n  transform: translate(-104.13793px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -316.89655px) scale(0.3); }\n\n.y-3.x-6 .rain.leaving {\n  transform: translate(-104.13793px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -358.27586px) scale(0.3); }\n\n.y-3.x-7 .rain.leaving {\n  transform: translate(-104.13793px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-3.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(145.51724px, -399.65517px) scale(0.3); }\n\n.y-4.x-0 .rain.leaving {\n  transform: translate(-145.51724px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -110px) scale(0.3); }\n\n.y-4.x-1 .rain.leaving {\n  transform: translate(-145.51724px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -151.37931px) scale(0.3); }\n\n.y-4.x-2 .rain.leaving {\n  transform: translate(-145.51724px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -192.75862px) scale(0.3); }\n\n.y-4.x-3 .rain.leaving {\n  transform: translate(-145.51724px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -234.13793px) scale(0.3); }\n\n.y-4.x-4 .rain.leaving {\n  transform: translate(-145.51724px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -275.51724px) scale(0.3); }\n\n.y-4.x-5 .rain.leaving {\n  transform: translate(-145.51724px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -316.89655px) scale(0.3); }\n\n.y-4.x-6 .rain.leaving {\n  transform: translate(-145.51724px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -358.27586px) scale(0.3); }\n\n.y-4.x-7 .rain.leaving {\n  transform: translate(-145.51724px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-4.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(104.13793px, -399.65517px) scale(0.3); }\n\n.y-5.x-0 .rain.leaving {\n  transform: translate(-186.89655px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -110px) scale(0.3); }\n\n.y-5.x-1 .rain.leaving {\n  transform: translate(-186.89655px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -151.37931px) scale(0.3); }\n\n.y-5.x-2 .rain.leaving {\n  transform: translate(-186.89655px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -192.75862px) scale(0.3); }\n\n.y-5.x-3 .rain.leaving {\n  transform: translate(-186.89655px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -234.13793px) scale(0.3); }\n\n.y-5.x-4 .rain.leaving {\n  transform: translate(-186.89655px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -275.51724px) scale(0.3); }\n\n.y-5.x-5 .rain.leaving {\n  transform: translate(-186.89655px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -316.89655px) scale(0.3); }\n\n.y-5.x-6 .rain.leaving {\n  transform: translate(-186.89655px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -358.27586px) scale(0.3); }\n\n.y-5.x-7 .rain.leaving {\n  transform: translate(-186.89655px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-5.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(62.75862px, -399.65517px) scale(0.3); }\n\n.y-6.x-0 .rain.leaving {\n  transform: translate(-228.27586px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -110px) scale(0.3); }\n\n.y-6.x-1 .rain.leaving {\n  transform: translate(-228.27586px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -151.37931px) scale(0.3); }\n\n.y-6.x-2 .rain.leaving {\n  transform: translate(-228.27586px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -192.75862px) scale(0.3); }\n\n.y-6.x-3 .rain.leaving {\n  transform: translate(-228.27586px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -234.13793px) scale(0.3); }\n\n.y-6.x-4 .rain.leaving {\n  transform: translate(-228.27586px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -275.51724px) scale(0.3); }\n\n.y-6.x-5 .rain.leaving {\n  transform: translate(-228.27586px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -316.89655px) scale(0.3); }\n\n.y-6.x-6 .rain.leaving {\n  transform: translate(-228.27586px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -358.27586px) scale(0.3); }\n\n.y-6.x-7 .rain.leaving {\n  transform: translate(-228.27586px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-6.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(21.37931px, -399.65517px) scale(0.3); }\n\n.y-7.x-0 .rain.leaving {\n  transform: translate(-269.65517px, -110px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-0 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -110px) scale(0.3); }\n\n.y-7.x-1 .rain.leaving {\n  transform: translate(-269.65517px, -151.37931px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-1 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -151.37931px) scale(0.3); }\n\n.y-7.x-2 .rain.leaving {\n  transform: translate(-269.65517px, -192.75862px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-2 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -192.75862px) scale(0.3); }\n\n.y-7.x-3 .rain.leaving {\n  transform: translate(-269.65517px, -234.13793px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-3 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -234.13793px) scale(0.3); }\n\n.y-7.x-4 .rain.leaving {\n  transform: translate(-269.65517px, -275.51724px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-4 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -275.51724px) scale(0.3); }\n\n.y-7.x-5 .rain.leaving {\n  transform: translate(-269.65517px, -316.89655px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-5 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -316.89655px) scale(0.3); }\n\n.y-7.x-6 .rain.leaving {\n  transform: translate(-269.65517px, -358.27586px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-6 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -358.27586px) scale(0.3); }\n\n.y-7.x-7 .rain.leaving {\n  transform: translate(-269.65517px, -399.65517px) scale(0.3);\n  transition: 1s ease; }\n\n.y-7.x-7 .sun.leaving {\n  transition: 1s ease;\n  transform: translate(-20px, -399.65517px) scale(0.3); }\n\n.seedling.leaving {\n  transition: 0.5s ease;\n  transform: scale(4);\n  opacity: 0; }\n\n.pod.leaving {\n  transition: 0.5s ease;\n  transform: translate(100px, -100px);\n  opacity: 0; }\n\n.pod.leaving.delay-1 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.08s; }\n\n.pod.leaving.delay-2 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.16s; }\n\n.pod.leaving.delay-3 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.24s; }\n\n.pod.leaving.delay-4 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.32s; }\n\n.pod.leaving.delay-5 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.4s; }\n\n.pod.leaving.delay-6 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.48s; }\n\n.pod.leaving.delay-7 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.56s; }\n\n.pod.leaving.delay-8 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.64s; }\n\n.pod.leaving.delay-9 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.72s; }\n\n.pod.leaving.delay-10 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.8s; }\n\n.pod.leaving.delay-11 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.88s; }\n\n.pod.leaving.delay-12 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 0.96s; }\n\n.pod.leaving.delay-13 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 1.04s; }\n\n.pod.leaving.delay-14 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 1.12s; }\n\n.pod.leaving.delay-15 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 1.2s; }\n\n.pod.leaving.delay-16 {\n  transition: 0.5s ease-in-out;\n  transform: translate(100px, -100px);\n  opacity: 0;\n  transition-delay: 1.28s; }\n\n.pod.growing {\n  animation: elasticBounceIn 0.5s ease;\n  animation-fill-mode: forwards; }\n\n.seedling.growing {\n  transform: scale(4);\n  opacity: 0;\n  transition: 0.5s ease-out; }\n\n@media (min-width: 550px) and (min-height: 670px) {\n  .tile-container {\n    width: 54.54545px;\n    height: 54.54545px; }\n  .sun, .rain {\n    padding: 10px; }\n  .seedling {\n    padding: 13px; }\n  .pod {\n    padding: 19px; }\n  .y-0.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -120px) scale(0.2); }\n  .y-0.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -120px) scale(1); }\n  .y-0.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -174.54545px) scale(0.2); }\n  .y-0.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -174.54545px) scale(1); }\n  .y-0.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -229.09091px) scale(0.2); }\n  .y-0.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -229.09091px) scale(1); }\n  .y-0.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -283.63636px) scale(0.2); }\n  .y-0.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -283.63636px) scale(1); }\n  .y-0.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -338.18182px) scale(0.2); }\n  .y-0.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -338.18182px) scale(1); }\n  .y-0.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -392.72727px) scale(0.2); }\n  .y-0.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -392.72727px) scale(1); }\n  .y-0.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -447.27273px) scale(0.2); }\n  .y-0.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -447.27273px) scale(1); }\n  .y-0.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -501.81818px) scale(0.2); }\n  .y-0.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(381.81818px, -501.81818px) scale(1); }\n  .y-1.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -120px) scale(0.2); }\n  .y-1.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -120px) scale(1); }\n  .y-1.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -174.54545px) scale(0.2); }\n  .y-1.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -174.54545px) scale(1); }\n  .y-1.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -229.09091px) scale(0.2); }\n  .y-1.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -229.09091px) scale(1); }\n  .y-1.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -283.63636px) scale(0.2); }\n  .y-1.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -283.63636px) scale(1); }\n  .y-1.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -338.18182px) scale(0.2); }\n  .y-1.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -338.18182px) scale(1); }\n  .y-1.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -392.72727px) scale(0.2); }\n  .y-1.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -392.72727px) scale(1); }\n  .y-1.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -447.27273px) scale(0.2); }\n  .y-1.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -447.27273px) scale(1); }\n  .y-1.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-54.54545px, -501.81818px) scale(0.2); }\n  .y-1.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(327.27273px, -501.81818px) scale(1); }\n  .y-2.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -120px) scale(0.2); }\n  .y-2.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -120px) scale(1); }\n  .y-2.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -174.54545px) scale(0.2); }\n  .y-2.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -174.54545px) scale(1); }\n  .y-2.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -229.09091px) scale(0.2); }\n  .y-2.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -229.09091px) scale(1); }\n  .y-2.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -283.63636px) scale(0.2); }\n  .y-2.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -283.63636px) scale(1); }\n  .y-2.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -338.18182px) scale(0.2); }\n  .y-2.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -338.18182px) scale(1); }\n  .y-2.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -392.72727px) scale(0.2); }\n  .y-2.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -392.72727px) scale(1); }\n  .y-2.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -447.27273px) scale(0.2); }\n  .y-2.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -447.27273px) scale(1); }\n  .y-2.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-109.09091px, -501.81818px) scale(0.2); }\n  .y-2.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(272.72727px, -501.81818px) scale(1); }\n  .y-3.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -120px) scale(0.2); }\n  .y-3.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -120px) scale(1); }\n  .y-3.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -174.54545px) scale(0.2); }\n  .y-3.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -174.54545px) scale(1); }\n  .y-3.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -229.09091px) scale(0.2); }\n  .y-3.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -229.09091px) scale(1); }\n  .y-3.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -283.63636px) scale(0.2); }\n  .y-3.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -283.63636px) scale(1); }\n  .y-3.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -338.18182px) scale(0.2); }\n  .y-3.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -338.18182px) scale(1); }\n  .y-3.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -392.72727px) scale(0.2); }\n  .y-3.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -392.72727px) scale(1); }\n  .y-3.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -447.27273px) scale(0.2); }\n  .y-3.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -447.27273px) scale(1); }\n  .y-3.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-163.63636px, -501.81818px) scale(0.2); }\n  .y-3.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(218.18182px, -501.81818px) scale(1); }\n  .y-4.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -120px) scale(0.2); }\n  .y-4.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -120px) scale(1); }\n  .y-4.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -174.54545px) scale(0.2); }\n  .y-4.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -174.54545px) scale(1); }\n  .y-4.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -229.09091px) scale(0.2); }\n  .y-4.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -229.09091px) scale(1); }\n  .y-4.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -283.63636px) scale(0.2); }\n  .y-4.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -283.63636px) scale(1); }\n  .y-4.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -338.18182px) scale(0.2); }\n  .y-4.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -338.18182px) scale(1); }\n  .y-4.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -392.72727px) scale(0.2); }\n  .y-4.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -392.72727px) scale(1); }\n  .y-4.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -447.27273px) scale(0.2); }\n  .y-4.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -447.27273px) scale(1); }\n  .y-4.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-218.18182px, -501.81818px) scale(0.2); }\n  .y-4.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(163.63636px, -501.81818px) scale(1); }\n  .y-5.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -120px) scale(0.2); }\n  .y-5.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -120px) scale(1); }\n  .y-5.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -174.54545px) scale(0.2); }\n  .y-5.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -174.54545px) scale(1); }\n  .y-5.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -229.09091px) scale(0.2); }\n  .y-5.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -229.09091px) scale(1); }\n  .y-5.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -283.63636px) scale(0.2); }\n  .y-5.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -283.63636px) scale(1); }\n  .y-5.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -338.18182px) scale(0.2); }\n  .y-5.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -338.18182px) scale(1); }\n  .y-5.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -392.72727px) scale(0.2); }\n  .y-5.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -392.72727px) scale(1); }\n  .y-5.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -447.27273px) scale(0.2); }\n  .y-5.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -447.27273px) scale(1); }\n  .y-5.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-272.72727px, -501.81818px) scale(0.2); }\n  .y-5.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(109.09091px, -501.81818px) scale(1); }\n  .y-6.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -120px) scale(0.2); }\n  .y-6.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -120px) scale(1); }\n  .y-6.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -174.54545px) scale(0.2); }\n  .y-6.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -174.54545px) scale(1); }\n  .y-6.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -229.09091px) scale(0.2); }\n  .y-6.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -229.09091px) scale(1); }\n  .y-6.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -283.63636px) scale(0.2); }\n  .y-6.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -283.63636px) scale(1); }\n  .y-6.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -338.18182px) scale(0.2); }\n  .y-6.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -338.18182px) scale(1); }\n  .y-6.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -392.72727px) scale(0.2); }\n  .y-6.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -392.72727px) scale(1); }\n  .y-6.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -447.27273px) scale(0.2); }\n  .y-6.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -447.27273px) scale(1); }\n  .y-6.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-327.27273px, -501.81818px) scale(0.2); }\n  .y-6.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(54.54545px, -501.81818px) scale(1); }\n  .y-7.x-0 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -120px) scale(0.2); }\n  .y-7.x-0 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -120px) scale(1); }\n  .y-7.x-1 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -174.54545px) scale(0.2); }\n  .y-7.x-1 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -174.54545px) scale(1); }\n  .y-7.x-2 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -229.09091px) scale(0.2); }\n  .y-7.x-2 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -229.09091px) scale(1); }\n  .y-7.x-3 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -283.63636px) scale(0.2); }\n  .y-7.x-3 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -283.63636px) scale(1); }\n  .y-7.x-4 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -338.18182px) scale(0.2); }\n  .y-7.x-4 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -338.18182px) scale(1); }\n  .y-7.x-5 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -392.72727px) scale(0.2); }\n  .y-7.x-5 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -392.72727px) scale(1); }\n  .y-7.x-6 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -447.27273px) scale(0.2); }\n  .y-7.x-6 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -447.27273px) scale(1); }\n  .y-7.x-7 .rain.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(-381.81818px, -501.81818px) scale(0.2); }\n  .y-7.x-7 .sun.leaving {\n    transition: 0.7s ease-in-out;\n    transform: translate(0px, -501.81818px) scale(1); } }\n\n.twin-dark .left {\n  fill: #3A2315; }\n\n.twin-dark .right {\n  fill: #A77B52; }\n\n.twin-light .left {\n  fill: #F5993D; }\n\n.twin-light .right {\n  fill: #EB4C48; }\n\n.twin-red .left {\n  fill: #F22B21; }\n\n.twin-red .right {\n  fill: #7B4728; }\n\n.small {\n  width: 4em;\n  height: 10em;\n  margin: 0 5px; }\n\n.board-container {\n  position: fixed;\n  z-index: 1;\n  left: 0;\n  right: 0;\n  margin: 0em 0;\n  -webkit-tap-highlight-color: transparent; }\n\n.top-bar-container {\n  width: 16.7em;\n  margin: 40px auto 0;\n  display: flex;\n  align-items: center; }\n\n.board {\n  height: 331.03448px;\n  width: 331.03448px;\n  margin: 4em auto;\n  position: absolute;\n  left: 0;\n  right: 0;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent; }\n\n.x-0 {\n  top: 0px; }\n\n.y-0 {\n  left: 0px; }\n\n.falling-0 {\n  transform: translateY(0px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-0 {\n    top: 0px; }\n  .y-0 {\n    left: 0px; }\n  .falling-0 {\n    animation: bounceInDown-0 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-1 {\n  top: 37.37931px; }\n\n.y-1 {\n  left: 41.37931px; }\n\n.falling-1 {\n  transform: translateY(37.37931px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-1 {\n    top: 50.54545px; }\n  .y-1 {\n    left: 54.54545px; }\n  .falling-1 {\n    animation: bounceInDown-1 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-2 {\n  top: 74.75862px; }\n\n.y-2 {\n  left: 82.75862px; }\n\n.falling-2 {\n  transform: translateY(74.75862px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-2 {\n    top: 101.09091px; }\n  .y-2 {\n    left: 109.09091px; }\n  .falling-2 {\n    animation: bounceInDown-2 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-3 {\n  top: 112.13793px; }\n\n.y-3 {\n  left: 124.13793px; }\n\n.falling-3 {\n  transform: translateY(112.13793px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-3 {\n    top: 151.63636px; }\n  .y-3 {\n    left: 163.63636px; }\n  .falling-3 {\n    animation: bounceInDown-3 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-4 {\n  top: 149.51724px; }\n\n.y-4 {\n  left: 165.51724px; }\n\n.falling-4 {\n  transform: translateY(149.51724px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-4 {\n    top: 202.18182px; }\n  .y-4 {\n    left: 218.18182px; }\n  .falling-4 {\n    animation: bounceInDown-4 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-5 {\n  top: 186.89655px; }\n\n.y-5 {\n  left: 206.89655px; }\n\n.falling-5 {\n  transform: translateY(186.89655px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-5 {\n    top: 252.72727px; }\n  .y-5 {\n    left: 272.72727px; }\n  .falling-5 {\n    animation: bounceInDown-5 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-6 {\n  top: 224.27586px; }\n\n.y-6 {\n  left: 248.27586px; }\n\n.falling-6 {\n  transform: translateY(224.27586px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-6 {\n    top: 303.27273px; }\n  .y-6 {\n    left: 327.27273px; }\n  .falling-6 {\n    animation: bounceInDown-6 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n.x-7 {\n  top: 261.65517px; }\n\n.y-7 {\n  left: 289.65517px; }\n\n.falling-7 {\n  transform: translateY(261.65517px);\n  transition: transform 0.3s ease; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .x-7 {\n    top: 353.81818px; }\n  .y-7 {\n    left: 381.81818px; }\n  .falling-7 {\n    animation: bounceInDown-7 0.4s ease-in-out;\n    animation-fill-mode: both; } }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .board {\n    height: 436.36364px;\n    width: 436.36364px; }\n  .top-bar-container {\n    width: 24.5em;\n    margin: 60px auto 0; } }\n\n@media (min-height: 900px) {\n  .board-container {\n    margin: 5em 0; } }\n\n.rain-falling {\n  background: #61BCFF; }\n\n.rain-maker {\n  background-color: #61BCFF;\n  width: 10px;\n  height: 10px;\n  border-radius: 5px;\n  transform: scale(1);\n  transition: 0.6s ease-in-out;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent; }\n\n.sun-maker {\n  background-color: #FFA828;\n  width: 10px;\n  height: 10px;\n  border-radius: 5px;\n  transform: scale(1);\n  transition: 0.6s ease-in-out;\n  cursor: pointer;\n  -webkit-tap-highlight-color: transparent; }\n\n.sun-shining {\n  background: #FFA828; }\n\n.power-0 {\n  transform: scale(0); }\n\n.power-1 {\n  transform: scale(0.6); }\n\n.power-2 {\n  transform: scale(1.2); }\n\n.power-3 {\n  transform: scale(1.8); }\n\n.power-4 {\n  transform: scale(2.4); }\n\n.power-5 {\n  transform: scale(3); }\n\n.power-6 {\n  transform: scale(3.6); }\n\n.power-7 {\n  transform: scale(4.2); }\n\n.power-8 {\n  transform: scale(4.8); }\n\n.power-9 {\n  transform: scale(5.4); }\n\n.power-10 {\n  transform: scale(6); }\n\n.power-11 {\n  transform: scale(6.6); }\n\n.power-12 {\n  transform: scale(7.2); }\n\n.power-13 {\n  transform: scale(7.8); }\n\n.max-rain {\n  animation: rain-pulse 1s infinite linear; }\n\n.max-sun {\n  animation: sun-pulse 1s infinite linear; }\n\n.rain-curtain {\n  transition: 2s ease;\n  position: fixed;\n  z-index: 0;\n  display: flex;\n  justify-content: center;\n  top: 0;\n  left: 0;\n  height: 100vh; }\n\n@keyframes fall {\n  0% {\n    transform: translateY(0);\n    opacity: 1; }\n  100% {\n    transform: translateY(1000px);\n    opacity: 0; } }\n\n.rain-drop {\n  width: 2px;\n  height: 20px;\n  background-color: #0267b1;\n  margin: 0 1em;\n  will-change: translateY, opacity; }\n\n.rain-drop:nth-child(1) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 0.3s; }\n\n.rain-drop:nth-child(2) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 0.6s; }\n\n.rain-drop:nth-child(3) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 0.9s; }\n\n.rain-drop:nth-child(4) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 1.2s; }\n\n.rain-drop:nth-child(5) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 1.5s; }\n\n.rain-drop:nth-child(6) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 1.8s; }\n\n.rain-drop:nth-child(7) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 2.1s; }\n\n.rain-drop:nth-child(8) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 2.4s; }\n\n.rain-drop:nth-child(9) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 2.7s; }\n\n.rain-drop:nth-child(10) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 3s; }\n\n.rain-drop:nth-child(11) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 3.3s; }\n\n.rain-drop:nth-child(12) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 3.6s; }\n\n.rain-drop:nth-child(13) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 3.9s; }\n\n.rain-drop:nth-child(14) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 4.2s; }\n\n.rain-drop:nth-child(15) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 4.5s; }\n\n.rain-drop:nth-child(16) {\n  animation: fall 0.5s linear infinite;\n  animation-delay: 4.8s; }\n\n@keyframes rain-pulse {\n  0% {\n    background-color: #61BCFF; }\n  50% {\n    background-color: #478bff; }\n  100% {\n    background-color: #61BCFF; } }\n\n@keyframes sun-pulse {\n  0% {\n    background-color: #FFA828; }\n  50% {\n    background-color: #f95d34; }\n  100% {\n    background-color: #FFA828; } }\n\n@media (min-height: 670px), (min-width: 550px) {\n  .rain-curtain {\n    width: 100%; } }\n\n.info {\n  letter-spacing: 2px; }\n\n.intro {\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  height: 80vh;\n  position: relative;\n  align-items: center;\n  text-align: center;\n  justify-content: center;\n  text-align: center;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.intro-text {\n  margin: 0;\n  font-size: 1.25em;\n  letter-spacing: 1.4px; }\n\n.same-line {\n  height: 4.2em; }\n  .same-line .intro-text {\n    margin: 1em 0;\n    position: absolute;\n    width: 100%;\n    left: 0;\n    right: 0; }\n\n.title {\n  font-size: 25px;\n  letter-spacing: 4px;\n  opacity: 0; }\n\n.begin {\n  font-size: 16px;\n  margin-top: 65px;\n  letter-spacing: 4px;\n  opacity: 0;\n  text-transform: uppercase;\n  cursor: pointer;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.intro-seed {\n  max-width: 2.9em;\n  max-height: 7em;\n  margin: 0 6.5px;\n  opacity: 0; }\n\n.forwards.one {\n  opacity: 0;\n  animation: enter 3s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 0.6s; }\n\n.backwards.one {\n  opacity: 1;\n  animation: leave 2s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 1.5s; }\n\n.forwards.two {\n  opacity: 0;\n  animation: enter 3s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 1.1s; }\n\n.backwards.two {\n  opacity: 1;\n  animation: leave 2s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 1s; }\n\n.forwards.three {\n  opacity: 0;\n  animation: enter 3s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 1.6s; }\n\n.backwards.three {\n  opacity: 1;\n  animation: leave 2s ease;\n  animation-fill-mode: forwards;\n  animation-delay: 0.5s; }\n\n@media (min-width: 550px) {\n  .intro-text {\n    font-size: 1.4em; }\n  .intro-seed {\n    max-width: 4em;\n    max-height: 10em; } }\n\n.loading-screen {\n  height: 100vh;\n  width: 100%;\n  position: fixed;\n  animation: loading 3s linear;\n  animation-fill-mode: forwards;\n  opacity: 0;\n  z-index: 100; }\n\n.loading-icon {\n  text-align: center;\n  margin-top: 30vh; }\n  .loading-icon svg {\n    max-width: 50px; }\n\n@keyframes loading {\n  0% {\n    opacity: 0; }\n  10% {\n    opacity: 1; }\n  80% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\nhtml {\n  position: relative;\n  min-height: 100%;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  background: #FFFBB3;\n  font-family: Ek Mukta, Rubik, droid Sans, Helvetica Neue, Helvetica, Arial;\n  font-weight: 500;\n  background-color: #FFFBB3;\n  transition: background-color 2s ease;\n  margin: 0;\n  position: fixed;\n  width: 100%;\n  height: 100vh;\n  overflow: hidden; }\n\naudio {\n  position: fixed;\n  bottom: 0;\n  right: 0; }\n\na {\n  text-decoration: none; }\n\np, a {\n  color: #D6A614; }\n\n.hidden {\n  opacity: 0; }\n\n.logo {\n  text-align: center;\n  width: 40px;\n  margin: 0 auto;\n  -webkit-user-select: none;\n  opacity: 0;\n  animation: fadeIn 0.3s ease-in;\n  animation-fill-mode: forwards; }\n  .logo img {\n    width: 100%; }\n\n.audio-controls {\n  position: fixed;\n  bottom: 0.5em;\n  right: 1.2em; }\n\n@keyframes fadeIn {\n  0% {\n    opacity: 0; }\n  100% {\n    opacity: 1; } }\n\n.menu {\n  position: fixed;\n  right: 20px;\n  top: 10px;\n  z-index: 10;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.menu-item {\n  display: inline-block;\n  margin-left: 32px;\n  font-size: 12px;\n  letter-spacing: 3px;\n  font-size: 10px;\n  margin-left: 15px;\n  letter-spacing: 2px;\n  text-transform: uppercase;\n  cursor: pointer;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n.score {\n  position: absolute;\n  text-align: center;\n  left: 0;\n  right: 0;\n  -webkit-user-select: none;\n  user-select: none;\n  -webkit-tap-highlight-color: transparent; }\n\n@media (min-height: 670px) and (min-width: 550px) {\n  .logo {\n    width: 50px; } }\n\n@media (min-width: 550px) and (min-height: 670px) {\n  .menu {\n    right: 50px;\n    top: 20px; }\n  .menu-item {\n    margin-left: 32px;\n    font-size: 12px;\n    letter-spacing: 3px; } }\n", ""]);
 
 	// exports
 
