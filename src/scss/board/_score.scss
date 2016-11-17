@@ -1,0 +1,39 @@
+.seed-bank {
+  text-align: center;
+  width: 40px;
+  margin: 0 auto;
+  -webkit-user-select: none;
+  opacity: 0;
+  position: relative;
+  animation: fadeIn 0.3s ease-in;
+  animation-fill-mode: forwards;
+
+  img {
+    width: 100%;
+  }
+}
+
+.score {
+  position: absolute;
+  text-align: center;
+  left: 0;
+  right: 0;
+  @include no-select;
+}
+
+.screen {
+  width: 80px;
+  height: 82px;
+  background-color: $beige;
+  position: absolute;
+  transition: 2s ease;
+  transform: translateY(0);
+  left: 0;
+  right: 0;
+}
+
+@media (min-height: $height-m) and (min-width: $width-m) {
+  .seed-bank {
+    width: 50px;
+  }
+}

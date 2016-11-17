@@ -1,5 +1,5 @@
 import React from 'react'
-import Board from './Board.js'
+import Board from './Board/Board.js'
 import TitleScreen from './TitleScreen.js'
 import Loading from './Loading.js'
 import Intro from './Intro.js'
@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { setView, playAudio, stopAudio } from '../redux/allActions.js'
 import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
 
-import '../../scss/style.scss'
+import '../../scss/index.scss'
 
 class App extends React.Component {
   router () {

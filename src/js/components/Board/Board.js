@@ -1,7 +1,8 @@
 import React from 'react'
 import { addListener, removeListener } from 'spur-events'
 import { connect } from 'react-redux'
-import tileClassMap from '../constants/tileClasses.js'
+import tileClassMap from '../../constants/tileClasses.js'
+import SeedBank from './SeedBank.js'
 import Tile from './Tile.js'
 
 class Board extends React.PureComponent {
@@ -85,7 +86,10 @@ class Board extends React.PureComponent {
             onClick={() => this.triggerWeather('rain')}
             className={this.weatherMakerClass('rain')}
           />
-          <div onClick={this.harvestSeeds} className='logo'><img src='img/seed-dark.png'/></div>
+          <SeedBank
+            harvestSeeds={this.harvestSeeds}
+            score={this.props.score}
+          />
           <div
             onClick={() => this.triggerWeather('sun')}
             className={this.weatherMakerClass('sun')}
@@ -120,11 +124,11 @@ class Board extends React.PureComponent {
   }
 }
 
-import isDraggingArray from '../redux/selectors/selector_isDraggingArray.js'
-import isGrowingArray from '../redux/selectors/selector_isGrowingArray.js'
-import moveType from '../redux/selectors/selector_moveType.js'
-import seedMoves from '../redux/selectors/selector_seedMoves.js'
-import seedlingCount from '../redux/selectors/selector_seedlingCount.js'
+import isDraggingArray from '../../redux/selectors/selector_isDraggingArray.js'
+import isGrowingArray from '../../redux/selectors/selector_isGrowingArray.js'
+import moveType from '../../redux/selectors/selector_moveType.js'
+import seedMoves from '../../redux/selectors/selector_seedMoves.js'
+import seedlingCount from '../../redux/selectors/selector_seedlingCount.js'
 
 const mapStateToProps = (state) => ({
   ...state,
@@ -139,12 +143,12 @@ const mapStateToProps = (state) => ({
   seedMoves: seedMoves(state)
 })
 
-import stopDrag from '../redux/actionSequences/stopDrag.js'
-import startDrag from '../redux/actionSequences/startDrag.js'
-import checkTile from '../redux/actionSequences/checkTile.js'
-import harvestSeeds from '../redux/actionSequences/harvestSeeds.js'
-import triggerWeather from '../redux/actionSequences/triggerWeather.js'
-import { resetEntering } from '../redux/allActions.js'
+import stopDrag from '../../redux/actionSequences/stopDrag.js'
+import startDrag from '../../redux/actionSequences/startDrag.js'
+import checkTile from '../../redux/actionSequences/checkTile.js'
+import harvestSeeds from '../../redux/actionSequences/harvestSeeds.js'
+import triggerWeather from '../../redux/actionSequences/triggerWeather.js'
+import { resetEntering } from '../../redux/allActions.js'
 
 export default connect(mapStateToProps, {
   resetEntering,

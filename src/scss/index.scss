@@ -1,13 +1,14 @@
 @import 'variables';
 @import 'mixins';
-@import 'animate';
-@import 'customAnimations';
-@import 'tiles';
+@import 'animations';
 @import 'seeds';
-@import 'board';
-@import 'weather';
-@import 'intro';
-@import 'loading';
+@import 'board/tiles';
+@import 'board/board';
+@import 'board/score';
+@import 'board/coordiantes';
+@import 'board/weather';
+@import 'views/intro';
+@import 'views/loading';
 
 html {
   position: relative;
@@ -46,20 +47,6 @@ p, a {
   opacity: 0;
 }
 
-.logo {
-  text-align: center;
-  width: 40px;
-  margin: 0 auto;
-  -webkit-user-select: none;
-  opacity: 0;
-  animation: fadeIn 0.3s ease-in;
-  animation-fill-mode: forwards;
-
-  img {
-    width: 100%;
-  }
-}
-
 .audio-controls {
   position: fixed;
   bottom: 0.5em;
@@ -90,20 +77,6 @@ p, a {
   text-transform: uppercase;
   cursor: pointer;
   @include no-select;
-}
-
-.score {
-  position: absolute;
-  text-align: center;
-  left: 0;
-  right: 0;
-  @include no-select;
-}
-
-@media (min-height: $height-m) and (min-width: $width-m) {
-  .logo {
-    width: 50px;
-  }
 }
 
 @media (min-width: $width-m) and (min-height: $height-m) {
