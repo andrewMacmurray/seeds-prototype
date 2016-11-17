@@ -2,13 +2,13 @@
 @import 'mixins';
 @import 'animations';
 @import 'seeds';
+@import 'views/intro';
+@import 'views/loading';
 @import 'board/tiles';
 @import 'board/board';
 @import 'board/score';
 @import 'board/coordiantes';
 @import 'board/weather';
-@import 'views/intro';
-@import 'views/loading';
 
 html {
   position: relative;
@@ -17,16 +17,10 @@ html {
 }
 
 body {
-  background: $beige;
   font-family: $main-font;
   font-weight: 500;
   background-color: $beige;
-  transition: background-color 2s ease;
   margin: 0;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
 }
 
 audio {
@@ -51,11 +45,6 @@ p, a {
   position: fixed;
   bottom: 0.5em;
   right: 1.2em;
-}
-
-@keyframes fadeIn {
-  0% {opacity: 0}
-  100% {opacity: 1}
 }
 
 .menu {

@@ -41,19 +41,8 @@ class Board extends React.PureComponent {
     this.props.stopDrag(moveType, seedlingCount)
   }
 
-  animateBackground (type) {
-    const weatherClass = type === 'rain'
-      ? 'rain-falling'
-      : 'sun-shining'
-    const body = document.body.classList
-    body.add(weatherClass)
-    setTimeout(() => body.remove(weatherClass), 3000)
-  }
-
   triggerWeather = (weatherType) => {
-    const { sun, rain, seedlingCount } = this.props
-    if (weatherType === 'sun' && sun >= 8) this.animateBackground('sun')
-    if (weatherType === 'rain' && rain >= 8) this.animateBackground('rain')
+    const { seedlingCount } = this.props
     this.props.triggerWeather(weatherType, seedlingCount)
   }
 
@@ -89,6 +78,7 @@ class Board extends React.PureComponent {
           <SeedBank
             harvestSeeds={this.harvestSeeds}
             score={this.props.score}
+            backdrop={this.props.backdrop}
           />
           <div
             onClick={() => this.triggerWeather('sun')}

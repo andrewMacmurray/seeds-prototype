@@ -1,20 +1,20 @@
-@keyframes enter {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+@keyframes fadeIn {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
 }
 
-.enter {
-  animation-name: enter;
-  animation-fill-mode: forwards;
-}
-
-@keyframes leave {
+@keyframes fadeOut {
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
 
+.enter {
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+}
+
 .leave {
-  animation-name: leave;
+  animation-name: fadeOut;
   animation-fill-mode: forwards;
 }
 

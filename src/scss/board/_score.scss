@@ -7,6 +7,7 @@
   position: relative;
   animation: fadeIn 0.3s ease-in;
   animation-fill-mode: forwards;
+  overflow: hidden;
 
   img {
     width: 100%;
@@ -22,7 +23,7 @@
 }
 
 .screen {
-  width: 80px;
+  width: 40px;
   height: 82px;
   background-color: $beige;
   position: absolute;
@@ -32,8 +33,17 @@
   right: 0;
 }
 
+.outline {
+  width: 40px;
+  position: absolute;
+}
+
 @media (min-height: $height-m) and (min-width: $width-m) {
   .seed-bank {
+    width: 50px;
+  }
+
+  .screen {
     width: 50px;
   }
 }
