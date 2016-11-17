@@ -31,8 +31,8 @@ export default () => (dispatch) => {
     .delay(1500)
     .then(_dispatch(_.resetIntroText))
     .then(_dispatch(_.showLoadingScreen))
-    .delay(1800)
+    .delay(1600)
     .then(_dispatch(_.setView, 'board'))
-    .delay(1200)
+    .delay(1400)
     .then(_dispatch(_.hideLoadingScreen))
 }
