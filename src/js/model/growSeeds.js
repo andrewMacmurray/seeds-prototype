@@ -1,10 +1,10 @@
-import { addIndex, filter, length, map, unnest, compose } from 'ramda'
+import { addIndex, filter, length, map, equals, complement, unnest, compose } from 'ramda'
 
 const probabilityMap = (n) =>
-      n > 20 ? 0.5
-    : n < 20 && n >= 10 ? 0.7
-    : n < 10 && n >= 5 ? 0.9
-    : n < 5 ? 1
+      n > 20 ? 0.6
+    : n < 20 && n >= 10 ? 0.75
+    : n < 10 && n >= 8 ? 0.9
+    : n < 8 ? 1
     : 0.5
 
 const growSeedMove = (tile, i, j, count) => {
@@ -23,7 +23,8 @@ const mapBoard = (transformFn, extraData) =>
 
 const growMovesOnBoard = (board, seedlingCount) => mapBoard(growSeedMove, seedlingCount)(board)
 
-const filterForTiles = filter(x => x !== 0)
+const notZero = complement(equals(0))
+const filterForTiles = filter(notZero)
 export const growingMoveArray = compose(
   filterForTiles,
   unnest,
@@ -33,8 +34,9 @@ export const growingMoveArray = compose(
 const isTileGrowing = (_, i, j, moves) => filter(([ y, x ]) => x === j && y === i)(moves).length > 0
 export const isGrowingArray = (board, moves) => mapBoard(isTileGrowing, moves)(board)
 
-const isSeed = (tile, i, j) => tile === 4 ? [ i, j ] : 0
-const seedMovesOnBoard = mapBoard(isSeed)
+const isSeed = equals(4)
+const seedTiles = (tile, i, j) => isSeed(tile) ? [ i, j ] : 0
+const seedMovesOnBoard = mapBoard(seedTiles)
 
 export const getSeedMoves = compose(
   filterForTiles,
@@ -42,8 +44,9 @@ export const getSeedMoves = compose(
   seedMovesOnBoard
 )
 
+const isSeedling = equals(3)
 export const countSeedlings = compose(
   length,
-  filter(x => x === 3),
+  filter(isSeedling),
   unnest
 )

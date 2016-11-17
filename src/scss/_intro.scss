@@ -8,6 +8,7 @@
   width: 100%;
   height: 80vh;
   position: relative;
+  z-index: 1;
   align-items: center;
   text-align: center;
   justify-content: center;
@@ -17,6 +18,7 @@
 
 .intro-text {
   margin: 0;
+  opacity: 0;
   font-size: 1.25em;
   letter-spacing: 1.4px;
 }
@@ -26,6 +28,7 @@
 
   .intro-text {
     margin: 1em 0;
+    opacity: 0;
     position: absolute;
     width: 100%;
     left: 0;

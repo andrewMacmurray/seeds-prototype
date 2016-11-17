@@ -51,8 +51,8 @@ class Board extends React.PureComponent {
 
   triggerWeather = (weatherType) => {
     const { sun, rain, seedlingCount } = this.props
-    if (sun >= 8) this.animateBackground('sun')
-    if (rain >= 8) this.animateBackground('rain')
+    if (weatherType === 'sun' && sun >= 8) this.animateBackground('sun')
+    if (weatherType === 'rain' && rain >= 8) this.animateBackground('rain')
     this.props.triggerWeather(weatherType, seedlingCount)
   }
 
