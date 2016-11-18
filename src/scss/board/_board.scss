@@ -25,32 +25,6 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-@for $i from 0 through 7 {
-  .x-#{$i} {
-    top: ($grid-small - $grid-offset-small) * $i;
-  }
-  .y-#{$i} {
-    left: $grid-small * $i;
-  }
-  .falling-#{$i} {
-    transform: translateY(($grid-small - $grid-offset-small) * $i);
-    transition: transform 0.3s ease;
-  }
-
-  @media (min-height: $height-m) and (min-width: $width-m) {
-    .x-#{$i} {
-      top: ($grid-medium - $grid-offset-small) * $i;
-    }
-    .y-#{$i} {
-      left: $grid-medium * $i;
-    }
-    .falling-#{$i} {
-      animation: bounceInDown-#{$i} 0.4s ease-in-out;
-      animation-fill-mode: both;
-    }
-  }
-}
-
 @media (min-height: $height-m) and (min-width: $width-m) {
   .board {
     height: $board-height-medium;

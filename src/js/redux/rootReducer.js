@@ -8,6 +8,7 @@ import score from './modules/score.js'
 import view from './modules/view.js'
 import moves from './modules/moves.js'
 import board from './modules/board.js'
+import backdrop from './modules/backdrop.js'
 import fallingMagnitudeArray from './modules/fallingMagnitude.js'
 import growingMoves from './modules/growingMoves.js'
 import isLeavingArray from './modules/isLeaving.js'
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   view,
   moves,
   board,
+  backdrop,
   fallingMagnitudeArray,
   isLeavingArray,
   updating,
