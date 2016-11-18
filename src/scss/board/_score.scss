@@ -24,7 +24,7 @@
 
 .screen {
   width: 40px;
-  height: 82px;
+  height: 62.16px;
   background-color: $beige;
   position: absolute;
   transition: 2s ease;
@@ -41,6 +41,7 @@
 @media (min-height: $height-m) and (min-width: $width-m) {
   .seed-bank {
     width: 50px;
+    height: 82px;
   }
 
   .screen {
