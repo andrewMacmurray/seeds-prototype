@@ -1,15 +1,40 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 
-export default (props) => {
-  const screenHeight = props.score * 0.2
-  return (
-    <div className='seed-bank' onClick={props.harvestSeeds}>
-      <div
-        className={'screen ' + props.backdrop}
-        style={{ transform: `translateY(${-screenHeight}px)` }}
-      />
-      <img className='outline' src='img/seed-outline.svg' />
-      <img src='img/seed.svg'/>
-    </div>
-  )
+const levelGoal = 500
+
+export default class SeedBank extends React.PureComponent {
+  constructor () {
+    super()
+    this.state = { seedHeight: 0 }
+  }
+
+  componentDidMount () {
+    this.storeSeedHeight()
+  }
+
+  componentWillReceiveProps () {
+    this.storeSeedHeight()
+  }
+
+  storeSeedHeight () {
+    const $el = ReactDOM.findDOMNode(this.seedImg)
+    const seedHeight = $el.clientHeight
+    this.setState({ seedHeight })
+  }
+
+  render () {
+    const percentComplete = this.props.score / levelGoal
+    const screenHeight = this.state.seedHeight * percentComplete 
+    return (
+      <div className='seed-bank' onClick={this.props.harvestSeeds}>
+        <div
+          className={'screen ' + this.props.backdrop}
+          style={{ transform: `translateY(${-screenHeight}px)` }}
+        />
+        <img className='outline' src='img/seed-outline.svg' />
+        <img ref={(x) => this.seedImg = x} src='img/seed.svg'/>
+      </div>
+    )
+  }
 }
