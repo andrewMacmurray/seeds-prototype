@@ -1,13 +1,14 @@
 @import 'variables';
 @import 'mixins';
-@import 'animate';
-@import 'customAnimations';
-@import 'tiles';
+@import 'animations';
 @import 'seeds';
-@import 'board';
-@import 'weather';
-@import 'intro';
-@import 'loading';
+@import 'views/intro';
+@import 'views/loading';
+@import 'board/tiles';
+@import 'board/board';
+@import 'board/score';
+@import 'board/coordiantes';
+@import 'board/weather';
 
 html {
   position: relative;
@@ -16,16 +17,10 @@ html {
 }
 
 body {
-  background: $beige;
   font-family: $main-font;
   font-weight: 500;
   background-color: $beige;
-  transition: background-color 2s ease;
   margin: 0;
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
 }
 
 audio {
@@ -46,29 +41,10 @@ p, a {
   opacity: 0;
 }
 
-.logo {
-  text-align: center;
-  width: 40px;
-  margin: 0 auto;
-  -webkit-user-select: none;
-  opacity: 0;
-  animation: fadeIn 0.3s ease-in;
-  animation-fill-mode: forwards;
-
-  img {
-    width: 100%;
-  }
-}
-
 .audio-controls {
   position: fixed;
   bottom: 0.5em;
   right: 1.2em;
-}
-
-@keyframes fadeIn {
-  0% {opacity: 0}
-  100% {opacity: 1}
 }
 
 .menu {
@@ -90,20 +66,6 @@ p, a {
   text-transform: uppercase;
   cursor: pointer;
   @include no-select;
-}
-
-.score {
-  position: absolute;
-  text-align: center;
-  left: 0;
-  right: 0;
-  @include no-select;
-}
-
-@media (min-height: $height-m) and (min-width: $width-m) {
-  .logo {
-    width: 50px;
-  }
 }
 
 @media (min-width: $width-m) and (min-height: $height-m) {

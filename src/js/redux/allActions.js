@@ -7,6 +7,7 @@ import * as isEntering from './modules/isEntering.js'
 import * as isLeaving from './modules/isLeaving.js'
 import * as isUpdating from './modules/isUpdating.js'
 import * as moves from './modules/moves.js'
+import * as backdrop from './modules/backdrop.js'
 import * as score from './modules/score.js'
 import * as setDrag from './modules/setDrag.js'
 import * as weather from './modules/weather.js'
@@ -23,6 +24,7 @@ module.exports = {
   ...isLeaving,
   ...isUpdating,
   ...moves,
+  ...backdrop,
   ...score,
   ...setDrag,
   ...weather,
