@@ -1,14 +1,9 @@
 import { addIndex, filter, length, map, equals, complement, unnest, compose } from 'ramda'
 
-const probabilityMap = (n) =>
-      n > 20 ? 0.6
-    : n < 20 && n >= 10 ? 0.75
-    : n < 10 && n >= 8 ? 0.9
-    : n < 8 ? 1
-    : 0.5
+const growProbability = (n) => n > 20 ? 0.9 : 1
 
 const growSeedMove = (tile, i, j, count) => {
-  return tile === 3 && Math.random() < probabilityMap(count)
+  return tile === 3 && Math.random() < growProbability(count)
     ? [ i, j ]
     : 0
 }

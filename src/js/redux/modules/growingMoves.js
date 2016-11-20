@@ -22,8 +22,9 @@ export default (state = defaultState, action) => {
 
 // actions
 export const resetGrowSeeds = createAction(RESET_GROW_SEEDS)
+export const setGrowingSeeds = createAction(GROW_SEEDS, moves => moves)
 
-export const growSeeds = (seedlingCount) => (dispatch, getState) => {
+export const growRandomSeeds = (seedlingCount) => (dispatch, getState) => {
   const { board } = getState()
   dispatch({
     type: GROW_SEEDS,

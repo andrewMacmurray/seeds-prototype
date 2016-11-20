@@ -44,7 +44,7 @@
 .sun.dragging,
 .seedling.dragging,
 .pod.dragging {
-  transition: 0.3s ease;
+  transition: transform 0.3s ease;
   transform: translate(0, 0) scale(0.5);
 }
 
@@ -84,14 +84,14 @@
   opacity: 0;
 }
 
-.pod.leaving {
-  transition: 0.5s ease;
-  transform: translate(100px, -100px);
-  opacity: 0;
-}
+// .pod.leaving {
+//   transition: 0.5s ease;
+//   transform: translate(100px, -100px);
+//   opacity: 0;
+// }
 
 @for $i from 1 through 16 {
-  .pod.leaving.delay-#{$i} {
+  .tile.leaving.delay-#{$i} {
     transition: 0.5s ease-in-out;
     transform: translate(100px, -100px);
     opacity: 0;
@@ -142,7 +142,16 @@
         .sun.leaving {
           $i2: 7 - $i;
 
-          $x: $grid-medium * ($i2);
+          $x: $grid-medium * $i2;
+          $y: $grid-medium * (-$j) - 122px;
+          transition: 0.7s ease-in-out;
+          transform: translate($x, $y) scale(0.3);
+        }
+
+        .pod.leaving {
+          $i3: -4 + $i;
+
+          $x: $grid-medium * (-$i3) - ($grid-medium / 2);
           $y: $grid-medium * (-$j) - 122px;
           transition: 0.7s ease-in-out;
           transform: translate($x, $y) scale(0.3);

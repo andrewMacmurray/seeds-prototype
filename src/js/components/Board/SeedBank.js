@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const levelGoal = 500
-
 export default class SeedBank extends React.PureComponent {
   constructor () {
     super()
@@ -24,12 +22,19 @@ export default class SeedBank extends React.PureComponent {
   }
 
   render () {
-    const percentComplete = this.props.score / levelGoal
-    const screenHeight = this.state.seedHeight * percentComplete 
+    const {
+      backdrop,
+      harvestSeeds,
+      currentScore,
+      levelGoal
+    } = this.props
+
+    const percentComplete = currentScore / levelGoal
+    const screenHeight = this.state.seedHeight * percentComplete
     return (
-      <div className='seed-bank' onClick={this.props.harvestSeeds}>
+      <div className='seed-bank' onClick={harvestSeeds}>
         <div
-          className={'screen ' + this.props.backdrop}
+          className={'screen ' + backdrop}
           style={{ transform: `translateY(${-screenHeight}px)` }}
         />
         <img className='outline' src='img/seed-outline.svg' />
