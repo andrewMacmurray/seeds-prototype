@@ -49,6 +49,14 @@ export const addTiles = () => (dispatch, getState) => {
   })
 }
 
+export const growSeedsFromMoves = (moves) => (dispatch, getState) => {
+  const { board } = getState()
+  dispatch({
+    type: GROW_SEEDS_ON_BOARD,
+    payload: transformTiles(moves, board, 4)
+  })
+}
+
 export const growSeedsOnBoard = () => (dispatch, getState) => {
   const { board, growingMoves } = getState()
   dispatch({

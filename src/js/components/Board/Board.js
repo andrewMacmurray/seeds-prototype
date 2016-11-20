@@ -65,7 +65,9 @@ class Board extends React.PureComponent {
       isDraggingArray,
       fallingMagnitudeArray,
       isEnteringArray,
-      isGrowingArray
+      isGrowingArray,
+      backdrop,
+      score: { currentScore, levelGoal }
     } = this.props
 
     return (
@@ -77,15 +79,16 @@ class Board extends React.PureComponent {
           />
           <SeedBank
             harvestSeeds={this.harvestSeeds}
-            score={this.props.score}
-            backdrop={this.props.backdrop}
+            currentScore={currentScore}
+            levelGoal={levelGoal}
+            backdrop={backdrop}
           />
           <div
             onClick={() => this.triggerWeather('sun')}
             className={this.weatherMakerClass('sun')}
           />
         </div>
-        <p className='score'>{this.props.score}</p>
+        <p className='score'>{currentScore} / {levelGoal}</p>
         <div className='board'>
             {this.props.board.map((row, i) =>
                 row.map((tile, j) => {

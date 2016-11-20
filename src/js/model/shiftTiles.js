@@ -1,7 +1,7 @@
-import { equals, filter, concat, map } from 'ramda'
+import { equals, filter, concat, map, complement } from 'ramda'
 
 const isZero = equals(0)
-const isTile = (tile) => tile !== 0
+const isTile = complement(isZero)
 const filterZeroes = filter(isZero)
 const filterTiles = filter(isTile)
 
