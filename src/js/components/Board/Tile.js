@@ -30,6 +30,7 @@ export default class Seed extends React.PureComponent {
       tileType,
       x,
       y,
+      moveOrder,
       isGrowing,
       isLeaving,
       isDragging,
@@ -43,10 +44,11 @@ export default class Seed extends React.PureComponent {
       'y-' + y
     )
     const tileClasses = classNames(
+      'tile',
       tileType,
       seedType,
       isGrowing,
-      'tile',
+      moveOrder,
       isLeaving,
       isDragging,
       isEntering,
@@ -54,7 +56,7 @@ export default class Seed extends React.PureComponent {
     )
     return (
       <div
-        ref={(x) => this.container = x}
+        ref={($el) => this.container = $el}
         className={containerClasses}
         data-x={x}
         data-y={y}

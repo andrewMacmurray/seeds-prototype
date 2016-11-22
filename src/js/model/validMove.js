@@ -27,5 +27,6 @@ export const isNextTo = anyPass([
   bottomLeft,
   topLeft
 ])
+
 // export const isNextTo = R.anyPass([right, down, left, up]) // restrict to 4 directions
 export const validMove = allPass([ inBounds, isNextTo, sameType ])

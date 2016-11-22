@@ -1,4 +1,5 @@
-import { addIndex, filter, length, map, equals, complement, unnest, compose } from 'ramda'
+import { filter, length, equals, complement, unnest, compose } from 'ramda'
+import { mapBoard } from './utils.js'
 
 const growProbability = (n) => n > 20 ? 0.9 : 1
 
@@ -7,14 +8,6 @@ const growSeedMove = (tile, i, j, count) => {
     ? [ i, j ]
     : 0
 }
-
-const mapWithIndex = addIndex(map)
-
-const mapBoard = (transformFn, extraData) =>
-  mapWithIndex((row, i) =>
-  mapWithIndex((tile, j) =>
-  transformFn(tile, i, j, extraData)
-)(row))
 
 const growMovesOnBoard = (board, seedlingCount) => mapBoard(growSeedMove, seedlingCount)(board)
 

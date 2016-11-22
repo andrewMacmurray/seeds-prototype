@@ -23,7 +23,7 @@ export default (moveType) => (dispatch, getState) => {
         _.isUpdating, true,
         _.setLeavingTiles, moveArray
       ]))
-      .delay(400)
+      .delay(500)
       .then(_dispatch(_.fallTiles, moveArray))
       .delay(400)
       .then(batch(dispatch, [
@@ -45,16 +45,16 @@ export default (moveType) => (dispatch, getState) => {
       .then(batch(dispatch, [
         _.setDrag, false,
         _.isUpdating, true,
-        _.setGrowingSeeds, moveArray,
-        _.resetMoves
+        _.setGrowingSeeds, moveArray
       ]))
-      .delay(500)
+      .delay(900)
       .then(_dispatch(_.growSeedsFromMoves, moveArray))
       .delay(300)
       .then(_dispatch(_.isUpdating, false))
-      .delay(200)
+      .delay(500)
       .then(batch(dispatch, [
-        _.resetGrowSeeds
+        _.resetGrowSeeds,
+        _.resetMoves
       ]))
   }
 }
