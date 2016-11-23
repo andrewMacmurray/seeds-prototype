@@ -38523,7 +38523,7 @@
 
 	var getMoveIndex = function getMoveIndex(tile, i, j, moves) {
 	  return moves.length ? reduceWithIndex(function (prev, curr, k) {
-	    return prev > 0 ? prev : equals(curr, [i, j]) ? k + 1 : 0;
+	    return prev > 0 ? prev : equals(curr, [i, j]) ? (k + 1) % 12 : 0;
 	  }, 0)(moves) : 0;
 	};
 
