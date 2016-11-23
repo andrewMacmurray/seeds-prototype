@@ -12,6 +12,9 @@ export default (moveType) => (dispatch, getState) => {
     || moveType === 'pod'
   const isSeedling = moveType === 'seedling'
   const boardReady = !updating && isDragging
+  const falldelay = moveArray.length > 10
+    ? 1000
+    : 600
 
   if (boardReady && isLeaving) {
     Promise
@@ -23,7 +26,7 @@ export default (moveType) => (dispatch, getState) => {
         _.isUpdating, true,
         _.setLeavingTiles, moveArray
       ]))
-      .delay(500)
+      .delay(falldelay)
       .then(_dispatch(_.fallTiles, moveArray))
       .delay(400)
       .then(batch(dispatch, [
@@ -51,7 +54,7 @@ export default (moveType) => (dispatch, getState) => {
       .then(_dispatch(_.growSeedsFromMoves, moveArray))
       .delay(300)
       .then(_dispatch(_.isUpdating, false))
-      .delay(500)
+      .delay(200)
       .then(batch(dispatch, [
         _.resetGrowSeeds,
         _.resetMoves

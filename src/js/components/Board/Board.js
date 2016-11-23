@@ -68,8 +68,10 @@ class Board extends React.PureComponent {
       isEnteringArray,
       isGrowingArray,
       movesOrderArray,
+      growingOrderArray,
       backdrop,
-      score: { currentScore, levelGoal }
+      score: { currentScore, levelGoal },
+      weather: { animating }
     } = this.props
 
     return (
@@ -98,10 +100,12 @@ class Board extends React.PureComponent {
                   return tile > 0
                   ? <Tile
                     tileType={tileType}
+                    weatherAnimating={animating}
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}
                     key={'tile-' + i + '-' + j}
                     moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
+                    growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
                     isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}
                     isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
                     isEntering={isEnteringArray[i][j] ? 'entering' : ''}
@@ -125,11 +129,12 @@ import isGrowingArray from '../../redux/selectors/selector_isGrowingArray.js'
 import moveType from '../../redux/selectors/selector_moveType.js'
 import seedMoves from '../../redux/selectors/selector_seedMoves.js'
 import seedlingCount from '../../redux/selectors/selector_seedlingCount.js'
-import movesOrder from '../../redux/selectors/selector_movesOrder.js'
+import { movesOrder, growingOrder } from '../../redux/selectors/selector_movesOrder.js'
 
 const mapStateToProps = (state) => ({
   ...state,
   movesOrderArray: movesOrder(state),
+  growingOrderArray: growingOrder(state),
   isDraggingArray: isDraggingArray(state),
   isGrowingArray: isGrowingArray(state),
   moveType: moveType(state),

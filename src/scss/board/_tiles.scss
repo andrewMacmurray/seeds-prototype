@@ -16,14 +16,14 @@
 }
 
 .sun {
-  padding: 7px;
+  padding: 6px;
   background-color: $orange;
   transform: scale(1);
   opacity: 1;
 }
 
 .rain {
-  padding: 7px;
+  padding: 6px;
   background-color: $blue;
   transform: translate(0, 0) scale(1);
   opacity: 1;
@@ -106,6 +106,7 @@
 
   .seedling.growing.delay-#{$i2} {
     animation-delay: $i * 0.04s - 0.03s!important;
+    transition-delay: $i * 0.04s - 0.03s!important;
   }
 }
 
@@ -118,6 +119,13 @@
 .seedling.growing {
   animation: popOut 0.8s ease;
   animation-fill-mode: both;
+}
+
+.seedling.growing.transition {
+  animation: none;
+  transform: scale(4);
+  opacity: 0;
+  transition: 0.7s ease-out;
 }
 
 @media (min-width: $width-m) and (min-height: $height-m) {

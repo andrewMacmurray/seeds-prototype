@@ -22,7 +22,7 @@
 
 @for $i from 0 through 13 {
   .power-#{$i} {
-    transform: scale($i * 0.1);
+    transform: scale($i * 0.05);
   }
 }
 
