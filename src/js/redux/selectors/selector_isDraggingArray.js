@@ -1,8 +1,7 @@
 import { createSelector } from 'reselect'
 import { booleanArray, transformTiles, falseBoard } from '../../model'
+import { _moveArray, _board } from './baseSelectors.js'
 
-const _moveArray = (state) => state.moves.moveArray
-const _board = (state) => state.board
 const defaultState = falseBoard
 
 const isDraggingArray = createSelector(

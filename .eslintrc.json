@@ -49,7 +49,7 @@
     "valid-typeof": "error",
 
     "array-callback-return": "error",
-    "complexity": ["error", { "maximum": 7 }],
+    "complexity": ["error", { "maximum": 12 }],
     "curly": ["error", "multi-line", "consistent"],
     "dot-location": ["error", "property"],
     "dot-notation": "error",
@@ -73,7 +73,6 @@
     "no-param-reassign": "error",
     "no-proto": "error",
     "no-redeclare": "error",
-    "no-return-assign": "error",
     "no-script-url": "error",
     "no-self-assign": "error",
     "no-self-compare": "error",

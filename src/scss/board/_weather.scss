@@ -22,7 +22,7 @@
 
 @for $i from 0 through 13 {
   .power-#{$i} {
-    transform: scale($i * 0.1);
+    transform: scale($i * 0.05);
   }
 }
 
@@ -35,7 +35,7 @@
 }
 
 .rain-curtain {
-  transition: 2s ease;
+  transition: 1.5s ease;
   position: fixed;
   z-index: 0;
   display: flex;
@@ -55,8 +55,8 @@
 
 @for $i from 1 through 16 {
   .rain-drop:nth-child(#{$i}) {
-    animation: fall 0.5s linear infinite;
-    animation-delay: $i * 0.3s;
+    animation: fall 0.4s linear infinite;
+    animation-delay: $i * 0.25s;
   }
 }
 

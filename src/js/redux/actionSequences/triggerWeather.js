@@ -5,10 +5,7 @@ import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
 export default (weatherType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const {
-    updating,
-    weather: { rain, sun }
-  } = getState()
+  const { updating, weather: { rain, sun } } = getState()
 
   const setVisibleWeather = weatherType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, true)
@@ -31,16 +28,18 @@ export default (weatherType, seedlingCount) => (dispatch, getState) => {
       .resolve()
       .then(setVisibleWeather)
       .then(batch(dispatch, [
+        _.weatherAnimating, true,
         _.setBackdrop, backdrop,
         _.isUpdating, true,
-        _.resetWeather, weatherType
+        _.resetWeatherPower, weatherType
       ]))
       .delay(growDelay)
       .then(_dispatch(_.growRandomSeeds, seedlingCount))
-      .delay(700)
+      .delay(1000)
       .then(_dispatch(_.growSeedsOnBoard))
-      .delay(500)
+      .delay(800)
       .then(batch(dispatch, [
+        _.weatherAnimating, false,
         _.resetGrowSeeds,
         _.isUpdating, false
       ]))

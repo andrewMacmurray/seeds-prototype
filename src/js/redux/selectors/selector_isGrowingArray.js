@@ -1,8 +1,6 @@
 import { createSelector } from 'reselect'
 import { isGrowingArray } from '../../model'
-
-const _board = (state) => state.board
-const _growingMoves = (state) => state.growingMoves
+import { _board, _growingMoves } from './baseSelectors.js'
 
 const _isGrowingArray = createSelector(
   [ _board, _growingMoves ],
