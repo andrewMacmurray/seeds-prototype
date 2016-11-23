@@ -88,23 +88,16 @@
   }
 }
 
-@function delayIndex($i) {
-  @if $i > 10 { @return 10 + ($i * 0.01); }
-  @else { @return $i; }
-}
-
-@for $i from 1 through 64 {
-  $i2: delayIndex($i);
-
-  .tile.leaving.delay-#{$i2} {
+@for $i from 1 through 12 {
+  .tile.leaving.delay-#{$i} {
     transition-delay: $i * 0.04s - 0.03s!important;
   }
 
-  .pod.growing.delay-#{$i2} {
+  .pod.growing.delay-#{$i} {
     animation-delay: $i * 0.04s - 0.03s!important;
   }
 
-  .seedling.growing.delay-#{$i2} {
+  .seedling.growing.delay-#{$i} {
     animation-delay: $i * 0.04s - 0.03s!important;
     transition-delay: $i * 0.04s - 0.03s!important;
   }
@@ -117,7 +110,7 @@
 }
 
 .seedling.growing {
-  animation: popOut 0.8s ease;
+  animation: popOut 0.7s ease;
   animation-fill-mode: both;
 }
 

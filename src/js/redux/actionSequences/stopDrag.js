@@ -50,11 +50,11 @@ export default (moveType) => (dispatch, getState) => {
         _.isUpdating, true,
         _.setGrowingSeeds, moveArray
       ]))
-      .delay(900)
+      .delay(800)
       .then(_dispatch(_.growSeedsFromMoves, moveArray))
       .delay(300)
       .then(_dispatch(_.isUpdating, false))
-      .delay(200)
+      .delay(400)
       .then(batch(dispatch, [
         _.resetGrowSeeds,
         _.resetMoves
