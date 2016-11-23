@@ -16,14 +16,14 @@
 }
 
 .sun {
-  padding: 7px;
+  padding: 6px;
   background-color: $orange;
   transform: scale(1);
   opacity: 1;
 }
 
 .rain {
-  padding: 7px;
+  padding: 6px;
   background-color: $blue;
   transform: translate(0, 0) scale(1);
   opacity: 1;
@@ -74,40 +74,51 @@
         opacity: 0.2;
         transition: 1s ease;
       }
+
+      .pod.leaving {
+        $i3: -4 + $i;
+
+        $x: $grid-small * (-$i3) - ($grid-small / 2);
+        $y: $grid-small * (-$j) - 114px;
+        transform: translate($x, $y) scale(0.3);
+        opacity: 0.2;
+        transition: 0.7s ease-in-out;
+      }
     }
   }
 }
 
-.seedling.leaving {
-  transition: 0.5s ease;
-  transform: scale(4);
-  opacity: 0;
-}
-
-// .pod.leaving {
-//   transition: 0.5s ease;
-//   transform: translate(100px, -100px);
-//   opacity: 0;
-// }
-
-@for $i from 1 through 16 {
+@for $i from 1 through 12 {
   .tile.leaving.delay-#{$i} {
-    transition: 0.5s ease-in-out;
-    transform: translate(100px, -100px);
-    opacity: 0;
-    transition-delay: $i * 0.08s;
+    transition-delay: $i * 0.04s - 0.03s!important;
+  }
+
+  .pod.growing.delay-#{$i} {
+    animation-delay: $i * 0.04s - 0.03s!important;
+  }
+
+  .seedling.growing.delay-#{$i} {
+    animation-delay: $i * 0.04s - 0.03s!important;
+    transition-delay: $i * 0.04s - 0.03s!important;
   }
 }
 
 .pod.growing {
+  transform: scale(0);
   animation: elasticBounceIn 0.5s ease;
-  animation-fill-mode: forwards;
+  animation-fill-mode: both;
 }
 
 .seedling.growing {
+  animation: popOut 0.7s ease;
+  animation-fill-mode: both;
+}
+
+.seedling.growing.transition {
+  animation: none;
   transform: scale(4);
   opacity: 0;
-  transition: 0.5s ease-out;
+  transition: 0.7s ease-out;
 }
 
 @media (min-width: $width-m) and (min-height: $height-m) {

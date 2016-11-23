@@ -12,7 +12,14 @@ const GROW_SEEDS_ON_BOARD = 'GROW_SEEDS_ON_BOARD'
 const REMOVE_SEEDS_FROM_BOARD = 'REMOVE_SEEDS_FROM_BOARD'
 
 // reducer
-const defaultState = randomBoard()
+const initialLoadProbability = {
+  rain: 0.25,
+  sun: 0.25,
+  seedling: 0.4,
+  pod: 0.1
+}
+
+const defaultState = randomBoard(initialLoadProbability)
 export default (state = defaultState, action) => {
   switch (action.type) {
   case SHIFT_TILES:

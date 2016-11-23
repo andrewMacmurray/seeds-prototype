@@ -56,7 +56,8 @@ class Board extends React.PureComponent {
   }
 
   weatherMakerClass (type) {
-    return type + '-maker power-' + (this.props[type] < 12 ? this.props[type] : 12 + ' max-' + type)
+    const { weather } = this.props
+    return type + '-maker power-' + (weather[type] < 12 ? weather[type] : 12) + ' max-' + type
   }
 
   render () {
@@ -66,8 +67,11 @@ class Board extends React.PureComponent {
       fallingMagnitudeArray,
       isEnteringArray,
       isGrowingArray,
+      movesOrderArray,
+      growingOrderArray,
       backdrop,
-      score: { currentScore, levelGoal }
+      score: { currentScore, levelGoal },
+      weather: { animating }
     } = this.props
 
     return (
@@ -96,10 +100,13 @@ class Board extends React.PureComponent {
                   return tile > 0
                   ? <Tile
                     tileType={tileType}
+                    weatherAnimating={animating}
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}
                     key={'tile-' + i + '-' + j}
-                    isLeaving={isLeavingArray[i][j] ? `leaving delay-${i + j}` : ''}
+                    moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
+                    growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
+                    isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}
                     isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
                     isEntering={isEnteringArray[i][j] ? 'entering' : ''}
                     isGrowing={isGrowingArray[i][j] ? 'growing' : ''}
@@ -122,14 +129,13 @@ import isGrowingArray from '../../redux/selectors/selector_isGrowingArray.js'
 import moveType from '../../redux/selectors/selector_moveType.js'
 import seedMoves from '../../redux/selectors/selector_seedMoves.js'
 import seedlingCount from '../../redux/selectors/selector_seedlingCount.js'
+import { movesOrder, growingOrder } from '../../redux/selectors/selector_movesOrder.js'
 
 const mapStateToProps = (state) => ({
   ...state,
-  currTile: state.moves.currTile,
-  moveArray: state.moves.moveArray,
+  movesOrderArray: movesOrder(state),
+  growingOrderArray: growingOrder(state),
   isDraggingArray: isDraggingArray(state),
-  sun: state.weather.sun,
-  rain: state.weather.rain,
   isGrowingArray: isGrowingArray(state),
   moveType: moveType(state),
   seedlingCount: seedlingCount(state),

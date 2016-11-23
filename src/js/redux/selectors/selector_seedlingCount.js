@@ -1,6 +1,5 @@
 import { createSelector } from 'reselect'
 import { countSeedlings } from '../../model/index.js'
-
-const _board = state => state.board
+import { _board } from './baseSelectors.js'
 
 module.exports = createSelector([ _board ], countSeedlings)

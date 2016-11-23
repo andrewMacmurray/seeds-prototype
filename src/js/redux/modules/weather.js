@@ -4,12 +4,14 @@ import { createAction } from 'redux-actions'
 // action types
 const WEATHER_POWER = 'WEATHER_POWER'
 const RESET_WEATHER = 'RESET_WEATHER'
+const WEATHER_ANIMATING = 'WEATHER_ANIMATING'
 const SET_RAINDROPS_VISIBILITY = 'SET_RAINDROPS_VISIBILITY'
 
 // reducer
 const defaultState = {
   rain: 0,
   sun: 0,
+  animating: false,
   raindropsVisible: false
 }
 
@@ -25,6 +27,12 @@ export default (state = defaultState, action) => {
     return {
       ...state,
       ...action.payload
+    }
+
+  case WEATHER_ANIMATING:
+    return {
+      ...state,
+      animating: action.payload
     }
 
   case SET_RAINDROPS_VISIBILITY:
@@ -62,7 +70,7 @@ export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
   })
 }
 
-export const resetWeather = (weatherType) => (dispatch, getState) => {
+export const resetWeatherPower = (weatherType) => (dispatch, getState) => {
   const state = getState()
   const { sun, rain } = sunAndRain(state)
 
@@ -76,4 +84,5 @@ export const resetWeather = (weatherType) => (dispatch, getState) => {
   })
 }
 
+export const weatherAnimating = createAction(WEATHER_ANIMATING, x => x)
 export const setRaindropsVisibility = createAction(SET_RAINDROPS_VISIBILITY, x => x)
