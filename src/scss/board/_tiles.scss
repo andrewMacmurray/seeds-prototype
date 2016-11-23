@@ -60,7 +60,7 @@
       .rain.leaving {
         $x: $grid-small * (-$i) + 20px;
         $y: $grid-small * (-$j * 0.95) - 114px;
-        transform: translate($x, $y) scale(0.3);
+        transform: translate($x, $y) scale(1);
         opacity: 0.2;
         transition: 1s ease;
       }
@@ -70,7 +70,7 @@
 
         $x: $grid-small * ($i2) - 20px;
         $y: $grid-small * (-$j * 0.95) - 114px;
-        transform: translate($x, $y) scale(0.3);
+        transform: translate($x, $y) scale(1);
         opacity: 0.2;
         transition: 1s ease;
       }
@@ -80,9 +80,9 @@
 
         $x: $grid-small * (-$i3) - ($grid-small / 2);
         $y: $grid-small * (-$j) - 114px;
-        transform: translate($x, $y) scale(0.3);
+        transform: translate($x, $y) scale(1);
         opacity: 0.2;
-        transition: 0.7s ease-in-out;
+        transition: 0.8s ease-in-out;
       }
     }
   }
