@@ -37985,7 +37985,7 @@
 	// reducer
 	var defaultState = {
 	  currentScore: 0,
-	  levelGoal: 100
+	  levelGoal: 200
 	};
 
 	exports.default = function () {
@@ -38434,9 +38434,9 @@
 	"use strict";
 
 	module.exports = {
-	  rain: 0.1,
-	  sun: 0.1,
-	  seedling: 0.75,
+	  rain: 0.125,
+	  sun: 0.125,
+	  seedling: 0.7,
 	  pod: 0.05
 	};
 
@@ -39436,21 +39436,17 @@
 
 	var _stopDrag2 = _interopRequireDefault(_stopDrag);
 
-	var _startDrag = __webpack_require__(418);
+	var _startDrag = __webpack_require__(419);
 
 	var _startDrag2 = _interopRequireDefault(_startDrag);
 
-	var _checkTile = __webpack_require__(419);
+	var _checkTile = __webpack_require__(420);
 
 	var _checkTile2 = _interopRequireDefault(_checkTile);
 
-	var _harvestSeeds = __webpack_require__(420);
+	var _harvestSeeds = __webpack_require__(421);
 
 	var _harvestSeeds2 = _interopRequireDefault(_harvestSeeds);
-
-	var _triggerWeather = __webpack_require__(421);
-
-	var _triggerWeather2 = _interopRequireDefault(_triggerWeather);
 
 	var _allActions = __webpack_require__(416);
 
@@ -39566,24 +39562,14 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'top-bar-container' },
-	          _react2.default.createElement('div', {
-	            onClick: function onClick() {
-	              return _this2.triggerWeather('rain');
-	            },
-	            className: this.weatherMakerClass('rain')
-	          }),
+	          _react2.default.createElement('div', { className: this.weatherMakerClass('rain') }),
 	          _react2.default.createElement(_SeedBank2.default, {
 	            harvestSeeds: this.harvestSeeds,
 	            currentScore: currentScore,
 	            levelGoal: levelGoal,
 	            backdrop: backdrop
 	          }),
-	          _react2.default.createElement('div', {
-	            onClick: function onClick() {
-	              return _this2.triggerWeather('sun');
-	            },
-	            className: this.weatherMakerClass('sun')
-	          })
+	          _react2.default.createElement('div', { className: this.weatherMakerClass('sun') })
 	        ),
 	        _react2.default.createElement(
 	          'p',
@@ -39641,8 +39627,7 @@
 	  stopDrag: _stopDrag2.default,
 	  startDrag: _startDrag2.default,
 	  harvestSeeds: _harvestSeeds2.default,
-	  checkTile: _checkTile2.default,
-	  triggerWeather: _triggerWeather2.default
+	  checkTile: _checkTile2.default
 	})(Board);
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Board.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
@@ -41307,11 +41292,17 @@
 
 	var _thunkHelpers = __webpack_require__(417);
 
+	var _ramda = __webpack_require__(363);
+
+	var _triggerWeather = __webpack_require__(418);
+
+	var _triggerWeather2 = _interopRequireDefault(_triggerWeather);
+
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = function (moveType) {
+	exports.default = function (moveType, seedlingCount) {
 	  return function (dispatch, getState) {
 	    var _dispatch = (0, _thunkHelpers.makeLazyDispatcher)(dispatch);
 
@@ -41322,13 +41313,16 @@
 	    var moveArray = _getState.moves.moveArray;
 
 
+	    var isWeather = moveType === 'rain' || moveType === 'sun';
 	    var isLeaving = moveType === 'rain' || moveType === 'sun' || moveType === 'pod';
 	    var isSeedling = moveType === 'seedling';
 	    var boardReady = !updating && isDragging;
 	    var falldelay = moveArray.length > 10 ? 1000 : 600;
 
+	    var handleWeather = isWeather ? _dispatch(_triggerWeather2.default, moveType, seedlingCount) : _ramda.identity;
+
 	    if (boardReady && isLeaving) {
-	      _bluebird2.default.resolve().then((0, _thunkHelpers.batch)(dispatch, [_.setDrag, false, _.addPowerToWeather, moveType, _.updateScore, moveType, moveArray, _.isUpdating, true, _.setLeavingTiles, moveArray])).delay(falldelay).then(_dispatch(_.fallTiles, moveArray)).delay(400).then((0, _thunkHelpers.batch)(dispatch, [_.shiftTiles, moveArray, _.setEntering, _.resetMagnitude, _.resetLeaving, _.resetMoves, _.addTiles, _.isUpdating, false])).delay(700).then(_dispatch(_.resetEntering));
+	      _bluebird2.default.resolve().then((0, _thunkHelpers.batch)(dispatch, [_.setDrag, false, _.addPowerToWeather, moveType, _.updateScore, moveType, moveArray, _.isUpdating, true, _.setLeavingTiles, moveArray])).delay(falldelay).then(handleWeather).then(_dispatch(_.fallTiles, moveArray)).delay(400).then((0, _thunkHelpers.batch)(dispatch, [_.shiftTiles, moveArray, _.setEntering, _.resetMagnitude, _.resetLeaving, _.resetMoves, _.addTiles, _.isUpdating, false])).delay(700).then(_dispatch(_.resetEntering));
 	    }
 
 	    if (boardReady && isSeedling) {
@@ -47185,6 +47179,63 @@
 	  value: true
 	});
 
+	var _bluebird = __webpack_require__(414);
+
+	var _bluebird2 = _interopRequireDefault(_bluebird);
+
+	var _allActions = __webpack_require__(416);
+
+	var _ = _interopRequireWildcard(_allActions);
+
+	var _ramda = __webpack_require__(363);
+
+	var _thunkHelpers = __webpack_require__(417);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function (weatherType, seedlingCount) {
+	  return function (dispatch, getState) {
+	    var _dispatch = (0, _thunkHelpers.makeLazyDispatcher)(dispatch);
+
+	    var _getState = getState();
+
+	    var _getState$weather = _getState.weather;
+	    var rain = _getState$weather.rain;
+	    var sun = _getState$weather.sun;
+
+
+	    var setVisibleWeather = weatherType === 'rain' ? _dispatch(_.setRaindropsVisibility, true) : _ramda.identity;
+
+	    var clearVisibleWeather = weatherType === 'rain' ? _dispatch(_.setRaindropsVisibility, false) : _ramda.identity;
+
+	    var growDelay = weatherType === 'rain' ? 1500 : 1200;
+
+	    var backdrop = weatherType === 'rain' ? 'rain-falling' : 'sun-shining';
+
+	    if (rain > 12 || sun > 12) {
+	      _bluebird2.default.resolve().then(setVisibleWeather).then((0, _thunkHelpers.batch)(dispatch, [_.weatherAnimating, true, _.setBackdrop, backdrop, _.isUpdating, true, _.resetWeatherPower, weatherType])).delay(growDelay).then(_dispatch(_.growRandomSeeds, seedlingCount)).delay(1000).then(_dispatch(_.growSeedsOnBoard)).delay(800).then((0, _thunkHelpers.batch)(dispatch, [_.weatherAnimating, false, _.resetGrowSeeds, _.isUpdating, false])).delay(500).then(_dispatch(_.clearBackdrop)).delay(1000).then(clearVisibleWeather);
+	    }
+	    // return to carry on promise chain in stopDrag action sequence
+	    return '';
+	  };
+	};
+
+	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "triggerWeather.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
+
+/***/ },
+/* 419 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 	var _allActions = __webpack_require__(416);
@@ -47214,7 +47265,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "startDrag.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 419 */
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -47248,7 +47299,7 @@
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "checkTile.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
-/* 420 */
+/* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
@@ -47289,62 +47340,6 @@
 	};
 
 	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "harvestSeeds.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
-
-/***/ },
-/* 421 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _bluebird = __webpack_require__(414);
-
-	var _bluebird2 = _interopRequireDefault(_bluebird);
-
-	var _allActions = __webpack_require__(416);
-
-	var _ = _interopRequireWildcard(_allActions);
-
-	var _ramda = __webpack_require__(363);
-
-	var _thunkHelpers = __webpack_require__(417);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	exports.default = function (weatherType, seedlingCount) {
-	  return function (dispatch, getState) {
-	    var _dispatch = (0, _thunkHelpers.makeLazyDispatcher)(dispatch);
-
-	    var _getState = getState();
-
-	    var updating = _getState.updating;
-	    var _getState$weather = _getState.weather;
-	    var rain = _getState$weather.rain;
-	    var sun = _getState$weather.sun;
-
-
-	    var setVisibleWeather = weatherType === 'rain' ? _dispatch(_.setRaindropsVisibility, true) : _ramda.identity;
-
-	    var clearVisibleWeather = weatherType === 'rain' ? _dispatch(_.setRaindropsVisibility, false) : _ramda.identity;
-
-	    var growDelay = weatherType === 'rain' ? 1500 : 700;
-
-	    var backdrop = weatherType === 'rain' ? 'rain-falling' : 'sun-shining';
-
-	    if (rain > 8 || sun > 8 && !updating) {
-	      _bluebird2.default.resolve().then(setVisibleWeather).then((0, _thunkHelpers.batch)(dispatch, [_.weatherAnimating, true, _.setBackdrop, backdrop, _.isUpdating, true, _.resetWeatherPower, weatherType])).delay(growDelay).then(_dispatch(_.growRandomSeeds, seedlingCount)).delay(1000).then(_dispatch(_.growSeedsOnBoard)).delay(800).then((0, _thunkHelpers.batch)(dispatch, [_.weatherAnimating, false, _.resetGrowSeeds, _.isUpdating, false])).delay(500).then(_dispatch(_.clearBackdrop)).delay(1000).then(clearVisibleWeather);
-	    }
-	  };
-	};
-
-	/* REACT HOT LOADER */ }).call(this); } finally { if (false) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("/Users/Andrew/Desktop/random projects/seed/node_modules/react-hot-loader/makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "triggerWeather.js" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
 
 /***/ },
 /* 422 */
