@@ -1,11 +1,16 @@
 import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
+import { identity } from 'ramda'
+import triggerWeather from './triggerWeather.js'
 
-export default (moveType) => (dispatch, getState) => {
+export default (moveType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const { updating, isDragging, moves: { moveArray } } = getState()
 
+  const isWeather =
+       moveType === 'rain'
+    || moveType === 'sun'
   const isLeaving =
        moveType === 'rain'
     || moveType === 'sun'
@@ -15,6 +20,10 @@ export default (moveType) => (dispatch, getState) => {
   const falldelay = moveArray.length > 10
     ? 1000
     : 600
+
+  const handleWeather = isWeather
+    ? _dispatch(triggerWeather, moveType, seedlingCount)
+    : identity
 
   if (boardReady && isLeaving) {
     Promise
@@ -27,6 +36,7 @@ export default (moveType) => (dispatch, getState) => {
         _.setLeavingTiles, moveArray
       ]))
       .delay(falldelay)
+      .then(handleWeather)
       .then(_dispatch(_.fallTiles, moveArray))
       .delay(400)
       .then(batch(dispatch, [
