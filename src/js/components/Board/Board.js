@@ -77,20 +77,14 @@ class Board extends React.PureComponent {
     return (
       <div className='board-container'>
         <div className='top-bar-container'>
-          <div
-            onClick={() => this.triggerWeather('rain')}
-            className={this.weatherMakerClass('rain')}
-          />
+          <div className={this.weatherMakerClass('rain')} />
           <SeedBank
             harvestSeeds={this.harvestSeeds}
             currentScore={currentScore}
             levelGoal={levelGoal}
             backdrop={backdrop}
           />
-          <div
-            onClick={() => this.triggerWeather('sun')}
-            className={this.weatherMakerClass('sun')}
-          />
+          <div className={this.weatherMakerClass('sun')} />
         </div>
         <p className='score'>{currentScore} / {levelGoal}</p>
         <div className='board'>
@@ -146,7 +140,6 @@ import stopDrag from '../../redux/actionSequences/stopDrag.js'
 import startDrag from '../../redux/actionSequences/startDrag.js'
 import checkTile from '../../redux/actionSequences/checkTile.js'
 import harvestSeeds from '../../redux/actionSequences/harvestSeeds.js'
-import triggerWeather from '../../redux/actionSequences/triggerWeather.js'
 import { resetEntering } from '../../redux/allActions.js'
 
 export default connect(mapStateToProps, {
@@ -154,6 +147,5 @@ export default connect(mapStateToProps, {
   stopDrag,
   startDrag,
   harvestSeeds,
-  checkTile,
-  triggerWeather
+  checkTile
 })(Board)

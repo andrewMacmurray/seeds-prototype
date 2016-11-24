@@ -4,7 +4,7 @@ const UPDATE_SCORE = 'UPDATE_SCORE'
 // reducer
 const defaultState = {
   currentScore: 0,
-  levelGoal: 100
+  levelGoal: 200
 }
 
 export default (state = defaultState, action) => {
