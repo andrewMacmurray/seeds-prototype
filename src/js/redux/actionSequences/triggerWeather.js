@@ -5,7 +5,7 @@ import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
 export default (weatherType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { updating, weather: { rain, sun } } = getState()
+  const { weather: { rain, sun } } = getState()
 
   const setVisibleWeather = weatherType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, true)
@@ -17,13 +17,13 @@ export default (weatherType, seedlingCount) => (dispatch, getState) => {
 
   const growDelay = weatherType === 'rain'
     ? 1500
-    : 700
+    : 1000
 
   const backdrop = weatherType === 'rain'
     ? 'rain-falling'
     : 'sun-shining'
 
-  if (rain > 8 || sun > 8 && !updating) {
+  if (rain > 12 || sun > 12) {
     Promise
       .resolve()
       .then(setVisibleWeather)
@@ -48,4 +48,6 @@ export default (weatherType, seedlingCount) => (dispatch, getState) => {
       .delay(1000)
       .then(clearVisibleWeather)
   }
+  // return to carry on promise chain in stopDrag action sequence
+  return ''
 }

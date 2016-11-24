@@ -1,6 +1,6 @@
 module.exports = {
-  rain: 0.1,
-  sun: 0.1,
-  seedling: 0.75,
+  rain: 0.125,
+  sun: 0.125,
+  seedling: 0.7,
   pod: 0.05
 }
