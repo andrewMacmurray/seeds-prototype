@@ -35,7 +35,7 @@ class App extends React.Component {
   }
 
   render () {
-    const { raindropsVisible } = this.props.weather
+    const { raindropsVisible } = this.props.level.weather
     return (
       <div className={'backdrop ' + this.props.backdrop}>
         {this.renderLoadingScreen()}

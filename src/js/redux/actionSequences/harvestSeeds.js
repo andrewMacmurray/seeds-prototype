@@ -28,5 +28,6 @@ export default (seedMoves) => (dispatch, getState) => {
     .then(_dispatch(_.addTiles))
     .delay(700)
     .then(_dispatch(_.resetEntering))
+    .delay(100)
   }
 }

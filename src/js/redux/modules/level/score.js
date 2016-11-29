@@ -21,7 +21,7 @@ export default (state = defaultState, action) => {
 
 // actions
 export const updateScore = (tileType, moves) => (dispatch, getState) => {
-  const { score: { currentScore } } = getState()
+  const { level: { score: { currentScore } } } = getState()
   const move = moves.length
   const scores = { pod: currentScore + move }
 

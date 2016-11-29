@@ -1,4 +1,4 @@
-import { prop } from 'ramda'
+import { path } from 'ramda'
 import { createAction } from 'redux-actions'
 
 // action types
@@ -46,7 +46,7 @@ export default (state = defaultState, action) => {
   }
 }
 
-const sunAndRain = prop('weather')
+const sunAndRain = path([ 'level', 'weather' ])
 const add = (weather) => (type, power, moves) => type === weather
   ? power + moves.length
   : power
@@ -57,7 +57,7 @@ const addSun = add('sun')
 export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
   const state = getState()
   const { sun, rain } = sunAndRain(state)
-  const { moves: { moveArray } } = state
+  const { level: { moves: { moveArray } } } = state
 
   const newWeatherPower = {
     sun: addSun(weatherType, sun, moveArray),

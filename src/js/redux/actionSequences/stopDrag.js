@@ -6,7 +6,13 @@ import triggerWeather from './triggerWeather.js'
 
 export default (moveType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { updating, isDragging, moves: { moveArray } } = getState()
+  const {
+    updating,
+    level: {
+      isDragging,
+      moves: { moveArray }
+    }
+  } = getState()
 
   const isWeather =
        moveType === 'rain'

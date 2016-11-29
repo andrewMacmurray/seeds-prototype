@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { growingMoveArray } from '../../model'
+import { growingMoveArray } from '../../../model'
 
 // action types
 const GROW_SEEDS = 'GROW_SEEDS'
@@ -25,9 +25,9 @@ export const resetGrowSeeds = createAction(RESET_GROW_SEEDS)
 export const setGrowingSeeds = createAction(GROW_SEEDS, moves => moves)
 
 export const growRandomSeeds = (seedlingCount) => (dispatch, getState) => {
-  const { board } = getState()
+  const { tiles } = getState().level.board
   dispatch({
     type: GROW_SEEDS,
-    payload: growingMoveArray(board, seedlingCount)
+    payload: growingMoveArray(tiles, seedlingCount)
   })
 }

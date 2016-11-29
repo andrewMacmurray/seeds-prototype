@@ -70,6 +70,7 @@ class Board extends React.PureComponent {
       movesOrderArray,
       growingOrderArray,
       backdrop,
+      board: { tiles },
       score: { currentScore, levelGoal },
       weather: { animating }
     } = this.props
@@ -88,7 +89,7 @@ class Board extends React.PureComponent {
         </div>
         <p className='score'>{currentScore} / {levelGoal}</p>
         <div className='board'>
-            {this.props.board.map((row, i) =>
+            {tiles.map((row, i) =>
                 row.map((tile, j) => {
                   const tileType = tileClassMap[tile]
                   return tile > 0
@@ -126,7 +127,8 @@ import seedlingCount from '../../redux/selectors/selector_seedlingCount.js'
 import { movesOrder, growingOrder } from '../../redux/selectors/selector_movesOrder.js'
 
 const mapStateToProps = (state) => ({
-  ...state,
+  ...state.level,
+  backdrop: state.backdrop,
   movesOrderArray: movesOrder(state),
   growingOrderArray: growingOrder(state),
   isDraggingArray: isDraggingArray(state),

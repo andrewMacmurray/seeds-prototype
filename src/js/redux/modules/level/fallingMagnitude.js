@@ -3,7 +3,7 @@ import {
   transformTiles,
   falseBoard,
   mapFallingTiles
-} from '../../model'
+} from '../../../model'
 
 // action types
 const FALL_TILES = 'FALL_TILES'
@@ -28,9 +28,9 @@ export default (state = defaultState, action) => {
 export const resetMagnitude = createAction(RESET_MAGNITUDE)
 
 export const fallTiles = (moves) => (dispatch, getState) => {
-  const { board } = getState()
+  const { tiles } = getState().level.board
   dispatch({
     type: FALL_TILES,
-    payload: mapFallingTiles(transformTiles(moves, board, 0))
+    payload: mapFallingTiles(transformTiles(moves, tiles, 0))
   })
 }
