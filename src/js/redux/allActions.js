@@ -7,6 +7,7 @@ import * as growingMoves from './modules/level/growingMoves.js'
 import * as isEntering from './modules/level/isEntering.js'
 import * as isLeaving from './modules/level/isLeaving.js'
 import * as score from './modules/level/score.js'
+import * as levelProgress from './modules/level/levelProgress.js'
 import * as weather from './modules/level/weather.js'
 
 import * as intro from './modules/intro.js'
@@ -25,6 +26,7 @@ module.exports = {
   ...isEntering,
   ...isLeaving,
   ...score,
+  ...levelProgress,
   ...weather,
   ...intro,
   ...audio,

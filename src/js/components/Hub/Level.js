@@ -1,15 +1,19 @@
 import React from 'react'
 
 export default (props) => {
-  const { offset, levelNumber, currentLevel, avatars, world } = props
+  const { offset, levelNumber, levelProgress, avatars, world } = props
 
-  const isActive = currentLevel >= levelNumber
+  const isActive = levelProgress >= levelNumber
   const activeClass = isActive ? 'active' : ''
   const levelAvatar = isActive ? `img/${avatars[0]}.svg` : 'img/seed-outline.svg'
+  const renderPointer = levelProgress === levelNumber
+    ? <img className='pointer' src='img/triangle.svg' />
+    : ''
 
   return (
     <div className={'level offset-' + offset}>
-      <img src={levelAvatar} />
+      {renderPointer}
+      <img className='level-avatar' src={levelAvatar} />
       <div className={'level-number ' + activeClass + ' world-' + world}>
         <p>{levelNumber}</p>
       </div>

@@ -4,6 +4,7 @@ import weather from './weather.js'
 import score from './score.js'
 import moves from './moves.js'
 import board from './board.js'
+import levelProgress from './levelProgress.js'
 import fallingMagnitudeArray from './fallingMagnitude.js'
 import growingMoves from './growingMoves.js'
 import isLeavingArray from './isLeaving.js'
@@ -15,6 +16,7 @@ module.exports = combineReducers({
   score,
   moves,
   board,
+  levelProgress,
   fallingMagnitudeArray,
   isLeavingArray,
   growingMoves,

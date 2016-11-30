@@ -5,11 +5,12 @@ import { connect } from 'react-redux'
 
 class Hub extends React.PureComponent {
   render () {
+    const { levelProgress } = this.props.level
     return (
       <div className='hub-container'>
-        {levelSettings.map((settings, i) => {
-          return <World currentLevel={9} key={i} {...settings} />
-        })}
+        {levelSettings.map((settings, i) =>
+          <World levelProgress={levelProgress} key={i} {...settings} />)
+        }
       </div>
     )
   }

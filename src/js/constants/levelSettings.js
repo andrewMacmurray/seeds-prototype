@@ -45,7 +45,7 @@ module.exports = addLevelNumbers([
       }],
 
       [{
-        offset: 2,
+        offset: 0,
         goal: 100,
         avatars: [ 'seed-circle' ]
       }, {
@@ -53,7 +53,7 @@ module.exports = addLevelNumbers([
         goal: 200,
         avatars: [ 'seed-circle' ]
       }, {
-        offset: 0,
+        offset: 2,
         goal: 100,
         avatars: [ 'seed-circle' ]
       }],
