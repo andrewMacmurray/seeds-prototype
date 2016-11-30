@@ -1,0 +1,57 @@
+.level-row {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+  margin: 1em auto;
+  width: 17em;
+}
+
+.level {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 2.5em;
+  margin: 0 auto;
+
+  &.offset-1 {
+    margin-bottom: 5em;
+  }
+
+  &.offset-2 {
+    margin-bottom: 10em;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.level-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5em 0 0 0;
+
+  &.active {
+    background-color: $light-brown;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  p {
+    font-size: 0.9em;
+    color: $text-yellow-light;
+    margin: 0;
+  }
+
+  &.world-2 {
+    &.active {
+      background-color: $lavendar;
+    }
+
+    p {
+      color: $text-yellow-light;
+    }
+  }
+}

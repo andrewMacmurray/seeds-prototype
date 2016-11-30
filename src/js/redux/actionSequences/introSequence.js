@@ -32,7 +32,7 @@ export default () => (dispatch) => {
     .then(_dispatch(_.resetIntroText))
     .then(_dispatch(_.showLoadingScreen))
     .delay(1600)
-    .then(_dispatch(_.setView, 'board'))
+    .then(_dispatch(_.setView, 'hub'))
     .delay(1400)
     .then(_dispatch(_.hideLoadingScreen))
 }

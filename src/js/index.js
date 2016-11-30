@@ -14,8 +14,6 @@ const store = createStore(
   applyMiddleware(thunk, logger)
 )
 
-window.addEventListener('touchmove', (e) => e.preventDefault())
-
 ReactDOM.render(
   <Provider store={store}>
     <App />

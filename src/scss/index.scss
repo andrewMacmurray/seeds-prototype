@@ -2,80 +2,19 @@
 @import 'mixins';
 @import 'animations';
 @import 'seeds';
+
+// general
+@import 'app';
 @import 'views/intro';
 @import 'views/loading';
+
+// board
 @import 'board/tiles';
 @import 'board/board';
 @import 'board/score';
 @import 'board/coordiantes';
 @import 'board/weather';
 
-html {
-  position: relative;
-  min-height: 100%;
-  -webkit-tap-highlight-color: transparent;
-}
-
-body {
-  font-family: $main-font;
-  font-weight: 500;
-  background-color: $beige;
-  margin: 0;
-}
-
-audio {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-}
-
-a {
-  text-decoration: none;
-}
-
-p, a {
-  color: $text-yellow;
-}
-
-.hidden {
-  opacity: 0;
-}
-
-.audio-controls {
-  position: fixed;
-  bottom: 0.5em;
-  right: 1.2em;
-}
-
-.menu {
-  position: fixed;
-  right: 20px;
-  top: 10px;
-  z-index: 10;
-  @include no-select;
-}
-
-.menu-item {
-  display: inline-block;
-  margin-left: 32px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  font-size: 10px;
-  margin-left: 15px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  cursor: pointer;
-  @include no-select;
-}
-
-@media (min-width: $width-m) and (min-height: $height-m) {
-  .menu {
-    right: 50px;
-    top: 20px;
-  }
-  .menu-item {
-    margin-left: 32px;
-    font-size: 12px;
-    letter-spacing: 3px;
-  }
-}
+// hub
+@import 'hub/level';
+@import 'hub/world';
