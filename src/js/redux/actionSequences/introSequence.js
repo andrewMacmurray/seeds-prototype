@@ -24,9 +24,9 @@ export default () => (dispatch) => {
     .then(_dispatch(_.setVisibleIntroText, [ 0, 0, 1 ])) // so a new one can be reborn
     .delay(2000)
     .then(_dispatch(_.setVisibleSeeds, [ 1, 0, 0, 0, 0 ]))
-    .delay(2000)
+    .delay(1500)
     .then(_dispatch(_.setVisibleIntroText, [ 0, 0, 0 ]))
-    .delay(2000)
+    .delay(1500)
     .then(_dispatch(_.setVisibleSeeds, [ 0, 0, 0, 0, 0 ]))
     .delay(1500)
     .then(_dispatch(_.resetIntroText))

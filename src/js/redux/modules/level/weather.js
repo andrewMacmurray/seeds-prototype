@@ -6,11 +6,13 @@ const WEATHER_POWER = 'WEATHER_POWER'
 const RESET_WEATHER = 'RESET_WEATHER'
 const WEATHER_ANIMATING = 'WEATHER_ANIMATING'
 const SET_RAINDROPS_VISIBILITY = 'SET_RAINDROPS_VISIBILITY'
+const SET_WEATHER_THRESHOLD = 'SET_WEATHER_THRESHOLD'
 
 // reducer
 const defaultState = {
   rain: 0,
   sun: 0,
+  weatherThreshold: 12,
   animating: false,
   raindropsVisible: false
 }
@@ -39,6 +41,12 @@ export default (state = defaultState, action) => {
     return {
       ...state,
       raindropsVisible: action.payload
+    }
+
+  case SET_WEATHER_THRESHOLD:
+    return {
+      ...state,
+      weatherThreshold: action.payload
     }
 
   default:
@@ -86,3 +94,4 @@ export const resetWeatherPower = (weatherType) => (dispatch, getState) => {
 
 export const weatherAnimating = createAction(WEATHER_ANIMATING, x => x)
 export const setRaindropsVisibility = createAction(SET_RAINDROPS_VISIBILITY, x => x)
+export const setWeatherThreshold = createAction(SET_WEATHER_THRESHOLD, x => x)

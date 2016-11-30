@@ -5,7 +5,7 @@ import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
 export default (weatherType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { level: { weather: { rain, sun } } } = getState()
+  const { level: { weather: { rain, sun, weatherThreshold } } } = getState()
 
   const setVisibleWeather = weatherType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, true)
@@ -23,7 +23,7 @@ export default (weatherType, seedlingCount) => (dispatch, getState) => {
     ? 'rain-falling'
     : 'sun-shining'
 
-  if (rain > 12 || sun > 12) {
+  if (rain > weatherThreshold || sun > weatherThreshold) {
     Promise
       .resolve()
       .then(setVisibleWeather)

@@ -59,6 +59,9 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
   }
 
   if (boardReady && isSeedling) {
+    const growDelay = moveArray.length > 10
+      ? 1000
+      : 800
     Promise
       .resolve()
       .then(batch(dispatch, [
@@ -66,12 +69,11 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
         _.isUpdating, true,
         _.setGrowingSeeds, moveArray
       ]))
-      .delay(800)
+      .delay(growDelay)
       .then(_dispatch(_.growSeedsFromMoves, moveArray))
-      .delay(300)
-      .then(_dispatch(_.isUpdating, false))
-      .delay(400)
+      .delay(growDelay)
       .then(batch(dispatch, [
+        _.isUpdating, false,
         _.resetGrowSeeds,
         _.resetMoves
       ]))

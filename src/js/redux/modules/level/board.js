@@ -23,10 +23,12 @@ const initialLoadProbability = {
   pod: 0.1
 }
 
+const initialBoardSize = 8
+
 const defaultState = {
-  tiles: randomBoard(8, initialLoadProbability),
+  tiles: randomBoard(initialBoardSize, initialLoadProbability),
   probabilities: defaultProbabilities,
-  boardSize: 8
+  boardSize: initialBoardSize
 }
 
 export default (state = defaultState, action) => {

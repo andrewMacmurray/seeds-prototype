@@ -36,3 +36,4 @@ audio
 backend/dist
 public/app.js
 public/app.js.map
+*.sketch

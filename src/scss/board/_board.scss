@@ -14,21 +14,27 @@
   align-items: center;
 }
 
-.board {
-  height: $board-height-small;
-  width: $board-width-small;
-  margin: 4em auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+@for $i from 1 through 8 {
+  $scale: $i / 8;
+  .board-x#{$i} {
+    height: $board-height-small * $scale;
+    width: $board-width-small * $scale;
+    margin: 4em auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 @media (min-height: $height-m) and (min-width: $width-m) {
-  .board {
-    height: $board-height-medium;
-    width: $board-width-medium;
+  @for $i from 1 through 8 {
+    $scale: $i / 8;
+    .board-x#{$i} {
+      height: $board-height-medium * $scale;
+      width: $board-width-medium * $scale;
+    }
   }
 
   .top-bar-container {
