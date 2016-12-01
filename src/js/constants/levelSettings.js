@@ -8,27 +8,27 @@ module.exports = addLevelNumbers([
     levels: [
       [{
         offset: 0,
-        goal: 100,
+        goal: 20,
         avatars: [ 'seed' ]
       }],
 
       [{
         offset: 0,
-        goal: 100,
+        goal: 30,
         avatars: [ 'seed' ]
       }, {
         offset: 1,
-        goal: 200,
+        goal: 50,
         avatars: [ 'seed' ]
       }, {
         offset: 2,
-        goal: 100,
+        goal: 60,
         avatars: [ 'seed' ]
       }],
 
       [{
         offset: 0,
-        goal: 250,
+        goal: 100,
         avatars: [ 'seed' ]
       }]
     ]

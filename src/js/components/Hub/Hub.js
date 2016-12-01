@@ -2,6 +2,7 @@ import React from 'react'
 import World from './World.js'
 import levelSettings from '../../constants/levelSettings.js'
 import { connect } from 'react-redux'
+import startLevel from '../../redux/actionSequences/startLevel.js'
 
 class Hub extends React.PureComponent {
   render () {
@@ -9,7 +10,12 @@ class Hub extends React.PureComponent {
     return (
       <div className='hub-container'>
         {levelSettings.map((settings, i) =>
-          <World levelProgress={levelProgress} key={i} {...settings} />)
+          <World
+            startLevel={this.props.startLevel}
+            levelProgress={levelProgress}
+            key={i}
+            {...settings}
+          />)
         }
       </div>
     )
@@ -18,4 +24,4 @@ class Hub extends React.PureComponent {
 
 const mapStateToProps = (state) => ({ ...state })
 
-export default connect(mapStateToProps)(Hub)
+export default connect(mapStateToProps, { startLevel })(Hub)

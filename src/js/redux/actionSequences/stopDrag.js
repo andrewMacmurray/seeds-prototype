@@ -3,6 +3,7 @@ import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 import { identity } from 'ramda'
 import triggerWeather from './triggerWeather.js'
+import handleLevelStop from './handleLevelStop.js'
 
 export default (moveType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
@@ -56,6 +57,7 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
       ]))
       .delay(700)
       .then(_dispatch(_.resetEntering))
+      .then(_dispatch(handleLevelStop))
   }
 
   if (boardReady && isSeedling) {

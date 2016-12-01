@@ -4,7 +4,7 @@ import { createAction } from 'redux-actions'
 const SET_VIEW = 'SET_VIEW'
 
 // reducer
-export default (state = 'hub', action) => {
+export default (state = 'title', action) => {
   switch (action.type) {
   case SET_VIEW:
     return action.payload

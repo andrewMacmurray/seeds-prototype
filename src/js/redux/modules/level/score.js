@@ -1,5 +1,9 @@
+import { createAction } from 'redux-actions'
+
 // action types
 const UPDATE_SCORE = 'UPDATE_SCORE'
+const RESET_SCORE = 'RESET_SCORE'
+const SET_LEVEL_GOAL = 'SET_LEVEL_GOAL'
 
 // reducer
 const defaultState = {
@@ -14,6 +18,19 @@ export default (state = defaultState, action) => {
       ...state,
       currentScore: action.payload
     }
+
+  case RESET_SCORE:
+    return {
+      ...state,
+      currentScore: 0
+    }
+
+  case SET_LEVEL_GOAL:
+    return {
+      ...state,
+      levelGoal: action.payload
+    }
+
   default:
     return state
   }
@@ -31,3 +48,6 @@ export const updateScore = (tileType, moves) => (dispatch, getState) => {
     payload: moves.length ? scoreType : currentScore
   })
 }
+
+export const resetScore = createAction(RESET_SCORE)
+export const setLevelGoal = createAction(SET_LEVEL_GOAL, x => x)
