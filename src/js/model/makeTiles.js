@@ -1,7 +1,7 @@
 import { times, map, equals } from 'ramda'
-import defaultProbabilities from '../constants/defaultProbabilities.js'
+import { even } from '../constants/probabilities.js'
 
-const tileGenerator = (_, prob = defaultProbabilities) => {
+const tileGenerator = (_, prob = even) => {
   const {
     rain,
     sun,
