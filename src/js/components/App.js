@@ -45,15 +45,17 @@ class App extends React.Component {
 
   render () {
     const { raindropsVisible } = this.props.level.weather
-    const { view, loadingScreen: { visible }, backdrop } = this.props
+    const { backdrop, view, loadingScreen: { visible } } = this.props
     return (
       <div
-        onTouchMove={this.handleFixedBackground(view, visible)} className={'backdrop ' + backdrop}
+        onTouchMove={this.handleFixedBackground(view, visible)}
+        className={'backdrop ' + backdrop}
       >
         {this.renderLoadingScreen()}
         <div className='menu'>
           <p className='menu-item' onClick={() => this.loadView('title')}>Intro</p>
-          <p className='menu-item' onClick={() => this.loadView('board')}>Begin</p>
+          <p className='menu-item' onClick={() => this.loadView('board')}>Board</p>
+          <p className='menu-item' onClick={() => this.loadView('hub')}>Hub</p>
         </div>
         <Audio />
         {this.router()}
