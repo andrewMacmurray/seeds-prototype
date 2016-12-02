@@ -1,8 +1,6 @@
 .board-container {
-  position: fixed;
+  position: relative;
   z-index: 1;
-  left: 0;
-  right: 0;
   margin: 0em 0;
   -webkit-tap-highlight-color: transparent;
 }

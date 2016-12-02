@@ -1,19 +1,31 @@
 import Promise from 'bluebird'
 import * as _ from '../allActions.js'
-import { makeLazyDispatcher } from '../_thunkHelpers.js'
+import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
+import { identity } from 'ramda'
 
 export default () => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { currentScore, levelGoal } = getState().level.score
+  const {
+    currentLevel,
+    levelProgress,
+    score: { currentScore, levelGoal } } = getState().level
+
+  const handleLevelProgress = currentLevel === levelProgress
+    ? _dispatch(_.incrementLevelProgress)
+    : identity
 
   if (currentScore >= levelGoal) {
     return Promise
       .resolve()
       .then(_dispatch(_.showLoadingScreen, Math.random()))
       .delay(500)
-      .then(_dispatch(_.resetScore))
-      .then(_dispatch(_.incrementLevelProgress))
-      .then(_dispatch(_.setView, 'hub'))
+      .then(handleLevelProgress)
+      .then(batch(dispatch, [
+        _.resetScore,
+        _.setView, 'hub',
+        _.resetWeatherPower, 'rain',
+        _.resetWeatherPower, 'sun'
+      ]))
       .delay(2500)
       .then(_dispatch(_.hideLoadingScreen))
   }

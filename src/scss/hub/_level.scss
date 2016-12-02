@@ -58,8 +58,8 @@
 }
 
 .pointer {
-  position: absolute;
   top: -2em;
-  width: 1.5em;
+  width: 1em;
+  margin: -1.5em 0 0.5em 0;
   animation: hover 1.5s ease-in-out infinite;
 }
