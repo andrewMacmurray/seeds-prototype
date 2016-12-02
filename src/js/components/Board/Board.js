@@ -56,8 +56,11 @@ class Board extends React.PureComponent {
   }
 
   weatherMakerClass (type) {
-    const { weather } = this.props
-    return type + '-maker power-' + (weather[type] < 12 ? weather[type] : 12) + ' max-' + type
+    const { weather, weather: { weatherThreshold } } = this.props
+    return type
+      + '-maker power-'
+      + (weather[type] < weatherThreshold ? weather[type] : weatherThreshold)
+      + ' max-' + type
   }
 
   render () {
@@ -70,6 +73,7 @@ class Board extends React.PureComponent {
       movesOrderArray,
       growingOrderArray,
       backdrop,
+      board: { tiles, boardSize },
       score: { currentScore, levelGoal },
       weather: { animating }
     } = this.props
@@ -87,8 +91,8 @@ class Board extends React.PureComponent {
           <div className={this.weatherMakerClass('sun')} />
         </div>
         <p className='score'>{currentScore} / {levelGoal}</p>
-        <div className='board'>
-            {this.props.board.map((row, i) =>
+        <div className={'board-x' + boardSize}>
+            {tiles.map((row, i) =>
                 row.map((tile, j) => {
                   const tileType = tileClassMap[tile]
                   return tile > 0
@@ -126,7 +130,8 @@ import seedlingCount from '../../redux/selectors/selector_seedlingCount.js'
 import { movesOrder, growingOrder } from '../../redux/selectors/selector_movesOrder.js'
 
 const mapStateToProps = (state) => ({
-  ...state,
+  ...state.level,
+  backdrop: state.backdrop,
   movesOrderArray: movesOrder(state),
   growingOrderArray: growingOrder(state),
   isDraggingArray: isDraggingArray(state),

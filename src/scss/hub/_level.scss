@@ -1,0 +1,65 @@
+.level-row {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: row-reverse;
+  margin: 1em auto;
+  width: 17em;
+}
+
+.level {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 2.5em;
+  margin: 0 auto;
+
+  &.offset-1 {
+    margin-bottom: 5em;
+  }
+
+  &.offset-2 {
+    margin-bottom: 10em;
+  }
+}
+
+.level-avatar {
+  width: 2.3em;
+}
+
+.level-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5em 0 0 0;
+
+  &.active {
+    background-color: $light-brown;
+    border-radius: 50%;
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  p {
+    font-size: 0.9em;
+    color: $text-yellow-light;
+    margin: 0;
+  }
+
+  &.world-2 {
+    &.active {
+      background-color: $dusty-red;
+    }
+
+    p {
+      color: $text-yellow-light;
+    }
+  }
+}
+
+.pointer {
+  top: -2em;
+  width: 1em;
+  margin: -1.5em 0 0.5em 0;
+  animation: hover 1.5s ease-in-out infinite;
+}

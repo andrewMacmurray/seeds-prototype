@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { validMove } from '../../model'
+import { validMove } from '../../../model'
 
 // action types
 const CHECK_TILE = 'CHECK_TILE'
@@ -22,8 +22,13 @@ export default (state = defaultState, action) => {
 
 // actions
 export const checkTile = (tile) => (dispatch, getState) => {
-  const { board, moves: { currTile, moveArray } } = getState()
-  const isValid = validMove(tile, currTile, board)
+  const {
+    level: {
+      board: { tiles },
+      moves: { currTile, moveArray }
+    } } = getState()
+
+  const isValid = validMove(tile, currTile, tiles)
   let nextMoves = {
     moveArray,
     currTile

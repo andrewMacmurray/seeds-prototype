@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { falseBoard, trueBoard, booleanArray } from '../../model'
+import { falseBoard, trueBoard, booleanArray } from '../../../model'
 
 // action types
 const SET_ENTERING = 'SET_ENTERING'
@@ -22,10 +22,10 @@ export default (state = defaultState, action) => {
 
 // actions
 export const setEntering = () => (dispatch, getState) => {
-  const { board } = getState()
+  const { tiles } = getState().level.board
   dispatch({
     type: SET_ENTERING,
-    payload: booleanArray(board)
+    payload: booleanArray(tiles)
   })
 }
 

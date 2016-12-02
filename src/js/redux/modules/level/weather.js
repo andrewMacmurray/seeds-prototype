@@ -1,4 +1,4 @@
-import { prop } from 'ramda'
+import { path } from 'ramda'
 import { createAction } from 'redux-actions'
 
 // action types
@@ -6,11 +6,13 @@ const WEATHER_POWER = 'WEATHER_POWER'
 const RESET_WEATHER = 'RESET_WEATHER'
 const WEATHER_ANIMATING = 'WEATHER_ANIMATING'
 const SET_RAINDROPS_VISIBILITY = 'SET_RAINDROPS_VISIBILITY'
+const SET_WEATHER_THRESHOLD = 'SET_WEATHER_THRESHOLD'
 
 // reducer
 const defaultState = {
   rain: 0,
   sun: 0,
+  weatherThreshold: 12,
   animating: false,
   raindropsVisible: false
 }
@@ -41,12 +43,18 @@ export default (state = defaultState, action) => {
       raindropsVisible: action.payload
     }
 
+  case SET_WEATHER_THRESHOLD:
+    return {
+      ...state,
+      weatherThreshold: action.payload
+    }
+
   default:
     return state
   }
 }
 
-const sunAndRain = prop('weather')
+const sunAndRain = path([ 'level', 'weather' ])
 const add = (weather) => (type, power, moves) => type === weather
   ? power + moves.length
   : power
@@ -57,7 +65,7 @@ const addSun = add('sun')
 export const addPowerToWeather = (weatherType) => (dispatch, getState) => {
   const state = getState()
   const { sun, rain } = sunAndRain(state)
-  const { moves: { moveArray } } = state
+  const { level: { moves: { moveArray } } } = state
 
   const newWeatherPower = {
     sun: addSun(weatherType, sun, moveArray),
@@ -86,3 +94,4 @@ export const resetWeatherPower = (weatherType) => (dispatch, getState) => {
 
 export const weatherAnimating = createAction(WEATHER_ANIMATING, x => x)
 export const setRaindropsVisibility = createAction(SET_RAINDROPS_VISIBILITY, x => x)
+export const setWeatherThreshold = createAction(SET_WEATHER_THRESHOLD, x => x)

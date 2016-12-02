@@ -3,10 +3,17 @@ import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 import { identity } from 'ramda'
 import triggerWeather from './triggerWeather.js'
+import handleLevelStop from './handleLevelStop.js'
 
 export default (moveType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { updating, isDragging, moves: { moveArray } } = getState()
+  const {
+    updating,
+    level: {
+      isDragging,
+      moves: { moveArray }
+    }
+  } = getState()
 
   const isWeather =
        moveType === 'rain'
@@ -50,9 +57,13 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
       ]))
       .delay(700)
       .then(_dispatch(_.resetEntering))
+      .then(_dispatch(handleLevelStop))
   }
 
   if (boardReady && isSeedling) {
+    const growDelay = moveArray.length > 10
+      ? 1000
+      : 800
     Promise
       .resolve()
       .then(batch(dispatch, [
@@ -60,12 +71,11 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
         _.isUpdating, true,
         _.setGrowingSeeds, moveArray
       ]))
-      .delay(800)
+      .delay(growDelay)
       .then(_dispatch(_.growSeedsFromMoves, moveArray))
-      .delay(300)
-      .then(_dispatch(_.isUpdating, false))
-      .delay(400)
+      .delay(growDelay)
       .then(batch(dispatch, [
+        _.isUpdating, false,
         _.resetGrowSeeds,
         _.resetMoves
       ]))

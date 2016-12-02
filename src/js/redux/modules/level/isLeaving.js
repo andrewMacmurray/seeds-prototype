@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { transformTiles, booleanArray, removeSeedsFromBoard, falseBoard } from '../../model'
+import { transformTiles, booleanArray, removeSeedsFromBoard, falseBoard } from '../../../model'
 
 // action types
 const SET_LEAVING_TILES = 'SET_LEAVING_TILES'
@@ -28,10 +28,10 @@ export default (state = defaultState, action) => {
 export const resetLeaving = createAction(RESET_LEAVING)
 
 export const setLeavingTiles = (moves) => (dispatch, getState) => {
-  const { board } = getState()
+  const { tiles } = getState().level.board
   dispatch({
     type: SET_LEAVING_TILES,
-    payload: booleanArray(transformTiles(moves, board, 0))
+    payload: booleanArray(transformTiles(moves, tiles, 0))
   })
 }
 

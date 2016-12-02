@@ -1,7 +1,7 @@
-const { groupWith, map, is, not, compose } = require('ramda')
+const { groupWith, map, is, complement, compose } = require('ramda')
 
 const isFunction = is(Function)
-const isNotFunction = compose(not, isFunction)
+const isNotFunction = complement(isFunction)
 const groupWhereArgs = groupWith((a, b) => isFunction(a) && isNotFunction(b))
 
 const groupHasArgs = (x) => x.length > 1
