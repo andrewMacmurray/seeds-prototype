@@ -5,6 +5,7 @@ import score from './score.js'
 import moves from './moves.js'
 import board from './board.js'
 import levelProgress from './levelProgress.js'
+import seedType from './seedType.js'
 import currentLevel from './currentLevel.js'
 import fallingMagnitudeArray from './fallingMagnitude.js'
 import growingMoves from './growingMoves.js'
@@ -18,6 +19,7 @@ module.exports = combineReducers({
   moves,
   board,
   levelProgress,
+  seedType,
   currentLevel,
   fallingMagnitudeArray,
   isLeavingArray,

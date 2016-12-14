@@ -8,6 +8,7 @@ import * as isEntering from './modules/level/isEntering.js'
 import * as isLeaving from './modules/level/isLeaving.js'
 import * as score from './modules/level/score.js'
 import * as levelProgress from './modules/level/levelProgress.js'
+import * as seedType from './modules/level/seedType.js'
 import * as currentLevel from './modules/level/currentLevel.js'
 import * as weather from './modules/level/weather.js'
 
@@ -28,6 +29,7 @@ module.exports = {
   ...isLeaving,
   ...score,
   ...levelProgress,
+  ...seedType,
   ...currentLevel,
   ...weather,
   ...intro,

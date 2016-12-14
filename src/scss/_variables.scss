@@ -18,7 +18,8 @@ $rain-blue: #0267b1;
 $midnight-blue: #011025;
 
 // gradient backgrounds
-$seedling-background: linear-gradient(90deg, $green, $green 50%, $darker-green 51%, $darker-green);
+$twin-seedling-background: linear-gradient(90deg, $green, $green 50%, $darker-green 51%, $darker-green);
+$circle-seedling-background: radial-gradient(ellipse at center, $green 0%, $green 50%, $darker-green 60%, $darker-green 100%);
 $midnight-background: linear-gradient(0deg, $dark-blue, $midnight-blue);
 
 // hover colors
@@ -38,6 +39,10 @@ $dusty-red: #EB4C48;
 // text colors
 $text-yellow: #D6A614;
 $text-yellow-light: #FFDB6C;
+
+// world width
+$world-width: 17em;
+$level-width: 2.5em;
 
 // grid size
 $grid-large: 60px;

@@ -73,6 +73,7 @@ class Board extends React.PureComponent {
       movesOrderArray,
       growingOrderArray,
       backdrop,
+      seedType,
       board: { tiles, boardSize },
       score: { currentScore, levelGoal },
       weather: { animating }
@@ -83,6 +84,7 @@ class Board extends React.PureComponent {
         <div className='top-bar-container'>
           <div className={this.weatherMakerClass('rain')} />
           <SeedBank
+            seedType={seedType}
             harvestSeeds={this.harvestSeeds}
             currentScore={currentScore}
             levelGoal={levelGoal}
@@ -91,13 +93,14 @@ class Board extends React.PureComponent {
           <div className={this.weatherMakerClass('sun')} />
         </div>
         <p className='score'>{currentScore} / {levelGoal}</p>
-        <div className={'board-x' + boardSize}>
+        <div className={'board-x' + boardSize + ' ' + seedType}>
             {tiles.map((row, i) =>
                 row.map((tile, j) => {
                   const tileType = tileClassMap[tile]
                   return tile > 0
                   ? <Tile
                     tileType={tileType}
+                    seedType={seedType}
                     weatherAnimating={animating}
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}

@@ -31,9 +31,10 @@ class App extends React.Component {
   }
 
   renderLoadingScreen () {
+    const { seedType } = this.props.level
     const { visible, background } = this.props.loadingScreen
     return visible
-      ? <Loading background={background} />
+      ? <Loading background={background} seedType={seedType} />
       : ''
   }
 

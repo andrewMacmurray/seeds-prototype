@@ -26,6 +26,7 @@ export default class SeedBank extends React.PureComponent {
       backdrop,
       harvestSeeds,
       currentScore,
+      seedType,
       levelGoal
     } = this.props
 
@@ -38,7 +39,7 @@ export default class SeedBank extends React.PureComponent {
           style={{ transform: `translateY(${-screenHeight}px)` }}
         />
         <img className='outline' src='img/seed-outline.svg' />
-        <img ref={(x) => this.seedImg = x} src='img/seed.svg'/>
+        <img ref={(x) => this.seedImg = x} src={`img/seeds/${seedType}/${seedType}.svg`}/>
       </div>
     )
   }

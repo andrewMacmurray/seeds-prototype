@@ -17,7 +17,7 @@ const tileGenerator = (_, prob = even) => {
       ? 2
     : n > rain + sun && n <= rain + sun + seedling
       ? 3
-    : n > rain + sun + seedling && n <= rain + sun + seedling + pod
+    : n > rain + sun + seedling
       ? 4
     : 1
 }

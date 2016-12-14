@@ -1,4 +1,4 @@
-const { addIndex, map, reduce, assoc, prop, compose, add } = require('ramda')
+const { addIndex, map, reduce, assoc, prop, compose, add, length } = require('ramda')
 
 const mapI = addIndex(map)
 
@@ -9,31 +9,21 @@ const addLevelKey = (total, level) => assoc('levelNumber', total, level)
 
 // addLevelNumber : Int -> [ Level ] -> [ Level ]
 const addLevelNumber = (total, levels) =>
-  mapI((l, i) => addLevelKey(total + i + 1, l), levels)
-
-// getTotal : [ Level ] -> Int
-const getTotal = reduce((total, levels) => total + levels.length, 0)
-
-
-// addLevelNumbers : Int -> [ [ Level ] ] -> [ [ Level ] ]
-const addLevelNumbers = (worldTotal, rows) =>
-  rows.reduce((acc, levels) => {
-    const currentTotal = getTotal(acc) + worldTotal
-    const editedLevels = addLevelNumber(currentTotal, levels)
-    return acc.concat([ editedLevels ])
-  }, [])
+  mapI((l, i) => addLevelKey(total + levels.length - i, l), levels)
 
 // type World : { world: Int, background: String, overlay: String, levels: [ [ Level ] ] }
 
-// editWorldLevels : Int -> World -> [ [ Level ] ]
+// editWorldLevels : Int -> World -> [ Level ]
 const editWorldLevels = (worldTotal, world) =>
-  assoc('levels', addLevelNumbers(worldTotal, world.levels), world)
+  assoc('levels', addLevelNumber(worldTotal, world.levels), world)
+
+// levelLength : World -> Int
+const levelLength = compose(length, prop('levels'))
 
 // runningTotal : World -> Int
 const runningTotal = compose(
   reduce(add, 0),
-  map(getTotal),
-  map(prop('levels'))
+  map(levelLength)
 )
 
 // addLevelNumbersToWorlds : [ World ] -> [ World ]

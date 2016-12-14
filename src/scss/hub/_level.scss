@@ -1,9 +1,6 @@
-.level-row {
-  display: flex;
-  align-items: flex-end;
-  flex-direction: row-reverse;
-  margin: 1em auto;
-  width: 17em;
+.level-container {
+  width: $world-width;
+  margin: 0 auto;
 }
 
 .level {
@@ -11,16 +8,48 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 2.5em;
-  margin: 0 auto;
+  width: $level-width;
+  margin: 0 auto 2em;
 
-  &.offset-1 {
-    margin-bottom: 5em;
+  $half-world-width: ($world-width / 2 - $level-width) / 2;
+
+  &.offset-x-1 {
+    margin-right: $half-world-width;
   }
 
-  &.offset-2 {
-    margin-bottom: 10em;
+  &.offset-x-2 {
+    margin-right: $half-world-width - 1;
   }
+
+  &.offset-x--1 {
+    margin-left: $half-world-width;
+  }
+
+  &.offset-x--2 {
+    margin-left: $half-world-width - 1;
+  }
+
+  $level-top-offset: $level-width / 2;
+
+  &.offset-y-1 {
+    margin-top: $level-top-offset;
+  }
+
+  &.offset-y-2 {
+    margin-top: $level-top-offset * 2;
+  }
+
+  &.offset-y--1 {
+    margin-top: -$level-top-offset;
+  }
+
+  &.offset-y--2 {
+    margin-top: -$level-top-offset * 2;
+  }
+}
+
+.trail {
+  position: absolute;
 }
 
 .level-avatar {
@@ -36,12 +65,12 @@
   &.active {
     background-color: $light-brown;
     border-radius: 50%;
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.3em;
+    height: 1.3em;
   }
 
   p {
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: $text-yellow-light;
     margin: 0;
   }

@@ -12,7 +12,16 @@ export default class Level extends React.PureComponent {
   }
 
   render () {
-    const { offset, levelNumber, levelProgress, avatars, world, startLevel, goal } = this.props
+    const {
+      offset: { x: levelX, y: levelY },
+      trail: { img: trailImg, mirror, offset: { x: trailX, y: trailY } },
+      levelNumber,
+      levelProgress,
+      avatars,
+      world,
+      startLevel,
+      goal
+    } = this.props
 
     const isComplete = levelProgress > levelNumber
     const isCurrentLevel = levelProgress === levelNumber
@@ -20,7 +29,20 @@ export default class Level extends React.PureComponent {
     const numberActiveClass = isComplete || isCurrentLevel
       ? 'active'
       : ''
-    const levelAvatar = isComplete ? `img/${avatars[0]}.svg` : 'img/seed-outline.svg'
+
+    const levelAvatar = isComplete
+      ? `img/seeds/${avatars[0]}/${avatars[0]}.svg`
+      : 'img/seed-outline.svg'
+
+    const trailScale = mirror ? -1 : 1
+    const trailStyles = { transform: `translate(${trailX}em, ${trailY}em) scaleX(${trailScale})` }
+    const renderTrail = isComplete
+      ? <img className='trail'
+        style={trailStyles}
+        src={`img/trails/${trailImg}`}
+        />
+      : ''
+
     const renderPointer = isCurrentLevel
       ? <img className='pointer' src='img/triangle.svg' />
       : ''
@@ -28,9 +50,10 @@ export default class Level extends React.PureComponent {
     return (
       <div
         ref={($el) => this.level = $el}
-        className={'level offset-' + offset}
-        onClick={() => startLevel(levelNumber, goal, levelProgress)}
+        className={'level offset-x-' + levelX + ' offset-y-' + levelY}
+        onClick={() => startLevel(levelNumber, goal, levelProgress, avatars)}
       >
+        {renderTrail}
         {renderPointer}
         <img className='level-avatar' src={levelAvatar} />
         <div className={'level-number ' + numberActiveClass + ' world-' + world}>
