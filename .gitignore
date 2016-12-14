@@ -36,4 +36,8 @@ audio
 backend/dist
 public/app.js
 public/app.js.map
+
+# Graphic Resources
 *.sketch
+*.ai
+graphic-resources

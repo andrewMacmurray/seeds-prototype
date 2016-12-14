@@ -21,8 +21,9 @@ module.exports = {
         loader: 'style-loader!css-loader!sass-loader'
       },
       {
-        test: /\.(png|jpg|svg)$/,
-        loader: 'url-loader?limit=100000'
+        test: /\.svg$/,
+        exclude: path.resolve(__dirname, 'node_modules'),
+        loader: 'svg-url-loader'
       }
     ]
   },
