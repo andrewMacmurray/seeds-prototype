@@ -13,27 +13,27 @@ module.exports = addLevelNumbers([
         offset: { x: 0, y: 0 },
         goal: 100,
         avatars: [ 'sunflower' ],
-        trail: { img: '/red/trail-0.svg', offset: { x: -1.3, y: -10.9 } }
+        trail: { img: '/red/trail-red-11.svg', offset: { x: 0, y: -10.9 }, rotate: 0 }
       }, {
         offset: { x: 1, y: 0 },
         goal: 60,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-4.svg', offset: { x: 0, y: -5.7 } }
+        trail: { img: '/dark/trail-dark-3.svg', offset: { x: -1.9, y: -1.7 }, rotate: -43 }
       }, {
         offset: { x: 0, y: -1 },
         goal: 50,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-3.svg', offset: { x: 2, y: -2 } }
+        trail: { img: '/dark/trail-dark-3.svg', offset: { x: 2.2, y: -0.9 }, rotate: 45 }
       }, {
         offset: { x: -1, y: -1 },
         goal: 30,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-2.svg', offset: { x: 1.8, y: -2.6 } }
+        trail: { img: '/dark/trail-dark-3.svg', offset: { x: 1.9, y: -2 }, rotate: 45 }
       }, {
         offset: { x: 0, y: 1 },
         goal: 20,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-1.svg', offset: { x: -3.5, y: -1 } }
+        trail: { img: '/dark/trail-dark-4.svg', offset: { x: -2.2, y: -1.8 }, rotate: -45 }
       }
     ]
   },
@@ -46,27 +46,27 @@ module.exports = addLevelNumbers([
         offset: { x: 0, y: 0 },
         goal: 250,
         avatars: [ 'foxglove' ],
-        trail: { img: 'trail.svg', offset: { x: 0, y: 0 } }
+        trail: { img: 'trail.svg', offset: { x: 0, y: 0 }, rotate: 90 }
       }, {
         offset: { x: 0, y: 0 },
         goal: 100,
         avatars: [ 'foxglove' ],
-        trail: { img: 'trail.svg', offset: { x: 0, y: 0 } }
+        trail: { img: 'trail.svg', offset: { x: 0, y: 0 }, rotate: 90 }
       }, {
         offset: { x: 0, y: 0 },
         goal: 200,
         avatars: [ 'foxglove' ],
-        trail: { img: 'trail.svg', offset: { x: 0, y: 0 } }
+        trail: { img: 'trail.svg', offset: { x: 0, y: 0 }, rotate: 90 }
       }, {
         offset: { x: 0, y: 0 },
         goal: 100,
         avatars: [ 'foxglove' ],
-        trail: { img: 'trail.svg', offset: { x: 0, y: 0 } }
+        trail: { img: 'trail.svg', offset: { x: 0, y: 0 }, rotate: 90 }
       }, {
         offset: { x: 0, y: 0 },
         goal: 100,
         avatars: [ 'foxglove' ],
-        trail: { img: 'trail.svg', offset: { x: 0, y: 0 } }
+        trail: { img: 'trail.svg', offset: { x: 0, y: 0 }, rotate: 90 }
       }
     ]
   }

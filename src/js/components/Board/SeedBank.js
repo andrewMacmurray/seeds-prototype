@@ -38,7 +38,7 @@ export default class SeedBank extends React.PureComponent {
           className={'screen ' + backdrop}
           style={{ transform: `translateY(${-screenHeight}px)` }}
         />
-        <img className='outline' src='img/seed-outline.svg' />
+        <img className='outline' src='img/outlines/teardrop-seed-outline.svg' />
         <img ref={(x) => this.seedImg = x} src={`img/seeds/${seedType}/${seedType}.svg`}/>
       </div>
     )

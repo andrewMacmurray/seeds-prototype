@@ -63,14 +63,14 @@
   margin: 0.5em 0 0 0;
 
   &.active {
-    background-color: $light-brown;
+    background-color: $orange-brown;
     border-radius: 50%;
     width: 1.3em;
     height: 1.3em;
   }
 
   p {
-    font-size: 0.8em;
+    font-size: 0.7em;
     color: $text-yellow-light;
     margin: 0;
   }

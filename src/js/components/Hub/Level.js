@@ -14,7 +14,12 @@ export default class Level extends React.PureComponent {
   render () {
     const {
       offset: { x: levelX, y: levelY },
-      trail: { img: trailImg, mirror, offset: { x: trailX, y: trailY } },
+      trail: {
+        mirror,
+        img: trailImg,
+        rotate: trailRotate,
+        offset: { x: trailX, y: trailY }
+      },
       levelNumber,
       levelProgress,
       avatars,
@@ -32,10 +37,15 @@ export default class Level extends React.PureComponent {
 
     const levelAvatar = isComplete
       ? `img/seeds/${avatars[0]}/${avatars[0]}.svg`
-      : 'img/seed-outline.svg'
+      : 'img/outlines/teardrop-seed-outline.svg'
 
     const trailScale = mirror ? -1 : 1
-    const trailStyles = { transform: `translate(${trailX}em, ${trailY}em) scaleX(${trailScale})` }
+    const trailStyles = {
+      transform:
+       `translate(${trailX}em, ${trailY}em)
+        scaleX(${trailScale})
+        rotate(${trailRotate}deg)`
+    }
     const renderTrail = isComplete
       ? <img className='trail'
         style={trailStyles}
