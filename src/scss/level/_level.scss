@@ -1,7 +1,7 @@
-.board-container {
+.level-container {
   position: relative;
   z-index: 1;
-  margin: 0em 0;
+  margin: 0;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -17,7 +17,7 @@
   .board-x#{$i} {
     height: $board-height-small * $scale;
     width: $board-width-small * $scale;
-    margin: 4em auto;
+    margin: 0 auto;
     position: absolute;
     left: 0;
     right: 0;
@@ -42,7 +42,7 @@
 }
 
 @media (min-height: $height-l) {
-  .board-container {
+  .level-container {
     margin: 5em 0;
   }
 }

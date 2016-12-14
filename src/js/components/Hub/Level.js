@@ -60,13 +60,13 @@ export default class Level extends React.PureComponent {
     return (
       <div
         ref={($el) => this.level = $el}
-        className={'level offset-x-' + levelX + ' offset-y-' + levelY}
+        className={'hub-level offset-x-' + levelX + ' offset-y-' + levelY}
         onClick={() => startLevel(levelNumber, goal, levelProgress, avatars)}
       >
         {renderTrail}
         {renderPointer}
-        <img className='level-avatar' src={levelAvatar} />
-        <div className={'level-number ' + numberActiveClass + ' world-' + world}>
+        <img className='hub-level-avatar' src={levelAvatar} />
+        <div className={'hub-level-number ' + numberActiveClass + ' world-' + world}>
           <p>{levelNumber}</p>
         </div>
       </div>

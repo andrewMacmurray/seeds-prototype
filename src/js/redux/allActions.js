@@ -13,6 +13,7 @@ import * as currentLevel from './modules/level/currentLevel.js'
 import * as weather from './modules/level/weather.js'
 
 import * as intro from './modules/intro.js'
+import * as tutorial from './modules/tutorial.js'
 import * as audio from './modules/audio.js'
 import * as isUpdating from './modules/isUpdating.js'
 import * as backdrop from './modules/backdrop.js'
@@ -33,6 +34,7 @@ module.exports = {
   ...currentLevel,
   ...weather,
   ...intro,
+  ...tutorial,
   ...audio,
   ...isUpdating,
   ...backdrop,

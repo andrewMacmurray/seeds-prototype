@@ -1,9 +1,9 @@
-.level-container {
+.hub-level-container {
   width: $world-width;
   margin: 0 auto;
 }
 
-.level {
+.hub-level {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -52,11 +52,11 @@
   position: absolute;
 }
 
-.level-avatar {
+.hub-level-avatar {
   width: 2.3em;
 }
 
-.level-number {
+.hub-level-number {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -24,7 +24,6 @@ export default class SeedBank extends React.PureComponent {
   render () {
     const {
       backdrop,
-      harvestSeeds,
       currentScore,
       seedType,
       levelGoal
@@ -33,7 +32,7 @@ export default class SeedBank extends React.PureComponent {
     const percentComplete = currentScore / levelGoal
     const screenHeight = this.state.seedHeight * percentComplete
     return (
-      <div className='seed-bank' onClick={harvestSeeds}>
+      <div className='seed-bank'>
         <div
           className={'screen ' + backdrop}
           style={{ transform: `translateY(${-screenHeight}px)` }}

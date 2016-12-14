@@ -17,7 +17,7 @@ export default (level, goal, levelProgress, avatars) => (dispatch) => {
         _.setCurrentLevel, level,
         _.setLevelGoal, goal,
         _.shuffleTiles, even,
-        _.setView, 'board'
+        _.setView, 'level'
       ]))
       .delay(2500)
       .then(_dispatch(_.hideLoadingScreen))

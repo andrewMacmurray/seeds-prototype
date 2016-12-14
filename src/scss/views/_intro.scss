@@ -19,7 +19,7 @@
 .intro-text {
   margin: 0;
   opacity: 0;
-  font-size: 1.25em;
+  font-size: $f3;
   letter-spacing: 1.4px;
 }
 
@@ -44,7 +44,7 @@
 }
 
 .begin {
-  font-size: 16px;
+  font-size: $f4;
   margin-top: 65px;
   letter-spacing: 4px;
   opacity: 0;
@@ -83,7 +83,7 @@ $sequence: 'one', 'two', 'three';
 
 @media (min-width: 550px) {
   .intro-text {
-    font-size: 1.4em;
+    font-size: $f2;
   }
 
   .intro-seed {

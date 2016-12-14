@@ -1,0 +1,24 @@
+.tutorial-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 65vh;
+}
+
+.tutorial-text {
+  margin: 3em;
+  letter-spacing: 1px;
+  font-size: $f3;
+}
+
+.tutorial-board-container {
+  z-index: 1;
+}
+
+@media (min-width: $width-m) and (min-height: $height-m) {
+  .tutorial-text {
+    font-size: $f2;
+  }
+}

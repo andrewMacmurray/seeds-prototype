@@ -1,16 +1,19 @@
 import React from 'react'
-import Board from './Board/Board.js'
+import { identity } from 'ramda'
+import { connect } from 'react-redux'
+
+import Level from './Level/Level.js'
 import Hub from './Hub/Hub.js'
 import TitleScreen from './TitleScreen.js'
+import Tutorial from './Tutorial/Tutorial.js'
 import Loading from './Loading.js'
-import Intro from './Intro.js'
+import Intro from './Intro/Intro.js'
+
 import Audio from './Audio.js'
 import RainCurtain from './RainCurtain.js'
 
-import { connect } from 'react-redux'
 import { setView, playAudio, stopAudio } from '../redux/allActions.js'
 import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
-import { identity } from 'ramda'
 
 import '../../scss/index.scss'
 
@@ -18,9 +21,10 @@ class App extends React.Component {
   router () {
     const viewMap = {
       title: <TitleScreen />,
-      board: <Board />,
+      level: <Level />,
       intro: <Intro />,
-      hub: <Hub />
+      hub: <Hub />,
+      tutorial: <Tutorial />
     }
     return viewMap[this.props.view]
   }
@@ -46,7 +50,11 @@ class App extends React.Component {
 
   render () {
     const { raindropsVisible } = this.props.level.weather
-    const { backdrop, view, loadingScreen: { visible } } = this.props
+    const {
+      backdrop,
+      view,
+      loadingScreen: { visible }
+    } = this.props
     return (
       <div
         onTouchMove={this.handleFixedBackground(view, visible)}
@@ -55,7 +63,7 @@ class App extends React.Component {
         {this.renderLoadingScreen()}
         <div className='menu'>
           <p className='menu-item' onClick={() => this.loadView('title')}>Intro</p>
-          <p className='menu-item' onClick={() => this.loadView('board')}>Board</p>
+          <p className='menu-item' onClick={() => this.loadView('level')}>Level</p>
           <p className='menu-item' onClick={() => this.loadView('hub')}>Hub</p>
         </div>
         <Audio />

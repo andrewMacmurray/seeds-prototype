@@ -18,7 +18,7 @@ const SET_PROBABILITIES = 'SET_PROBABILITIES'
 
 // reducer
 const initialLoadProbability = even
-const initialBoardSize = 2
+const initialBoardSize = 8
 const defaultState = {
   tiles: randomBoard(initialBoardSize, initialLoadProbability),
   probabilities: moreSeedlings,
