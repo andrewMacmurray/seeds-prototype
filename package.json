@@ -46,9 +46,6 @@
   "dependencies": {
     "bluebird": "^3.4.6",
     "classnames": "^2.2.3",
-    "env2": "^2.0.7",
-    "hapi": "^13.2.2",
-    "inert": "^3.2.0",
     "ramda": "^0.21.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
