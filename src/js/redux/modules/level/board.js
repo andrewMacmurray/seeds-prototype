@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { moreSeedlings } from '../../../constants/probabilities.js'
+import { moreSeedlings, even } from '../../../constants/probabilities.js'
 import {
   randomBoard,
   transformTiles,
@@ -17,15 +17,8 @@ const SET_BOARD_SIZE = 'SET_BOARD_SIZE'
 const SET_PROBABILITIES = 'SET_PROBABILITIES'
 
 // reducer
-const initialLoadProbability = {
-  rain: 0.25,
-  sun: 0.25,
-  seedling: 0.4,
-  pod: 0.1
-}
-
-const initialBoardSize = 8
-
+const initialLoadProbability = even
+const initialBoardSize = 2
 const defaultState = {
   tiles: randomBoard(initialBoardSize, initialLoadProbability),
   probabilities: moreSeedlings,
