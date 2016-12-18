@@ -48,6 +48,18 @@ class App extends React.Component {
       : identity
   }
 
+  renderMenu (items) {
+    return items.map((item, i) =>
+      <p
+        key={i}
+        className='menu-item'
+        onClick={() => this.loadView(item)}
+      >
+        {item}
+      </p>
+    )
+  }
+
   render () {
     const { raindropsVisible } = this.props.level.weather
     const {
@@ -62,9 +74,7 @@ class App extends React.Component {
       >
         {this.renderLoadingScreen()}
         <div className='menu'>
-          <p className='menu-item' onClick={() => this.loadView('title')}>Intro</p>
-          <p className='menu-item' onClick={() => this.loadView('level')}>Level</p>
-          <p className='menu-item' onClick={() => this.loadView('hub')}>Hub</p>
+          {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
         </div>
         <Audio />
         {this.router()}

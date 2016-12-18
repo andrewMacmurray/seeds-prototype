@@ -4,7 +4,7 @@ import { createAction } from 'redux-actions'
 const INCREMENT_LEVEL_PROGRESS = 'INCREMENT_LEVEL_PROGRESS'
 
 // reducer
-const defaultState = 6
+const defaultState = 1
 export default (state = defaultState, action) => {
   switch (action.type) {
   case INCREMENT_LEVEL_PROGRESS:

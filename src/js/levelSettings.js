@@ -1,4 +1,5 @@
-const addLevelNumbers = require('./_addLevelNumbersHelper.js')
+const addLevelNumbers = require('./constants/_addLevelNumbersHelper.js')
+const tutorials = require('./constants/tutorials.js')
 
 // each level reads as if it were on the screen
 // i.e. for each world object
@@ -7,7 +8,6 @@ module.exports = addLevelNumbers([
   {
     world: 1,
     background: '',
-    overlay: '',
     levels: [
       {
         offset: { x: 0, y: 0 },
@@ -33,14 +33,14 @@ module.exports = addLevelNumbers([
         offset: { x: 0, y: 1 },
         goal: 20,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-dark-4.svg', offset: { x: -2.2, y: -1.8 }, rotate: -45 }
+        trail: { img: '/dark/trail-dark-4.svg', offset: { x: -2.2, y: -1.8 }, rotate: -45 },
+        tutorial: tutorials[0]
       }
     ]
   },
   {
     world: 2,
     background: 'orange',
-    overlay: '',
     levels: [
       {
         offset: { x: 0, y: 0 },

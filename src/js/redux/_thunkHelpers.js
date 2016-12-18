@@ -1,4 +1,4 @@
-const { groupWith, map, is, complement, compose } = require('ramda')
+const { groupWith, map, is, complement, compose, identity } = require('ramda')
 
 const isFunction = is(Function)
 const isNotFunction = complement(isFunction)
@@ -21,3 +21,9 @@ const groupAndDispatch = (dispatch) => compose(
 export const batch = (dispatch, actions) => () => groupAndDispatch(dispatch)(actions)
 
 export const makeLazyDispatcher = (dispatch) => (action, ...x) => () => dispatch(action(...x))
+
+export const conditionalDispatcher = (dispatch) =>
+  (condition, action, ...x) => () =>
+    condition
+      ? dispatch(action(...x))
+      : identity

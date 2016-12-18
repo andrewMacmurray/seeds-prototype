@@ -6,11 +6,11 @@ import { identity } from 'ramda'
 export default () => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const {
-    currentLevel,
+    currentLevel: { level },
     levelProgress,
     score: { currentScore, levelGoal } } = getState().level
 
-  const handleLevelProgress = currentLevel === levelProgress
+  const handleLevelProgress = level === levelProgress
     ? _dispatch(_.incrementLevelProgress)
     : identity
 

@@ -1,0 +1,12 @@
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.disabled {
+  pointer-events: none;
+}

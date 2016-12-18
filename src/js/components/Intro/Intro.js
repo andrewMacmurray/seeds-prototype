@@ -40,8 +40,8 @@ class Intro extends React.Component {
     const { visibleSeeds } = this.props.intro
     const { entering, leaving } = animations
 
-    return visibleSeeds.map((s, i) => {
-      const animationProps = s
+    return visibleSeeds.map((seed, i) => {
+      const animationProps = seed
         ? entering
         : leaving
       return (

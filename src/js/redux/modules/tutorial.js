@@ -1,26 +1,39 @@
 import { createAction } from 'redux-actions'
 
 // action types
-const SET_TUTORIAL_TEXT = 'SET_TUTORIAL_TEXT'
-const SET_BOARD_VISIBILITY = 'SET_BOARD_VISIBILITY'
+const SET_TUTORIAL_DATA = 'SET_TUTORIAL_DATA'
+const INCREMENT_TUTORIAL_STEP = 'INCREMENT_TUTORIAL_STEP'
+const RESET_TUTORIAL_STEP = 'RESET_TUTORIAL_STEP'
+const SET_RENDER_BLIP = 'SET_RENDER_BLIP'
 
 // reducer
 const defaultState = {
-  tutorialText: '',
-  boardVisibility: false
+  steps: [],
+  step: 0,
+  renderBlip: false
 }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-  case SET_TUTORIAL_TEXT:
+  case SET_TUTORIAL_DATA:
     return {
       ...state,
-      tutorialText: action.payload
+      steps: action.payload
     }
-  case SET_BOARD_VISIBILITY:
+  case INCREMENT_TUTORIAL_STEP:
     return {
       ...state,
-      boardVisibility: action.payload
+      step: state.step + 1
+    }
+  case RESET_TUTORIAL_STEP:
+    return {
+      ...state,
+      step: 0
+    }
+  case SET_RENDER_BLIP:
+    return {
+      ...state,
+      renderBlip: action.payload
     }
   default:
     return state
@@ -28,5 +41,7 @@ export default (state = defaultState, action) => {
 }
 
 // action creators
-export const setTutorialText = createAction(SET_TUTORIAL_TEXT, x => x)
-export const setBoardVisibility = createAction(SET_BOARD_VISIBILITY, x => x)
+export const setTutorialData = createAction(SET_TUTORIAL_DATA, x => x)
+export const incrementTutorialStep = createAction(INCREMENT_TUTORIAL_STEP)
+export const resetTutorialStep = createAction(RESET_TUTORIAL_STEP)
+export const setRenderBlip = createAction(SET_RENDER_BLIP, x => x)

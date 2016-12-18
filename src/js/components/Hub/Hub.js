@@ -1,6 +1,6 @@
 import React from 'react'
 import World from './World.js'
-import levelSettings from '../../constants/levelSettings.js'
+import levelSettings from '../../levelSettings.js'
 import { connect } from 'react-redux'
 import startLevel from '../../redux/actionSequences/startLevel.js'
 

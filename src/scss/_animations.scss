@@ -19,6 +19,11 @@
   100% { transform: translateY(0px); }
 }
 
+.fadeIn {
+  animation-name: fadeIn;
+  animation-fill-mode: both;
+}
+
 .popOut {
   animation-name: popOut;
   animation-fill-mode: both;
