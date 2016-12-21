@@ -1,94 +1,21 @@
 import React from 'react'
-import { VelocityTransitionGroup } from 'velocity-react'
 import { connect } from 'react-redux'
-
-import Board from '../Level/Board.js'
-import handleNextTutorialStep from '../../redux/actionSequences/handleNextTutorialStep.js'
-
-const textAnimations = {
-  enter: {
-    duration: 500,
-    stagger: 500,
-    animation: 'fadeIn'
-  },
-  leave: {
-    duration: 500,
-    animation: 'fadeOut'
-  }
-}
-
-const boardAnimations = {
-  enter: {
-    duration: 500,
-    delay: 1500,
-    animation: 'fadeIn'
-  },
-  leave: {
-    duration: 500,
-    animation: 'fadeOut'
-  }
-}
-
+import Step1 from './Step1.js'
+import Step2 from './Step2.js'
+import handleNextTutorialStep from '../../redux/actionSequences/tutorial/handleNextTutorialStep.js'
 
 class Tutorial extends React.PureComponent {
 
-  renderText (text) {
-    const { renderBlip } = this.props
-    const height = text.length > 2 ? 'full' : 'half'
-    return (
-      <div key='text-container' className={'tutorial-text-container ' + height}>
-        <VelocityTransitionGroup {...textAnimations}>
-          {!renderBlip
-            ? text.map((t, i) => <p key={i} className='tutorial-text'>{t}</p>)
-            : ''
-          }
-        </VelocityTransitionGroup>
-      </div>
-    )
-  }
-
-  renderNext () {
-    const { handleNextTutorialStep: next } = this.props
-    return (
-      <p key='next' onClick={next} className='next'>
-        next
-      </p>
-    )
-  }
-
-  renderBoard (board) {
-    const { board: { boardSize } } = this.props
-    const disabled = board.disabled ? 'disabled' : ''
-
-    return (
-      <VelocityTransitionGroup key='board' {...boardAnimations}>
-        {board.visible
-          ? <div className={'tutorial-board-container board-x' + boardSize + ' ' + disabled}>
-            <Board />
-          </div>
-          : ''
-        }
-      </VelocityTransitionGroup>
-    )
+  componentDidMount () {
+    setTimeout(this.props.handleNextTutorialStep, 500)
   }
 
   render () {
-    const {
-      steps: tutorialSteps,
-      step
-    } = this.props
-    const { text, board, order } = tutorialSteps[step]
-
-    const renderMap = {
-      text: this.renderText(text),
-      next: this.renderNext(),
-      board: this.renderBoard(board)
-    }
-
     return (
-      <div className='tutorial-container'>
-        <div className='tutorial'>
-          {order.map(item => renderMap[item])}
+      <div>
+        <div className='tutorial-container'>
+          <Step2 {...this.props} />
+          <Step1 {...this.props} />
         </div>
       </div>
     )
@@ -96,9 +23,6 @@ class Tutorial extends React.PureComponent {
 
 }
 
-const mapStateToProps = (state) => ({
-  ...state.tutorial,
-  board: state.level.board
-})
+const mapStateToProps = (state) => ({ ...state.tutorial })
 
 export default connect(mapStateToProps, { handleNextTutorialStep })(Tutorial)

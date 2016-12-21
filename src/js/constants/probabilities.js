@@ -14,6 +14,20 @@ probabilities.even = {
   pod: 0.1
 }
 
+probabilities.noSun = {
+  sun: 0,
+  rain: 0.3,
+  seedling: 0.6,
+  pod: 0.1
+}
+
+probabilities.noRain = {
+  sun: 0.3,
+  rain: 0,
+  seedling: 0.6,
+  pod: 0.1
+}
+
 probabilities.all = {
   sun: {
     sun: 1,

@@ -1,13 +1,14 @@
-import tutorials from './constants/tutorials.js'
-
 export default {
   level: {
     levelProgress: 6
   },
   tutorial: {
-    ...tutorials[0],
-    step: 0,
-    visibleText: [ 1, 0, 0, 0 ]
+    data: [
+      { autoAt: [ 1, 3 ], total: 4 },
+      { autoAt: [ 2, 3, 5, 6 ], total: 6 }
+    ],
+    step: 1,
+    subStep: 1
   },
   view: 'tutorial'
 }

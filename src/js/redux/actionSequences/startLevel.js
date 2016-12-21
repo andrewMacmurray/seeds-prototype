@@ -2,9 +2,16 @@ import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { identity } from 'ramda'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
-import { even } from '../../constants/probabilities.js'
 
-export default ({ levelNumber, world, goal, levelProgress, avatars, tutorial }) => (dispatch) => {
+export default ({
+  levelNumber,
+  probabilities,
+  world,
+  goal,
+  levelProgress,
+  avatars,
+  tutorial
+}) => (dispatch) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const seedType = avatars[0]
 
@@ -30,8 +37,9 @@ export default ({ levelNumber, world, goal, levelProgress, avatars, tutorial }) 
         _.setCurrentLevel, levelNumber,
         _.setCurrentWorld, world,
         _.setLevelGoal, goal,
+        _.setProbabilities, probabilities,
         _.setBoardSize, 8,
-        _.shuffleTiles, even,
+        _.shuffleTiles, probabilities,
         _.setView, view
       ]))
       .delay(2500)

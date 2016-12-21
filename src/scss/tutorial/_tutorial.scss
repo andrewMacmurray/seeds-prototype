@@ -1,5 +1,6 @@
 .tutorial-container {
   margin: 27vh auto 0;
+  height: 13em;
 }
 
 .tutorial {
@@ -13,10 +14,14 @@
 
 .tutorial-text-container {
   display: flex;
+  left: 0;
+  right: 0;
+  position: absolute;
+  height: 15em;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  transition: 0.5s ease;
+  transition: 0.5s linear;
 }
 
 .full {
@@ -30,15 +35,19 @@
 .tutorial-text {
   margin: 0.2em;
   letter-spacing: 1px;
+  transition: 0.5s linear;
   font-size: $f6;
   @include no-select;
 }
 
 .next {
   cursor: pointer;
-  margin: 2em 0;
+  position: absolute;
+  bottom: 0;
+  margin: 0;
   letter-spacing: 2px;
   font-size: $f4;
+  transition: 0.5s linear;
   @include no-select;
 }
 
