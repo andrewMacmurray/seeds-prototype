@@ -1,8 +1,9 @@
 import * as _ from '../../allActions.js'
 import Promise from 'bluebird'
-import { makeLazyDispatcher } from '../../_thunkHelpers.js'
+import { makeLazyDispatcher, batch } from '../../_thunkHelpers.js'
 import handleSubStep from './handleSubStep.js'
 import { getSubStepTotal } from './_helpers.js'
+import { all } from '../../../constants/probabilities.js'
 
 export default () => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
@@ -15,6 +16,10 @@ export default () => (dispatch, getState) => {
     return Promise
       .resolve()
       .then(_dispatch(handleSubStep))
+      .then(batch(dispatch, [
+        _.setBoardSize, 2,
+        _.setProbabilities, all.seedlings
+      ]))
   }
 
   if (!updating) {

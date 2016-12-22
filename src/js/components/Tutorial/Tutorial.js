@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Step1 from './Step1.js'
 import Step2 from './Step2.js'
+import Step3 from './Step3.js'
 import handleNextTutorialStep from '../../redux/actionSequences/tutorial/handleNextTutorialStep.js'
 
 class Tutorial extends React.PureComponent {
@@ -16,6 +17,7 @@ class Tutorial extends React.PureComponent {
         <div className='tutorial-container'>
           <Step2 {...this.props} />
           <Step1 {...this.props} />
+          <Step3 {...this.props} />
         </div>
       </div>
     )
@@ -23,6 +25,10 @@ class Tutorial extends React.PureComponent {
 
 }
 
-const mapStateToProps = (state) => ({ ...state.tutorial })
+// TODO: abstract check board function into a selector
+const mapStateToProps = (state) => ({
+  ...state.tutorial,
+  tiles: state.level.board.tiles
+})
 
 export default connect(mapStateToProps, { handleNextTutorialStep })(Tutorial)

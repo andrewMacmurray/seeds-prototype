@@ -74,23 +74,23 @@ class Board extends React.PureComponent {
               row.map((tile, j) => {
                 const tileType = tileClassMap[tile]
                 return tile > 0
-                ? <Tile
-                  tileType={tileType}
-                  seedType={seedType}
-                  weatherAnimating={animating}
-                  startDrag={this.startDrag}
-                  checkTile={this.checkTile}
-                  key={'tile-' + i + '-' + j}
-                  moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
-                  growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
-                  isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}
-                  isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
-                  isEntering={isEnteringArray[i][j] ? 'entering' : ''}
-                  isGrowing={isGrowingArray[i][j] ? 'growing' : ''}
-                  isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
-                  y={i}
-                  x={j}
-                  /> : ''
+                  ? <Tile
+                    tileType={tileType}
+                    seedType={seedType}
+                    weatherAnimating={animating}
+                    startDrag={this.startDrag}
+                    checkTile={this.checkTile}
+                    key={'tile-' + i + '-' + j}
+                    moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
+                    growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
+                    isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}
+                    isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
+                    isEntering={isEnteringArray[i][j] ? 'entering' : ''}
+                    isGrowing={isGrowingArray[i][j] ? 'growing' : ''}
+                    isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
+                    y={i}
+                    x={j}
+                    /> : ''
               }
             )
           )

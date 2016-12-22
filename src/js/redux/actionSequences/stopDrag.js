@@ -18,10 +18,12 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
   const isWeather =
        moveType === 'rain'
     || moveType === 'sun'
+
   const isLeaving =
        moveType === 'rain'
     || moveType === 'sun'
     || moveType === 'pod'
+
   const isSeedling = moveType === 'seedling'
   const boardReady = !updating && isDragging
   const falldelay = moveArray.length > 10
