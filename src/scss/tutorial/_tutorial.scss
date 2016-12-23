@@ -59,6 +59,8 @@
 .tutorial-board-container {
   margin: 4.5em auto;
   z-index: 1;
+  opacity: 1;
+  transition: 0.5s linear;
   position: absolute;
   left: 0;
   right: 0;

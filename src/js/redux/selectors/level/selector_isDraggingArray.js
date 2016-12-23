@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { booleanArray, transformTiles, falseBoard } from '../../model'
-import { _moveArray, _board } from './baseSelectors.js'
+import { booleanArray, transformTiles, falseBoard } from '../../../model'
+import { _moveArray, _board } from '../baseSelectors.js'
 
 const defaultState = falseBoard
 

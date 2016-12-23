@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { movesOrder } from '../../model/index.js'
-import { _board, _moveArray, _growingMoves } from './baseSelectors.js'
+import { movesOrder } from '../../../model/index.js'
+import { _board, _moveArray, _growingMoves } from '../baseSelectors.js'
 
 const _movesOrder = createSelector(
   [ _board, _moveArray ],

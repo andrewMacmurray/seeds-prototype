@@ -100,12 +100,12 @@ class Board extends React.PureComponent {
   }
 }
 
-import isDraggingArray from '../../redux/selectors/selector_isDraggingArray.js'
-import isGrowingArray from '../../redux/selectors/selector_isGrowingArray.js'
-import moveType from '../../redux/selectors/selector_moveType.js'
-import seedMoves from '../../redux/selectors/selector_seedMoves.js'
-import seedlingCount from '../../redux/selectors/selector_seedlingCount.js'
-import { movesOrder, growingOrder } from '../../redux/selectors/selector_movesOrder.js'
+import isDraggingArray from '../../redux/selectors/level/selector_isDraggingArray.js'
+import isGrowingArray from '../../redux/selectors/level/selector_isGrowingArray.js'
+import moveType from '../../redux/selectors/level/selector_moveType.js'
+import seedMoves from '../../redux/selectors/level/selector_seedMoves.js'
+import seedlingCount from '../../redux/selectors/level/selector_seedlingCount.js'
+import { movesOrder, growingOrder } from '../../redux/selectors/level/selector_movesOrder.js'
 
 const mapStateToProps = (state) => ({
   ...state.level,

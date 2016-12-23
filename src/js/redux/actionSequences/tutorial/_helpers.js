@@ -1,14 +1,7 @@
-import { compose, map, curry } from 'ramda'
-import { fromMaybe, prop, at } from 'sanctuary'
+import { compose, curry } from 'ramda'
+import { fromMaybe, at } from 'sanctuary'
 
-export const getAutoSteps = curry((step, data) => compose(
-  fromMaybe([]),
-  map(prop('autoAt')),
-  at(step - 1)
-)(data))
-
-export const getSubStepTotal = curry((step, data) => compose(
-  fromMaybe(0),
-  map(prop('total')),
+export const getTutorialData = curry((step, data) => compose(
+  fromMaybe({ autoSteps: [], total: 0 }),
   at(step - 1)
 )(data))

@@ -9,6 +9,16 @@ class Tutorial extends React.PureComponent {
 
   componentDidMount () {
     setTimeout(this.props.handleNextTutorialStep, 500)
+    this.checkStep3()
+  }
+
+  checkStep3 = () => {
+    const { boardComplete } = this.props
+    setTimeout(() =>
+      boardComplete
+        ? this.props.handleNextTutorialStep()
+        : this.checkStep3()
+    , 300)
   }
 
   render () {
@@ -25,10 +35,11 @@ class Tutorial extends React.PureComponent {
 
 }
 
-// TODO: abstract check board function into a selector
+import tutorialBoardComplete from '../../redux/selectors/tutorial/selector_tutorialBoardComplete.js'
+
 const mapStateToProps = (state) => ({
   ...state.tutorial,
-  tiles: state.level.board.tiles
+  boardComplete: tutorialBoardComplete(state)
 })
 
 export default connect(mapStateToProps, { handleNextTutorialStep })(Tutorial)

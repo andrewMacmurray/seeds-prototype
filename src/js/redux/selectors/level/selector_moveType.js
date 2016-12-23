@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import tileClassMap from '../../constants/tileClasses.js'
-import { _moveArray, _board } from './baseSelectors.js'
+import tileClassMap from '../../../constants/tileClasses.js'
+import { _moveArray, _board } from '../baseSelectors.js'
 
 module.exports = createSelector(
   [ _board, _moveArray ],

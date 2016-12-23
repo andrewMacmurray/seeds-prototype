@@ -1,17 +1,25 @@
 import * as _ from '../../allActions.js'
-import { makeLazyDispatcher } from '../../_thunkHelpers.js'
+import { makeLazyDispatcher, batch } from '../../_thunkHelpers.js'
 import Promise from 'bluebird'
-import { contains } from 'ramda'
-import { getAutoSteps, getSubStepTotal } from './_helpers.js'
+import { contains, identity } from 'ramda'
+import { getTutorialData } from './_helpers.js'
 
 const autoAt = () => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const { subStep, data, step } = getState().tutorial
 
-  const autoSteps = getAutoSteps(step, data)
-  const total = getSubStepTotal(step, data)
+  const { total, autoSteps, board } = getTutorialData(step, data)
 
   const shouldAutoIncrement = contains(subStep, autoSteps)
+
+  const handleBoard = board && board.step === subStep
+    ? Promise
+        .resolve()
+        .then(batch(dispatch, [
+          _.setProbabilities, board.probabilities,
+          _.setBoardSize, board.size
+        ]))
+    : identity
 
   if (total > 0) {
     if (shouldAutoIncrement) {
@@ -25,6 +33,7 @@ const autoAt = () => (dispatch, getState) => {
     } else if (subStep === total) {
       return Promise
       .resolve()
+      .then(handleBoard)
       .then(_dispatch(_.resetTutorialSubStep))
       .then(_dispatch(_.incrementTutorialStep))
       .delay(1000)
