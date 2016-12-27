@@ -27,5 +27,5 @@ export default {
     step: 1,
     subStep: 1
   },
-  view: 'tutorial'
+  view: 'title'
 }

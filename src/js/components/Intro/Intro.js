@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { VelocityComponent } from 'velocity-react'
 import introSequence from '../../redux/actionSequences/introSequence.js'
 import TwinSeed from '../../components/Seeds/TwinSeed.js'
 import SingleSeed from '../../components/Seeds/SingleSeed.js'
@@ -20,17 +19,6 @@ const seeds = [
   <SingleSeed key={4} seedType='small intro-seed' />
 ]
 
-const animations = {
-  entering: {
-    duration: 1000,
-    animation: { opacity: 1 }
-  },
-  leaving: {
-    duration: 1000,
-    animation: { opacity: 0 }
-  }
-}
-
 class Intro extends React.Component {
   componentWillMount () {
     this.props.introSequence()
@@ -38,32 +26,30 @@ class Intro extends React.Component {
 
   renderSeeds = () => {
     const { visibleSeeds } = this.props.intro
-    const { entering, leaving } = animations
 
     return visibleSeeds.map((seed, i) => {
-      const animationProps = seed
-        ? entering
-        : leaving
+      const visibility = seed
+        ? 'ts-linear'
+        : 'opacity-0 ts-linear'
       return (
-        <VelocityComponent key={i} {...animationProps}>
+        <span key={i} className={visibility}>
           {seeds[i]}
-        </VelocityComponent>
+        </span>
       )
     })
   }
 
   renderText = (index) => {
     const { visibleText } = this.props.intro
-    const { entering, leaving } = animations
 
-    const animationProps = visibleText[index]
-      ? entering
-      : leaving
+    const visibility = visibleText[index]
+      ? 'ts-linear'
+      : 'opacity-0 ts-linear'
 
     return (
-      <VelocityComponent {...animationProps}>
+      <span className={visibility}>
         <p className='intro-text'>{text[index]}</p>
-      </VelocityComponent>
+      </span>
     )
   }
 
