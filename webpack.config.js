@@ -28,6 +28,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [ '', '.js', '.jsx' ]
+    extensions: [ '', '.js', '.jsx' ],
+    alias: {
+      'react': 'inferno-compat',
+      'react-dom': 'inferno-compat'
+    }
   }
 }
