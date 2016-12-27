@@ -4,6 +4,7 @@ import Step1 from './Step1.js'
 import Step2 from './Step2.js'
 import Step3 from './Step3.js'
 import Step4 from './Step4.js'
+import Step5 from './Step5.js'
 import handleNextTutorialStep from '../../redux/actionSequences/tutorial/handleNextTutorialStep.js'
 
 class Tutorial extends React.PureComponent {
@@ -20,6 +21,7 @@ class Tutorial extends React.PureComponent {
           <Step1 {...this.props} />
           <Step3 {...this.props} />
           <Step4 {...this.props} />
+          <Step5 {...this.props} />
           <div className='step-counter'>
             <p>step: {this.props.step}</p>
             <p>subStep: {this.props.subStep}</p>
@@ -31,11 +33,15 @@ class Tutorial extends React.PureComponent {
 
 }
 
-import tutorialBoardComplete from '../../redux/selectors/tutorial/selector_tutorialBoardComplete.js'
+import {
+  podBoardComplete,
+  seedlingBoardComplete
+} from '../../redux/selectors/tutorial/selector_tutorialBoardComplete.js'
 
 const mapStateToProps = (state) => ({
   ...state.tutorial,
-  boardComplete: tutorialBoardComplete(state)
+  seedlingBoardComplete: seedlingBoardComplete(state),
+  podBoardComplete: podBoardComplete(state)
 })
 
 export default connect(mapStateToProps, { handleNextTutorialStep })(Tutorial)

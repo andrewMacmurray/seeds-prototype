@@ -1,5 +1,5 @@
 .tutorial-container {
-  margin: 27vh auto 0;
+  margin: 20vh auto 0;
   height: 13em;
 }
 
@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  transition: 0.5s linear;
+  transition: opacity 0.5s linear;
 }
 
 .full {
@@ -37,7 +37,7 @@
   text-align: center;
   left: 0;
   right: 0; letter-spacing: 1px;
-  transition: 0.5s linear;
+  transition: opacity 0.5s linear;
   font-size: $f6;
   @include no-select;
 }
@@ -52,7 +52,7 @@
   margin: 0;
   letter-spacing: 2px;
   font-size: $f4;
-  transition: 0.5s linear;
+  transition: opacity 0.5s linear;
   @include no-select;
 }
 
@@ -60,14 +60,20 @@
   margin: 4.5em auto;
   z-index: 1;
   opacity: 1;
-  transition: 0.5s linear;
+  transition: opacity 0.5s linear;
   position: absolute;
   left: 0;
   right: 0;
 }
 
-@media (min-width: $width-m) and (min-height: $height-m) {
+@media (min-width: $width-m), (min-height: $height-m) {
   .tutorial-text {
     font-size: $f2;
+  }
+}
+
+@media (min-width: $width-m) and (min-height: $height-m) {
+  .tutorial-container {
+    margin: 27vh auto 0;
   }
 }

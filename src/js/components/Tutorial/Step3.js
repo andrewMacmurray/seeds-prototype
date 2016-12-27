@@ -9,13 +9,6 @@ const text1 = [
   'Brilliant!'
 ]
 
-const renderLine = (text, visibleArr, step, subStep) =>
-  <p className={
-    'tutorial-text abs ' +
-    _.visibleAt(step, subStep, 3, visibleArr)
-  }>{text}</p>
-
-
 export default class Step3 extends React.PureComponent {
 
   componentDidMount () {
@@ -23,9 +16,9 @@ export default class Step3 extends React.PureComponent {
   }
 
   checkBoardComplete = () => {
-    const { boardComplete, subStep, step } = this.props
+    const { seedlingBoardComplete, subStep, step } = this.props
     const handleNext =
-         boardComplete
+         seedlingBoardComplete
       && step === 3
       && (subStep === 8 || subStep === 9)
 
@@ -36,14 +29,21 @@ export default class Step3 extends React.PureComponent {
     , 300)
   }
 
+  renderLine = (text, visibleArr, step, subStep) =>
+    <p className={
+      'tutorial-text abs ' +
+      _.visibleAt(step, subStep, 3, visibleArr)
+    }
+    >{text}</p>
+
   render () {
     const { step, subStep, handleNextTutorialStep } = this.props
     return (
       <div className={'tutorial-text-container ' + _.isVisble(step, 3)}>
-        {renderLine(text1[0], [ 3, 4 ], step, subStep)}
-        {renderLine(text1[1], [ 6 ], step, subStep)}
-        {renderLine(text1[2], [ 8, 9 ], step, subStep)}
-        {renderLine(text1[3], [ 10, 11 ], step, subStep)}
+        {this.renderLine(text1[0], [ 3, 4 ], step, subStep)}
+        {this.renderLine(text1[1], [ 6 ], step, subStep)}
+        {this.renderLine(text1[2], [ 8, 9 ], step, subStep)}
+        {this.renderLine(text1[3], [ 10, 11 ], step, subStep)}
         <div
           className={
             'tutorial-board-container ' +

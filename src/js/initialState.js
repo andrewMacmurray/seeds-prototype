@@ -15,13 +15,14 @@ export default {
           step: 1
         }
       },
-      { autoSteps: [ 1 ], total: 7,
+      { autoSteps: [ 1, 3, 4 ], total: 5,
         board: {
           size: 3,
           probabilities: all.seedlings,
           step: 1
         }
-      }
+      },
+      { autoSteps: [ 1 ], total: 12 }
     ],
     step: 1,
     subStep: 1
