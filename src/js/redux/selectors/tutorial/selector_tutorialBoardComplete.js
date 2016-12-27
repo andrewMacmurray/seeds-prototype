@@ -1,18 +1,17 @@
 import { createSelector } from 'reselect'
 import { _board } from '../baseSelectors.js'
-import { equals, contains, anyPass } from 'ramda'
+import { equals, compose, flatten, length, filter, gt, __ } from 'ramda'
 
-const fullSeeds = equals([[ 4, 4 ], [ 4, 4 ]])
-const halfSeeds = contains([ 4, 4 ])
-const halfSeeds2 = equals([[ 4, 3 ], [ 4, 3 ]])
-const halfSeeds3 = equals([[ 3, 4 ], [ 3, 4 ]])
+const count4s = compose(
+  length,
+  filter(equals(4)),
+  flatten
+)
 
-const boardComplete = anyPass([
-  fullSeeds,
-  halfSeeds,
-  halfSeeds2,
-  halfSeeds3
-])
+const boardComplete = compose(
+  gt(__, 3),
+  count4s
+)
 
 const tutorialBoardComplete = createSelector([ _board ], boardComplete)
 

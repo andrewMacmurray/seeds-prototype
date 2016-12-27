@@ -7,10 +7,17 @@ export default {
   tutorial: {
     data: [
       { autoSteps: [ 1, 3 ], total: 4 },
-      { autoSteps: [ 2, 3, 5, 6 ], total: 7 },
-      { autoSteps: [ 1, 2, 4, 5, 6, 7 ], total: 10,
+      { autoSteps: [ 2, 3, 5 ], total: 6 },
+      { autoSteps: [ 1, 2, 4, 5, 6, 7, 9 ], total: 10,
         board: {
           size: 2,
+          probabilities: all.seedlings,
+          step: 1
+        }
+      },
+      { autoSteps: [ 1 ], total: 7,
+        board: {
+          size: 3,
           probabilities: all.seedlings,
           step: 1
         }

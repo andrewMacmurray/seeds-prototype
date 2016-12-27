@@ -1,4 +1,3 @@
-import * as _ from '../../allActions.js'
 import Promise from 'bluebird'
 import { makeLazyDispatcher } from '../../_thunkHelpers.js'
 import handleSubStep from './handleSubStep.js'
@@ -16,12 +15,4 @@ export default () => (dispatch, getState) => {
       .resolve()
       .then(_dispatch(handleSubStep))
   }
-
-  if (!updating) {
-    return Promise
-      .resolve()
-      .then(_dispatch(_.incrementTutorialStep))
-      .then(_dispatch(_.resetTutorialSubStep))
-  }
-
 }

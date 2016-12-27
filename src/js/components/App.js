@@ -12,7 +12,7 @@ import Intro from './Intro/Intro.js'
 import Audio from './Audio.js'
 import RainCurtain from './RainCurtain.js'
 
-import { setView, playAudio, stopAudio } from '../redux/allActions.js'
+import { setView } from '../redux/allActions.js'
 import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
 
 import '../../scss/index.scss'
@@ -79,10 +79,6 @@ class App extends React.Component {
         <Audio />
         {this.router()}
         <RainCurtain raindropsVisible={raindropsVisible} />
-        <div className='audio-controls'>
-          <p className='menu-item' onClick={this.props.playAudio}>play</p>
-          <p className='menu-item' onClick={this.props.stopAudio}>pause</p>
-        </div>
       </div>
     )
   }
@@ -90,4 +86,4 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({ ...state })
 
-export default connect(mapStateToProps, { setView, flashLoadingScreen, stopAudio, playAudio })(App)
+export default connect(mapStateToProps, { setView, flashLoadingScreen })(App)
