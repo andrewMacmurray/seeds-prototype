@@ -10,22 +10,18 @@ export default {
       { autoSteps: [ 2, 3, 5 ], total: 6 },
       { autoSteps: [ 1, 2, 4, 5, 6, 7, 9 ], total: 10,
         board: {
-          size: 2,
-          probabilities: all.seedlings,
-          step: 1
+          size: 2, probabilities: all.seedlings, step: 1
         }
       },
       { autoSteps: [ 1, 3, 4 ], total: 5,
         board: {
-          size: 3,
-          probabilities: all.seedlings,
-          step: 1
+          size: 3, probabilities: all.seedlings, step: 1
         }
       },
-      { autoSteps: [ 1 ], total: 12 }
+      { autoSteps: [ 1, 3, 4, 5, 7 ], total: 8 }
     ],
-    step: 1,
+    step: 4,
     subStep: 1
   },
-  view: 'title'
+  view: 'tutorial'
 }

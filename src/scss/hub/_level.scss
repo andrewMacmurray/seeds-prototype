@@ -12,22 +12,22 @@
   margin: 0 auto 2em;
   cursor: pointer;
 
-  $half-world-width: ($world-width / 2 - $level-width) / 2;
+  $level-offset: ($world-width / 2.5 - $level-width) / 2;
 
   &.offset-x-1 {
-    margin-right: $half-world-width;
+    margin-right: $level-offset;
   }
 
   &.offset-x-2 {
-    margin-right: $half-world-width - 1;
+    margin-right: $level-offset;
   }
 
   &.offset-x--1 {
-    margin-left: $half-world-width;
+    margin-left: $level-offset;
   }
 
   &.offset-x--2 {
-    margin-left: $half-world-width - 1;
+    margin-left: $level-offset;
   }
 
   $level-top-offset: $level-width / 2;

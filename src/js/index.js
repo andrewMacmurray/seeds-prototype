@@ -6,6 +6,7 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import loggerSettings from './redux/loggerSettings.js'
 import initialState from './initialState.js'
+import levelSettings from './levelSettings.js'
 import reducers from './redux/rootReducer.js'
 import App from './components/App.js'
 
@@ -13,7 +14,10 @@ const logger = createLogger(loggerSettings)
 const store = createStore(
   reducers,
   initialState,
-  applyMiddleware(thunk, logger)
+  applyMiddleware(
+    thunk.withExtraArgument(levelSettings),
+    logger
+  )
 )
 
 ReactDOM.render(

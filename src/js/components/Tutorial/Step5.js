@@ -5,7 +5,8 @@ import * as _ from './_helpers.js'
 const text1 = [
   'The seeds now need to be harvested',
   'Connect them to fill the seed bank',
-  'Marvelous!'
+  'Marvelous!',
+  'Your first journey awaits...'
 ]
 
 export default class Step4 extends React.PureComponent {
@@ -42,19 +43,20 @@ export default class Step4 extends React.PureComponent {
         {this.renderLine(text1[0], [ 1 ], step, subStep)}
         {this.renderLine(text1[1], [ 3 ], step, subStep)}
         {this.renderLine(text1[2], [ 4 ], step, subStep)}
+        {this.renderLine(text1[3], [ 6, 7 ], step, subStep)}
         <div
           className={
             'tutorial-board-container ' +
-            _.visibleAt(step, subStep, 5, [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]) + ' ' +
-            _.enabledAt(step, subStep, 5, [ 3, 8 ])
+            _.visibleAt(step, subStep, 5, [ 1, 2, 3, 4 ]) + ' ' +
+            _.enabledAt(step, subStep, 5, [ 3 ])
           }
         >
           <Board />
         </div>
         <p
-          className={'next ' + _.visibleAt(step, subStep, 5, [ 10 ])}
+          className={'next ' + _.visibleAt(step, subStep, 5, [ 7 ])}
           onClick={handleNextTutorialStep}
-        >next
+        >begin
         </p>
       </div>
     )

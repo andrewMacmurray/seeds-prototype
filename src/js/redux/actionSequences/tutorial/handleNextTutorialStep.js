@@ -10,7 +10,7 @@ export default () => (dispatch, getState) => {
 
   const { total } = getTutorialData(step, data)
 
-  if (subStep < total && total > 0 && !updating) {
+  if (subStep <= total && total > 0 && !updating) {
     return Promise
       .resolve()
       .then(_dispatch(handleSubStep))
