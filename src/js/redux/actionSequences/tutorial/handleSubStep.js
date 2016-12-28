@@ -34,9 +34,10 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
       .then(_dispatch(_.resetScore))
       .then(_dispatch(_.resetWeatherPower, 'rain'))
       .then(_dispatch(_.resetWeatherPower, 'sun'))
-      .delay(2500)
-      .then(_dispatch(_.hideLoadingScreen))
+      .delay(2000)
       .then(_dispatch(_.setView, 'level'))
+      .delay(1000)
+      .then(_dispatch(_.hideLoadingScreen))
   }
 
   if (total > 0) {

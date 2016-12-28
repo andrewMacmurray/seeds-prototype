@@ -2,7 +2,7 @@ import { all } from './constants/probabilities.js'
 
 export default {
   level: {
-    levelProgress: 6
+    levelProgress: 1
   },
   tutorial: {
     data: [
@@ -20,8 +20,8 @@ export default {
       },
       { autoSteps: [ 1, 3, 4, 5, 7 ], total: 8 }
     ],
-    step: 4,
+    step: 1,
     subStep: 1
   },
-  view: 'tutorial'
+  view: 'title'
 }
