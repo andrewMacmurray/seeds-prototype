@@ -22,10 +22,6 @@ class Tutorial extends React.PureComponent {
           <Step3 {...this.props} />
           <Step4 {...this.props} />
           <Step5 {...this.props} />
-          <div className='step-counter'>
-            <p>step: {this.props.step}</p>
-            <p>subStep: {this.props.subStep}</p>
-          </div>
         </div>
       </div>
     )

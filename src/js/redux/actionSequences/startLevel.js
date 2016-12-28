@@ -14,35 +14,42 @@ export default ({
 }) => (dispatch) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const seedType = avatars[0]
+  const loadTutorial = tutorial && levelProgress <= levelNumber
 
-  const loadTutorial = tutorial
+  const setUpView = loadTutorial
     ? () => Promise
         .resolve()
         .then(batch(dispatch, [
           _.resetTutorialStep,
           _.setTutorialData, tutorial.steps
         ]))
-    : identity
+    : () => Promise
+        .resolve()
+        .then(batch(dispatch, [
+          _.setLevelGoal, goal,
+          _.setProbabilities, probabilities,
+          _.setBoardSize, 8,
+          _.shuffleTiles, probabilities
+        ]))
 
-  const view = tutorial ? 'tutorial' : 'level'
+  const view = loadTutorial
+    ? 'tutorial'
+    : 'level'
 
   if (levelProgress >= levelNumber) {
     return Promise
       .resolve()
       .then(_dispatch(_.setSeedType, seedType))
       .then(_dispatch(_.showLoadingScreen))
-      .then(loadTutorial)
       .delay(500)
+      .then(setUpView)
       .then(batch(dispatch, [
         _.setCurrentLevel, levelNumber,
-        _.setCurrentWorld, world,
-        _.setLevelGoal, goal,
-        _.setProbabilities, probabilities,
-        _.setBoardSize, 8,
-        _.shuffleTiles, probabilities,
-        _.setView, view
+        _.setCurrentWorld, world
       ]))
-      .delay(2500)
+      .delay(1500)
+      .then(_dispatch(_.setView, view))
+      .delay(1000)
       .then(_dispatch(_.hideLoadingScreen))
   }
 }

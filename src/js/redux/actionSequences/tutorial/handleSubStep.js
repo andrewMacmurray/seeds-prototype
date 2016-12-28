@@ -34,6 +34,8 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
       .then(_dispatch(_.resetScore))
       .then(_dispatch(_.resetWeatherPower, 'rain'))
       .then(_dispatch(_.resetWeatherPower, 'sun'))
+      .then(_dispatch(_.resetTutorialStep))
+      .then(_dispatch(_.resetTutorialSubStep))
       .delay(2000)
       .then(_dispatch(_.setView, 'level'))
       .delay(1000)
