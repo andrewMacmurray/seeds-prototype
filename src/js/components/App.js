@@ -74,7 +74,7 @@ class App extends React.Component {
       >
         {this.renderLoadingScreen()}
         <div className='menu'>
-          {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
+          {this.renderMenu(['title', 'hub', 'tutorial'])}
         </div>
         <Audio />
         {this.router()}

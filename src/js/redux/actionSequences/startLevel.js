@@ -1,6 +1,5 @@
 import Promise from 'bluebird'
 import * as _ from '../allActions.js'
-import { identity } from 'ramda'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
 export default ({

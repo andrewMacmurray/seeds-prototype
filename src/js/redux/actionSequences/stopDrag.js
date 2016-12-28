@@ -27,8 +27,8 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
   const isSeedling = moveType === 'seedling'
   const boardReady = !updating && isDragging
   const falldelay = moveArray.length > 10
-    ? 1000
-    : 600
+    ? 600
+    : 200
 
   const handleWeather = isWeather
     ? _dispatch(triggerWeather, moveType, seedlingCount)
@@ -40,10 +40,11 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
       .then(batch(dispatch, [
         _.setDrag, false,
         _.addPowerToWeather, moveType,
-        _.updateScore, moveType, moveArray,
         _.isUpdating, true,
         _.setLeavingTiles, moveArray
       ]))
+      .delay(400)
+      .then(_dispatch(_.updateScore, moveType, moveArray))
       .delay(falldelay)
       .then(handleWeather)
       .then(_dispatch(_.fallTiles, moveArray))
