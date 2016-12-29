@@ -34,7 +34,10 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
       .then(setUpView)
       .then(batch(dispatch, [
         _.setCurrentLevel, levelNumber,
-        _.setCurrentWorld, world
+        _.setCurrentWorld, world,
+        _.resetScore,
+        _.resetWeatherPower, 'sun',
+        _.resetWeatherPower, 'rain'
       ]))
       .delay(1500)
       .then(_dispatch(_.setView, view))

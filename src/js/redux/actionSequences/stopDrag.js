@@ -1,92 +1,43 @@
 import Promise from 'bluebird'
-import * as _ from '../allActions.js'
-import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
+import { makeLazyDispatcher } from '../_thunkHelpers.js'
 import triggerWeather from './triggerWeather.js'
+import processMove from './processMove.js'
+import fallTiles from './fallTiles.js'
+import growSeedlings from './growSeedlings.js'
 import handleLevelStop from './handleLevelStop.js'
+import { any, equals, gt } from 'ramda'
 
 export default (moveType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const {
-    updating,
-    level: {
-      isDragging,
-      moves: { moveArray }
-    }
-  } = getState()
+  const state = getState()
+  const { updating } = state
+  const { isDragging, moves: { moveArray } } = state.level
 
-  const isWeather =
-       moveType === 'rain'
-    || moveType === 'sun'
-
-  const isLeaving =
-       moveType === 'rain'
-    || moveType === 'sun'
-    || moveType === 'pod'
-
+  const isLeaving = any(equals(moveType), [ 'sun', 'rain', 'pod' ])
   const isSeedling = moveType === 'seedling'
   const boardReady = !updating && isDragging
-  const falldelay = moveArray.length > 10
+  const falldelay = gt(moveArray.length, 10)
     ? 600
     : 200
 
-  const handleWeather = isWeather
-    ? _dispatch(triggerWeather, moveType, seedlingCount)
-    : _dispatch(_.noop)
+  const handleWeather = _dispatch(triggerWeather, moveType, seedlingCount)
+  const handleReset = _dispatch(fallTiles, moveArray)
 
-  const handleReset = () => Promise
-    .resolve()
-    .then(_dispatch(_.fallTiles, moveArray))
-    .delay(400)
-    .then(batch(dispatch, [
-      _.shiftTiles, moveArray,
-      _.setEntering,
-      _.resetMagnitude,
-      _.resetLeaving,
-      _.resetMoves,
-      _.addTiles,
-      _.isUpdating, false
-    ]))
-    .delay(700)
-    .then(_dispatch(_.resetEntering))
-    .then(_dispatch(handleLevelStop))
-
-  const reset = () => [ handleWeather(), handleReset() ]
+  const reset = () => Promise.all([
+    handleWeather(),
+    handleReset()
+  ])
 
   if (boardReady && isLeaving) {
     return Promise
       .resolve()
-      .then(batch(dispatch, [
-        _.setDrag, false,
-        _.addPowerToWeather, moveType,
-        _.isUpdating, true,
-        _.setLeavingTiles, moveArray
-      ]))
-      .delay(400)
-      .then(_dispatch(_.updateScore, moveType, moveArray))
+      .then(_dispatch(processMove, moveType, moveArray))
       .delay(falldelay)
       .then(reset)
-      .all()
+      .then(_dispatch(handleLevelStop))
   }
 
   if (boardReady && isSeedling) {
-    const growDelay = moveArray.length > 10
-      ? 1000
-      : 800
-
-    return Promise
-      .resolve()
-      .then(batch(dispatch, [
-        _.setDrag, false,
-        _.isUpdating, true,
-        _.setGrowingSeeds, moveArray
-      ]))
-      .delay(growDelay)
-      .then(_dispatch(_.growSeedsFromMoves, moveArray))
-      .delay(growDelay)
-      .then(batch(dispatch, [
-        _.isUpdating, false,
-        _.resetGrowSeeds,
-        _.resetMoves
-      ]))
+    return dispatch(growSeedlings(moveArray))
   }
 }

@@ -1,7 +1,8 @@
 import * as _ from '../../allActions.js'
-import { makeLazyDispatcher, batch } from '../../_thunkHelpers.js'
+import { makeLazyDispatcher } from '../../_thunkHelpers.js'
 import Promise from 'bluebird'
 import { getTutorialData, getLevelData } from '../_levelDataHelpers.js'
+import setTutorialBoard from './setTutorialBoard.js'
 import loadLevelData from './loadLevelData.js'
 
 const autoAt = () => (dispatch, getState, levelSettings) => {
@@ -14,12 +15,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
   const lastStep = data.length
 
   const handleBoard = board && board.step === subStep
-    ? Promise
-        .resolve()
-        .then(batch(dispatch, [
-          _.setProbabilities, board.probabilities,
-          _.setBoardSize, board.size
-        ]))
+    ? _dispatch(setTutorialBoard, board)
     : _dispatch(_.noop)
 
   if (step === lastStep && subStep === total) {

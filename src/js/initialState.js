@@ -60,5 +60,5 @@ export default {
     step: 1,
     subStep: 1
   },
-  view: 'title'
+  view: 'hub'
 }

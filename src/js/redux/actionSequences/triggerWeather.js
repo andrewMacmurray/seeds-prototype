@@ -2,27 +2,31 @@ import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
-export default (weatherType, seedlingCount) => (dispatch, getState) => {
+export default (moveType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { level: { weather: { rain, sun, weatherThreshold } } } = getState()
+  const { rain, sun, weatherThreshold } = getState().level.weather
 
-  const setVisibleWeather = weatherType === 'rain'
+  const setVisibleWeather = moveType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, true)
     : _dispatch(_.noop)
 
-  const clearVisibleWeather = weatherType === 'rain'
+  const clearVisibleWeather = moveType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, false)
     : _dispatch(_.noop)
 
-  const growDelay = weatherType === 'rain'
+  const growDelay = moveType === 'rain'
     ? 1500
     : 1200
 
-  const backdrop = weatherType === 'rain'
+  const backdrop = moveType === 'rain'
     ? 'rain-falling'
     : 'sun-shining'
 
-  if (rain > weatherThreshold || sun > weatherThreshold) {
+  const weatherMove = moveType === 'rain' || moveType === 'sun'
+  const aboveThreshold = rain > weatherThreshold || sun > weatherThreshold
+  const shouldTriggerWeather = weatherMove && aboveThreshold
+
+  if (shouldTriggerWeather) {
     return Promise
       .resolve()
       .then(setVisibleWeather)
@@ -30,7 +34,7 @@ export default (weatherType, seedlingCount) => (dispatch, getState) => {
         _.weatherAnimating, true,
         _.setBackdrop, backdrop,
         _.isUpdating, true,
-        _.resetWeatherPower, weatherType
+        _.resetWeatherPower, moveType
       ]))
       .delay(growDelay)
       .then(_dispatch(_.growRandomSeeds, seedlingCount))
@@ -47,6 +51,6 @@ export default (weatherType, seedlingCount) => (dispatch, getState) => {
       .delay(1000)
       .then(clearVisibleWeather)
   }
-  // return to carry on promise chain in stopDrag action sequence
-  return ''
+
+  return dispatch(_.noop())
 }
