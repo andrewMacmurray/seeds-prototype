@@ -24,7 +24,7 @@ export default (weatherType, seedlingCount) => (dispatch, getState) => {
     : 'sun-shining'
 
   if (rain > weatherThreshold || sun > weatherThreshold) {
-    Promise
+    return Promise
       .resolve()
       .then(setVisibleWeather)
       .then(batch(dispatch, [

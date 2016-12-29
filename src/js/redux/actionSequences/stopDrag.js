@@ -34,8 +34,28 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
     ? _dispatch(triggerWeather, moveType, seedlingCount)
     : identity
 
+  const handleReset = () => Promise
+    .resolve()
+    .then(_dispatch(_.fallTiles, moveArray))
+    .delay(400)
+    .then(batch(dispatch, [
+      _.shiftTiles, moveArray,
+      _.setEntering,
+      identity,
+      _.resetMagnitude,
+      _.resetLeaving,
+      _.resetMoves,
+      _.addTiles,
+      _.isUpdating, false
+    ]))
+    .delay(700)
+    .then(_dispatch(_.resetEntering))
+    .then(_dispatch(handleLevelStop))
+
+  const reset = () => [ handleWeather(), handleReset() ]
+
   if (boardReady && isLeaving) {
-    Promise
+    return Promise
       .resolve()
       .then(batch(dispatch, [
         _.setDrag, false,
@@ -46,28 +66,16 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
       .delay(400)
       .then(_dispatch(_.updateScore, moveType, moveArray))
       .delay(falldelay)
-      .then(handleWeather)
-      .then(_dispatch(_.fallTiles, moveArray))
-      .delay(400)
-      .then(batch(dispatch, [
-        _.shiftTiles, moveArray,
-        _.setEntering,
-        _.resetMagnitude,
-        _.resetLeaving,
-        _.resetMoves,
-        _.addTiles,
-        _.isUpdating, false
-      ]))
-      .delay(700)
-      .then(_dispatch(_.resetEntering))
-      .then(_dispatch(handleLevelStop))
+      .then(reset)
+      .all()
   }
 
   if (boardReady && isSeedling) {
     const growDelay = moveArray.length > 10
       ? 1000
       : 800
-    Promise
+
+    return Promise
       .resolve()
       .then(batch(dispatch, [
         _.setDrag, false,
