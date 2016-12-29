@@ -1,20 +1,19 @@
 import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
-import { identity } from 'ramda'
 
 export default () => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const state = getState()
   const {
     currentLevel: { level },
-    levelProgress,
     score: { currentScore, levelGoal } } = state.level
+  const { levelProgress } = state.level
   const { view } = state
 
   const handleLevelProgress = level === levelProgress
     ? _dispatch(_.incrementLevelProgress)
-    : identity
+    : _dispatch(_.noop)
 
   if (currentScore >= levelGoal && view === 'level') {
     return Promise

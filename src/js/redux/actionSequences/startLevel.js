@@ -1,35 +1,25 @@
 import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
+import { getLevelData } from './_levelDataHelpers.js'
+import setUpBoard from './setUpBoard.js'
 
-export default ({
-  levelNumber,
-  probabilities,
-  world,
-  goal,
-  levelProgress,
-  avatars,
-  tutorial
-}) => (dispatch) => {
+export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
   const _dispatch = makeLazyDispatcher(dispatch)
+  const { levelProgress } = getState().level
+  const {
+    probabilities,
+    goal,
+    avatars,
+    tutorial
+  } = getLevelData(world, levelNumber, levelSettings)
+
   const seedType = avatars[0]
   const loadTutorial = tutorial && levelProgress <= levelNumber
 
   const setUpView = loadTutorial
-    ? () => Promise
-        .resolve()
-        .then(batch(dispatch, [
-          _.resetTutorialStep,
-          _.setTutorialData, tutorial.steps
-        ]))
-    : () => Promise
-        .resolve()
-        .then(batch(dispatch, [
-          _.setLevelGoal, goal,
-          _.setProbabilities, probabilities,
-          _.setBoardSize, 8,
-          _.shuffleTiles, probabilities
-        ]))
+    ? _dispatch(_.noop)
+    : _dispatch(setUpBoard, goal, probabilities)
 
   const view = loadTutorial
     ? 'tutorial'

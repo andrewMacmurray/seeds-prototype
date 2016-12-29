@@ -1,7 +1,6 @@
 import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
-import { identity } from 'ramda'
 import triggerWeather from './triggerWeather.js'
 import handleLevelStop from './handleLevelStop.js'
 
@@ -32,7 +31,7 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
 
   const handleWeather = isWeather
     ? _dispatch(triggerWeather, moveType, seedlingCount)
-    : identity
+    : _dispatch(_.noop)
 
   const handleReset = () => Promise
     .resolve()
@@ -41,7 +40,6 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
     .then(batch(dispatch, [
       _.shiftTiles, moveArray,
       _.setEntering,
-      identity,
       _.resetMagnitude,
       _.resetLeaving,
       _.resetMoves,

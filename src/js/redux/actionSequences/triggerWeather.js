@@ -1,6 +1,5 @@
 import Promise from 'bluebird'
 import * as _ from '../allActions.js'
-import { identity } from 'ramda'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 
 export default (weatherType, seedlingCount) => (dispatch, getState) => {
@@ -9,11 +8,11 @@ export default (weatherType, seedlingCount) => (dispatch, getState) => {
 
   const setVisibleWeather = weatherType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, true)
-    : identity
+    : _dispatch(_.noop)
 
   const clearVisibleWeather = weatherType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, false)
-    : identity
+    : _dispatch(_.noop)
 
   const growDelay = weatherType === 'rain'
     ? 1500

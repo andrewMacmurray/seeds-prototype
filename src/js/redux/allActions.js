@@ -1,3 +1,6 @@
+import { createAction } from 'redux-actions'
+const noop = createAction('NOOP')
+
 /// level
 import * as board from './modules/level/board.js'
 import * as moves from './modules/level/moves.js'
@@ -21,6 +24,7 @@ import * as view from './modules/view.js'
 import * as loading from './modules/loadingScreen.js'
 
 module.exports = {
+  noop,
   ...board,
   ...moves,
   ...setDrag,

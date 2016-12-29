@@ -19,14 +19,11 @@ export default class Level extends React.PureComponent {
         rotate: trailRotate,
         offset: { x: trailX, y: trailY }
       },
-      probabilities,
-      tutorial,
       levelNumber,
       levelProgress,
       avatars,
       world,
-      startLevel,
-      goal
+      startLevel
     } = this.props
 
     const isComplete = levelProgress > levelNumber
@@ -45,6 +42,7 @@ export default class Level extends React.PureComponent {
        `translate(${trailX}em, ${trailY}em)
         rotate(${trailRotate}deg)`
     }
+
     const renderTrail = isComplete
       ? <img className='trail'
         style={trailStyles}
@@ -60,15 +58,7 @@ export default class Level extends React.PureComponent {
       <div
         ref={($el) => this.level = $el}
         className={'hub-level offset-x-' + levelX + ' offset-y-' + levelY}
-        onClick={() => startLevel({
-          levelNumber,
-          probabilities,
-          world,
-          goal,
-          levelProgress,
-          avatars,
-          tutorial
-        })}
+        onClick={() => startLevel(world, levelNumber)}
       >
         {renderTrail}
         {renderPointer}

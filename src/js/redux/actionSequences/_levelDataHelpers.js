@@ -1,5 +1,6 @@
 import { compose, curry, propEq, prop, map, chain } from 'ramda'
-import { fromMaybe, at, find } from 'sanctuary'
+import { create, env } from 'sanctuary'
+const { fromMaybe, at, find } = create({ checkTypes: false, env })
 
 export const getTutorialData = curry((step, data) => compose(
   fromMaybe({ autoSteps: [], total: 0 }),
