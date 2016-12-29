@@ -2,9 +2,7 @@
   height: 100vh;
   width: 100%;
   position: fixed;
-  animation: loading 3s linear;
-  animation-fill-mode: forwards;
-  opacity: 0;
+  transition: 0.5s ease;
   z-index: 100;
 }
 
@@ -15,11 +13,4 @@
   svg {
     max-width: 50px;
   }
-}
-
-@keyframes loading {
-  0% { opacity: 0 }
-  10% { opacity: 1 }
-  80% { opacity: 1 }
-  100% { opacity: 0 }
 }

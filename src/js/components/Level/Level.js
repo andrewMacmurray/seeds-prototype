@@ -1,17 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import cx from 'classnames'
 
 import Board from './Board.js'
 import SeedBank from './SeedBank.js'
 
 class Level extends React.PureComponent {
 
-  weatherMakerClass (type) {
+  weatherMakerClass (weatherType) {
     const { weather, weather: { weatherThreshold } } = this.props
-    return type
-      + '-maker power-'
-      + (weather[type] < weatherThreshold ? weather[type] : weatherThreshold)
-      + ' max-' + type
+    const currentPower = weather[weatherType] < weatherThreshold
+      ? weather[weatherType]
+      : weatherThreshold
+
+    return cx(
+      weatherType + '-maker',
+      'power-' + currentPower,
+      'max-' + weatherType
+    )
   }
 
   render () {

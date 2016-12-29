@@ -37,9 +37,16 @@ class App extends React.Component {
   renderLoadingScreen () {
     const { seedType } = this.props.level
     const { visible, background } = this.props.loadingScreen
-    return visible
-      ? <Loading background={background} seedType={seedType} />
-      : ''
+    const classes = visible
+      ? 'opacity-100'
+      : 'opacity-0 disabled'
+    return (
+      <Loading
+        background={background}
+        seedType={seedType}
+        className={classes}
+      />
+    )
   }
 
   handleFixedBackground (view, loading) {
@@ -74,7 +81,7 @@ class App extends React.Component {
       >
         {this.renderLoadingScreen()}
         <div className='menu'>
-          {this.renderMenu(['title', 'hub', 'tutorial'])}
+          {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
         </div>
         <Audio />
         {this.router()}
