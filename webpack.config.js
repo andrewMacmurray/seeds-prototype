@@ -13,7 +13,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: path.resolve(__dirname, 'node_modules'),
-        loader: 'react-hot-loader!babel-loader'
+        loader: 'react-hot-loader/webpack!babel-loader'
       },
       {
         test: /\.scss$/,
@@ -28,10 +28,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: [ '', '.js', '.jsx' ],
-    alias: {
-      'react': 'inferno-compat',
-      'react-dom': 'inferno-compat'
-    }
+    extensions: [ '', '.js', '.jsx' ]
   }
 }

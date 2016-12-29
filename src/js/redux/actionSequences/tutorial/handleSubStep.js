@@ -1,15 +1,17 @@
 import * as _ from '../../allActions.js'
 import { makeLazyDispatcher, batch } from '../../_thunkHelpers.js'
 import Promise from 'bluebird'
-import { contains, identity } from 'ramda'
+import { identity } from 'ramda'
 import { getTutorialData, getLevelData } from './_helpers.js'
+import loadLevelData from './loadLevelData.js'
 
 const autoAt = () => (dispatch, getState, levelSettings) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const state = getState()
   const { subStep, data, step } = state.tutorial
-  const { total, autoSteps, board } = getTutorialData(step, data)
-  const shouldAutoIncrement = contains(subStep, autoSteps)
+  const { subSteps, board } = getTutorialData(step, data)
+  const total = subSteps.length
+  const { auto: shouldAutoIncrement, delay } = subSteps[subStep - 1]
   const lastStep = data.length
 
   const handleBoard = board && board.step === subStep
@@ -24,22 +26,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
   if (step === lastStep && subStep === total) {
     const { level, world } = state.level.currentLevel
     const { goal, probabilities } = getLevelData(world, level, levelSettings)
-
-    return Promise
-      .resolve()
-      .then(_dispatch(_.showLoadingScreen))
-      .then(_dispatch(_.setLevelGoal, goal))
-      .then(_dispatch(_.setProbabilities, probabilities))
-      .then(_dispatch(_.setBoardSize, 8))
-      .then(_dispatch(_.resetScore))
-      .then(_dispatch(_.resetWeatherPower, 'rain'))
-      .then(_dispatch(_.resetWeatherPower, 'sun'))
-      .then(_dispatch(_.resetTutorialStep))
-      .then(_dispatch(_.resetTutorialSubStep))
-      .delay(2000)
-      .then(_dispatch(_.setView, 'level'))
-      .delay(1000)
-      .then(_dispatch(_.hideLoadingScreen))
+    return dispatch(loadLevelData(goal, probabilities))
   }
 
   if (total > 0) {
@@ -48,7 +35,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
         .resolve()
         .then(_dispatch(_.setTutorialUpdating, true))
         .then(_dispatch(_.incrementTutorialSubStep))
-        .delay(1000)
+        .delay(delay)
         .then(_dispatch(autoAt))
 
     } else if (subStep === total) {
@@ -57,7 +44,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
         .then(handleBoard)
         .then(_dispatch(_.resetTutorialSubStep))
         .then(_dispatch(_.incrementTutorialStep))
-        .delay(1000)
+        .delay(delay)
         .then(_dispatch(autoAt))
 
     } else {

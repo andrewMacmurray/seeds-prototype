@@ -1,24 +1,61 @@
 import { all } from './constants/probabilities.js'
 
+const auto = true
+const delay = 1000
+
 export default {
   level: {
     levelProgress: 1
   },
   tutorial: {
     data: [
-      { autoSteps: [ 1, 3 ], total: 4 },
-      { autoSteps: [ 2, 3, 5 ], total: 6 },
-      { autoSteps: [ 1, 2, 4, 5, 6, 7, 9 ], total: 10,
-        board: {
-          size: 2, probabilities: all.seedlings, step: 1
-        }
+      { subSteps: [
+        { delay, auto },
+        { delay },
+        { delay, auto },
+        { delay: 600 }
+      ] },
+      { subSteps: [
+        { delay },
+        { delay, auto },
+        { delay: 600, auto },
+        { delay },
+        { delay, auto },
+        { delay }
+      ] },
+      { subSteps: [
+        { delay, auto },
+        { delay: 400, auto },
+        { delay },
+        { delay, auto },
+        { delay: 1500, auto },
+        { delay, auto },
+        { delay, auto },
+        { delay },
+        { delay: 2000, auto },
+        { delay }
+      ],
+        board: { size: 2, probabilities: all.seedlings, step: 1 }
       },
-      { autoSteps: [ 1, 3, 4 ], total: 5,
-        board: {
-          size: 3, probabilities: all.seedlings, step: 1
-        }
+      { subSteps: [
+        { delay, auto },
+        { delay },
+        { delay: 2000, auto },
+        { delay, auto },
+        { delay: 2000 }
+      ],
+        board: { size: 3, probabilities: all.seedlings, step: 1 }
       },
-      { autoSteps: [ 1, 3, 4, 5, 7 ], total: 8 }
+      { subSteps: [
+        { delay, auto },
+        { delay },
+        { delay: 2000, auto },
+        { delay, auto },
+        { delay, auto },
+        { delay },
+        { delay, auto },
+        { delay }
+      ] }
     ],
     step: 1,
     subStep: 1

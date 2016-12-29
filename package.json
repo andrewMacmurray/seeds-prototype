@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node lib/server.js",
     "dev": "webpack-dev-server --host 0.0.0.0 --hot --inline --content-base public/",
-    "watch": "webpack --watch --progress",
-    "test": "nodemon src/test/_runner.js --exec babel-node --presets es2015, stage-1"
+    "watch": "webpack --watch --progress"
   },
   "repository": {
     "type": "git",
@@ -35,7 +34,7 @@
     "node-sass": "^3.4.2",
     "nodemon": "^1.9.1",
     "path": "^0.12.7",
-    "react-hot-loader": "^1.3.0",
+    "react-hot-loader": "^3.0.0-beta.6",
     "redux-logger": "^2.6.1",
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
@@ -47,8 +46,6 @@
   "dependencies": {
     "bluebird": "^3.4.6",
     "classnames": "^2.2.3",
-    "inferno": "^1.0.0-beta43",
-    "inferno-compat": "^1.0.0-beta43",
     "ramda": "^0.21.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
