@@ -3,6 +3,7 @@ import { createAction } from 'redux-actions'
 // action types
 const SHOW_LOADING = 'SHOW_LOADING'
 const HIDE_LOADING = 'HIDE_LOADING'
+const SET_LOADING_BACKGROUND = 'SET_LOADING_BACKGROUND'
 
 // reducer
 const defaultState = {
@@ -15,13 +16,17 @@ export default (state = defaultState, action) => {
   case SHOW_LOADING:
     return {
       ...state,
-      visible: true,
-      background: action.payload
+      visible: true
     }
   case HIDE_LOADING:
     return {
       ...state,
       visible: false
+    }
+  case SET_LOADING_BACKGROUND:
+    return {
+      ...state,
+      background: action.payload
     }
   default:
     return state
@@ -29,5 +34,6 @@ export default (state = defaultState, action) => {
 }
 
 // action creators
-export const showLoadingScreen = createAction(SHOW_LOADING, x => x)
+export const showLoadingScreen = createAction(SHOW_LOADING)
 export const hideLoadingScreen = createAction(HIDE_LOADING)
+export const setLoadingBackground = createAction(SET_LOADING_BACKGROUND)

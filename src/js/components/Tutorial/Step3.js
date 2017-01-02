@@ -3,9 +3,9 @@ import Board from '../Level/Board.js'
 import * as _ from './_helpers.js'
 
 const text1 = [
-  'These are seedlings',
-  'They are ready to burst into seed pods',
-  'Connect them to grow them into seeds',
+  'These are seed pods',
+  'They are almost ready to bear seeds',
+  'Connect them to release the seeds',
   'Brilliant!'
 ]
 
@@ -33,8 +33,7 @@ export default class Step3 extends React.PureComponent {
     <p className={
       'tutorial-text abs ' +
       _.visibleAt(step, subStep, 3, visibleArr)
-    }
-    >{text}</p>
+    }>{text}</p>
 
   render () {
     const { step, subStep, handleNextTutorialStep } = this.props

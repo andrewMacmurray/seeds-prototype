@@ -18,8 +18,8 @@ export default (goal, probabilities) => (dispatch) => {
       _.resetTutorialStep,
       _.resetTutorialSubStep
     ]))
-    .delay(2000)
-    .then(_dispatch(_.setView, 'level'))
     .delay(1000)
+    .then(_dispatch(_.setView, 'level'))
+    .delay(100)
     .then(_dispatch(_.hideLoadingScreen))
 }

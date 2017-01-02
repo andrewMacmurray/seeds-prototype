@@ -2,15 +2,29 @@
   height: 100vh;
   width: 100%;
   position: fixed;
-  transition: 0.5s ease;
   z-index: 100;
 }
 
 .loading-icon {
   text-align: center;
+  transition: 0.5s ease;
   margin-top: 30vh;
 
   svg {
     max-width: 50px;
+  }
+}
+
+.loading-screen.sun-shining,
+.loading-screen.rain-falling {
+  transition: opacity 0.5s ease;
+}
+
+.loading-screen.blank {
+  background: $beige;
+  transition: opacity 1s linear;
+
+  .loading-icon {
+    display: none;
   }
 }

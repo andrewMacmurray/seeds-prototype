@@ -29,6 +29,7 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     return Promise
       .resolve()
       .then(_dispatch(_.setSeedType, seedType))
+      .then(_dispatch(_.setLoadingBackground, 'blank'))
       .then(_dispatch(_.showLoadingScreen))
       .delay(500)
       .then(setUpView)
@@ -39,7 +40,7 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
         _.resetWeatherPower, 'sun',
         _.resetWeatherPower, 'rain'
       ]))
-      .delay(1500)
+      .delay(500)
       .then(_dispatch(_.setView, view))
       .delay(1000)
       .then(_dispatch(_.hideLoadingScreen))

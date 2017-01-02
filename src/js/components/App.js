@@ -18,12 +18,13 @@ import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
 import '../../scss/index.scss'
 
 class App extends React.Component {
+
   router () {
     const viewMap = {
-      title: <TitleScreen />,
-      level: <Level />,
-      intro: <Intro />,
-      hub: <Hub />,
+      title:    <TitleScreen />,
+      level:    <Level />,
+      intro:    <Intro />,
+      hub:      <Hub />,
       tutorial: <Tutorial />
     }
     return viewMap[this.props.view]
@@ -40,11 +41,13 @@ class App extends React.Component {
     const classes = visible
       ? 'opacity-100'
       : 'opacity-0 disabled'
+
     return (
       <Loading
         background={background}
         seedType={seedType}
         className={classes}
+        visible={visible}
       />
     )
   }

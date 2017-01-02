@@ -7,7 +7,8 @@ export default (background) => (dispatch) => {
 
   return Promise
     .resolve()
-    .then(_dispatch(_.showLoadingScreen, background))
+    .then(_dispatch(_.setLoadingBackground, background))
+    .then(_dispatch(_.showLoadingScreen))
     .delay(3000)
     .then(_dispatch(_.hideLoadingScreen))
 }

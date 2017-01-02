@@ -8,7 +8,11 @@ import loadLevelData from './loadLevelData.js'
 const autoAt = () => (dispatch, getState, levelSettings) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const state = getState()
-  const { subStep, data, step } = state.tutorial
+  const {
+    subStep,
+    data,
+    step
+  } = state.tutorial
   const { subSteps, board } = getTutorialData(step, data)
   const total = subSteps.length
   const { auto: shouldAutoIncrement, delay } = subSteps[subStep - 1]
@@ -19,8 +23,11 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
     : _dispatch(_.noop)
 
   if (step === lastStep && subStep === total) {
-    const { level, world } = state.level.currentLevel
-    const { goal, probabilities } = getLevelData(world, level, levelSettings)
+    const { world, level } = state.level.currentLevel
+    const {
+      goal,
+      probabilities
+    } = getLevelData(world, level, levelSettings)
     return dispatch(loadLevelData(goal, probabilities))
   }
 
@@ -28,6 +35,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
     if (shouldAutoIncrement) {
       return Promise
         .resolve()
+        .then(handleBoard)
         .then(_dispatch(_.setTutorialUpdating, true))
         .then(_dispatch(_.incrementTutorialSubStep))
         .delay(delay)

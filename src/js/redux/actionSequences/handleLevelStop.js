@@ -18,7 +18,8 @@ export default () => (dispatch, getState) => {
   if (currentScore >= levelGoal && view === 'level') {
     return Promise
       .resolve()
-      .then(_dispatch(_.showLoadingScreen, Math.random()))
+      .then(_dispatch(_.setLoadingBackground, Math.random()))
+      .then(_dispatch(_.showLoadingScreen))
       .delay(500)
       .then(handleLevelProgress)
       .then(batch(dispatch, [

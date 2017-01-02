@@ -8,7 +8,7 @@ const renderLine = (text, visibleArr, step, subStep) =>
 
 export default ({ step, subStep, handleNextTutorialStep }) => {
   return (
-    <div className={'tutorial-text-container justify-center' + _.isVisble(step, 1)}>
+    <div className={'tutorial-text-container justify-center ' + _.isVisble(step, 1)}>
       {renderLine(text1, [ 2, 3 ], step, subStep)}
       <p
         className={'next ' + _.visibleAt(step, subStep, 1, [ 3, 4 ])}

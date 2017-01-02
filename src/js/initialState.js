@@ -42,23 +42,26 @@ export default {
         { delay },
         { delay: 2000, auto },
         { delay, auto },
-        { delay: 2000 }
+        { delay }
       ],
         board: { size: 3, probabilities: all.seedlings, step: 1 }
       },
       { subSteps: [
         { delay, auto },
+        { delay, auto },
         { delay },
         { delay: 2000, auto },
         { delay, auto },
+        { delay: 3000, auto },
+        { delay, auto },
         { delay, auto },
         { delay },
-        { delay, auto },
+        { delay: 100, auto },
         { delay }
       ] }
     ],
     step: 1,
     subStep: 1
   },
-  view: 'hub'
+  view: 'title'
 }
