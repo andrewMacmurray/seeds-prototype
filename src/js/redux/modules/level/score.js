@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import { compose, length } from 'ramda'
 
 // action types
 const UPDATE_SCORE = 'UPDATE_SCORE'
@@ -36,10 +37,12 @@ export default (state = defaultState, action) => {
   }
 }
 
+const calculateScore = (x) => 0.091 * x * x + x * 2
 // actions
 export const updateScore = (tileType, moves) => (dispatch, getState) => {
   const { level: { score: { currentScore } } } = getState()
-  const move = moves.length
+  // const move = Math.round(calculateScore(moves.length))
+  const move = compose(Math.round, calculateScore, length)(moves)
   const scores = { pod: currentScore + move }
 
   const scoreType = scores[tileType] || currentScore
