@@ -20,25 +20,25 @@ module.exports = addLevelNumbers([
         offset: { x: -1, y: 0 },
         goal: 60,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-dark-3.svg', offset: { x: 2.4, y: -1.7 }, rotate: 43 },
+        trail: { img: '/dark/trail-dark-5.svg', offset: { x: 3.4, y: -3.8 }, rotate: 43 },
         probabilities: p.even
       }, {
         offset: { x: 0, y: -1 },
         goal: 50,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-dark-3.svg', offset: { x: -1.9, y: -1.6 }, rotate: -45 },
+        trail: { img: '/dark/trail-dark-4.svg', offset: { x: -3, y: -2.3 }, rotate: -45 },
         probabilities: p.noSun
       }, {
         offset: { x: 1, y: -1 },
         goal: 30,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-dark-3.svg', offset: { x: -1.8, y: -2.3 }, rotate: -45 },
+        trail: { img: '/dark/trail-dark-4.svg', offset: { x: -2.7, y: -3 }, rotate: -45 },
         probabilities: p.noRain
       }, {
         offset: { x: 0, y: 1 },
         goal: 20,
         avatars: [ 'sunflower' ],
-        trail: { img: '/dark/trail-dark-4.svg', offset: { x: 2.2, y: -1.8 }, rotate: 45 },
+        trail: { img: '/dark/trail-dark-5.svg', offset: { x: 3.4, y: -2.5 }, rotate: 45 },
         probabilities: p.noSun,
         tutorial: tutorials[0]
       }
