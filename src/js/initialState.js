@@ -5,7 +5,7 @@ const delay = 1000
 
 export default {
   level: {
-    levelProgress: 3
+    levelProgress: 1
   },
   tutorial: {
     data: [
