@@ -30,7 +30,7 @@
     margin-left: $level-offset;
   }
 
-  $level-top-offset: $level-width / 2;
+  $level-top-offset: $level-width;
 
   &.offset-y-1 {
     margin-top: $level-top-offset;

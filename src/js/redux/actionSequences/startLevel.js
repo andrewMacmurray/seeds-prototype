@@ -17,6 +17,10 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
   const seedType = avatars[0]
   const loadTutorial = tutorial && levelProgress <= levelNumber
 
+  const loadingBackground = loadTutorial
+    ? 'blank'
+    : Math.random()
+
   const setUpView = loadTutorial
     ? _dispatch(_.noop)
     : _dispatch(setUpBoard, goal, probabilities)
@@ -29,7 +33,7 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     return Promise
       .resolve()
       .then(_dispatch(_.setSeedType, seedType))
-      .then(_dispatch(_.setLoadingBackground, 'blank'))
+      .then(_dispatch(_.setLoadingBackground, loadingBackground))
       .then(_dispatch(_.showLoadingScreen))
       .delay(500)
       .then(setUpView)
