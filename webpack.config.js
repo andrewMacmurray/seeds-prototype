@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   entry: './src/js/index.js',
@@ -12,7 +13,7 @@ module.exports = {
       {
         test: /\.js?$/,
         exclude: path.resolve(__dirname, 'node_modules'),
-        loader: 'react-hot-loader!babel-loader'
+        loader: 'react-hot-loader/webpack!babel-loader'
       },
       {
         test: /\.scss$/,
@@ -25,6 +26,13 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    })
+  ],
   resolve: {
     extensions: [ '', '.js', '.jsx' ]
   }
