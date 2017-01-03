@@ -17,11 +17,11 @@ class Tutorial extends React.PureComponent {
     return (
       <div>
         <div className='tutorial-container'>
-          <Step2 {...this.props} />
-          <Step1 {...this.props} />
-          <Step3 {...this.props} />
-          <Step4 {...this.props} />
-          <Step5 {...this.props} />
+          <Step1 {...this.props} renderStep={1} />
+          <Step2 {...this.props} renderStep={2} />
+          <Step3 {...this.props} renderStep={3} />
+          <Step4 {...this.props} renderStep={4} />
+          <Step5 {...this.props} renderStep={5} />
         </div>
       </div>
     )

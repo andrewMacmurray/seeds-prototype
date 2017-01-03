@@ -31,7 +31,8 @@ export default class Step4 extends React.PureComponent {
     <p className={
       'tutorial-text abs ' +
       _.visibleAt(step, subStep, 4, visibleArr)
-    }>{text}</p>
+    }
+    >{text}</p>
 
   render () {
     const { step, subStep, handleNextTutorialStep } = this.props

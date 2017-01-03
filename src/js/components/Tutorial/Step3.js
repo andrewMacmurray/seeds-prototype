@@ -1,8 +1,9 @@
 import React from 'react'
 import Board from '../Level/Board.js'
 import * as _ from './_helpers.js'
+import classnames from 'classnames'
 
-const text1 = [
+const textContent = [
   'These are seed pods',
   'They are almost ready to bear seeds',
   'Connect them to release the seeds',
@@ -29,32 +30,44 @@ export default class Step3 extends React.PureComponent {
     , 300)
   }
 
-  renderLine = (text, visibleArr, step, subStep) =>
-    <p className={
-      'tutorial-text abs ' +
+  renderLine = (text, visibleArr, step, subStep, key) => {
+    const textClasses = classnames(
+      'tutorial-text',
+      'abs',
       _.visibleAt(step, subStep, 3, visibleArr)
-    }>{text}</p>
+    )
+    return <p className={textClasses} key={key}>{text}</p>
+  }
+
+  renderLines = (lines, visibility, step, subStep) =>
+    lines.map((text, i) =>
+      this.renderLine(text, visibility[i], step, subStep, i))
 
   render () {
-    const { step, subStep, handleNextTutorialStep } = this.props
+    const {
+      step,
+      subStep
+    } = this.props
+    const boardClasses = classnames(
+      'tutorial-board-container',
+      _.visibleAt(step, subStep, 3, [ 2, 3, 4, 5, 6, 7, 8, 9, 10 ]),
+      _.enabledAt(step, subStep, 3, [ 8, 9 ])
+    )
+
     return (
       <div className={'tutorial-text-container ' + _.isVisble(step, 3)}>
-        {this.renderLine(text1[0], [ 3, 4 ], step, subStep)}
-        {this.renderLine(text1[1], [ 6 ], step, subStep)}
-        {this.renderLine(text1[2], [ 8, 9 ], step, subStep)}
-        {this.renderLine(text1[3], [ 10, 11 ], step, subStep)}
-        <div
-          className={
-            'tutorial-board-container ' +
-            _.visibleAt(step, subStep, 3, [ 2, 3, 4, 5, 6, 7, 8, 9, 10 ]) + ' ' +
-            _.enabledAt(step, subStep, 3, [ 8, 9 ])
-          }
-        >
+        {this.renderLines(textContent, [
+          [ 3, 4 ],
+          [ 6 ],
+          [ 8, 9 ],
+          [ 10, 11 ]
+        ], step, subStep)}
+        <div className={boardClasses}>
           <Board />
         </div>
         <p
           className={'next ' + _.visibleAt(step, subStep, 3, [ 4, 5, 6, 7, 8 ])}
-          onClick={handleNextTutorialStep}
+          onClick={this.props.handleNextTutorialStep}
         >next
         </p>
       </div>
