@@ -10,7 +10,8 @@ export default (props) => {
       props.subStep,
       props.renderStep,
       props.visibleAt
-    )
+    ),
+    props.className
   )
   return <p className={classes}>{props.text}</p>
 }

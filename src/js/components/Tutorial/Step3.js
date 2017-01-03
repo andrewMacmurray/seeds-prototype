@@ -1,13 +1,14 @@
 import React from 'react'
-import Board from '../Level/Board.js'
-import * as _ from './_helpers.js'
-import classnames from 'classnames'
+import Next from './Next.js'
+import TextContainer from './TextContainer.js'
+import TutorialBoard from './TutorialBoard.js'
+import Line from './Line.js'
 
 const textContent = [
-  'These are seed pods',
-  'They are almost ready to bear seeds',
-  'Connect them to release the seeds',
-  'Brilliant!'
+  { text: 'These are seed pods', visibleAt: [ 3, 4 ] },
+  { text: 'They are almost ready to bear seeds', visibleAt: [ 6 ] },
+  { text: 'Connect them to release the seeds', visibleAt: [ 8, 9 ] },
+  { text: 'Brilliant!', visibleAt: [ 10, 11 ] }
 ]
 
 export default class Step3 extends React.PureComponent {
@@ -30,47 +31,22 @@ export default class Step3 extends React.PureComponent {
     , 300)
   }
 
-  renderLine = (text, visibleArr, step, subStep, key) => {
-    const textClasses = classnames(
-      'tutorial-text',
-      'abs',
-      _.visibleAt(step, subStep, 3, visibleArr)
-    )
-    return <p className={textClasses} key={key}>{text}</p>
-  }
-
-  renderLines = (lines, visibility, step, subStep) =>
-    lines.map((text, i) =>
-      this.renderLine(text, visibility[i], step, subStep, i))
-
   render () {
-    const {
-      step,
-      subStep
-    } = this.props
-    const boardClasses = classnames(
-      'tutorial-board-container',
-      _.visibleAt(step, subStep, 3, [ 2, 3, 4, 5, 6, 7, 8, 9, 10 ]),
-      _.enabledAt(step, subStep, 3, [ 8, 9 ])
-    )
-
     return (
-      <div className={'tutorial-text-container ' + _.isVisble(step, 3)}>
-        {this.renderLines(textContent, [
-          [ 3, 4 ],
-          [ 6 ],
-          [ 8, 9 ],
-          [ 10, 11 ]
-        ], step, subStep)}
-        <div className={boardClasses}>
-          <Board />
-        </div>
-        <p
-          className={'next ' + _.visibleAt(step, subStep, 3, [ 4, 5, 6, 7, 8 ])}
-          onClick={this.props.handleNextTutorialStep}
-        >next
-        </p>
-      </div>
+      <TextContainer {...this.props}>
+        {textContent.map((settings, i) =>
+          <Line key={i} className='abs' {...settings} {...this.props} />
+        )}
+        <TutorialBoard
+          visibleAt={[ 2, 3, 4, 5, 6, 7, 8, 9, 10 ]}
+          enabledAt={[ 8, 9 ]}
+          {...this.props}
+        />
+        <Next
+          visibleAt={[ 4, 5, 6, 7, 8 ]}
+          {...this.props}
+        />
+      </TextContainer>
     )
   }
 }
