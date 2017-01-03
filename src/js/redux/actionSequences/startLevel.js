@@ -2,7 +2,7 @@ import Promise from 'bluebird'
 import * as _ from '../allActions.js'
 import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
 import { getLevelData } from './_levelDataHelpers.js'
-import setUpBoard from './setUpBoard.js'
+import setUpBoard from './level/setUpBoard.js'
 
 export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
   const _dispatch = makeLazyDispatcher(dispatch)

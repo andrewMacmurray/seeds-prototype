@@ -118,9 +118,9 @@ const mapStateToProps = (state) => ({
   seedMoves: seedMoves(state)
 })
 
-import stopDrag from '../../redux/actionSequences/stopDrag.js'
-import startDrag from '../../redux/actionSequences/startDrag.js'
-import checkTile from '../../redux/actionSequences/checkTile.js'
+import stopDrag from '../../redux/actionSequences/level/stopDrag.js'
+import startDrag from '../../redux/actionSequences/level/startDrag.js'
+import checkTile from '../../redux/actionSequences/level/checkTile.js'
 import { resetEntering } from '../../redux/allActions.js'
 
 export default connect(mapStateToProps, {

@@ -1,6 +1,6 @@
 import Promise from 'bluebird'
-import * as _ from '../allActions.js'
-import { makeLazyDispatcher, batch } from '../_thunkHelpers.js'
+import * as _ from '../../allActions.js'
+import { makeLazyDispatcher, batch } from '../../_thunkHelpers.js'
 
 export default () => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)

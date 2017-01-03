@@ -1,5 +1,5 @@
 import Promise from 'bluebird'
-import { makeLazyDispatcher } from '../_thunkHelpers.js'
+import { makeLazyDispatcher } from '../../_thunkHelpers.js'
 import triggerWeather from './triggerWeather.js'
 import processMove from './processMove.js'
 import fallTiles from './fallTiles.js'

@@ -1,4 +1,4 @@
-import * as _ from '../allActions.js'
+import * as _ from '../../allActions.js'
 
 export default ([ x, y ]) => (dispatch, getState) => {
   const { updating } = getState()
