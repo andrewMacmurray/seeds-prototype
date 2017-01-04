@@ -7,15 +7,13 @@ const RESET_TUTORIAL_STEP = 'RESET_TUTORIAL_STEP'
 const INCREMENT_TUTORIAL_SUBSTEP = 'INCREMENT_TUTORIAL_SUBSTEP'
 const RESET_TUTORIAL_SUBSTEP = 'RESET_TUTORIAL_SUBSTEP'
 const SET_TUTORIAL_UPDATING = 'SET_TUTORIAL_UPDATING'
-const SET_RENDER_BLIP = 'SET_RENDER_BLIP'
 
 // reducer
 const defaultState = {
-  steps: [],
+  data: [],
   step: 1,
   subStep: 1,
-  updating: false,
-  renderBlip: false
+  updating: false
 }
 
 export default (state = defaultState, action) => {
@@ -23,7 +21,7 @@ export default (state = defaultState, action) => {
   case SET_TUTORIAL_DATA:
     return {
       ...state,
-      steps: action.payload
+      data: action.payload
     }
   case INCREMENT_TUTORIAL_STEP:
     return {
@@ -50,11 +48,6 @@ export default (state = defaultState, action) => {
       ...state,
       updating: action.payload
     }
-  case SET_RENDER_BLIP:
-    return {
-      ...state,
-      renderBlip: action.payload
-    }
   default:
     return state
   }
@@ -67,4 +60,3 @@ export const resetTutorialStep = createAction(RESET_TUTORIAL_STEP)
 export const incrementTutorialSubStep = createAction(INCREMENT_TUTORIAL_SUBSTEP)
 export const resetTutorialSubStep = createAction(RESET_TUTORIAL_SUBSTEP)
 export const setTutorialUpdating = createAction(SET_TUTORIAL_UPDATING, x => x)
-export const setRenderBlip = createAction(SET_RENDER_BLIP, x => x)
