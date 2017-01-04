@@ -85,7 +85,11 @@ class App extends React.Component {
         {this.renderLoadingScreen()}
         <div className='menu'>
           {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
-          <p className='menu-item' onClick={() => window.localStorage.removeItem('state')}>reset</p>
+          <p className='menu-item' onClick={() => {
+            window.localStorage.removeItem('state')
+            window.location.reload()
+          }}
+          >reset</p>
         </div>
         <Audio />
         {this.router()}

@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import * as _ from './_stepHelpers.js'
 
 export default (props) => {
+
   const classes = classnames(
     'next',
     _.visibleAt(
@@ -12,6 +13,7 @@ export default (props) => {
       props.visibleAt
     )
   )
+
   return (
     <p
       className={classes}
