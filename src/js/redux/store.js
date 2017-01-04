@@ -21,7 +21,7 @@ export const store = createStore(
   )
 )
 
-export const localStorageSubscribe = () =>
+export const subscribeLocalStorage = () =>
   store.subscribe(
     throttle(() => {
       saveState({
