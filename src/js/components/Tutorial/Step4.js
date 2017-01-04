@@ -1,10 +1,15 @@
 import React from 'react'
-import Board from '../Level/Board.js'
-import * as _ from './_helpers.js'
+import TutorialBoard from './components/TutorialBoard.js'
+import TextContainer from './components/TextContainer.js'
+import Lines from './components/Lines.js'
 
-const text1 = [
-  'Seed pods can be connected across or diagonally',
-  'Wonderful!'
+const textContent = [
+  { text: 'Seed pods can be connected across or diagonally',
+    visibleAt: [ 3 ]
+  },
+  { text: 'Wonderful!',
+    visibleAt: [ 4 ]
+  }
 ]
 
 export default class Step4 extends React.PureComponent {
@@ -27,34 +32,20 @@ export default class Step4 extends React.PureComponent {
     , 300)
   }
 
-  renderLine = (text, visibleArr, step, subStep) =>
-    <p className={
-      'tutorial-text abs ' +
-      _.visibleAt(step, subStep, 4, visibleArr)
-    }
-    >{text}</p>
-
   render () {
-    const { step, subStep, handleNextTutorialStep } = this.props
     return (
-      <div className={'tutorial-text-container ' + _.isVisble(step, 4)}>
-        {this.renderLine(text1[0], [ 3 ], step, subStep)}
-        {this.renderLine(text1[1], [ 4 ], step, subStep)}
-        <div
-          className={
-            'tutorial-board-container ' +
-            _.visibleAt(step, subStep, 4, [ 2, 3, 4, 5, 6, 7, 8, 9, 10 ]) + ' ' +
-            _.enabledAt(step, subStep, 4, [ 3 ])
-          }
-        >
-          <Board />
-        </div>
-        <p
-          className={'next ' + _.visibleAt(step, subStep, 4, [ 10 ])}
-          onClick={handleNextTutorialStep}
-        >next
-        </p>
-      </div>
+      <TextContainer {...this.props}>
+        <Lines
+          textContent={textContent}
+          sameLine
+          {...this.props}
+        />
+        <TutorialBoard
+          visibleAt={[ 2, 3, 4, 5 ]}
+          enabledAt={[ 3 ]}
+          {...this.props}
+        />
+      </TextContainer>
     )
   }
 }

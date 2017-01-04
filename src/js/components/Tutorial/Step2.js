@@ -1,7 +1,7 @@
 import React from 'react'
-import Line from './Line.js'
-import Next from './Next.js'
-import TextContainer from './TextContainer.js'
+import Lines from './components/Lines.js'
+import Next from './components/Next.js'
+import TextContainer from './components/TextContainer.js'
 
 const textContent = [
   { text: 'You have embarked on a journey',
@@ -21,9 +21,10 @@ const textContent = [
 export default (props) => {
   return (
     <TextContainer {...props}>
-      {textContent.map((settings, i) =>
-        <Line key={i} {...settings} {...props} />
-      )}
+      <Lines
+        textContent={textContent}
+        {...props}
+      />
       <Next
         visibleAt={[ 1, 2, 3, 4, 5, 6 ]}
         {...props}

@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import * as _ from './_helpers.js'
+import * as _ from './_stepHelpers.js'
 
 export default (props) => {
 

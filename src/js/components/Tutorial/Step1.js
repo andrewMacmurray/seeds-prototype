@@ -1,7 +1,7 @@
 import React from 'react'
-import Line from './Line.js'
-import Next from './Next.js'
-import TextContainer from './TextContainer.js'
+import Line from './components/Line.js'
+import Next from './components/Next.js'
+import TextContainer from './components/TextContainer.js'
 
 const text1 = 'Welcome traveller'
 

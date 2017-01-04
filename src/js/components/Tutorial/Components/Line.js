@@ -1,23 +1,19 @@
 import React from 'react'
+import * as _ from './_stepHelpers.js'
 import classnames from 'classnames'
-import * as _ from './_helpers.js'
 
 export default (props) => {
+
   const classes = classnames(
-    'next',
+    'tutorial-text',
     _.visibleAt(
       props.step,
       props.subStep,
       props.renderStep,
       props.visibleAt
-    )
+    ),
+    { abs: props.sameLine }
   )
-  return (
-    <p
-      className={classes}
-      onClick={props.handleNextTutorialStep}
-    >
-      {props.text || 'next'}
-    </p>
-  )
+
+  return <p className={classes}>{props.text}</p>
 }
