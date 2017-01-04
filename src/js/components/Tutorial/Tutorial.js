@@ -13,20 +13,35 @@ class Tutorial extends React.PureComponent {
     setTimeout(this.props.handleNextTutorialStep, 500)
   }
 
+  checkBoardComplete = ({ boardType, renderStep, completeStep }) => {
+    const { subStep, step } = this.props
+    const boardComplete = this.props[boardType]
+    const handleNext =
+         boardComplete
+      && step === renderStep
+      && subStep === completeStep
+
+    setTimeout(() =>
+      handleNext
+        ? this.props.handleNextTutorialStep()
+        : this.checkBoardComplete({ boardType, renderStep, completeStep })
+    , 300)
+  }
+
   render () {
+    const { checkBoardComplete } = this
     return (
       <div>
         <div className='tutorial-container'>
           <Step1 {...this.props} renderStep={1} />
           <Step2 {...this.props} renderStep={2} />
-          <Step3 {...this.props} renderStep={3} />
-          <Step4 {...this.props} renderStep={4} />
-          <Step5 {...this.props} renderStep={5} />
+          <Step3 {...this.props} renderStep={3} checkBoardComplete={checkBoardComplete} />
+          <Step4 {...this.props} renderStep={4} checkBoardComplete={checkBoardComplete} />
+          <Step5 {...this.props} renderStep={5} checkBoardComplete={checkBoardComplete} />
         </div>
       </div>
     )
   }
-
 }
 
 import {

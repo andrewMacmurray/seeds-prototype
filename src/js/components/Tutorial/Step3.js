@@ -22,21 +22,11 @@ const textContent = [
 export default class Step3 extends React.PureComponent {
 
   componentDidMount () {
-    this.checkBoardComplete()
-  }
-
-  checkBoardComplete = () => {
-    const { seedlingBoardComplete, subStep, step } = this.props
-    const handleNext =
-         seedlingBoardComplete
-      && step === 3
-      && (subStep === 8 || subStep === 9)
-
-    setTimeout(() =>
-      handleNext
-        ? this.props.handleNextTutorialStep()
-        : this.checkBoardComplete()
-    , 300)
+    this.props.checkBoardComplete({
+      boardType: 'seedlingBoardComplete',
+      renderStep: 3,
+      completeStep: 9
+    })
   }
 
   render () {

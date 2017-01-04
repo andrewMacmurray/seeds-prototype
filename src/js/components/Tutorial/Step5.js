@@ -22,24 +22,14 @@ const textContent = [
   }
 ]
 
-export default class Step4 extends React.PureComponent {
+export default class Step5 extends React.PureComponent {
 
   componentDidMount () {
-    this.checkBoardComplete()
-  }
-
-  checkBoardComplete = () => {
-    const { podBoardComplete, subStep, step } = this.props
-    const handleNext =
-         podBoardComplete
-      && step === 5
-      && (subStep === 4 || subStep === 5)
-
-    setTimeout(() =>
-      handleNext
-        ? this.props.handleNextTutorialStep()
-        : this.checkBoardComplete()
-    , 300)
+    this.props.checkBoardComplete({
+      boardType: 'podBoardComplete',
+      renderStep: 5,
+      completeStep: 4
+    })
   }
 
   render () {

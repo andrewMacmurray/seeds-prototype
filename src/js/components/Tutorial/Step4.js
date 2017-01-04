@@ -15,21 +15,11 @@ const textContent = [
 export default class Step4 extends React.PureComponent {
 
   componentDidMount () {
-    this.checkBoardComplete()
-  }
-
-  checkBoardComplete = () => {
-    const { seedlingBoardComplete, subStep, step } = this.props
-    const handleNext =
-         seedlingBoardComplete
-      && step === 4
-      && (subStep === 3 || subStep === 4)
-
-    setTimeout(() =>
-      handleNext
-        ? this.props.handleNextTutorialStep()
-        : this.checkBoardComplete()
-    , 300)
+    this.props.checkBoardComplete({
+      boardType: 'seedlingBoardComplete',
+      renderStep: 4,
+      completeStep: 3
+    })
   }
 
   render () {
