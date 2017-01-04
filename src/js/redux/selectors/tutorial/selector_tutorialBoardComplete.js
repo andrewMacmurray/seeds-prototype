@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { _board } from '../baseSelectors.js'
-import { equals, compose, flatten, length, filter, gt, __ } from 'ramda'
+import { equals, compose, flatten, length, filter, gte, __ } from 'ramda'
 
 const countTiles = (n) => compose(
   length,
@@ -13,12 +13,12 @@ const podPercentage = (board) => countTiles(4)(board) / totalTiles(board)
 const seedlingPercentage = (board) => countTiles(3)(board) / totalTiles(board)
 
 const seedlingBoardPercent = compose(
-  gt(__, 0.75),
+  gte(__, 0.9),
   podPercentage
 )
 
 const podBoardPercent = compose(
-  gt(__, 0.75),
+  gte(__, 0.9),
   seedlingPercentage
 )
 
