@@ -6,10 +6,13 @@ import Step3 from './Step3.js'
 import Step4 from './Step4.js'
 import Step5 from './Step5.js'
 import handleNextTutorialStep from '../../redux/actionSequences/tutorial/handleNextTutorialStep.js'
+import initTutorial from '../../redux/actionSequences/tutorial/initTutorial.js'
+import tutorialData from './tutorialData.js'
 
 class Tutorial extends React.PureComponent {
 
   componentDidMount () {
+    this.props.initTutorial(tutorialData)
     setTimeout(this.props.handleNextTutorialStep, 500)
   }
 
@@ -55,4 +58,4 @@ const mapStateToProps = (state) => ({
   podBoardComplete: podBoardComplete(state)
 })
 
-export default connect(mapStateToProps, { handleNextTutorialStep })(Tutorial)
+export default connect(mapStateToProps, { handleNextTutorialStep, initTutorial })(Tutorial)

@@ -15,7 +15,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
   } = state.tutorial
   const { subSteps, board } = getTutorialData(step, data)
   const total = subSteps.length
-  const { auto: shouldAutoIncrement, delay } = subSteps[subStep - 1]
+  const { auto, delay } = subSteps[subStep - 1]
   const lastStep = data.length
 
   const handleBoard = board && board.step === subStep
@@ -32,7 +32,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
   }
 
   if (total > 0) {
-    if (shouldAutoIncrement) {
+    if (auto) {
       return Promise
         .resolve()
         .then(handleBoard)
