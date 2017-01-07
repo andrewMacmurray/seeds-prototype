@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import SeedBankSvg from './SeedBankSvg.js'
 
 export default class SeedBank extends React.PureComponent {
   constructor () {
     super()
-    this.state = { seedHeight: 0 }
+    this.state = { seedHeight: 80 }
   }
 
   componentDidMount () {
@@ -23,22 +24,20 @@ export default class SeedBank extends React.PureComponent {
 
   render () {
     const {
-      backdrop,
       currentScore,
-      seedType,
       levelGoal
     } = this.props
+    const { seedHeight } = this.state
 
     const percentComplete = currentScore / levelGoal
-    const screenHeight = this.state.seedHeight * percentComplete
     return (
       <div className='seed-bank'>
-        <div
-          className={'screen ' + backdrop}
-          style={{ transform: `translateY(${-screenHeight}px)` }}
+        <img className='outline' src='img/outlines/teardrop-seed-outline-2.svg' />
+        <SeedBankSvg
+          ref={(x) => this.seedImg = x}
+          seedHeight={seedHeight}
+          percentComplete={percentComplete}
         />
-        <img className='outline' src='img/outlines/teardrop-seed-outline.svg' />
-        <img ref={(x) => this.seedImg = x} src={`img/seeds/${seedType}/${seedType}.svg`}/>
       </div>
     )
   }

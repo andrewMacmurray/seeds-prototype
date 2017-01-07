@@ -11,6 +11,7 @@ import Intro from './Intro/Intro.js'
 
 import Audio from './Audio.js'
 import RainCurtain from './RainCurtain.js'
+import SunSphere from './SunSphere.js'
 
 import { setView } from '../redux/allActions.js'
 import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
@@ -71,7 +72,7 @@ class App extends React.Component {
   }
 
   render () {
-    const { raindropsVisible } = this.props.level.weather
+    const { raindropsVisible, sunSphereVisible } = this.props.level.weather
     const {
       backdrop,
       view,
@@ -94,6 +95,7 @@ class App extends React.Component {
         <Audio />
         {this.router()}
         <RainCurtain raindropsVisible={raindropsVisible} />
+        <SunSphere sunSphereVisible={sunSphereVisible} />
       </div>
     )
   }

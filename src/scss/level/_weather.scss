@@ -60,6 +60,29 @@
   }
 }
 
+.sun-sphere-container {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+}
+
+.sun-sphere {
+  transition: 1.5s ease;
+  transition-delay: 0.5s;
+  transform: translateY(-600px);
+  opacity: 0;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background-color: $sun-hover;
+
+  &.active {
+    transform: translateY(-300px);
+    opacity: 1;
+  }
+}
+
 @keyframes rain-pulse {
   0% { background-color: $rain-background; }
   50% { background-color: rgb(71, 139, 255); }

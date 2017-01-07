@@ -8,11 +8,11 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
 
   const setVisibleWeather = moveType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, true)
-    : _dispatch(_.noop)
+    : _dispatch(_.setSunSphereVisibility, true)
 
   const clearVisibleWeather = moveType === 'rain'
     ? _dispatch(_.setRaindropsVisibility, false)
-    : _dispatch(_.noop)
+    : _dispatch(_.setSunSphereVisibility, false)
 
   const growDelay = moveType === 'rain'
     ? 1500
@@ -50,7 +50,7 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
       .then(_dispatch(_.clearBackdrop))
       .delay(1000)
       .then(clearVisibleWeather)
+  } else {
+    return dispatch(_.noop())
   }
-
-  return dispatch(_.noop())
 }

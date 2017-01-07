@@ -14,6 +14,11 @@
   }
 }
 
+.seed-bank-svg {
+  width: 100%;
+  position: relative;
+}
+
 .score {
   text-align: center;
   @include no-select;
@@ -30,9 +35,19 @@
   right: 0;
 }
 
+.screen.sun-shining {
+  background-color: $sun-hover;
+}
+
 .outline {
   width: 40px;
   position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.seed-bank-inner {
+  transition: 2s ease;
 }
 
 @media (min-height: $height-m) and (min-width: $width-m) {
