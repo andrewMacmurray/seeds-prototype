@@ -1,4 +1,12 @@
+// fonts and text
 $main-font: Ek Mukta, Rubik, droid Sans, Helvetica Neue, Helvetica, Arial;
+
+$f1: 1.6em;
+$f2: 1.45em;
+$f3: 1.25em;
+$f4: 1em;
+$f5: 0.9em;
+$f6: 0.8em;
 
 // colors
 
@@ -18,7 +26,8 @@ $rain-blue: #0267b1;
 $midnight-blue: #011025;
 
 // gradient backgrounds
-$seedling-background: linear-gradient(90deg, $green, $green 50%, $darker-green 51%, $darker-green);
+$twin-seedling-background: linear-gradient(90deg, $green, $green 50%, $darker-green 51%, $darker-green);
+$circle-seedling-background: radial-gradient(ellipse at center, $green 0%, $green 50%, $darker-green 60%, $darker-green 100%);
 $midnight-background: linear-gradient(0deg, $dark-blue, $midnight-blue);
 
 // hover colors
@@ -29,6 +38,7 @@ $seedling-hover: #9DEE62;
 // seed colors
 $red: #F22B21;
 $dark-brown: #3A2315;
+$orange-brown: #C38245;
 $light-brown: #A77B52;
 $cerise: #D73564;
 $lavendar: #AE5C83;
@@ -38,6 +48,10 @@ $dusty-red: #EB4C48;
 // text colors
 $text-yellow: #D6A614;
 $text-yellow-light: #FFDB6C;
+
+// world width
+$world-width: 17em;
+$level-width: 2.5em;
 
 // grid size
 $grid-large: 60px;

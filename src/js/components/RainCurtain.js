@@ -1,10 +1,16 @@
 import { times } from 'ramda'
 import React from 'react'
+import cx from 'classnames'
 
 export default (props) => {
-  const visibility = props.raindropsVisible ? '' : 'hidden'
+
+  const rainClasses = cx(
+    'rain-curtain',
+    { hidden: !props.raindropsVisible }
+  )
+
   return (
-    <div className={'rain-curtain ' + visibility}>
+    <div className={rainClasses}>
       {times((i) => <div key={i} className='rain-drop' />, 16)}
     </div>
   )

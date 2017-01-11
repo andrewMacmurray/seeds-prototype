@@ -5,8 +5,10 @@ import SingleSeed from './Seeds/SingleSeed.js'
 import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { setView, playAudio } from '../redux/allActions.js'
+import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
 
 class TitleScreen extends React.Component {
+
   constructor () {
     super()
     this.state = { leaving: false }
@@ -15,6 +17,22 @@ class TitleScreen extends React.Component {
   startLeaveSequence = () => {
     this.setState({ leaving: true })
     setTimeout(() => this.props.setView('intro'), 4000)
+  }
+
+  goToHub = () => {
+    this.setState({ leaving: true })
+    this.props.flashLoadingScreen('blank', 1500)
+    setTimeout(() => this.props.setView('hub'), 1000)
+  }
+
+  begin = () => {
+    const { levelProgress } = this.props.level
+    if (levelProgress > 1) {
+      this.goToHub()
+    } else {
+      this.startLeaveSequence()
+      this.props.playAudio()
+    }
   }
 
   seedClasses () {
@@ -52,10 +70,7 @@ class TitleScreen extends React.Component {
           <p className={titleClasses + ' title'}>seed</p>
           <p
             className={beginClasses + ' begin'}
-            onClick={() => {
-              this.startLeaveSequence()
-              this.props.playAudio()
-            }}
+            onClick={this.begin}
           >begin</p>
         </div>
       </div>
@@ -65,4 +80,4 @@ class TitleScreen extends React.Component {
 
 const mapStateToProps = state => ({ ...state })
 
-export default connect(mapStateToProps, { setView, playAudio })(TitleScreen)
+export default connect(mapStateToProps, { setView, playAudio, flashLoadingScreen })(TitleScreen)

@@ -1,0 +1,33 @@
+.pod,
+.seedling {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.seedling.sunflower {
+  background: $twin-seedling-background;
+}
+
+.pod.sunflower {
+  background-image: url(../../public/img/seeds/sunflower/sunflower.svg);
+}
+
+.pod.foxglove {
+  background-image: url(../../public/img/seeds/foxglove/foxglove.svg);
+}
+
+.seedling.foxglove {
+  background: $circle-seedling-background;
+}
+
+
+@media (min-width: $width-m) and (min-height: $height-m) {
+  .seedling.sunflower {
+    padding: 13px;
+  }
+
+  .seedling.foxglove {
+    padding: 12px;
+  }
+}

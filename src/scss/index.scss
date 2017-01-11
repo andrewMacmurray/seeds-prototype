@@ -8,13 +8,20 @@
 @import 'views/intro';
 @import 'views/loading';
 
-// board
-@import 'board/tiles';
-@import 'board/board';
-@import 'board/score';
-@import 'board/coordiantes';
-@import 'board/weather';
+// level
+@import 'level/tiles';
+@import 'level/seeds';
+@import 'level/level';
+@import 'level/score';
+@import 'level/coordiantes';
+@import 'level/weather';
 
 // hub
 @import 'hub/level';
 @import 'hub/world';
+
+// tutorial
+@import 'tutorial/tutorial';
+
+// utilities
+@import 'utilities';
