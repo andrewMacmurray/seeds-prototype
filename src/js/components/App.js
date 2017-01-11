@@ -89,7 +89,10 @@ class App extends React.Component {
         className={'backdrop ' + backdrop}
       >
         {this.renderLoadingScreen()}
-        
+        <div className='menu'>
+          {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
+          <p className='menu-item' onClick={this.handleReset}>reset</p>
+        </div>
         <Audio />
         {this.router()}
         <RainCurtain raindropsVisible={raindropsVisible} />

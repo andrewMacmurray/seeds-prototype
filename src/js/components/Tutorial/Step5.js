@@ -14,7 +14,7 @@ const textContent = [
   { text: 'Marvellous!',
     visibleAt: [ 5 ]
   },
-  { text: 'The more you connect,\n the faster the seed bank will fill up',
+  { text: 'The more seeds you connect,\n the faster the seed bank will fill up',
     className: 'minus-1-half',
     visibleAt: [ 7 ]
   },
