@@ -18,8 +18,7 @@
 
 .intro-text {
   margin: 0;
-  opacity: 0;
-  font-size: 1.25em;
+  font-size: $f3;
   letter-spacing: 1.4px;
 }
 
@@ -28,7 +27,6 @@
 
   .intro-text {
     margin: 1em 0;
-    opacity: 0;
     position: absolute;
     width: 100%;
     left: 0;
@@ -44,7 +42,7 @@
 }
 
 .begin {
-  font-size: 16px;
+  font-size: $f4;
   margin-top: 65px;
   letter-spacing: 4px;
   opacity: 0;
@@ -58,7 +56,6 @@
   max-width: 2.9em;
   max-height: 7em;
   margin: 0 6.5px;
-  opacity: 0;
 }
 
 $sequence: 'one', 'two', 'three';
@@ -83,7 +80,7 @@ $sequence: 'one', 'two', 'three';
 
 @media (min-width: 550px) {
   .intro-text {
-    font-size: 1.4em;
+    font-size: $f2;
   }
 
   .intro-seed {

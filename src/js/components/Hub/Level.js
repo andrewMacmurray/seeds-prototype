@@ -12,7 +12,19 @@ export default class Level extends React.PureComponent {
   }
 
   render () {
-    const { offset, levelNumber, levelProgress, avatars, world, startLevel, goal } = this.props
+    const {
+      offset: { x: levelX, y: levelY },
+      trail: {
+        img: trailImg,
+        rotate: trailRotate,
+        offset: { x: trailX, y: trailY }
+      },
+      levelNumber,
+      levelProgress,
+      avatars,
+      world,
+      startLevel
+    } = this.props
 
     const isComplete = levelProgress > levelNumber
     const isCurrentLevel = levelProgress === levelNumber
@@ -20,7 +32,24 @@ export default class Level extends React.PureComponent {
     const numberActiveClass = isComplete || isCurrentLevel
       ? 'active'
       : ''
-    const levelAvatar = isComplete ? `img/${avatars[0]}.svg` : 'img/seed-outline.svg'
+
+    const levelAvatar = isComplete
+      ? `img/seeds/${avatars[0]}/${avatars[0]}.svg`
+      : 'img/outlines/teardrop-seed-outline.svg'
+
+    const trailStyles = {
+      transform:
+       `translate(${trailX}em, ${trailY}em)
+        rotate(${trailRotate}deg)`
+    }
+
+    const renderTrail = isComplete
+      ? <img className='trail'
+        style={trailStyles}
+        src={`img/trails/${trailImg}`}
+        />
+      : ''
+
     const renderPointer = isCurrentLevel
       ? <img className='pointer' src='img/triangle.svg' />
       : ''
@@ -28,12 +57,13 @@ export default class Level extends React.PureComponent {
     return (
       <div
         ref={($el) => this.level = $el}
-        className={'level offset-' + offset}
-        onClick={() => startLevel(levelNumber, goal, levelProgress)}
+        className={'hub-level offset-x-' + levelX + ' offset-y-' + levelY}
+        onClick={() => startLevel(world, levelNumber)}
       >
+        {renderTrail}
         {renderPointer}
-        <img className='level-avatar' src={levelAvatar} />
-        <div className={'level-number ' + numberActiveClass + ' world-' + world}>
+        <img className='hub-level-avatar' src={levelAvatar} />
+        <div className={'hub-level-number ' + numberActiveClass + ' world-' + world}>
           <p>{levelNumber}</p>
         </div>
       </div>

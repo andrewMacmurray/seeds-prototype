@@ -1,0 +1,48 @@
+.level-container {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.top-bar-container {
+  width: 20em;
+  margin: 40px auto 0;
+  display: flex;
+  align-items: center;
+}
+
+@for $i from 1 through 8 {
+  $scale: $i / 8;
+  .board-x#{$i} {
+    height: $board-height-small * $scale;
+    width: $board-width-small * $scale;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@media (min-height: $height-m) and (min-width: $width-m) {
+  @for $i from 1 through 8 {
+    $scale: $i / 8;
+    .board-x#{$i} {
+      height: $board-height-medium * $scale;
+      width: $board-width-medium * $scale;
+    }
+  }
+
+  .top-bar-container {
+    width: 28em;
+    margin: 60px auto 0;
+  }
+}
+
+@media (min-height: $height-l) {
+  .level-container {
+    margin: 5em 0;
+  }
+}

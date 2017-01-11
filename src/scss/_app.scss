@@ -34,11 +34,6 @@ p, a {
   transition: background-color 2s ease;
 }
 
-.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
 .audio-controls {
   position: fixed;
   bottom: 0.5em;
@@ -56,7 +51,7 @@ p, a {
 .menu-item {
   display: inline-block;
   margin-left: 32px;
-  font-size: 12px;
+  font-size: $f6;
   letter-spacing: 3px;
   font-size: 10px;
   margin-left: 15px;
@@ -73,7 +68,7 @@ p, a {
   }
   .menu-item {
     margin-left: 32px;
-    font-size: 12px;
+    font-size: $f6;
     letter-spacing: 3px;
   }
 }

@@ -1,27 +1,22 @@
 import React from 'react'
 import Level from './Level.js'
 
-export default (props) => {
-  const { world, levels, levelProgress, startLevel } = props
+export default ({ world, levels, levelProgress, startLevel }) => {
   return (
     <div className={'world-container world-' + world}>
-      {levels.map((row, i) => {
-        return (
-          <div key={i} className='level-row'>
-            {row.map((level, j) => {
-              return (
-                <Level
-                  startLevel={startLevel}
-                  key={j}
-                  world={world}
-                  levelProgress={levelProgress}
-                  {...level}
-                />
-              )
-            })}
-          </div>
-        )
-      })}
+      <div className='hub-level-container'>
+        {levels.map((level, i) => {
+          return (
+            <Level
+              startLevel={startLevel}
+              key={i}
+              world={world}
+              levelProgress={levelProgress}
+              {...level}
+            />
+          )
+        })}
+      </div>
     </div>
   )
 }

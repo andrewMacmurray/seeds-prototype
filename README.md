@@ -1,23 +1,23 @@
 # Seed
 
-A connect the dots game where the user must gather many seeds.
++ A connect the dots game where the user must gather many seeds.
++ An experiment that asks how can you use a UI framework like React to make games?
 
 ![seed](public/img/seed-collection.png)
 
-Rough demo working on gh-pages http://andrewmacmurray.github.io/seed/
+A demo working on gh-pages http://andrewmacmurray.github.io/seed/
 
 Goals:
 
-+ A browser based game using React and Redux
-+ Different layouts and challenges for each board
-+ A level system where the user progresses through a hub world
-+ An ios / android version in React Native
++ [x] A browser based game using React and Redux
++ [ ] Different layouts and challenges for each board
++ [x] A level system where the user progresses through a hub world
 
-If you'd like to collaborate feel free to leave an issue on github.
+If you'd like to collaborate feel free to leave an [issue](https://github.com/andrewMacmurray/seed/issues).
 
 ## Installing Locally
 
-To run the build, clone the repo (or fork it)
+To set up the build locally, clone the repo (or fork it)
 
 ```
 git clone https://github.com/andrewMacmurray/seed.git
@@ -29,7 +29,7 @@ install the node modules:
 $ npm install
 ```
 
-If you just want to make changes to the frontend code webpack is set up with hot reloading so run
+then run the dev server
 
 ```sh
 $ npm run dev
@@ -37,15 +37,14 @@ $ npm run dev
 
 and go to `localhost:8080` to see the project
 
-If you want to run it with a server (i.e. add some database functionality) you need to run two commands
+OR
+
+to build the webpack bundle run
 
 ```sh
-$ npm run nodemon
 $ npm run watch
 ```
 
-This starts a node server (which restarts on saving your files) and runs webpack in watch mode (it builds a bundle and watches for changes - rebuilding the missing bits on change)
-
-visit `localhost:4000` to see the project
+and open `index.html` to see the project
 
 Both the artwork and idea specifically are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License, the code is free to use otherwise.
