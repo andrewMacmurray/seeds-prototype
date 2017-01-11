@@ -6,24 +6,40 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const { rain, sun, weatherThreshold } = getState().level.weather
 
-  const setVisibleWeather = moveType === 'rain'
-    ? _dispatch(_.setRaindropsVisibility, true)
-    : _dispatch(_.setSunSphereVisibility, true)
+  const setVisibleWeather =
+    moveType === 'rain'
+      ? _dispatch(_.setRaindropsVisibility, true)
+      : _dispatch(_.setSunSphereVisibility, true)
 
-  const clearVisibleWeather = moveType === 'rain'
-    ? _dispatch(_.setRaindropsVisibility, false)
-    : _dispatch(_.setSunSphereVisibility, false)
+  const clearVisibleWeather = () =>
+    moveType === 'rain'
+      ? Promise.resolve()
+          .then(_dispatch(_.clearBackdrop))
+          .delay(1000)
+          .then(_dispatch(_.setRaindropsVisibility, false))
+      : Promise.resolve()
+          .then(_dispatch(_.setSunSphereVisibility, false))
+          .delay(1000)
+          .then(_dispatch(_.clearBackdrop))
 
-  const growDelay = moveType === 'rain'
-    ? 1500
-    : 1200
+  const growDelay =
+    moveType === 'rain'
+      ? 1500
+      : 1200
 
-  const backdrop = moveType === 'rain'
-    ? 'rain-falling'
-    : 'sun-shining'
+  const backdrop =
+    moveType === 'rain'
+      ? 'rain-falling'
+      : 'sun-shining'
 
-  const weatherMove = moveType === 'rain' || moveType === 'sun'
-  const aboveThreshold = rain > weatherThreshold || sun > weatherThreshold
+  const weatherMove =
+       moveType === 'rain'
+    || moveType === 'sun'
+
+  const aboveThreshold =
+       rain > weatherThreshold
+    || sun > weatherThreshold
+
   const shouldTriggerWeather = weatherMove && aboveThreshold
 
   if (shouldTriggerWeather) {
@@ -47,8 +63,6 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
         _.isUpdating, false
       ]))
       .delay(500)
-      .then(_dispatch(_.clearBackdrop))
-      .delay(1000)
       .then(clearVisibleWeather)
   } else {
     return dispatch(_.noop())
