@@ -1,34 +1,41 @@
-const probabilities = {} = module.exports
+const p = {} = module.exports
 
-probabilities.moreSeedlings = {
+p.moreSeedlings = {
   sun: 0.125,
   rain: 0.125,
   seedling: 0.70,
   pod: 0.05
 }
 
-probabilities.even = {
+p.even = {
   sun: 0.25,
   rain: 0.25,
   seedling: 0.4,
   pod: 0.1
 }
 
-probabilities.noSun = {
+p.noSun = {
   sun: 0,
   rain: 0.3,
   seedling: 0.6,
   pod: 0.1
 }
 
-probabilities.noRain = {
+p.noRain = {
   sun: 0.3,
   rain: 0,
   seedling: 0.6,
   pod: 0.1
 }
 
-probabilities.all = {
+p.noWeather = {
+  sun: 0,
+  rain: 0,
+  seedling: 0.8,
+  pod: 0.2
+}
+
+p.all = {
   sun: {
     sun: 1,
     rain: 0,

@@ -5,19 +5,21 @@ import Next from './components/Next.js'
 import Lines from './components/Lines.js'
 
 const textContent = [
-  { text: 'Now connect the seeds to fill the seed bank',
+  { text: 'Now connect seeds to fill the seed bank',
     visibleAt: [ 1, 2 ]
   },
-  { text: 'Connect as many seeds as you can in one go',
+  { text: 'Connect as many as you can in one move',
     visibleAt: [ 4 ]
   },
-  { text: 'Marvelous!',
+  { text: 'Marvellous!',
     visibleAt: [ 5 ]
   },
-  { text: 'The more seeds you connect, the faster the seed bank will fill up',
+  { text: 'The more you connect,\n the faster the seed bank will fill up',
+    className: 'minus-1-half',
     visibleAt: [ 7 ]
   },
   { text: 'Your first journey awaits...',
+    className: 'plus-1-half',
     visibleAt: [ 9, 10 ]
   }
 ]

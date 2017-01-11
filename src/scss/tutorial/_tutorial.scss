@@ -33,12 +33,12 @@
 }
 
 .tutorial-text {
-  margin: 0.2em;
+  margin: 0 1em 0.5em;
   text-align: center;
   left: 0;
-  right: 0; letter-spacing: 1px;
+  right: 0; letter-spacing: 0.5px;
   transition: opacity 0.5s linear;
-  font-size: $f6;
+  font-size: 1.1em;
   @include no-select;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .tutorial-board-container {
-  margin: 4.5em auto;
+  margin: 4em auto;
   z-index: 1;
   opacity: 1;
   transition: opacity 0.5s linear;
@@ -69,6 +69,7 @@
 @media (min-width: $width-m), (min-height: $height-m) {
   .tutorial-text {
     font-size: $f2;
+    letter-spacing: 1.5px;
   }
 }
 

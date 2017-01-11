@@ -7,13 +7,13 @@ const textContent = [
   { text: 'You have embarked on a journey',
     visibleAt: [ 1, 2 ]
   },
-  { text: 'Across mountains, deserts, meadows and forests',
+  { text: 'Across meadows, and mountains',
     visibleAt: [ 2 ]
   },
   { text: 'To find the seeds of our dying world',
     visibleAt: [ 4, 5 ]
   },
-  { text: 'And assemble a great seed bank for our new world',
+  { text: 'And build a seed bank for our new world',
     visibleAt: [ 5]
   }
 ]

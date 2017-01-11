@@ -4,7 +4,7 @@ import TextContainer from './components/TextContainer.js'
 import Lines from './components/Lines.js'
 
 const textContent = [
-  { text: 'Seed pods can be connected across or diagonally',
+  { text: 'Connect across or diagonally',
     visibleAt: [ 3 ]
   },
   { text: 'Wonderful!',

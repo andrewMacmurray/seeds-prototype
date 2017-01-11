@@ -59,6 +59,11 @@ class App extends React.Component {
       : identity
   }
 
+  handleReset () {
+    window.localStorage.removeItem('state')
+    window.location.reload()
+  }
+
   renderMenu (items) {
     return items.map((item, i) =>
       <p
@@ -84,14 +89,7 @@ class App extends React.Component {
         className={'backdrop ' + backdrop}
       >
         {this.renderLoadingScreen()}
-        <div className='menu'>
-          {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
-          <p className='menu-item' onClick={() => {
-            window.localStorage.removeItem('state')
-            window.location.reload()
-          }}
-          >reset</p>
-        </div>
+        
         <Audio />
         {this.router()}
         <RainCurtain raindropsVisible={raindropsVisible} />

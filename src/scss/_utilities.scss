@@ -23,6 +23,18 @@
   position: absolute;
 }
 
+.minus-1-half-margin {
+  margin-top: -1.5em;
+}
+
+.minus-1-half {
+  top: -1.5em;
+}
+
+.plus-1-half {
+  top: 1.5em;
+}
+
 .ts-linear {
   transition: 0.5s linear;
 }

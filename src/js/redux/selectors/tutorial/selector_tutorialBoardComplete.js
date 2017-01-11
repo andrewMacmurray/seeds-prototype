@@ -13,12 +13,12 @@ const podPercentage = (board) => countTiles(4)(board) / totalTiles(board)
 const seedlingPercentage = (board) => countTiles(3)(board) / totalTiles(board)
 
 const seedlingBoardPercent = compose(
-  gte(__, 0.9),
+  gte(__, 0.75),
   podPercentage
 )
 
 const podBoardPercent = compose(
-  gte(__, 0.9),
+  gte(__, 0.75),
   seedlingPercentage
 )
 

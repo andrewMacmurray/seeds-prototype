@@ -3,10 +3,10 @@ import Line from './Line.js'
 
 export default (props) =>
   <div>
-    {props.textContent.map(({ text, visibleAt }, i) =>
+    {props.textContent.map(({ text, visibleAt, className }, i) =>
       <Line
         key={i}
-        className={props.className}
+        className={className}
         text={text}
         visibleAt={visibleAt}
         {...props}
