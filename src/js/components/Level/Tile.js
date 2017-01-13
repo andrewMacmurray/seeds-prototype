@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import { Observable } from 'rxjs'
+import { Observable } from 'rx-lite'
 
 export default class Seed extends React.PureComponent {
   componentDidMount () {
@@ -9,14 +9,13 @@ export default class Seed extends React.PureComponent {
     const { offsetWidth, offsetHeight } = $el
     const { x: originX, y: originY } = this.props
 
-    const pointer$ = Observable
+    Observable
       .fromEvent($el, 'pointermove')
-      .throttleTime(50)
-      .map(e => ({
-        x: Math.round((e.offsetX - offsetWidth / 2) / offsetWidth) + originY,
-        y: Math.round((e.offsetY - offsetHeight / 2) / offsetHeight) + originX
-      }))
-      .subscribe(console.log)
+      .map(e => [
+        Math.round((e.offsetX - offsetWidth / 2) / offsetWidth) + originY,
+        Math.round((e.offsetY - offsetHeight / 2) / offsetHeight) + originX
+      ])
+      .subscribe(this.props.checkTile)
   }
 
   getContainer () {
@@ -69,6 +68,7 @@ export default class Seed extends React.PureComponent {
 
     return (
       <div
+        style={{ touchAction: 'auto' }}
         onPointerDown={this.props.startDrag}
         ref={($el) => this.container = $el}
         className={containerClasses}
