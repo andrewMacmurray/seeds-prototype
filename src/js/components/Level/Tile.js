@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
-import { Observable } from 'rx-lite'
+import { addListener, removeListener } from 'spur-events'
 
 export default class Seed extends React.PureComponent {
   componentDidMount () {
@@ -9,13 +9,26 @@ export default class Seed extends React.PureComponent {
     const { offsetWidth, offsetHeight } = $el
     const { x: originX, y: originY } = this.props
 
-    Observable
-      .fromEvent($el, 'pointermove')
-      .map(e => [
+    addListener($el, 'pointerdown', this.props.startDrag)
+
+    addListener($el, 'pointerenter', (e) => {
+      const dataX = parseInt(e.target.getAttribute('data-x'))
+      const dataY = parseInt(e.target.getAttribute('data-y'))
+      this.props.checkTile([ dataY, dataX ])
+    })
+
+    $el.addEventListener('pointermove', (e) => {
+      this.props.checkTile([
         Math.round((e.offsetX - offsetWidth / 2) / offsetWidth) + originY,
         Math.round((e.offsetY - offsetHeight / 2) / offsetHeight) + originX
       ])
-      .subscribe(this.props.checkTile)
+    })
+  }
+
+  componentWillUnmount () {
+    const $el = this.getContainer()
+    removeListener($el, 'pointerdown')
+    removeListener($el, 'pointerenter')
   }
 
   getContainer () {
@@ -68,8 +81,6 @@ export default class Seed extends React.PureComponent {
 
     return (
       <div
-        style={{ touchAction: 'auto' }}
-        onPointerDown={this.props.startDrag}
         ref={($el) => this.container = $el}
         className={containerClasses}
         data-x={x}
