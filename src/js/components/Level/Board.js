@@ -58,6 +58,7 @@ class Board extends React.PureComponent {
       isLeavingArray,
       isDraggingArray,
       fallingMagnitudeArray,
+      seedPodsDisabledArray,
       isEnteringArray,
       isGrowingArray,
       movesOrderArray,
@@ -82,6 +83,7 @@ class Board extends React.PureComponent {
                     key={'tile-' + i + '-' + j}
                     moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
                     growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
+                    seedPodDisabled={seedPodsDisabledArray[i][j] ? 'disabled' : ''}
                     isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}
                     isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
                     isEntering={isEnteringArray[i][j] ? 'entering' : ''}
@@ -101,6 +103,7 @@ class Board extends React.PureComponent {
 
 import isDraggingArray from '../../redux/selectors/level/selector_isDraggingArray.js'
 import isGrowingArray from '../../redux/selectors/level/selector_isGrowingArray.js'
+import seedPodsDisabledArray from '../../redux/selectors/level/selector_seedPodsDisabledArray.js'
 import moveType from '../../redux/selectors/level/selector_moveType.js'
 import seedMoves from '../../redux/selectors/level/selector_seedMoves.js'
 import seedlingCount from '../../redux/selectors/level/selector_seedlingCount.js'
@@ -108,13 +111,14 @@ import { movesOrder, growingOrder } from '../../redux/selectors/level/selector_m
 
 const mapStateToProps = (state) => ({
   ...state.level,
-  movesOrderArray: movesOrder(state),
-  growingOrderArray: growingOrder(state),
   isDraggingArray: isDraggingArray(state),
   isGrowingArray: isGrowingArray(state),
+  seedPodsDisabledArray: seedPodsDisabledArray(state),
   moveType: moveType(state),
+  seedMoves: seedMoves(state),
   seedlingCount: seedlingCount(state),
-  seedMoves: seedMoves(state)
+  movesOrderArray: movesOrder(state),
+  growingOrderArray: growingOrder(state)
 })
 
 import stopDrag from '../../redux/actionSequences/level/stopDrag.js'

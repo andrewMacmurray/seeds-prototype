@@ -1,10 +1,12 @@
 import Promise from 'bluebird'
 import { makeLazyDispatcher } from '../../_thunkHelpers.js'
-import triggerWeather from './triggerWeather.js'
+import * as _ from '../../allActions.js'
+import triggerWeather from './weather/triggerWeather.js'
 import processMove from './processMove.js'
 import fallTiles from './fallTiles.js'
 import growSeedlings from './growSeedlings.js'
 import handleLevelStop from './handleLevelStop.js'
+import clearVisibleWeather from './weather/clearVisibleWeather.js'
 import { any, equals, gt } from 'ramda'
 
 export default (moveType, seedlingCount) => (dispatch, getState) => {
@@ -20,11 +22,11 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
     ? 600
     : 200
 
-  const handleWeather = _dispatch(triggerWeather, moveType, seedlingCount)
+  const handleWeatherTrigger = _dispatch(triggerWeather, moveType, seedlingCount)
   const handleReset = _dispatch(fallTiles, moveArray)
 
   const reset = () => Promise.all([
-    handleWeather(),
+    handleWeatherTrigger(),
     handleReset()
   ])
 
@@ -32,12 +34,18 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
     return Promise
       .resolve()
       .then(_dispatch(processMove, moveType, moveArray))
+      .then(_dispatch(clearVisibleWeather))
+      .then(_dispatch(_.decrementWeatherTurns))
       .delay(falldelay)
       .then(reset)
       .then(_dispatch(handleLevelStop))
   }
 
   if (boardReady && isSeedling) {
-    return dispatch(growSeedlings(moveArray))
+    return Promise.all([
+      dispatch(growSeedlings(moveArray)),
+      dispatch(clearVisibleWeather()),
+      dispatch(_.decrementWeatherTurns())
+    ])
   }
 }

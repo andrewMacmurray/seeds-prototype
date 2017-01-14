@@ -41,6 +41,7 @@ export default class Seed extends React.PureComponent {
       seedType,
       x,
       y,
+      seedPodDisabled,
       weatherAnimating,
       moveOrder,
       growingOrder,
@@ -60,10 +61,15 @@ export default class Seed extends React.PureComponent {
       ? isGrowing + growingTransition
       : ''
 
+    const isDisabled = tileType === 'seedling'
+      ? seedPodDisabled
+      : ''
+
     const containerClasses = classNames(
       'tile-container',
       'x-' + x,
-      'y-' + y
+      'y-' + y,
+      isDisabled
     )
 
     const tileClasses = classNames(

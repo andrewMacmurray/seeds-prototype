@@ -1,9 +1,11 @@
-import { path } from 'ramda'
 import { createAction } from 'redux-actions'
+import { path, identity } from 'ramda'
 
 // action types
 const WEATHER_POWER = 'WEATHER_POWER'
 const RESET_WEATHER = 'RESET_WEATHER'
+const SET_WEATHER_TURNS = 'SET_WEATHER_TURNS'
+const DECREMENT_WEATHER_TURNS = 'DECREMENT_WEATHER_TURNS'
 const WEATHER_ANIMATING = 'WEATHER_ANIMATING'
 const SET_RAINDROPS_VISIBILITY = 'SET_RAINDROPS_VISIBILITY'
 const SET_SUN_SPHERE_VISIBILITY = 'SET_SUN_SPHERE_VISIBILITY'
@@ -14,6 +16,7 @@ const defaultState = {
   rain: 0,
   sun: 0,
   weatherThreshold: 12,
+  remainingWeatherTurns: 0,
   animating: false,
   raindropsVisible: false,
   sunSphereVisible: false
@@ -30,6 +33,16 @@ export default (state = defaultState, action) => {
     return {
       ...state,
       ...action.payload
+    }
+  case SET_WEATHER_TURNS:
+    return {
+      ...state,
+      remainingWeatherTurns: action.payload
+    }
+  case DECREMENT_WEATHER_TURNS:
+    return {
+      ...state,
+      remainingWeatherTurns: state.remainingWeatherTurns - 1
     }
   case WEATHER_ANIMATING:
     return {
@@ -94,7 +107,20 @@ export const resetWeatherPower = (weatherType) => (dispatch, getState) => {
   })
 }
 
-export const weatherAnimating = createAction(WEATHER_ANIMATING, x => x)
-export const setRaindropsVisibility = createAction(SET_RAINDROPS_VISIBILITY, x => x)
-export const setSunSphereVisibility = createAction(SET_SUN_SPHERE_VISIBILITY, x => x)
-export const setWeatherThreshold = createAction(SET_WEATHER_THRESHOLD, x => x)
+export const decrementWeatherTurns = () => (dispatch, getState) => {
+  const state = getState()
+  const { remainingWeatherTurns } = state.level.weather
+
+  if (remainingWeatherTurns > 0) {
+    dispatch({
+      type: DECREMENT_WEATHER_TURNS,
+      payload: null
+    })
+  }
+}
+
+export const weatherAnimating = createAction(WEATHER_ANIMATING, identity)
+export const setRaindropsVisibility = createAction(SET_RAINDROPS_VISIBILITY, identity)
+export const setWeatherTurns = createAction(SET_WEATHER_TURNS, identity)
+export const setSunSphereVisibility = createAction(SET_SUN_SPHERE_VISIBILITY, identity)
+export const setWeatherThreshold = createAction(SET_WEATHER_THRESHOLD, identity)

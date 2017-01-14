@@ -1,26 +1,11 @@
 import Promise from 'bluebird'
-import * as _ from '../../allActions.js'
-import { makeLazyDispatcher, batch } from '../../_thunkHelpers.js'
+import * as _ from '../../../allActions.js'
+import { makeLazyDispatcher, batch } from '../../../_thunkHelpers.js'
+import setVisibleWeather from './setVisibleWeather.js'
 
 export default (moveType, seedlingCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const { rain, sun, weatherThreshold } = getState().level.weather
-
-  const setVisibleWeather =
-    moveType === 'rain'
-      ? _dispatch(_.setRaindropsVisibility, true)
-      : _dispatch(_.setSunSphereVisibility, true)
-
-  const clearVisibleWeather = () =>
-    moveType === 'rain'
-      ? Promise.resolve()
-          .then(_dispatch(_.clearBackdrop))
-          .delay(1000)
-          .then(_dispatch(_.setRaindropsVisibility, false))
-      : Promise.resolve()
-          .then(_dispatch(_.setSunSphereVisibility, false))
-          .delay(1000)
-          .then(_dispatch(_.clearBackdrop))
 
   const growDelay =
     moveType === 'rain'
@@ -45,12 +30,13 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
   if (shouldTriggerWeather) {
     return Promise
       .resolve()
-      .then(setVisibleWeather)
+      .then(_dispatch(setVisibleWeather, moveType))
       .then(batch(dispatch, [
         _.weatherAnimating, true,
         _.setBackdrop, backdrop,
         _.isUpdating, true,
-        _.resetWeatherPower, moveType
+        _.resetWeatherPower, moveType,
+        _.setWeatherTurns, 2
       ]))
       .delay(growDelay)
       .then(_dispatch(_.growRandomSeeds, seedlingCount))
@@ -62,8 +48,6 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
         _.resetGrowSeeds,
         _.isUpdating, false
       ]))
-      .delay(500)
-      .then(clearVisibleWeather)
   } else {
     return dispatch(_.noop())
   }
