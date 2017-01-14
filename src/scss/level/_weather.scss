@@ -79,7 +79,7 @@
   background-color: $sun-hover;
 
   &.active {
-    transform: translateY(-300px);
+    transform: translateY(-400px);
     opacity: 1;
   }
 }
@@ -99,5 +99,11 @@
 @media (min-height: $height-m), (min-width: $width-m) {
   .rain-curtain {
     width: 100%;
+  }
+}
+
+@media (min-height: $height-m) and (min-width: $width-m) {
+  .sun-sphere.active {
+    transform: translateY(-300px);
   }
 }
