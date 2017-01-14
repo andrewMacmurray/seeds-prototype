@@ -58,6 +58,6 @@
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.1",
     "sanctuary": "^0.11.1",
-    "spur-events": "^0.1.2"
+    "spur-events": "^0.1.7"
   }
 }

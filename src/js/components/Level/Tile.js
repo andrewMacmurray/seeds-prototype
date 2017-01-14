@@ -1,24 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { addListener, removeListener } from 'spur-events'
 import classNames from 'classnames'
+import { addListener, removeListener } from 'spur-events'
 
 export default class Seed extends React.PureComponent {
   componentDidMount () {
     const $el = this.getContainer()
-    addListener($el, 'pointerenter', this.pointerEnterListener)
+    const { offsetWidth, offsetHeight } = $el
+    const { x: originX, y: originY } = this.props
+
     addListener($el, 'pointerdown', this.props.startDrag)
+
+    addListener($el, 'pointerenter', (e) => {
+      const dataX = parseInt(e.target.getAttribute('data-x'))
+      const dataY = parseInt(e.target.getAttribute('data-y'))
+      this.props.checkTile([ dataY, dataX ])
+    })
+
+    $el.addEventListener('pointermove', (e) => {
+      this.props.checkTile([
+        Math.round((e.offsetX - offsetWidth / 2) / offsetWidth) + originY,
+        Math.round((e.offsetY - offsetHeight / 2) / offsetHeight) + originX
+      ])
+    })
   }
 
   componentWillUnmount () {
     const $el = this.getContainer()
-    removeListener($el, 'pointerenter')
     removeListener($el, 'pointerdown')
-  }
-
-  pointerEnterListener = (e) => {
-    e.preventDefault()
-    this.props.checkTile(e)
+    removeListener($el, 'pointerenter')
   }
 
   getContainer () {
@@ -40,7 +50,10 @@ export default class Seed extends React.PureComponent {
       isEntering,
       isFalling
     } = this.props
-    const seedClass = tileType === 'pod' || tileType === 'seedling' ? seedType : ''
+
+    const seedClass = tileType === 'pod' || tileType === 'seedling'
+      ? seedType
+      : ''
     const growingTransition = weatherAnimating ? ' transition' : ''
 
     const growingClass = isGrowing
@@ -65,6 +78,7 @@ export default class Seed extends React.PureComponent {
       isEntering,
       isFalling
     )
+
     return (
       <div
         ref={($el) => this.container = $el}

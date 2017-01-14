@@ -43,7 +43,7 @@ export default class Level extends React.PureComponent {
         rotate(${trailRotate}deg)`
     }
 
-    const renderTrail = isComplete
+    const renderTrail = isComplete && trailImg
       ? <img className='trail'
         style={trailStyles}
         src={`img/trails/${trailImg}`}

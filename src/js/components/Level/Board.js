@@ -30,9 +30,8 @@ class Board extends React.PureComponent {
     this.props.startDrag(tile, moveType)
   }
 
-  checkTile = (e) => {
-    const [ tile, moveType ] = this.getTileAndType(e)
-    this.props.checkTile(tile, moveType)
+  checkTile = (tile) => {
+    this.props.checkTile(tile, this.props.moveType)
   }
 
   stopSequence = () => {
