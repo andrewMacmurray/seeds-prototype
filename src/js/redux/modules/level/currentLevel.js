@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import { identity } from 'ramda'
 
 // action types
 const SET_CURRENT_LEVEL = 'SET_CURRENT_LEVEL'
@@ -28,5 +29,5 @@ export default (state = defaultState, action) => {
 }
 
 // action creators
-export const setCurrentLevel = createAction(SET_CURRENT_LEVEL, x => x)
-export const setCurrentWorld = createAction(SET_CURRENT_WORLD, x => x)
+export const setCurrentLevel = createAction(SET_CURRENT_LEVEL, identity)
+export const setCurrentWorld = createAction(SET_CURRENT_WORLD, identity)

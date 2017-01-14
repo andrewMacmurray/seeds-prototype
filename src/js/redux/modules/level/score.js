@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { compose, length } from 'ramda'
+import { compose, length, identity } from 'ramda'
 
 // action types
 const UPDATE_SCORE = 'UPDATE_SCORE'
@@ -53,4 +53,4 @@ export const updateScore = (tileType, moves) => (dispatch, getState) => {
 }
 
 export const resetScore = createAction(RESET_SCORE)
-export const setLevelGoal = createAction(SET_LEVEL_GOAL, x => x)
+export const setLevelGoal = createAction(SET_LEVEL_GOAL, identity)

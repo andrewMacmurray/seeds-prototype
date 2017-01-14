@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import { identity } from 'ramda'
 
 // action types
 const IS_UPDATING = 'IS_UPDATING'
@@ -15,4 +16,4 @@ export default (state = defaultState, action) => {
 }
 
 // actions
-export const isUpdating = createAction(IS_UPDATING, x => x)
+export const isUpdating = createAction(IS_UPDATING, identity)

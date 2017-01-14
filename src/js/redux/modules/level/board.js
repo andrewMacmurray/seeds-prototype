@@ -6,6 +6,7 @@ import {
   shiftBoard,
   addNewTiles
 } from '../../../model'
+import { identity } from 'ramda'
 
 // action types
 const SHIFT_TILES = 'SHIFT_TILES'
@@ -118,6 +119,6 @@ export const removeSeedsFromBoard = (moves) => (dispatch, getState) => {
   })
 }
 
-export const shuffleTiles = createAction(SHUFFLE_TILES, x => x)
-export const setBoardSize = createAction(SET_BOARD_SIZE, x => x)
-export const setProbabilities = createAction(SET_PROBABILITIES, x => x)
+export const shuffleTiles = createAction(SHUFFLE_TILES, identity)
+export const setBoardSize = createAction(SET_BOARD_SIZE, identity)
+export const setProbabilities = createAction(SET_PROBABILITIES, identity)
