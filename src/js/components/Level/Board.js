@@ -58,14 +58,13 @@ class Board extends React.PureComponent {
       isLeavingArray,
       isDraggingArray,
       fallingMagnitudeArray,
-      seedPodsDisabledArray,
       isEnteringArray,
       isGrowingArray,
       movesOrderArray,
       growingOrderArray,
       seedType,
       board: { tiles, boardSize },
-      weather: { animating }
+      weather: { animating, remainingWeatherTurns }
     } = this.props
 
     return (
@@ -81,13 +80,13 @@ class Board extends React.PureComponent {
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}
                     key={'tile-' + i + '-' + j}
+                    remainingWeatherTurns={remainingWeatherTurns}
                     moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
                     growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
-                    seedPodDisabled={seedPodsDisabledArray[i][j] ? 'disabled' : ''}
                     isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}
                     isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
                     isEntering={isEnteringArray[i][j] ? 'entering' : ''}
-                    isGrowing={isGrowingArray[i][j] ? 'growing' : ''}
+                    isGrowing={isGrowingArray[i][j]}
                     isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
                     y={i}
                     x={j}
@@ -103,7 +102,6 @@ class Board extends React.PureComponent {
 
 import isDraggingArray from '../../redux/selectors/level/selector_isDraggingArray.js'
 import isGrowingArray from '../../redux/selectors/level/selector_isGrowingArray.js'
-import seedPodsDisabledArray from '../../redux/selectors/level/selector_seedPodsDisabledArray.js'
 import moveType from '../../redux/selectors/level/selector_moveType.js'
 import seedMoves from '../../redux/selectors/level/selector_seedMoves.js'
 import seedlingCount from '../../redux/selectors/level/selector_seedlingCount.js'
@@ -113,7 +111,6 @@ const mapStateToProps = (state) => ({
   ...state.level,
   isDraggingArray: isDraggingArray(state),
   isGrowingArray: isGrowingArray(state),
-  seedPodsDisabledArray: seedPodsDisabledArray(state),
   moveType: moveType(state),
   seedMoves: seedMoves(state),
   seedlingCount: seedlingCount(state),

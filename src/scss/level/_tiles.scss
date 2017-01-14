@@ -100,6 +100,10 @@
     animation-delay: $i * 0.04s - 0.03s!important;
     transition-delay: $i * 0.04s - 0.03s!important;
   }
+
+  .seedling.bulging.delay-#{$i} {
+    animation-delay: $i * 0.04s - 0.03s!important;
+  }
 }
 
 .pod.growing {
@@ -111,6 +115,11 @@
 .seedling.growing {
   animation: popOut 0.7s ease;
   animation-fill-mode: both;
+}
+
+.seedling.bulging {
+   animation: bulge 0.5s ease;
+   animation-fill-mode: both;
 }
 
 .seedling.growing.transition {

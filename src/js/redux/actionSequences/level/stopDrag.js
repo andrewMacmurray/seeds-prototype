@@ -44,8 +44,8 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
   if (boardReady && isSeedling) {
     return Promise.all([
       dispatch(growSeedlings(moveArray)),
-      dispatch(clearVisibleWeather()),
-      dispatch(_.decrementWeatherTurns())
+      dispatch(clearVisibleWeather())
     ])
+    .then(_dispatch(_.decrementWeatherTurns))
   }
 }
