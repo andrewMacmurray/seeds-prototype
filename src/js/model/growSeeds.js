@@ -9,7 +9,7 @@ const growSeedMove = (tile, i, j, count) => {
     : 0
 }
 
-const growMovesOnBoard = (board, seedlingCount) => mapBoard(growSeedMove, seedlingCount)(board)
+const growMovesOnBoard = (board, seedPodCount) => mapBoard(growSeedMove, seedPodCount)(board)
 
 const notZero = complement(equals(0))
 const filterForTiles = filter(notZero)
@@ -32,9 +32,9 @@ export const getSeedMoves = compose(
   seedMovesOnBoard
 )
 
-const isSeedling = equals(3)
-export const countSeedlings = compose(
+const isSeedPod = equals(3)
+export const countSeedPods = compose(
   length,
-  filter(isSeedling),
+  filter(isSeedPod),
   unnest
 )

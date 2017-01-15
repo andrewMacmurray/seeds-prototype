@@ -29,11 +29,11 @@
   opacity: 1;
 }
 
-.seedling {
+.seedPod {
   padding: 10px;
 }
 
-.pod {
+.seed {
   padding: 14px;
   transform: scale(1);
   opacity: 1;
@@ -41,8 +41,8 @@
 
 .rain.dragging,
 .sun.dragging,
-.seedling.dragging,
-.pod.dragging {
+.seedPod.dragging,
+.seed.dragging {
   transition: transform 0.3s ease;
   transform: translate(0, 0) scale(0.5);
 }
@@ -74,7 +74,7 @@
         transition: 1s ease;
       }
 
-      .pod.leaving {
+      .seed.leaving {
         $i3: -4 + $i;
 
         $x: $grid-small * (-$i3) - ($grid-small / 2);
@@ -92,37 +92,37 @@
     transition-delay: $i * 0.04s - 0.03s!important;
   }
 
-  .pod.growing.delay-#{$i} {
+  .seed.growing.delay-#{$i} {
     animation-delay: $i * 0.04s - 0.03s!important;
   }
 
-  .seedling.growing.delay-#{$i} {
+  .seedPod.growing.delay-#{$i} {
     animation-delay: $i * 0.04s - 0.03s!important;
     transition-delay: $i * 0.04s - 0.03s!important;
   }
 
-  .seedling.bulging.delay-#{$i} {
-    animation-delay: $i * 0.04s - 0.03s!important;
+  .seedPod.bulging.delay-#{$i} {
+    animation-delay: $i * 0.02s - 0.03s!important;
   }
 }
 
-.pod.growing {
+.seed.growing {
   transform: scale(0);
   animation: elasticBounceIn 0.5s ease;
   animation-fill-mode: both;
 }
 
-.seedling.growing {
+.seedPod.growing {
   animation: popOut 0.7s ease;
   animation-fill-mode: both;
 }
 
-.seedling.bulging {
+.seedPod.bulging {
    animation: bulge 0.5s ease;
    animation-fill-mode: both;
 }
 
-.seedling.growing.transition {
+.seedPod.growing.transition {
   animation: none;
   transform: scale(4);
   opacity: 0;
@@ -139,11 +139,11 @@
     padding: 9px;
   }
 
-  .seedling {
+  .seedPod {
     padding: 13px;
   }
 
-  .pod {
+  .seed {
     padding: 19px;
   }
 
@@ -167,7 +167,7 @@
           transform: translate($x, $y) scale(1);
         }
 
-        .pod.leaving {
+        .seed.leaving {
           $i3: -4 + $i;
 
           $x: $grid-medium * (-$i3) - ($grid-medium / 2);

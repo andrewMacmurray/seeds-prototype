@@ -3,7 +3,7 @@ import * as _ from '../../../allActions.js'
 import { makeLazyDispatcher, batch } from '../../../_thunkHelpers.js'
 import setVisibleWeather from './setVisibleWeather.js'
 
-export default (moveType, seedlingCount) => (dispatch, getState) => {
+export default (moveType, seedPodCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const { rain, sun, weatherThreshold } = getState().level.weather
 
@@ -39,7 +39,7 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
         _.setWeatherTurns, 2
       ]))
       .delay(growDelay)
-      .then(_dispatch(_.growRandomSeeds, seedlingCount))
+      .then(_dispatch(_.growRandomSeeds, seedPodCount))
       .delay(1000)
       .then(_dispatch(_.growSeedsOnBoard))
       .delay(800)

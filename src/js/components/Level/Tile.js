@@ -52,7 +52,7 @@ export default class Seed extends React.PureComponent {
       isFalling
     } = this.props
 
-    const seedClass = tileType === 'pod' || tileType === 'seedling'
+    const seedClass = tileType === 'seed' || tileType === 'seedPod'
       ? seedType
       : ''
     const growingTransition = weatherAnimating ? ' transition' : ''

@@ -9,18 +9,18 @@ const countTiles = (n) => compose(
 )
 
 const totalTiles = compose(length, flatten)
-const podPercentage = (board) => countTiles(4)(board) / totalTiles(board)
-const seedlingPercentage = (board) => countTiles(3)(board) / totalTiles(board)
+const seedPercentage = (board) => countTiles(4)(board) / totalTiles(board)
+const seedPodPercentage = (board) => countTiles(3)(board) / totalTiles(board)
 
-const seedlingBoardPercent = compose(
+const seedPodBoardPercent = compose(
   gte(__, 0.75),
-  podPercentage
+  seedPercentage
 )
 
-const podBoardPercent = compose(
+const seedBoardPercent = compose(
   gte(__, 0.75),
-  seedlingPercentage
+  seedPodPercentage
 )
 
-export const seedlingBoardComplete = createSelector([ _board ], seedlingBoardPercent)
-export const podBoardComplete = createSelector([ _board ], podBoardPercent)
+export const seedPodBoardComplete = createSelector([ _board ], seedPodBoardPercent)
+export const seedBoardComplete = createSelector([ _board ], seedBoardPercent)

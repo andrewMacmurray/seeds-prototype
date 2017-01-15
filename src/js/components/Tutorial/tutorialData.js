@@ -30,7 +30,7 @@ export default [
     { delay: 2000, auto },
     { delay }
   ],
-    board: { size: 2, probabilities: all.seedlings, step: 1 }
+    board: { size: 2, probabilities: all.seedPods, step: 1 }
   },
   { subSteps: [
     { delay, auto },
@@ -39,7 +39,7 @@ export default [
     { delay, auto },
     { delay }
   ],
-    board: { size: 3, probabilities: all.seedlings, step: 1 }
+    board: { size: 3, probabilities: all.seedPods, step: 1 }
   },
   { subSteps: [
     { delay, auto },

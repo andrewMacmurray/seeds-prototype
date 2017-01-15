@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { moreSeedlings, even } from '../../../constants/probabilities.js'
+import { moreSeedPods, even } from '../../../constants/probabilities.js'
 import {
   randomBoard,
   transformTiles,
@@ -22,7 +22,7 @@ const initialLoadProbability = even
 const initialBoardSize = 8
 const defaultState = {
   tiles: randomBoard(initialBoardSize, initialLoadProbability),
-  probabilities: moreSeedlings,
+  probabilities: moreSeedPods,
   boardSize: initialBoardSize
 }
 

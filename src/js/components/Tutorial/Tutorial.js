@@ -48,14 +48,14 @@ class Tutorial extends React.PureComponent {
 }
 
 import {
-  podBoardComplete,
-  seedlingBoardComplete
+  seedBoardComplete,
+  seedPodBoardComplete
 } from '../../redux/selectors/tutorial/selector_tutorialBoardComplete.js'
 
 const mapStateToProps = (state) => ({
   ...state.tutorial,
-  seedlingBoardComplete: seedlingBoardComplete(state),
-  podBoardComplete: podBoardComplete(state)
+  seedPodBoardComplete: seedPodBoardComplete(state),
+  seedBoardComplete: seedBoardComplete(state)
 })
 
 export default connect(mapStateToProps, { handleNextTutorialStep, initTutorial })(Tutorial)

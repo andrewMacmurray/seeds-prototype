@@ -4,25 +4,25 @@ import * as _ from '../../allActions.js'
 import triggerWeather from './weather/triggerWeather.js'
 import processMove from './processMove.js'
 import fallTiles from './fallTiles.js'
-import growSeedlings from './growSeedlings.js'
+import growSeedPods from './growSeedPods.js'
 import handleLevelStop from './handleLevelStop.js'
 import clearVisibleWeather from './weather/clearVisibleWeather.js'
 import { any, equals, gt } from 'ramda'
 
-export default (moveType, seedlingCount) => (dispatch, getState) => {
+export default (moveType, seedPodCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const state = getState()
   const { updating } = state
   const { isDragging, moves: { moveArray } } = state.level
 
-  const isLeaving = any(equals(moveType), [ 'sun', 'rain', 'pod' ])
-  const isSeedling = moveType === 'seedling'
+  const isLeaving = any(equals(moveType), [ 'sun', 'rain', 'seed' ])
+  const isSeedPod = moveType === 'seedPod'
   const boardReady = !updating && isDragging
   const falldelay = gt(moveArray.length, 10)
     ? 600
     : 200
 
-  const handleWeatherTrigger = _dispatch(triggerWeather, moveType, seedlingCount)
+  const handleWeatherTrigger = _dispatch(triggerWeather, moveType, seedPodCount)
   const handleReset = _dispatch(fallTiles, moveArray)
 
   const reset = () => Promise.all([
@@ -41,9 +41,9 @@ export default (moveType, seedlingCount) => (dispatch, getState) => {
       .then(_dispatch(handleLevelStop))
   }
 
-  if (boardReady && isSeedling) {
+  if (boardReady && isSeedPod) {
     return Promise.all([
-      dispatch(growSeedlings(moveArray)),
+      dispatch(growSeedPods(moveArray)),
       dispatch(clearVisibleWeather())
     ])
     .then(_dispatch(_.decrementWeatherTurns))

@@ -1,33 +1,33 @@
-.pod,
-.seedling {
+.seed,
+.seedPod {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
-.seedling.sunflower {
-  background: $twin-seedling-background;
+.seedPod.sunflower {
+  background: $twin-seed-pod-background;
 }
 
-.pod.sunflower {
+.seed.sunflower {
   background-image: url(../../public/img/seeds/sunflower/sunflower.svg);
 }
 
-.pod.foxglove {
-  background-image: url(../../public/img/seeds/foxglove/foxglove.svg);
+.seedPod.foxglove {
+  background: $circle-seed-pod-background;
 }
 
-.seedling.foxglove {
-  background: $circle-seedling-background;
+.seed.foxglove {
+  background-image: url(../../public/img/seeds/foxglove/foxglove.svg);
 }
 
 
 @media (min-width: $width-m) and (min-height: $height-m) {
-  .seedling.sunflower {
+  .seedPod.sunflower {
     padding: 13px;
   }
 
-  .seedling.foxglove {
+  .seedPod.foxglove {
     padding: 12px;
   }
 }

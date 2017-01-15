@@ -16,7 +16,7 @@ export default class Step4 extends React.PureComponent {
 
   componentDidMount () {
     this.props.checkBoardComplete({
-      boardType: 'seedlingBoardComplete',
+      boardType: 'seedPodBoardComplete',
       renderStep: 4,
       completeStep: 3
     })

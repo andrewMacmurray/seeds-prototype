@@ -5,19 +5,19 @@ const tileGenerator = (_, prob = even) => {
   const {
     rain,
     sun,
-    seedling,
-    pod
+    seedPod,
+    seed
   } = prob
-  if (rain + sun + seedling + pod > 1) throw new Error('probabilites must add up to 1')
+  if (rain + sun + seedPod + seed > 1) throw new Error('probabilites must add up to 1')
 
   const n = Math.random()
   return n <= sun
       ? 1
     : n > sun && n <= sun + rain
       ? 2
-    : n > sun + rain && n <= sun + rain + seedling
+    : n > sun + rain && n <= sun + rain + seedPod
       ? 3
-    : n > sun + rain + seedling
+    : n > sun + rain + seedPod
       ? 4
     : 1
 }

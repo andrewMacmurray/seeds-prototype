@@ -35,13 +35,13 @@ class Board extends React.PureComponent {
   }
 
   stopSequence = () => {
-    const { moveType, seedlingCount } = this.props
-    this.props.stopDrag(moveType, seedlingCount)
+    const { moveType, seedPodCount } = this.props
+    this.props.stopDrag(moveType, seedPodCount)
   }
 
   triggerWeather = (weatherType) => {
-    const { seedlingCount } = this.props
-    this.props.triggerWeather(weatherType, seedlingCount)
+    const { seedPodCount } = this.props
+    this.props.triggerWeather(weatherType, seedPodCount)
   }
 
   harvestSeeds = () => {
@@ -104,7 +104,7 @@ import isDraggingArray from '../../redux/selectors/level/selector_isDraggingArra
 import isGrowingArray from '../../redux/selectors/level/selector_isGrowingArray.js'
 import moveType from '../../redux/selectors/level/selector_moveType.js'
 import seedMoves from '../../redux/selectors/level/selector_seedMoves.js'
-import seedlingCount from '../../redux/selectors/level/selector_seedlingCount.js'
+import seedPodCount from '../../redux/selectors/level/selector_seedPodCount.js'
 import { movesOrder, growingOrder } from '../../redux/selectors/level/selector_movesOrder.js'
 
 const mapStateToProps = (state) => ({
@@ -113,7 +113,7 @@ const mapStateToProps = (state) => ({
   isGrowingArray: isGrowingArray(state),
   moveType: moveType(state),
   seedMoves: seedMoves(state),
-  seedlingCount: seedlingCount(state),
+  seedPodCount: seedPodCount(state),
   movesOrderArray: movesOrder(state),
   growingOrderArray: growingOrder(state)
 })
