@@ -38,6 +38,7 @@ export default (state = defaultState, action) => {
 }
 
 const calculateScore = (x) => 0.091 * x * x + x * 2
+
 // actions
 export const updateScore = (tileType, moves) => (dispatch, getState) => {
   const { level: { score: { currentScore } } } = getState()

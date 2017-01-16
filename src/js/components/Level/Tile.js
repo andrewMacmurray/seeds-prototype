@@ -12,12 +12,14 @@ export default class Seed extends React.PureComponent {
     addListener($el, 'pointerdown', this.props.startDrag)
 
     addListener($el, 'pointerenter', (e) => {
+      e.preventDefault()
       const dataX = parseInt(e.target.getAttribute('data-x'))
       const dataY = parseInt(e.target.getAttribute('data-y'))
       this.props.checkTile([ dataY, dataX ])
     })
 
     $el.addEventListener('pointermove', (e) => {
+      e.preventDefault()
       this.props.checkTile([
         Math.round((e.offsetX - offsetWidth / 2) / offsetWidth) + originY,
         Math.round((e.offsetY - offsetHeight / 2) / offsetHeight) + originX

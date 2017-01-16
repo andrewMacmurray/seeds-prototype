@@ -5,7 +5,7 @@ import setVisibleWeather from './setVisibleWeather.js'
 
 export default (moveType, seedPodCount) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { rain, sun, weatherThreshold } = getState().level.weather
+  const { rain, sun, threshold } = getState().level.weather
 
   const growDelay =
     moveType === 'rain'
@@ -22,8 +22,8 @@ export default (moveType, seedPodCount) => (dispatch, getState) => {
     || moveType === 'sun'
 
   const aboveThreshold =
-       rain > weatherThreshold
-    || sun > weatherThreshold
+       rain > threshold
+    || sun > threshold
 
   const shouldTriggerWeather = weatherMove && aboveThreshold
 

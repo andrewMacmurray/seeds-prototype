@@ -15,7 +15,7 @@ const SET_WEATHER_THRESHOLD = 'SET_WEATHER_THRESHOLD'
 const defaultState = {
   rain: 0,
   sun: 0,
-  weatherThreshold: 12,
+  threshold: 12,
   remainingWeatherTurns: 0,
   animating: false,
   raindropsVisible: false,
@@ -62,7 +62,7 @@ export default (state = defaultState, action) => {
   case SET_WEATHER_THRESHOLD:
     return {
       ...state,
-      weatherThreshold: action.payload
+      threshold: action.payload
     }
   default:
     return state
