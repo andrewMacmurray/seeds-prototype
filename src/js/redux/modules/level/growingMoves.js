@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { growingMoveArray } from '../../../model'
+import { identity } from 'ramda'
 
 // action types
 const GROW_SEEDS = 'GROW_SEEDS'
@@ -22,12 +22,4 @@ export default (state = defaultState, action) => {
 
 // actions
 export const resetGrowSeeds = createAction(RESET_GROW_SEEDS)
-export const setGrowingSeeds = createAction(GROW_SEEDS, moves => moves)
-
-export const growRandomSeeds = (seedPodCount) => (dispatch, getState) => {
-  const { tiles } = getState().level.board
-  dispatch({
-    type: GROW_SEEDS,
-    payload: growingMoveArray(tiles, seedPodCount)
-  })
-}
+export const setGrowingSeeds = createAction(GROW_SEEDS, identity)
