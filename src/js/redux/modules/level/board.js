@@ -22,7 +22,7 @@ const initialLoadProbability = even
 const initialBoardSize = 8
 const defaultState = {
   tiles: randomBoard(initialBoardSize, initialLoadProbability),
-  probabilities: moreSeedPods,
+  probabilities: even,
   boardSize: initialBoardSize
 }
 

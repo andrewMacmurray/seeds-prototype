@@ -42,7 +42,6 @@
 
 .sun-sphere {
   transition: 1.5s ease;
-  transition-delay: 0.5s;
   transform: translateY(-600px);
   opacity: 0;
   width: 400px;
@@ -59,11 +58,5 @@
 @media (min-height: $height-m), (min-width: $width-m) {
   .rain-curtain {
     width: 100%;
-  }
-}
-
-@media (min-height: $height-m) and (min-width: $width-m) {
-  .sun-sphere.active {
-    transform: translateY(-300px);
   }
 }

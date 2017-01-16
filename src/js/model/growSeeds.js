@@ -1,7 +1,7 @@
 import { filter, length, equals, complement, unnest, compose } from 'ramda'
 import { mapBoard } from './utils.js'
 
-const growProbability = (n) => n > 10 ? 0.6 : 1
+const growProbability = (n) => n > 10 ? 0.3 : 0.5
 
 const growSeedMove = (tile, i, j, count) => {
   return tile === 3 && Math.random() < growProbability(count)
