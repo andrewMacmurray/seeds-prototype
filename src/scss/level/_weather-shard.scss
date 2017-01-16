@@ -1,0 +1,30 @@
+.weather-shard {
+  width: 50px;
+}
+
+.shard {
+  transition: 1.5s ease;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+.weather-shard-sun {
+  .shard-1 {
+    fill: $red;
+  }
+
+  .shard-2 {
+    fill: $orange;
+  }
+
+  .shard-3 {
+    fill: $mustard;
+  }
+
+  .shard-4 {
+    fill: $cerise;
+  }
+}

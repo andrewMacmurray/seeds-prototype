@@ -2,36 +2,8 @@
   background: $rain-background;
 }
 
-.rain-maker {
-  background-color: $rain-background;
-  @include weather;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.sun-maker {
-  background-color: $sun-background;
-  @include weather;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
 .sun-shining {
   background: $sun-background;
-}
-
-@for $i from 0 through 13 {
-  .power-#{$i} {
-    transform: scale($i * 0.05);
-  }
-}
-
-.max-rain {
-  animation: rain-pulse 1s infinite linear;
-}
-
-.max-sun {
-  animation: sun-pulse 1s infinite linear;
 }
 
 .rain-curtain {
@@ -82,18 +54,6 @@
     transform: translateY(-400px);
     opacity: 1;
   }
-}
-
-@keyframes rain-pulse {
-  0% { background-color: $rain-background; }
-  50% { background-color: rgb(71, 139, 255); }
-  100% { background-color: $rain-background; }
-}
-
-@keyframes sun-pulse {
-  0% { background-color: $sun-background; }
-  50% { background-color: rgb(249, 93, 52); }
-  100% { background-color: $sun-background; }
 }
 
 @media (min-height: $height-m), (min-width: $width-m) {
