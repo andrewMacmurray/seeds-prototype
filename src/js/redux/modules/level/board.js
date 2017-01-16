@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions'
-import { moreSeedPods, even } from '../../../constants/probabilities.js'
+import { even } from '../../../constants/probabilities.js'
 import {
   randomBoard,
   transformTiles,
