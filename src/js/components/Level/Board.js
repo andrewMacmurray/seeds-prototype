@@ -64,7 +64,7 @@ class Board extends React.PureComponent {
       growingOrderArray,
       seedType,
       board: { tiles, boardSize },
-      weather: { animating, remainingWeatherTurns, overrideWeatherPower }
+      weather: { animating, remainingWeatherTurns, overridePower }
     } = this.props
 
     return (
@@ -81,7 +81,7 @@ class Board extends React.PureComponent {
                     checkTile={this.checkTile}
                     key={'tile-' + i + '-' + j}
                     remainingWeatherTurns={remainingWeatherTurns}
-                    overrideWeatherPower={overrideWeatherPower}
+                    overridePower={overridePower}
                     moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
                     growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
                     isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}

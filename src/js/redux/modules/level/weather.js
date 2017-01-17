@@ -18,7 +18,7 @@ const defaultState = {
   sun: 0,
   threshold: 12,
   remainingWeatherTurns: 0,
-  overrideWeatherPower: false,
+  overridePower: false,
   animating: false,
   raindropsVisible: false,
   sunSphereVisible: false
@@ -44,7 +44,7 @@ export default (state = defaultState, action) => {
   case OVERRIDE_WEATHER_POWER:
     return {
       ...state,
-      overrideWeatherPower: action.payload
+      overridePower: action.payload
     }
   case DECREMENT_WEATHER_TURNS:
     return {

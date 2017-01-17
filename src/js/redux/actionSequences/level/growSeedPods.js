@@ -4,13 +4,13 @@ import { batch, makeLazyDispatcher } from '../../_thunkHelpers.js'
 
 export default (moveArray) => (dispatch, getState) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { remainingWeatherTurns, overrideWeatherPower } = getState().level.weather
+  const { remainingWeatherTurns, overridePower } = getState().level.weather
 
   const growDelay = moveArray.length > 10
     ? 1000
     : 800
 
-  const handleGrow = () => remainingWeatherTurns > 0 || overrideWeatherPower
+  const handleGrow = () => remainingWeatherTurns > 0 || overridePower
     ? Promise
         .resolve()
         .then(_dispatch(_.growSeedsFromMoves, moveArray))

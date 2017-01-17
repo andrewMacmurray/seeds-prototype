@@ -17,7 +17,7 @@ class Level extends React.PureComponent {
         threshold,
         sunSphereVisible,
         raindropsVisible,
-        overrideWeatherPower: override
+        overridePower
       }
     } = this.props
 
@@ -27,7 +27,7 @@ class Level extends React.PureComponent {
           <WeatherShard
             type='rain'
             power={rain}
-            override={override}
+            overridePower={overridePower}
             weatherVisible={raindropsVisible}
             threshold={threshold}
           />
@@ -39,7 +39,7 @@ class Level extends React.PureComponent {
           <WeatherShard
             type='sun'
             power={sun}
-            override={override}
+            overridePower={overridePower}
             weatherVisible={sunSphereVisible}
             threshold={threshold}
           />
