@@ -3,6 +3,8 @@ import Next from './components/Next.js'
 import TextContainer from './components/TextContainer.js'
 import TutorialBoard from './components/TutorialBoard.js'
 import Lines from './components/Lines.js'
+import { all } from '../../constants/probabilities.js'
+import { auto, delay } from '../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'These are seed pods',
@@ -18,6 +20,22 @@ const textContent = [
     visibleAt: [ 10, 11 ]
   }
 ]
+
+export const sequence3 = {
+  subSteps: [
+    { delay, auto },
+    { delay: 400, auto },
+    { delay },
+    { delay, auto },
+    { delay: 1500, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay },
+    { delay: 2000, auto },
+    { delay }
+  ],
+  board: { size: 2, probabilities: all.seedPods, step: 1 }
+}
 
 export default class Step3 extends React.PureComponent {
 

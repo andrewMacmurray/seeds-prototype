@@ -39,6 +39,7 @@ module.exports = addLevelNumbers([
         avatars: [ 'sunflower' ],
         trail: { img: '/dark/trail-dark-5.svg', offset: { x: 3.4, y: -2.5 }, rotate: 45 },
         probabilities: p.noWeather,
+        overrideWeather: true,
         tutorial: []
       }
     ]

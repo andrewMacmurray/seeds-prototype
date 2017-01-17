@@ -12,7 +12,8 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     probabilities,
     goal,
     avatars,
-    tutorial
+    tutorial,
+    overrideWeather
   } = getLevelData(world, levelNumber, levelSettings)
 
   const seedType = avatars[0]
@@ -26,6 +27,10 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     ? _dispatch(_.noop)
     : _dispatch(setUpBoard, goal, probabilities)
 
+  const handleWeatherOverride = overrideWeather
+    ? _dispatch(_.overrideWeatherPower, true)
+    : _dispatch(_.overrideWeatherPower, false)
+
   const view = loadTutorial
     ? 'tutorial'
     : 'level'
@@ -33,7 +38,7 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
   if (levelProgress >= levelNumber) {
     return Promise
       .resolve()
-      .then(_dispatch(_.overrideWeatherPower, false))
+      .then(handleWeatherOverride)
       .then(_dispatch(_.setSeedType, seedType))
       .then(_dispatch(_.setLoadingBackground, loadingBackground))
       .then(_dispatch(_.showLoadingScreen))

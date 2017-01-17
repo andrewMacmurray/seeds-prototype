@@ -2,6 +2,8 @@ import React from 'react'
 import Lines from './components/Lines.js'
 import Next from './components/Next.js'
 import TextContainer from './components/TextContainer.js'
+import { auto, delay } from '../../constants/tutorialDefaults.js'
+
 
 const textContent = [
   { text: 'You have embarked on a journey',
@@ -17,6 +19,17 @@ const textContent = [
     visibleAt: [ 5]
   }
 ]
+
+export const sequence2 = {
+  subSteps: [
+    { delay },
+    { delay, auto },
+    { delay: 600, auto },
+    { delay },
+    { delay, auto },
+    { delay }
+  ]
+}
 
 export default (props) => {
   return (
