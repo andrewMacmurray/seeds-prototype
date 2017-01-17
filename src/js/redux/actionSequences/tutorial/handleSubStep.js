@@ -4,6 +4,7 @@ import Promise from 'bluebird'
 import { getTutorialData, getLevelData } from '../_levelDataHelpers.js'
 import setTutorialBoard from './setTutorialBoard.js'
 import loadLevelData from './loadLevelData.js'
+import handleWeather from './handleWeather.js'
 
 const autoAt = () => (dispatch, getState, levelSettings) => {
   const _dispatch = makeLazyDispatcher(dispatch)
@@ -13,7 +14,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
     data,
     step
   } = state.tutorial
-  const { subSteps, board } = getTutorialData(step, data)
+  const { subSteps, board, weather } = getTutorialData(step, data)
   const total = subSteps.length
   const { auto, delay } = subSteps[subStep - 1]
   const lastStep = data.length
@@ -26,9 +27,18 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
     const { world, level } = state.level.currentLevel
     const {
       goal,
-      probabilities
+      probabilities,
+      initialWeather
     } = getLevelData(world, level, levelSettings)
-    return dispatch(loadLevelData(goal, probabilities))
+
+    const handleInitialWeather = initialWeather === 'rain'
+      ? _dispatch(_.setRaindropsVisibility, true)
+      : _dispatch(_.noop)
+
+    return Promise
+      .resolve()
+      .then(_dispatch(loadLevelData, goal, probabilities))
+      .then(handleInitialWeather)
   }
 
   if (total > 0) {
@@ -36,6 +46,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
       return Promise
         .resolve()
         .then(handleBoard)
+        .then(_dispatch(handleWeather, weather))
         .then(_dispatch(_.setTutorialUpdating, true))
         .then(_dispatch(_.incrementTutorialSubStep))
         .delay(delay)
@@ -45,6 +56,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
       return Promise
         .resolve()
         .then(handleBoard)
+        .then(handleWeather)
         .then(_dispatch(_.resetTutorialSubStep))
         .then(_dispatch(_.incrementTutorialStep))
         .delay(delay)

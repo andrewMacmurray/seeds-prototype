@@ -11,7 +11,14 @@ class Level extends React.PureComponent {
     const {
       seedType,
       score: { currentScore, levelGoal },
-      weather: { sun, rain, threshold, sunSphereVisible, raindropsVisible }
+      weather: {
+        sun,
+        rain,
+        threshold,
+        sunSphereVisible,
+        raindropsVisible,
+        overrideWeatherPower: override
+      }
     } = this.props
 
     return (
@@ -20,6 +27,7 @@ class Level extends React.PureComponent {
           <WeatherShard
             type='rain'
             power={rain}
+            override={override}
             weatherVisible={raindropsVisible}
             threshold={threshold}
           />
@@ -31,6 +39,7 @@ class Level extends React.PureComponent {
           <WeatherShard
             type='sun'
             power={sun}
+            override={override}
             weatherVisible={sunSphereVisible}
             threshold={threshold}
           />

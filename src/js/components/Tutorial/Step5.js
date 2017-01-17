@@ -20,8 +20,12 @@ const textContent = [
     visibleAt: [ 7 ]
   },
   { text: 'Your first journey awaits...',
+    className: 'minus-1-half',
+    visibleAt: [ 9, 10, 11 ]
+  },
+  { text: 'quickly, grow and collect the seeds\n whilst it\'s still raining',
     className: 'plus-1-half',
-    visibleAt: [ 9, 10 ]
+    visibleAt: [ 10, 11 ]
   }
 ]
 
@@ -35,6 +39,7 @@ export const sequence5 = {
     { delay: 3000, auto },
     { delay, auto },
     { delay, auto },
+    { delay, auto },
     { delay },
     { delay: 100, auto },
     { delay }
@@ -44,9 +49,10 @@ export const sequence5 = {
 export default class Step5 extends React.PureComponent {
 
   componentDidMount () {
-    this.props.checkBoardComplete({
+    const { renderStep, checkBoardComplete } = this.props
+    checkBoardComplete({
       boardType: 'seedBoardComplete',
-      renderStep: 5,
+      renderStep,
       completeStep: 4
     })
   }
@@ -66,7 +72,7 @@ export default class Step5 extends React.PureComponent {
         />
         <Next
           text='begin'
-          visibleAt={[ 10 ]}
+          visibleAt={[ 11 ]}
           {...this.props}
         />
       </TextContainer>

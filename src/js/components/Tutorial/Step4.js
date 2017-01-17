@@ -22,15 +22,17 @@ export const sequence4 = {
     { delay, auto },
     { delay }
   ],
-  board: { size: 3, probabilities: all.seedPods, step: 1 }
+  board: { size: 3, probabilities: all.seedPods, step: 1 },
+  weather: { type: 'rain', step: 4, action: 'stop' }
 }
 
 export default class Step4 extends React.PureComponent {
 
   componentDidMount () {
-    this.props.checkBoardComplete({
+    const { checkBoardComplete, renderStep } = this.props
+    checkBoardComplete({
       boardType: 'seedPodBoardComplete',
-      renderStep: 4,
+      renderStep,
       completeStep: 3
     })
   }
