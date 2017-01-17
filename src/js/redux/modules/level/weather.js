@@ -5,6 +5,7 @@ import { path, identity } from 'ramda'
 const WEATHER_POWER = 'WEATHER_POWER'
 const RESET_WEATHER = 'RESET_WEATHER'
 const SET_WEATHER_TURNS = 'SET_WEATHER_TURNS'
+const OVERRIDE_WEATHER_POWER = 'OVERRIDE_WEATHER_POWER'
 const DECREMENT_WEATHER_TURNS = 'DECREMENT_WEATHER_TURNS'
 const WEATHER_ANIMATING = 'WEATHER_ANIMATING'
 const SET_RAINDROPS_VISIBILITY = 'SET_RAINDROPS_VISIBILITY'
@@ -17,6 +18,7 @@ const defaultState = {
   sun: 0,
   threshold: 12,
   remainingWeatherTurns: 0,
+  overrideWeatherPower: false,
   animating: false,
   raindropsVisible: false,
   sunSphereVisible: false
@@ -38,6 +40,11 @@ export default (state = defaultState, action) => {
     return {
       ...state,
       remainingWeatherTurns: action.payload
+    }
+  case OVERRIDE_WEATHER_POWER:
+    return {
+      ...state,
+      overrideWeatherPower: action.payload
     }
   case DECREMENT_WEATHER_TURNS:
     return {
@@ -122,5 +129,6 @@ export const decrementWeatherTurns = () => (dispatch, getState) => {
 export const weatherAnimating = createAction(WEATHER_ANIMATING, identity)
 export const setRaindropsVisibility = createAction(SET_RAINDROPS_VISIBILITY, identity)
 export const setWeatherTurns = createAction(SET_WEATHER_TURNS, identity)
+export const overrideWeatherPower = createAction(OVERRIDE_WEATHER_POWER, identity)
 export const setSunSphereVisibility = createAction(SET_SUN_SPHERE_VISIBILITY, identity)
 export const setWeatherThreshold = createAction(SET_WEATHER_THRESHOLD, identity)

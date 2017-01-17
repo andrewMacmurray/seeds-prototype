@@ -43,6 +43,7 @@ export default class Seed extends React.PureComponent {
       seedType,
       x,
       y,
+      overrideWeatherPower,
       weatherAnimating,
       remainingWeatherTurns,
       moveOrder,
@@ -59,7 +60,7 @@ export default class Seed extends React.PureComponent {
       : ''
     const growingTransition = weatherAnimating ? ' transition' : ''
 
-    const growingClass = remainingWeatherTurns > 0 && isGrowing
+    const growingClass = (remainingWeatherTurns > 0 || overrideWeatherPower) && isGrowing
         ? 'growing ' + growingTransition
       : isGrowing
         ? 'bulging'

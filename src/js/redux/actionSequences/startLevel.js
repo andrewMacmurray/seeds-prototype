@@ -6,7 +6,8 @@ import setUpBoard from './level/setUpBoard.js'
 
 export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
   const _dispatch = makeLazyDispatcher(dispatch)
-  const { levelProgress } = getState().level
+  const { level } = getState()
+  const { levelProgress } = level
   const {
     probabilities,
     goal,
@@ -32,6 +33,7 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
   if (levelProgress >= levelNumber) {
     return Promise
       .resolve()
+      .then(_dispatch(_.overrideWeatherPower, false))
       .then(_dispatch(_.setSeedType, seedType))
       .then(_dispatch(_.setLoadingBackground, loadingBackground))
       .then(_dispatch(_.showLoadingScreen))

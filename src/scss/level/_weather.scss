@@ -8,6 +8,7 @@
 
 .rain-curtain {
   transition: 1.5s ease;
+  pointer-events: none;
   position: fixed;
   z-index: 0;
   display: flex;
