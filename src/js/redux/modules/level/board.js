@@ -1,11 +1,12 @@
 import { createAction } from 'redux-actions'
-import { moreSeedlings, even } from '../../../constants/probabilities.js'
+import { even } from '../../../constants/probabilities.js'
 import {
   randomBoard,
   transformTiles,
   shiftBoard,
   addNewTiles
 } from '../../../model'
+import { identity } from 'ramda'
 
 // action types
 const SHIFT_TILES = 'SHIFT_TILES'
@@ -21,7 +22,7 @@ const initialLoadProbability = even
 const initialBoardSize = 8
 const defaultState = {
   tiles: randomBoard(initialBoardSize, initialLoadProbability),
-  probabilities: moreSeedlings,
+  probabilities: even,
   boardSize: initialBoardSize
 }
 
@@ -118,6 +119,6 @@ export const removeSeedsFromBoard = (moves) => (dispatch, getState) => {
   })
 }
 
-export const shuffleTiles = createAction(SHUFFLE_TILES, x => x)
-export const setBoardSize = createAction(SET_BOARD_SIZE, x => x)
-export const setProbabilities = createAction(SET_PROBABILITIES, x => x)
+export const shuffleTiles = createAction(SHUFFLE_TILES, identity)
+export const setBoardSize = createAction(SET_BOARD_SIZE, identity)
+export const setProbabilities = createAction(SET_PROBABILITIES, identity)

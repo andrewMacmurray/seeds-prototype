@@ -3,6 +3,7 @@ import TutorialBoard from './components/TutorialBoard.js'
 import TextContainer from './components/TextContainer.js'
 import Next from './components/Next.js'
 import Lines from './components/Lines.js'
+import { auto, delay } from '../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'Now connect seeds to fill the seed bank',
@@ -19,17 +20,39 @@ const textContent = [
     visibleAt: [ 7 ]
   },
   { text: 'Your first journey awaits...',
+    className: 'minus-1-half',
+    visibleAt: [ 9, 10, 11 ]
+  },
+  { text: 'quickly, grow and collect the seeds\n whilst it\'s still raining',
     className: 'plus-1-half',
-    visibleAt: [ 9, 10 ]
+    visibleAt: [ 10, 11 ]
   }
 ]
+
+export const sequence5 = {
+  subSteps: [
+    { delay, auto },
+    { delay, auto },
+    { delay },
+    { delay: 2000, auto },
+    { delay, auto },
+    { delay: 3000, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay },
+    { delay: 100, auto },
+    { delay }
+  ]
+}
 
 export default class Step5 extends React.PureComponent {
 
   componentDidMount () {
-    this.props.checkBoardComplete({
-      boardType: 'podBoardComplete',
-      renderStep: 5,
+    const { renderStep, checkBoardComplete } = this.props
+    checkBoardComplete({
+      boardType: 'seedBoardComplete',
+      renderStep,
       completeStep: 4
     })
   }
@@ -49,7 +72,7 @@ export default class Step5 extends React.PureComponent {
         />
         <Next
           text='begin'
-          visibleAt={[ 10 ]}
+          visibleAt={[ 11 ]}
           {...this.props}
         />
       </TextContainer>

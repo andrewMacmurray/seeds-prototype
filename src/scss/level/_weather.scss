@@ -2,40 +2,13 @@
   background: $rain-background;
 }
 
-.rain-maker {
-  background-color: $rain-background;
-  @include weather;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.sun-maker {
-  background-color: $sun-background;
-  @include weather;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
 .sun-shining {
   background: $sun-background;
 }
 
-@for $i from 0 through 13 {
-  .power-#{$i} {
-    transform: scale($i * 0.05);
-  }
-}
-
-.max-rain {
-  animation: rain-pulse 1s infinite linear;
-}
-
-.max-sun {
-  animation: sun-pulse 1s infinite linear;
-}
-
 .rain-curtain {
   transition: 1.5s ease;
+  pointer-events: none;
   position: fixed;
   z-index: 0;
   display: flex;
@@ -70,7 +43,6 @@
 
 .sun-sphere {
   transition: 1.5s ease;
-  transition-delay: 0.5s;
   transform: translateY(-600px);
   opacity: 0;
   width: 400px;
@@ -84,26 +56,8 @@
   }
 }
 
-@keyframes rain-pulse {
-  0% { background-color: $rain-background; }
-  50% { background-color: rgb(71, 139, 255); }
-  100% { background-color: $rain-background; }
-}
-
-@keyframes sun-pulse {
-  0% { background-color: $sun-background; }
-  50% { background-color: rgb(249, 93, 52); }
-  100% { background-color: $sun-background; }
-}
-
 @media (min-height: $height-m), (min-width: $width-m) {
   .rain-curtain {
     width: 100%;
-  }
-}
-
-@media (min-height: $height-m) and (min-width: $width-m) {
-  .sun-sphere.active {
-    transform: translateY(-300px);
   }
 }

@@ -6,7 +6,8 @@ export default (props) => {
 
   const rainClasses = cx(
     'rain-curtain',
-    { hidden: !props.raindropsVisible }
+    { hidden: !props.raindropsVisible },
+    { 'opacity-40': props.overridePower }
   )
 
   return (

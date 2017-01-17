@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import { identity } from 'ramda'
 
 // action types
 const SET_VISIBLE_INTRO_TEXT = 'SET_VISIBLE_INTRO_TEXT'
@@ -34,6 +35,6 @@ export default (state = defaultState, action) => {
 }
 
 // actions
-export const setVisibleIntroText = createAction(SET_VISIBLE_INTRO_TEXT, x => x)
+export const setVisibleIntroText = createAction(SET_VISIBLE_INTRO_TEXT, identity)
 export const resetIntroText = createAction(RESET_INTRO_TEXT)
-export const setVisibleSeeds = createAction(SET_VISIBLE_SEEDS, x => x)
+export const setVisibleSeeds = createAction(SET_VISIBLE_SEEDS, identity)

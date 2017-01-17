@@ -29,8 +29,8 @@ class Intro extends React.Component {
 
     return visibleSeeds.map((seed, i) => {
       const visibility = seed
-        ? 'ts-linear'
-        : 'opacity-0 ts-linear'
+        ? 'transition-500 linear'
+        : 'transition-500 linear opacity-0'
       return (
         <span key={i} className={visibility}>
           {seeds[i]}
@@ -43,8 +43,8 @@ class Intro extends React.Component {
     const { visibleText } = this.props.intro
 
     const visibility = visibleText[index]
-      ? 'ts-linear'
-      : 'opacity-0 ts-linear'
+      ? 'transition-800 linear'
+      : 'transition-800 linear opacity-0'
 
     return (
       <span className={visibility}>

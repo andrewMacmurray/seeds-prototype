@@ -12,12 +12,14 @@ export default class Seed extends React.PureComponent {
     addListener($el, 'pointerdown', this.props.startDrag)
 
     addListener($el, 'pointerenter', (e) => {
+      e.preventDefault()
       const dataX = parseInt(e.target.getAttribute('data-x'))
       const dataY = parseInt(e.target.getAttribute('data-y'))
       this.props.checkTile([ dataY, dataX ])
     })
 
     $el.addEventListener('pointermove', (e) => {
+      e.preventDefault()
       this.props.checkTile([
         Math.round((e.offsetX - offsetWidth / 2) / offsetWidth) + originY,
         Math.round((e.offsetY - offsetHeight / 2) / offsetHeight) + originX
@@ -41,7 +43,9 @@ export default class Seed extends React.PureComponent {
       seedType,
       x,
       y,
+      overridePower,
       weatherAnimating,
+      remainingWeatherTurns,
       moveOrder,
       growingOrder,
       isGrowing,
@@ -51,14 +55,16 @@ export default class Seed extends React.PureComponent {
       isFalling
     } = this.props
 
-    const seedClass = tileType === 'pod' || tileType === 'seedling'
+    const seedClass = tileType === 'seed' || tileType === 'seedPod'
       ? seedType
       : ''
     const growingTransition = weatherAnimating ? ' transition' : ''
 
-    const growingClass = isGrowing
-      ? isGrowing + growingTransition
-      : ''
+    const growingClass = (remainingWeatherTurns > 0 || overridePower) && isGrowing
+        ? 'growing ' + growingTransition
+      : isGrowing
+        ? 'bulging'
+        : ''
 
     const containerClasses = classNames(
       'tile-container',

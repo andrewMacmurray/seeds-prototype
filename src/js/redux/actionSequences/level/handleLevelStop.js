@@ -23,6 +23,9 @@ export default () => (dispatch, getState) => {
       .delay(500)
       .then(handleLevelProgress)
       .then(batch(dispatch, [
+        _.clearBackdrop,
+        _.setRaindropsVisibility, false,
+        _.setSunSphereVisibility, false,
         _.resetScore,
         _.setView, 'hub',
         _.resetWeatherPower, 'rain',

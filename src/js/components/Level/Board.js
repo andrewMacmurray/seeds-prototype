@@ -35,13 +35,13 @@ class Board extends React.PureComponent {
   }
 
   stopSequence = () => {
-    const { moveType, seedlingCount } = this.props
-    this.props.stopDrag(moveType, seedlingCount)
+    const { moveType, seedPodCount } = this.props
+    this.props.stopDrag(moveType, seedPodCount)
   }
 
   triggerWeather = (weatherType) => {
-    const { seedlingCount } = this.props
-    this.props.triggerWeather(weatherType, seedlingCount)
+    const { seedPodCount } = this.props
+    this.props.triggerWeather(weatherType, seedPodCount)
   }
 
   harvestSeeds = () => {
@@ -64,7 +64,7 @@ class Board extends React.PureComponent {
       growingOrderArray,
       seedType,
       board: { tiles, boardSize },
-      weather: { animating }
+      weather: { animating, remainingWeatherTurns, overridePower }
     } = this.props
 
     return (
@@ -80,12 +80,14 @@ class Board extends React.PureComponent {
                     startDrag={this.startDrag}
                     checkTile={this.checkTile}
                     key={'tile-' + i + '-' + j}
+                    remainingWeatherTurns={remainingWeatherTurns}
+                    overridePower={overridePower}
                     moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
                     growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
                     isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}
                     isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
                     isEntering={isEnteringArray[i][j] ? 'entering' : ''}
-                    isGrowing={isGrowingArray[i][j] ? 'growing' : ''}
+                    isGrowing={isGrowingArray[i][j]}
                     isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
                     y={i}
                     x={j}
@@ -103,18 +105,18 @@ import isDraggingArray from '../../redux/selectors/level/selector_isDraggingArra
 import isGrowingArray from '../../redux/selectors/level/selector_isGrowingArray.js'
 import moveType from '../../redux/selectors/level/selector_moveType.js'
 import seedMoves from '../../redux/selectors/level/selector_seedMoves.js'
-import seedlingCount from '../../redux/selectors/level/selector_seedlingCount.js'
+import seedPodCount from '../../redux/selectors/level/selector_seedPodCount.js'
 import { movesOrder, growingOrder } from '../../redux/selectors/level/selector_movesOrder.js'
 
 const mapStateToProps = (state) => ({
   ...state.level,
-  movesOrderArray: movesOrder(state),
-  growingOrderArray: growingOrder(state),
   isDraggingArray: isDraggingArray(state),
   isGrowingArray: isGrowingArray(state),
   moveType: moveType(state),
-  seedlingCount: seedlingCount(state),
-  seedMoves: seedMoves(state)
+  seedMoves: seedMoves(state),
+  seedPodCount: seedPodCount(state),
+  movesOrderArray: movesOrder(state),
+  growingOrderArray: growingOrder(state)
 })
 
 import stopDrag from '../../redux/actionSequences/level/stopDrag.js'
