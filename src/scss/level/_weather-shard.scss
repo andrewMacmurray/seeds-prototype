@@ -1,0 +1,79 @@
+.weather-shard {
+  width: 40px;
+  position: relative;
+}
+
+.shard {
+  transition: 1.5s ease;
+  opacity: 0;
+
+  &.active {
+    opacity: 1;
+  }
+}
+
+@keyframes bigPulse {
+  0% { transform: scale(0.01); opacity: 0.5; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.power-sphere {
+  border-radius: 50%;
+  position: absolute;
+  transform: scale(0.01);
+  opacity: 0;
+  width: 500px;
+  height: 500px;
+  top: -230px;
+  left: -230px;
+  pointer-events: none;
+}
+
+.power-sphere.active {
+  animation: bigPulse 2s cubic-bezier(0.71, 0.03, 0.24, 0.99);
+  animation-fill-mode: both;
+}
+
+.weather-shard-sun {
+  .power-sphere {
+    background-color: $crayon-yellow;
+  }
+
+  .shard-1 {
+    fill: $bannana-yellow;
+  }
+
+  .shard-2 {
+    fill: $crayon-yellow;
+  }
+
+  .shard-3 {
+    fill: $mid-orange;
+  }
+
+  .shard-4 {
+    fill: $dark-orange;
+  }
+}
+
+.weather-shard-rain {
+  .power-sphere {
+    background-color: $sea-blue;
+  }
+
+  .shard-1 {
+    fill: $sea-blue;
+  }
+
+  .shard-2 {
+    fill: $light-turquoise;
+  }
+
+  .shard-3 {
+    fill: $snow-grey;
+  }
+
+  .shard-4 {
+    fill: $sea-green;
+  }
+}

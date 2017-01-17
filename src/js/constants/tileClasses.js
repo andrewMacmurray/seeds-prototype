@@ -1,6 +1,6 @@
 module.exports = {
   1: 'sun',
   2: 'rain',
-  3: 'seedling',
-  4: 'pod'
+  3: 'seedPod',
+  4: 'seed'
 } || ''

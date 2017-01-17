@@ -77,7 +77,11 @@ class App extends React.Component {
   }
 
   render () {
-    const { raindropsVisible, sunSphereVisible } = this.props.level.weather
+    const {
+      raindropsVisible,
+      sunSphereVisible,
+      overridePower
+    } = this.props.level.weather
     const {
       backdrop,
       view,
@@ -95,7 +99,10 @@ class App extends React.Component {
         </div>
         <Audio />
         {this.router()}
-        <RainCurtain raindropsVisible={raindropsVisible} />
+        <RainCurtain
+          raindropsVisible={raindropsVisible}
+          overridePower={overridePower}
+        />
         <SunSphere sunSphereVisible={sunSphereVisible} />
       </div>
     )

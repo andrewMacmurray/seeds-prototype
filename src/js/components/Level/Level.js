@@ -1,43 +1,48 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import cx from 'classnames'
 
 import Board from './Board.js'
 import SeedBank from './SeedBank.js'
+import WeatherShard from './WeatherShard.js'
 
 class Level extends React.PureComponent {
-
-  weatherMakerClass (weatherType) {
-    const { weather, weather: { weatherThreshold } } = this.props
-    const currentPower = weather[weatherType] < weatherThreshold
-      ? weather[weatherType]
-      : weatherThreshold
-
-    return cx(
-      weatherType + '-maker',
-      'power-' + currentPower,
-      'max-' + weatherType
-    )
-  }
 
   render () {
     const {
       seedType,
-      backdrop,
-      score: { currentScore, levelGoal }
+      score: { currentScore, levelGoal },
+      weather: {
+        sun,
+        rain,
+        threshold,
+        sunSphereVisible,
+        raindropsVisible,
+        overridePower
+      }
     } = this.props
 
     return (
       <div className='level-container'>
         <div className='top-bar-container'>
-          <div className={this.weatherMakerClass('rain')} />
+          <WeatherShard
+            type='rain'
+            power={rain}
+            overridePower={overridePower}
+            weatherVisible={raindropsVisible}
+            threshold={threshold}
+          />
           <SeedBank
             seedType={seedType}
             currentScore={currentScore}
             levelGoal={levelGoal}
-            backdrop={backdrop}
           />
-          <div className={this.weatherMakerClass('sun')} />
+          <WeatherShard
+            type='sun'
+            power={sun}
+            overridePower={overridePower}
+            weatherVisible={sunSphereVisible}
+            threshold={threshold}
+          />
         </div>
         <p className='score'>{currentScore} / {levelGoal}</p>
         <Board />
@@ -47,8 +52,7 @@ class Level extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  ...state.level,
-  backdrop: state.backdrop
+  ...state.level
 })
 
 export default connect(mapStateToProps)(Level)

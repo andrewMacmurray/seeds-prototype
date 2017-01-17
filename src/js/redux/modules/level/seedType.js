@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import { identity } from 'ramda'
 
 // action types
 const SET_SEED_TYPE = 'SET_SEED_TYPE'
@@ -15,4 +16,4 @@ export default (state = defaultState, action) => {
 }
 
 // action creators
-export const setSeedType = createAction(SET_SEED_TYPE, x => x)
+export const setSeedType = createAction(SET_SEED_TYPE, identity)

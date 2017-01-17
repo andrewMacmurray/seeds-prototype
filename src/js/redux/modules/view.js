@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import { identity } from 'ramda'
 
 // action types
 const SET_VIEW = 'SET_VIEW'
@@ -14,4 +15,4 @@ export default (state = 'title', action) => {
 }
 
 // actions
-export const setView = createAction(SET_VIEW, x => x)
+export const setView = createAction(SET_VIEW, identity)

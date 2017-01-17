@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import { identity } from 'ramda'
 
 // action types
 const SET_TUTORIAL_DATA = 'SET_TUTORIAL_DATA'
@@ -54,9 +55,9 @@ export default (state = defaultState, action) => {
 }
 
 // action creators
-export const setTutorialData = createAction(SET_TUTORIAL_DATA, x => x)
+export const setTutorialData = createAction(SET_TUTORIAL_DATA, identity)
 export const incrementTutorialStep = createAction(INCREMENT_TUTORIAL_STEP)
 export const resetTutorialStep = createAction(RESET_TUTORIAL_STEP)
 export const incrementTutorialSubStep = createAction(INCREMENT_TUTORIAL_SUBSTEP)
 export const resetTutorialSubStep = createAction(RESET_TUTORIAL_SUBSTEP)
-export const setTutorialUpdating = createAction(SET_TUTORIAL_UPDATING, x => x)
+export const setTutorialUpdating = createAction(SET_TUTORIAL_UPDATING, identity)

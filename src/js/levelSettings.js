@@ -1,5 +1,4 @@
 const addLevelNumbers = require('./constants/_addLevelNumbersHelper.js')
-const tutorials = require('./constants/tutorials.js')
 const p = require('./constants/probabilities.js')
 
 // each level reads as if it were on the screen
@@ -40,7 +39,9 @@ module.exports = addLevelNumbers([
         avatars: [ 'sunflower' ],
         trail: { img: '/dark/trail-dark-5.svg', offset: { x: 3.4, y: -2.5 }, rotate: 45 },
         probabilities: p.noWeather,
-        tutorial: tutorials[0]
+        overrideWeather: true,
+        initialWeather: 'rain',
+        tutorial: []
       }
     ]
   },

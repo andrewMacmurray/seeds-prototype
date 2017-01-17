@@ -7,6 +7,7 @@ import * as shiftTiles from './shiftTiles.js'
 import * as movesOrder from './movesOrder.js'
 import * as transformTiles from './transformTiles.js'
 import * as validMove from './validMove.js'
+import * as utils from './utils.js'
 
 module.exports = {
   ...constants,
@@ -17,5 +18,6 @@ module.exports = {
   ...shiftTiles,
   ...movesOrder,
   ...transformTiles,
-  ...validMove
+  ...validMove,
+  ...utils
 }

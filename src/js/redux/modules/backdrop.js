@@ -1,4 +1,5 @@
 import { createAction } from 'redux-actions'
+import { identity } from 'ramda'
 
 // action types
 const SET_BACKDROP = 'SET_BACKDROP'
@@ -20,5 +21,5 @@ export default (state = defaultState, action) => {
 }
 
 // action creators
-export const setBackdrop = createAction(SET_BACKDROP, x => x)
+export const setBackdrop = createAction(SET_BACKDROP, identity)
 export const clearBackdrop = createAction(CLEAR_BACKDROP)

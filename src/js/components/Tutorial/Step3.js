@@ -3,29 +3,51 @@ import Next from './components/Next.js'
 import TextContainer from './components/TextContainer.js'
 import TutorialBoard from './components/TutorialBoard.js'
 import Lines from './components/Lines.js'
+import { all } from '../../constants/probabilities.js'
+import { auto, delay } from '../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'These are seed pods',
     visibleAt: [ 3, 4 ]
   },
-  { text: 'They are almost ready to bear seeds',
-    visibleAt: [ 6 ]
+  { text: 'With a little rain,\n they are almost ready to bear seeds',
+    visibleAt: [ 6, 7 ],
+    className: 'minus-1-half'
   },
   { text: 'Connect them to release the seeds',
-    visibleAt: [ 8, 9 ]
+    visibleAt: [ 9, 10 ]
   },
   { text: 'Brilliant!',
-    visibleAt: [ 10, 11 ]
+    visibleAt: [ 11, 12 ]
   }
 ]
+
+export const sequence3 = {
+  subSteps: [
+    { delay, auto },
+    { delay: 400, auto },
+    { delay },
+    { delay, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay },
+    { delay: 2000, auto },
+    { delay }
+  ],
+  board: { size: 2, probabilities: all.seedPods, step: 1 },
+  weather: { action: 'start', type: 'rain', step: 6 }
+}
 
 export default class Step3 extends React.PureComponent {
 
   componentDidMount () {
-    this.props.checkBoardComplete({
-      boardType: 'seedlingBoardComplete',
-      renderStep: 3,
-      completeStep: 9
+    const { renderStep, checkBoardComplete } = this.props
+    checkBoardComplete({
+      boardType: 'seedPodBoardComplete',
+      renderStep,
+      completeStep: 10
     })
   }
 
@@ -38,12 +60,12 @@ export default class Step3 extends React.PureComponent {
           {...this.props}
         />
         <TutorialBoard
-          visibleAt={[ 2, 3, 4, 5, 6, 7, 8, 9, 10 ]}
-          enabledAt={[ 8, 9 ]}
+          visibleAt={[ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]}
+          enabledAt={[ 9, 10 ]}
           {...this.props}
         />
         <Next
-          visibleAt={[ 4, 5, 6, 7, 8 ]}
+          visibleAt={[ 4, 5, 6, 7, 8, 9 ]}
           {...this.props}
         />
       </TextContainer>
