@@ -2,21 +2,19 @@ import React from 'react'
 import Lines from '../Components/Lines.js'
 import Next from '../Components/Next.js'
 import TextContainer from '../Components/TextContainer.js'
+import Wrapper from '../Components/Wrapper.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
-  { text: 'The rains have stopped',
+  { text: 'This is a weather shard',
     visibleAt: [ 2, 3 ]
   },
-  { text: 'Our seeds wont grow\n without the right conditions',
+  { text: 'A fragment sent from the heavens,\n with the power to control the weather',
     visibleAt: [ 5 ]
-  },
-  { text: 'How will we continue?',
-    visibleAt: [ 7 ]
   }
 ]
 
-export const sequence1 = {
+export const sequence2 = {
   substeps: [
     { delay, auto },
     { delay, auto },
@@ -32,6 +30,13 @@ export const sequence1 = {
 export default (props) => {
   return (
     <TextContainer {...props}>
+      <Wrapper
+        visibleAt={[ 1, 2, 3, 4, 5, 6 ]}
+        className='w40 transition-500'
+        {...props}
+      >
+        <img src='/img/weather-shard.svg' />
+      </Wrapper>
       <Lines
         textContent={textContent}
         sameLine
