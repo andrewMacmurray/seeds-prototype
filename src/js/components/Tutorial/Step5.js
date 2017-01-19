@@ -7,31 +7,33 @@ import { auto, delay } from '../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'Now connect seeds to fill the seed bank',
-    visibleAt: [ 1 ]
+    className: 'minus-1-half',
+    visibleAt: [ 1, 2 ]
   },
   { text: 'Connect as many as you can in one move',
-    visibleAt: [ 3 ]
+    className: 'plus-half',
+    visibleAt: [ 2 ]
   },
   { text: 'Marvellous!',
-    visibleAt: [ 4 ]
+    className: 'minus-1-half',
+    visibleAt: [ 3 ]
   },
   { text: 'The more seeds you connect,\n the faster the seed bank will fill up',
     className: 'minus-1-half',
-    visibleAt: [ 6 ]
+    visibleAt: [ 5 ]
   },
   { text: 'Your first journey awaits...',
     className: 'minus-1-half',
-    visibleAt: [ 8, 9, 10 ]
+    visibleAt: [ 7, 8, 9 ]
   },
   { text: 'quickly, grow and collect the seeds\n whilst it\'s still raining',
     className: 'plus-1-half',
-    visibleAt: [ 9, 10 ]
+    visibleAt: [ 8, 9 ]
   }
 ]
 
 export const sequence5 = {
   substeps: [
-    { delay, auto },
     { delay, auto },
     { delay: 2000 },
     { delay, auto },
@@ -52,7 +54,7 @@ export default class Step5 extends React.PureComponent {
     checkBoardComplete({
       boardType: 'seedBoardComplete',
       renderStep,
-      completeStep: 3
+      completeStep: 2
     })
   }
 
@@ -65,13 +67,13 @@ export default class Step5 extends React.PureComponent {
           {...this.props}
         />
         <TutorialBoard
-          visibleAt={[ 1, 2, 3, 4, 5, 6 ]}
-          enabledAt={[ 2, 3, 4 ]}
+          visibleAt={[ 1, 2, 3, 4, 5 ]}
+          enabledAt={[ 2 ]}
           {...this.props}
         />
         <Next
           text='begin'
-          visibleAt={[ 10 ]}
+          visibleAt={[ 9 ]}
           {...this.props}
         />
       </TextContainer>
