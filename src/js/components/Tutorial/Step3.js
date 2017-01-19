@@ -33,7 +33,7 @@ export const sequence3 = {
     { delay, auto },
     { delay, auto },
     { delay, auto },
-    { delay },
+    { delay: 2000 },
     { delay, auto }
   ],
   board: { size: 2, probabilities: all.seedPods, substep: 1 },

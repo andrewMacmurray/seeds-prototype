@@ -23,7 +23,7 @@ const textContent = [
 export const sequence2 = {
   substeps: [
     { delay: 600, auto },
-    { delay: 600, auto },
+    { delay, auto },
     { delay },
     { delay: 600, auto },
     { delay, auto },

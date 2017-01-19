@@ -18,7 +18,7 @@ export const sequence4 = {
   substeps: [
     { delay, auto },
     { delay, auto },
-    { delay },
+    { delay: 2000 },
     { delay, auto },
     { delay, auto }
   ],

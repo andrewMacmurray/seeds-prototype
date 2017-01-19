@@ -33,16 +33,15 @@ export const sequence5 = {
   substeps: [
     { delay, auto },
     { delay, auto },
-    { delay },
+    { delay: 2000 },
+    { delay, auto },
+    { delay: 2000, auto },
     { delay, auto },
     { delay, auto },
     { delay, auto },
     { delay, auto },
-    { delay, auto },
-    { delay, auto },
-    { delay },
-    { delay: 100, auto },
-    { delay, auto }
+    { delay: 100 },
+    { delay: 100, auto }
   ]
 }
 
