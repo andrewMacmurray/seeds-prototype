@@ -1,7 +1,7 @@
 import React from 'react'
-import TutorialBoard from '../components/TutorialBoard.js'
-import TextContainer from '../components/TextContainer.js'
-import Lines from '../components/Lines.js'
+import TutorialBoard from '../Components/TutorialBoard.js'
+import TextContainer from '../Components/TextContainer.js'
+import Lines from '../Components/Lines.js'
 import { all } from '../../../constants/probabilities.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 

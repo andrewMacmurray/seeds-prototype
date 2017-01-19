@@ -1,7 +1,7 @@
 import React from 'react'
-import Line from '../components/Line.js'
-import Next from '../components/Next.js'
-import TextContainer from '../components/TextContainer.js'
+import Line from '../Components/Line.js'
+import Next from '../Components/Next.js'
+import TextContainer from '../Components/TextContainer.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const text1 = 'Welcome traveller'

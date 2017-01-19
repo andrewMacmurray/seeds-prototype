@@ -1,8 +1,8 @@
 import React from 'react'
-import TutorialBoard from '../components/TutorialBoard.js'
-import TextContainer from '../components/TextContainer.js'
-import Next from '../components/Next.js'
-import Lines from '../components/Lines.js'
+import TutorialBoard from '../Components/TutorialBoard.js'
+import TextContainer from '../Components/TextContainer.js'
+import Next from '../Components/Next.js'
+import Lines from '../Components/Lines.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
