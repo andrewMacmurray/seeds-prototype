@@ -1,10 +1,10 @@
 import React from 'react'
-import Next from './components/Next.js'
-import TextContainer from './components/TextContainer.js'
-import TutorialBoard from './components/TutorialBoard.js'
-import Lines from './components/Lines.js'
-import { all } from '../../constants/probabilities.js'
-import { auto, delay } from '../../constants/tutorialDefaults.js'
+import Next from '../components/Next.js'
+import TextContainer from '../components/TextContainer.js'
+import TutorialBoard from '../components/TutorialBoard.js'
+import Lines from '../components/Lines.js'
+import { all } from '../../../constants/probabilities.js'
+import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'These are seed pods',

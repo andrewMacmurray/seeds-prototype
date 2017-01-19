@@ -1,9 +1,9 @@
 import React from 'react'
-import TutorialBoard from './components/TutorialBoard.js'
-import TextContainer from './components/TextContainer.js'
-import Next from './components/Next.js'
-import Lines from './components/Lines.js'
-import { auto, delay } from '../../constants/tutorialDefaults.js'
+import TutorialBoard from '../components/TutorialBoard.js'
+import TextContainer from '../components/TextContainer.js'
+import Next from '../components/Next.js'
+import Lines from '../components/Lines.js'
+import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'Now connect seeds to fill the seed bank',

@@ -26,7 +26,7 @@ class App extends React.Component {
       level:    <Level />,
       intro:    <Intro />,
       hub:      <Hub />,
-      tutorial: <Tutorial />
+      tutorial: <Tutorial {...this.props} />
     }
     return viewMap[this.props.view]
   }

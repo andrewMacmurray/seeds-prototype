@@ -1,18 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Step1 from './Step1.js'
-import Step2 from './Step2.js'
-import Step3 from './Step3.js'
-import Step4 from './Step4.js'
-import Step5 from './Step5.js'
+import Tutorial1 from './Tutorial-Level-1/Index.js'
+import Tutorial2 from './Tutorial-Level-2/Index.js'
+
 import stepForward from '../../redux/actionSequences/tutorial/stepForward.js'
 import initTutorial from '../../redux/actionSequences/tutorial/initTutorial.js'
-import tutorialData from './tutorialData.js'
+import tutorialSequenceDataMap from './tutorialSequenceDataMap.js'
 
 class Tutorial extends React.PureComponent {
 
   componentDidMount () {
-    this.props.initTutorial(tutorialData)
+    const { level } = this.props
+    const currentTutorialData = tutorialSequenceDataMap[level]
+
+    this.props.initTutorial(currentTutorialData)
     setTimeout(this.props.stepForward, 500)
   }
 
@@ -31,17 +32,19 @@ class Tutorial extends React.PureComponent {
     , 300)
   }
 
+  tutorialRenderMap () {
+    const renderMap = {
+      1: <Tutorial1 {...this.props} checkBoardComplete={this.checkBoardComplete} />,
+      2: <Tutorial2 {...this.props} checkBoardComplete={this.checkBoardComplete} />
+    }
+
+    return renderMap[this.props.level] || ''
+  }
+
   render () {
-    const { checkBoardComplete } = this
     return (
       <div>
-        <div className='tutorial-container'>
-          <Step1 {...this.props} renderStep={1} />
-          <Step2 {...this.props} renderStep={2} />
-          <Step3 {...this.props} renderStep={3} checkBoardComplete={checkBoardComplete} />
-          <Step4 {...this.props} renderStep={4} checkBoardComplete={checkBoardComplete} />
-          <Step5 {...this.props} renderStep={5} checkBoardComplete={checkBoardComplete} />
-        </div>
+        {this.tutorialRenderMap()}
       </div>
     )
   }
@@ -53,6 +56,7 @@ import {
 } from '../../redux/selectors/tutorial/selector_tutorialBoardComplete.js'
 
 const mapStateToProps = (state) => ({
+  ...state.level.currentLevel,
   ...state.tutorial,
   seedPodBoardComplete: seedPodBoardComplete(state),
   seedBoardComplete: seedBoardComplete(state)
