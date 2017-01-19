@@ -4,11 +4,12 @@ import classnames from 'classnames'
 import * as _ from './_stepHelpers.js'
 
 export default (props) => {
+  const { step, substep, renderStep, visibleAt, enabledAt } = props
 
   const boardClasses = classnames(
     'tutorial-board-container',
-    _.visibleAt(props.step, props.substep, props.renderStep, props.visibleAt),
-    _.enabledAt(props.step, props.substep, props.renderStep, props.enabledAt)
+    _.visibleAt(step, substep, renderStep, visibleAt),
+    _.enabledAt(step, substep, renderStep, enabledAt)
   )
 
   return (

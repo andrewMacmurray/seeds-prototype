@@ -5,7 +5,7 @@ import Step2 from './Step2.js'
 import Step3 from './Step3.js'
 import Step4 from './Step4.js'
 import Step5 from './Step5.js'
-import handleNextTutorialStep from '../../redux/actionSequences/tutorial/stepForward.js'
+import stepForward from '../../redux/actionSequences/tutorial/stepForward.js'
 import initTutorial from '../../redux/actionSequences/tutorial/initTutorial.js'
 import tutorialData from './tutorialData.js'
 
@@ -13,7 +13,7 @@ class Tutorial extends React.PureComponent {
 
   componentDidMount () {
     this.props.initTutorial(tutorialData)
-    setTimeout(this.props.handleNextTutorialStep, 500)
+    setTimeout(this.props.stepForward, 500)
   }
 
   checkBoardComplete = ({ boardType, renderStep, completeStep }) => {
@@ -26,7 +26,7 @@ class Tutorial extends React.PureComponent {
 
     setTimeout(() =>
       handleNext
-        ? this.props.handleNextTutorialStep()
+        ? this.props.stepForward()
         : this.checkBoardComplete({ boardType, renderStep, completeStep })
     , 300)
   }
@@ -35,10 +35,6 @@ class Tutorial extends React.PureComponent {
     const { checkBoardComplete } = this
     return (
       <div>
-        <div style={{ position: 'absolute' }}>
-          <p>step: {this.props.step}</p>
-          <p>substep: {this.props.substep}</p>
-        </div>
         <div className='tutorial-container'>
           <Step1 {...this.props} renderStep={1} />
           <Step2 {...this.props} renderStep={2} />
@@ -62,4 +58,4 @@ const mapStateToProps = (state) => ({
   seedBoardComplete: seedBoardComplete(state)
 })
 
-export default connect(mapStateToProps, { handleNextTutorialStep, initTutorial })(Tutorial)
+export default connect(mapStateToProps, { stepForward, initTutorial })(Tutorial)
