@@ -5,7 +5,7 @@ import Step2 from './Step2.js'
 import Step3 from './Step3.js'
 import Step4 from './Step4.js'
 import Step5 from './Step5.js'
-import handleNextTutorialStep from '../../redux/actionSequences/tutorial/handleNextTutorialStep.js'
+import handleNextTutorialStep from '../../redux/actionSequences/tutorial/stepForward.js'
 import initTutorial from '../../redux/actionSequences/tutorial/initTutorial.js'
 import tutorialData from './tutorialData.js'
 
@@ -17,12 +17,12 @@ class Tutorial extends React.PureComponent {
   }
 
   checkBoardComplete = ({ boardType, renderStep, completeStep }) => {
-    const { subStep, step } = this.props
+    const { substep, step } = this.props
     const boardComplete = this.props[boardType]
     const handleNext =
          boardComplete
       && step === renderStep
-      && subStep === completeStep
+      && substep === completeStep
 
     setTimeout(() =>
       handleNext
@@ -35,6 +35,10 @@ class Tutorial extends React.PureComponent {
     const { checkBoardComplete } = this
     return (
       <div>
+        <div style={{ position: 'absolute' }}>
+          <p>step: {this.props.step}</p>
+          <p>substep: {this.props.substep}</p>
+        </div>
         <div className='tutorial-container'>
           <Step1 {...this.props} renderStep={1} />
           <Step2 {...this.props} renderStep={2} />

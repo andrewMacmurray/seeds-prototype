@@ -30,7 +30,7 @@ const textContent = [
 ]
 
 export const sequence5 = {
-  subSteps: [
+  substeps: [
     { delay, auto },
     { delay, auto },
     { delay },

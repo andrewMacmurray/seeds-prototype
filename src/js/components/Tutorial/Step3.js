@@ -23,11 +23,11 @@ const textContent = [
 ]
 
 export const sequence3 = {
-  subSteps: [
+  substeps: [
     { delay, auto },
     { delay: 400, auto },
-    { delay },
     { delay, auto },
+    { delay },
     { delay, auto },
     { delay, auto },
     { delay, auto },
@@ -36,8 +36,8 @@ export const sequence3 = {
     { delay: 2000, auto },
     { delay }
   ],
-  board: { size: 2, probabilities: all.seedPods, step: 1 },
-  weather: { action: 'start', type: 'rain', step: 6 }
+  board: { size: 2, probabilities: all.seedPods, substep: 1 },
+  weather: { action: 'start', type: 'rain', substep: 6 }
 }
 
 export default class Step3 extends React.PureComponent {
@@ -47,7 +47,7 @@ export default class Step3 extends React.PureComponent {
     checkBoardComplete({
       boardType: 'seedPodBoardComplete',
       renderStep,
-      completeStep: 10
+      completeStep: 9
     })
   }
 

@@ -7,27 +7,28 @@ import { auto, delay } from '../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'You have embarked on a journey',
-    visibleAt: [ 1, 2 ]
+    visibleAt: [ 2, 3 ]
   },
   { text: 'Across meadows, and mountains',
-    visibleAt: [ 2 ]
+    visibleAt: [ 3 ]
   },
   { text: 'To find the seeds of our dying world',
-    visibleAt: [ 4, 5 ]
+    visibleAt: [ 5, 6 ]
   },
   { text: 'And build a seed bank for our new world',
-    visibleAt: [ 5]
+    visibleAt: [ 6 ]
   }
 ]
 
 export const sequence2 = {
-  subSteps: [
-    { delay },
-    { delay, auto },
+  substeps: [
+    { delay: 600, auto },
     { delay: 600, auto },
     { delay },
+    { delay: 600, auto },
     { delay, auto },
-    { delay }
+    { delay },
+    { delay, auto }
   ]
 }
 
@@ -39,7 +40,7 @@ export default (props) => {
         {...props}
       />
       <Next
-        visibleAt={[ 1, 2, 3, 4, 5, 6 ]}
+        visibleAt={[ 1, 2, 3, 4, 5, 6, 7 ]}
         {...props}
       />
     </TextContainer>
