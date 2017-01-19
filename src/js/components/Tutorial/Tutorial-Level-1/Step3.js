@@ -12,7 +12,7 @@ const textContent = [
   },
   { text: 'With a little rain,\n they are almost ready to bear seeds',
     visibleAt: [ 6, 7 ],
-    className: 'minus-1-half'
+    className: 'minus-1-5'
   },
   { text: 'Connect them to release the seeds',
     visibleAt: [ 9, 10 ]

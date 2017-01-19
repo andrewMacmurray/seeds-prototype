@@ -20,7 +20,7 @@ export default (props) => {
       <Line
         visibleAt={[ 2, 3 ]}
         text={text1}
-        className='minus-1-half-margin'
+        className='minus-1-5-margin'
         {...props}
       />
       <Next

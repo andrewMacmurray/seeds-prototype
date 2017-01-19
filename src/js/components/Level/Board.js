@@ -39,16 +39,6 @@ class Board extends React.PureComponent {
     this.props.stopDrag(moveType, seedPodCount)
   }
 
-  triggerWeather = (weatherType) => {
-    const { seedPodCount } = this.props
-    this.props.triggerWeather(weatherType, seedPodCount)
-  }
-
-  harvestSeeds = () => {
-    const { seedMoves } = this.props
-    this.props.harvestSeeds(seedMoves)
-  }
-
   fallingMagnitudeClass = (tile) => {
     return tile ? `falling-${tile}` : ''
   }

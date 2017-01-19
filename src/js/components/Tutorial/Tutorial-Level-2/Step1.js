@@ -21,8 +21,8 @@ export const sequence1 = {
     { delay, auto },
     { delay, auto },
     { delay },
+    { delay: 2000, auto },
     { delay, auto },
-    { delay },
     { delay, auto },
     { delay },
     { delay, auto }

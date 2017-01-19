@@ -32,19 +32,15 @@ class Tutorial extends React.PureComponent {
     , 300)
   }
 
-  tutorialRenderMap () {
+  render () {
     const renderMap = {
       1: <Tutorial1 {...this.props} checkBoardComplete={this.checkBoardComplete} />,
       2: <Tutorial2 {...this.props} checkBoardComplete={this.checkBoardComplete} />
     }
 
-    return renderMap[this.props.level] || ''
-  }
-
-  render () {
     return (
       <div>
-        {this.tutorialRenderMap()}
+        {renderMap[this.props.level] || ''}
       </div>
     )
   }
