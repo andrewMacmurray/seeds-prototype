@@ -8,7 +8,7 @@ export default (props) => {
     'next',
     _.visibleAt(
       props.step,
-      props.subStep,
+      props.substep,
       props.renderStep,
       props.visibleAt
     )

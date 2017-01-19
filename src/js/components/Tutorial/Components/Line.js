@@ -27,7 +27,7 @@ export default (props) => {
     props.className,
     _.visibleAt(
       props.step,
-      props.subStep,
+      props.substep,
       props.renderStep,
       props.visibleAt
     ),

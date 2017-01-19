@@ -1,7 +1,8 @@
 import * as _ from '../../allActions.js'
 import { makeLazyDispatcher } from '../../_thunkHelpers.js'
 import Promise from 'bluebird'
-import { getTutorialData, getLevelData } from '../_levelDataHelpers.js'
+import { getLevelData } from '../dataHelpers/levelDataHelpers.js'
+import { getTutorialData } from '../dataHelpers/tutorialDataHelpers.js'
 import setTutorialBoard from './setTutorialBoard.js'
 import loadLevelData from './loadLevelData.js'
 import handleWeather from './handleWeather.js'
@@ -10,20 +11,20 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
   const _dispatch = makeLazyDispatcher(dispatch)
   const state = getState()
   const {
-    subStep,
+    substep,
     data,
     step
   } = state.tutorial
-  const { subSteps, board, weather } = getTutorialData(step, data)
-  const total = subSteps.length
-  const { auto, delay } = subSteps[subStep - 1]
+  const { substeps, board, weather } = getTutorialData(step, data)
+  const total = substeps.length
+  const { auto, delay } = substeps[substep - 1]
   const lastStep = data.length
 
-  const handleBoard = board && board.step === subStep
+  const handleBoard = board && board.step === substep
     ? _dispatch(setTutorialBoard, board)
     : _dispatch(_.noop)
 
-  if (step === lastStep && subStep === total) {
+  if (step === lastStep && substep === total) {
     const { world, level } = state.level.currentLevel
     const {
       goal,
@@ -52,7 +53,7 @@ const autoAt = () => (dispatch, getState, levelSettings) => {
         .delay(delay)
         .then(_dispatch(autoAt))
 
-    } else if (subStep === total) {
+    } else if (substep === total) {
       return Promise
         .resolve()
         .then(handleBoard)

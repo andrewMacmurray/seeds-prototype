@@ -15,15 +15,15 @@ const textContent = [
 ]
 
 export const sequence4 = {
-  subSteps: [
+  substeps: [
     { delay, auto },
     { delay },
     { delay: 2000, auto },
     { delay, auto },
     { delay }
   ],
-  board: { size: 3, probabilities: all.seedPods, step: 1 },
-  weather: { type: 'rain', step: 4, action: 'stop' }
+  board: { size: 3, probabilities: all.seedPods, substep: 1 },
+  weather: { type: 'rain', action: 'stop', substep: 4 }
 }
 
 export default class Step4 extends React.PureComponent {

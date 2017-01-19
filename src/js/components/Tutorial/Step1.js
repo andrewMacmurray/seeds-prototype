@@ -7,11 +7,11 @@ import { auto, delay } from '../../constants/tutorialDefaults.js'
 const text1 = 'Welcome traveller'
 
 export const sequence1 = {
-  subSteps: [
+  substeps: [
+    { delay, auto },
     { delay, auto },
     { delay },
-    { delay, auto },
-    { delay: 600 }
+    { delay: 10, auto }
   ]
 }
 
