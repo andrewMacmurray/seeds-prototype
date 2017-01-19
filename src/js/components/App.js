@@ -1,6 +1,7 @@
 import React from 'react'
 import { identity } from 'ramda'
 import { connect } from 'react-redux'
+import classnames from 'classnames'
 
 import Level from './Level/Level.js'
 import Hub from './Hub/Hub.js'
@@ -87,10 +88,17 @@ class App extends React.Component {
       view,
       loadingScreen: { visible }
     } = this.props
+
+    const backdropClasses = classnames(
+      'backdrop',
+      backdrop,
+      { 'vh-100': view !== 'hub' }
+    )
+
     return (
       <div
         onTouchMove={this.handleFixedBackground(view, visible)}
-        className={'backdrop ' + backdrop}
+        className={backdropClasses}
       >
         {this.renderLoadingScreen()}
         <div className='menu'>
