@@ -10,8 +10,7 @@ export const sequence1 = {
   substeps: [
     { delay, auto },
     { delay, auto },
-    { delay },
-    { delay: 10, auto }
+    { delay }
   ]
 }
 
@@ -25,7 +24,7 @@ export default (props) => {
         {...props}
       />
       <Next
-        visibleAt={[ 3, 4 ]}
+        visibleAt={[ 3 ]}
         {...props}
       />
     </TextContainer>

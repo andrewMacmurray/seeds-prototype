@@ -17,7 +17,7 @@ export default (props) => {
   return (
     <p
       className={classes}
-      onClick={props.handleNextTutorialStep}
+      onClick={props.stepForward}
     >
       {props.text || 'next'}
     </p>
