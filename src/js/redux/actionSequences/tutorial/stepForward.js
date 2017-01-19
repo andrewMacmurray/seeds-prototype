@@ -31,6 +31,7 @@ const auto = () => (dispatch, getState) => {
     return Promise
       .resolve()
       .then(handleBoard)
+      .then(_dispatch(handleWeather, weather))
       .then(_dispatch(_.incrementTutorialSubStep))
       .delay(delay)
       .then(_dispatch(auto))
@@ -40,6 +41,7 @@ const auto = () => (dispatch, getState) => {
     return Promise
       .resolve()
       .then(handleBoard)
+      .then(_dispatch(handleWeather, weather))
       .then(_dispatch(_.resetTutorialSubStep))
       .then(_dispatch(_.incrementTutorialStep))
       .delay(delay)
@@ -49,6 +51,8 @@ const auto = () => (dispatch, getState) => {
     // console.log('once')
     return Promise
       .resolve()
+      .then(handleBoard)
+      .then(_dispatch(handleWeather, weather))
       .then(_dispatch(_.incrementTutorialSubStep))
   }
 }

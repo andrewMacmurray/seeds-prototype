@@ -17,10 +17,10 @@ const textContent = [
 export const sequence4 = {
   substeps: [
     { delay, auto },
-    { delay },
-    { delay: 2000, auto },
     { delay, auto },
-    { delay }
+    { delay },
+    { delay, auto },
+    { delay, auto }
   ],
   board: { size: 3, probabilities: all.seedPods, substep: 1 },
   weather: { type: 'rain', action: 'stop', substep: 4 }
