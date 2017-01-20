@@ -14,6 +14,14 @@ const textContent = [
   { text: 'A fragment sent from the heavens,\n with the power to control the weather',
     className: 'plus-3-5',
     visibleAt: [ 5 ]
+  },
+  { text: 'The shard lies dormant',
+    className: 'plus-3-5',
+    visibleAt: [ 7, 8 ]
+  },
+  { text: 'Reawaken it by collecting weather spheres',
+    className: 'plus-5-5',
+    visibleAt: [ 8 ]
   }
 ]
 
@@ -22,11 +30,12 @@ export const sequence2 = {
     { delay, auto },
     { delay, auto },
     { delay },
+    { delay: 2000, auto },
+    { delay, auto },
+    { delay: 1500, auto },
     { delay, auto },
     { delay },
-    { delay, auto },
-    { delay },
-    { delay, auto }
+    { delay }
   ]
 }
 
@@ -34,11 +43,11 @@ export default (props) => {
   return (
     <TextContainer {...props}>
       <Wrapper
-        visibleAt={[ 1, 2, 3, 4, 5, 6 ]}
-        className='w40 transition-500'
+        visibleAt={[ 1, 2, 3, 4, 5, 6, 7, 8 ]}
+        className='transition-500'
         {...props}
       >
-        <WeatherShard type='' power={12} threshold={12} />
+        <WeatherShard type='rain dormant w50' power={0} threshold={12} />
       </Wrapper>
       <Lines
         textContent={textContent}
@@ -46,7 +55,7 @@ export default (props) => {
         {...props}
       />
       <Next
-        visibleAt={[ 3, 4, 5, 6, 7 ]}
+        visibleAt={[ 3, 4, 5, 6, 7, 8 ]}
         {...props}
       />
     </TextContainer>

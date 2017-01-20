@@ -5,7 +5,10 @@
 
 .shard {
   transition: 1.5s ease;
-  opacity: 0;
+
+  &.inactive {
+    opacity: 0;
+  }
 
   &.active {
     opacity: 1;
@@ -74,5 +77,31 @@
 
   .shard-4 {
     fill: $sea-green;
+  }
+}
+
+
+.dormant {
+  &.weather-shard-rain,
+   .weather-shard-sun {
+      .shard-1.inactive {
+        opacity: 1;
+        fill: $grey-1;
+      }
+
+      .shard-2.inactive {
+        opacity: 1;
+        fill: $grey-2;
+      }
+
+      .shard-3.inactive {
+        opacity: 1;
+        fill: $grey-3;
+      }
+
+      .shard-4.inactive {
+        opacity: 1;
+        fill: $grey-4;
+      }
   }
 }

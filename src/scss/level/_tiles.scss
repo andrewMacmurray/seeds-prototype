@@ -56,7 +56,7 @@
   @for $j from 0 through 7 {
     .y-#{$i}.x-#{$j} {
 
-      .rain.leaving {
+      .leaving.left {
         $x: $grid-small * (-$i) + ($grid-small / 5);
         $y: ($grid-small - 2) * (-$j * 0.95) - 114px;
         transform: translate($x, $y) scale(1);
@@ -64,7 +64,7 @@
         transition: 1s ease;
       }
 
-      .sun.leaving {
+      .leaving.right {
         $i2: 7 - $i;
 
         $x: $grid-small * ($i2) - ($grid-small / 5);
@@ -74,7 +74,7 @@
         transition: 1s ease;
       }
 
-      .seed.leaving {
+      .leaving.top {
         $i3: -4 + $i;
 
         $x: $grid-small * (-$i3) - ($grid-small / 2);
@@ -151,14 +151,14 @@
     @for $j from 0 through 7 {
       .y-#{$i}.x-#{$j} {
 
-        .rain.leaving {
+        .leaving.left {
           $x: $grid-medium * (-$i) - ($grid-medium / 4);
           $y: ($grid-medium - 4) * (-$j) - 122px;
           transition: 0.7s ease-in-out;
           transform: translate($x, $y) scale(1);
         }
 
-        .sun.leaving {
+        .leaving.right {
           $i2: 7 - $i;
 
           $x: $grid-medium * $i2 + ($grid-medium / 4);
@@ -167,7 +167,7 @@
           transform: translate($x, $y) scale(1);
         }
 
-        .seed.leaving {
+        .leaving.top {
           $i3: -4 + $i;
 
           $x: $grid-medium * (-$i3) - ($grid-medium / 2);

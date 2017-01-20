@@ -67,6 +67,7 @@ export default class Step5 extends React.PureComponent {
           {...this.props}
         />
         <TutorialBoard
+          seedDirection='top'
           visibleAt={[ 1, 2, 3, 4, 5 ]}
           enabledAt={[ 2 ]}
           {...this.props}
