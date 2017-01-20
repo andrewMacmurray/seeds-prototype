@@ -95,13 +95,19 @@ class App extends React.Component {
       { 'vh-100': view !== 'hub' }
     )
 
+    const menuVisibility =
+         view === 'tutorial'
+      || view === 'intro'
+      ? 'opacity-0'
+      : ''
+
     return (
       <div
         onTouchMove={this.handleFixedBackground(view, visible)}
         className={backdropClasses}
       >
         {this.renderLoadingScreen()}
-        <div className='menu'>
+        <div className={'menu ' + menuVisibility}>
           {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
           <p className='menu-item' onClick={this.handleReset}>reset</p>
         </div>
