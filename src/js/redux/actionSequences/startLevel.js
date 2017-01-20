@@ -33,7 +33,7 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     ? _dispatch(_.overrideWeatherPower, true)
     : _dispatch(_.overrideWeatherPower, false)
 
-  const handleInitialWeather = initialWeather && !tutorial
+  const handleInitialWeather = initialWeather && !loadTutorial
     ? _dispatch(_.setRaindropsVisibility, true)
     : _dispatch(_.noop)
 
