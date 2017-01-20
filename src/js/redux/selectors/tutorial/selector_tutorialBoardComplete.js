@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
-import { _board } from '../baseSelectors.js'
-import { equals, compose, flatten, length, filter, gte, __ } from 'ramda'
+import { _board, _raindrops } from '../baseSelectors.js'
+import { equals, compose, flatten, length, identity, filter, gte, __ } from 'ramda'
 
 const countTiles = (n) => compose(
   length,
@@ -24,3 +24,4 @@ const seedBoardPercent = compose(
 
 export const seedPodBoardComplete = createSelector([ _board ], seedPodBoardPercent)
 export const seedBoardComplete = createSelector([ _board ], seedBoardPercent)
+export const rainBoardComplete = createSelector([ _raindrops ], identity)

@@ -7,35 +7,28 @@ import WeatherShard from '../../Level/WeatherShard.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
-  { text: 'This is a weather shard',
-    className: 'plus-3-5',
-    visibleAt: [ 2, 3 ]
+  { text: 'Ignite the shard with weather spheres,\n to make the rain fall',
+    className: 'plus-1-5',
+    visibleAt: [ 4, 5 ]
   },
-  { text: 'A fragment sent from the heavens,\n with the power to control the weather',
-    className: 'plus-3-5',
-    visibleAt: [ 5 ]
-  },
-  { text: 'This shard lies dormant',
-    className: 'plus-3-5',
+  { text: 'grow as many seeds as you can, \n during those two turns',
+    className: 'plus-1-5',
     visibleAt: [ 7, 8 ]
-  },
-  { text: 'Reawaken it by collecting weather spheres',
-    className: 'plus-5-5',
-    visibleAt: [ 8 ]
   }
 ]
 
-export const sequence2 = {
+export const sequence4 = {
   substeps: [
     { delay, auto },
     { delay, auto },
-    { delay },
-    { delay: 2000, auto },
     { delay, auto },
-    { delay: 1500, auto },
     { delay, auto },
-    { delay }
-  ]
+    { delay, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay: 2000 }
+  ],
+  weather: { action: 'reset', substep: 1 }
 }
 
 export default (props) => {
@@ -43,10 +36,14 @@ export default (props) => {
     <TextContainer {...props}>
       <Wrapper
         visibleAt={[ 1, 2, 3, 4, 5, 6, 7, 8 ]}
-        className='transition-500 minus-2-0-margin'
+        className='transition-500'
         {...props}
       >
-        <WeatherShard type='rain dormant w50' power={0} threshold={12} />
+        <WeatherShard
+          type='rain dormant w40 no-animation minus-4-0-margin'
+          power={12}
+          threshold={12}
+        />
       </Wrapper>
       <Lines
         textContent={textContent}
@@ -54,7 +51,8 @@ export default (props) => {
         {...props}
       />
       <Next
-        visibleAt={[ 3, 4, 5, 6, 7, 8 ]}
+        text='begin'
+        visibleAt={[ 8 ]}
         {...props}
       />
     </TextContainer>

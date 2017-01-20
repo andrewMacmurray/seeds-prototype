@@ -47,14 +47,17 @@ class Tutorial extends React.PureComponent {
 
 import {
   seedBoardComplete,
-  seedPodBoardComplete
+  seedPodBoardComplete,
+  rainBoardComplete
 } from '../../redux/selectors/tutorial/selector_tutorialBoardComplete.js'
 
 const mapStateToProps = (state) => ({
+  ...state.level.weather,
   ...state.level.currentLevel,
   ...state.tutorial,
   seedPodBoardComplete: seedPodBoardComplete(state),
-  seedBoardComplete: seedBoardComplete(state)
+  seedBoardComplete: seedBoardComplete(state),
+  rainBoardComplete: rainBoardComplete(state)
 })
 
 export default connect(mapStateToProps, { stepForward, initTutorial })(Tutorial)

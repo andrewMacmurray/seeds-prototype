@@ -6,12 +6,14 @@ import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'The rains have stopped',
+    className: 'plus-1-5',
     visibleAt: [ 2, 3 ]
   },
-  { text: 'Our seeds wont grow\n without the right conditions',
+  { text: 'Our seeds won\'t grow\n without the right conditions',
     visibleAt: [ 5 ]
   },
   { text: 'How will we continue?',
+    className: 'plus-1-5',
     visibleAt: [ 7 ]
   }
 ]

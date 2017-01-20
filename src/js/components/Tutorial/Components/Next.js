@@ -11,7 +11,8 @@ export default (props) => {
       props.substep,
       props.renderStep,
       props.visibleAt
-    )
+    ),
+    props.className
   )
 
   return (

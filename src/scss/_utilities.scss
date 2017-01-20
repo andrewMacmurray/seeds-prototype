@@ -19,6 +19,10 @@
   width: 40px;
 }
 
+.w45 {
+  width: 45px;
+}
+
 .w50 {
   width: 50px;
 }
@@ -41,6 +45,14 @@
 
 .abs {
   position: absolute;
+}
+
+.minus-4-0-margin {
+  margin-top: -4em;
+}
+
+.minus-2-0-margin {
+  margin-top: -2em;
 }
 
 .minus-1-5-margin {
@@ -77,4 +89,12 @@
 
 .transition-800 {
   transition-duration: .8s;
+}
+
+.no-animation {
+  animation: none;
+}
+
+.white {
+  color: #fff;
 }

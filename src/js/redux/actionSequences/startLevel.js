@@ -14,7 +14,8 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     avatars,
     tutorial,
     overrideWeather,
-    initialWeather
+    initialWeather,
+    threshold
   } = getLevelData(world, levelNumber, levelSettings)
 
   const seedType = avatars[0]
@@ -36,6 +37,10 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     ? _dispatch(_.setRaindropsVisibility, true)
     : _dispatch(_.noop)
 
+  const handleWeatherThreshold = threshold
+    ? _dispatch(_.setWeatherThreshold, threshold)
+    : _dispatch(_.setWeatherThreshold, 12)
+
   const view = loadTutorial
     ? 'tutorial'
     : 'level'
@@ -44,6 +49,7 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     return Promise
       .resolve()
       .then(handleWeatherOverride)
+      .then(handleWeatherThreshold)
       .then(_dispatch(_.setSeedType, seedType))
       .then(_dispatch(_.setLoadingBackground, loadingBackground))
       .then(_dispatch(_.showLoadingScreen))
