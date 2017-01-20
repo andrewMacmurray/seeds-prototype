@@ -23,4 +23,5 @@ export default () => (dispatch, getState, levelSettings) => {
     .resolve()
     .then(_dispatch(loadLevelData, goal, probabilities))
     .then(handleInitialWeather)
+    .then(_dispatch(_.setTutorialUpdating, false))
 }

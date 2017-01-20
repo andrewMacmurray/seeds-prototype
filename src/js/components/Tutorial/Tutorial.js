@@ -14,7 +14,6 @@ class Tutorial extends React.PureComponent {
     const currentTutorialData = tutorialSequenceDataMap[level]
 
     this.props.initTutorial(currentTutorialData)
-    setTimeout(this.props.stepForward, 500)
   }
 
   checkBoardComplete = ({ boardType, renderStep, completeStep }) => {

@@ -13,7 +13,8 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
     goal,
     avatars,
     tutorial,
-    overrideWeather
+    overrideWeather,
+    initialWeather
   } = getLevelData(world, levelNumber, levelSettings)
 
   const seedType = avatars[0]
@@ -30,6 +31,10 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
   const handleWeatherOverride = overrideWeather
     ? _dispatch(_.overrideWeatherPower, true)
     : _dispatch(_.overrideWeatherPower, false)
+
+  const handleInitialWeather = initialWeather && !tutorial
+    ? _dispatch(_.setRaindropsVisibility, true)
+    : _dispatch(_.noop)
 
   const view = loadTutorial
     ? 'tutorial'
@@ -51,6 +56,7 @@ export default (world, levelNumber) => (dispatch, getState, levelSettings) => {
         _.resetWeatherPower, 'sun',
         _.resetWeatherPower, 'rain'
       ]))
+      .then(handleInitialWeather)
       .delay(500)
       .then(_dispatch(_.setView, view))
       .delay(1000)
