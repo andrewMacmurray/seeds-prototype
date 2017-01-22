@@ -45,7 +45,11 @@ class Level extends React.PureComponent {
           />
         </div>
         <p className='score'>{currentScore} / {levelGoal}</p>
-        <Board />
+        <Board
+          rainDirection='left'
+          sunDirection='right'
+          seedDirection='top'
+        />
       </div>
     )
   }

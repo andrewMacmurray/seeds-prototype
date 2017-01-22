@@ -12,15 +12,22 @@ export default () => (dispatch, getState, levelSettings) => {
   const {
     goal,
     probabilities,
-    initialWeather
+    initialWeather,
+    threshold
   } = getLevelData(world, level, levelSettings)
 
   const handleInitialWeather = initialWeather === 'rain'
     ? _dispatch(_.setRaindropsVisibility, true)
     : _dispatch(_.noop)
 
+  const handleWeatherThreshold = threshold
+    ? _dispatch(_.setWeatherThreshold, threshold)
+    : _dispatch(_.setWeatherThreshold, 12)
+
   return Promise
     .resolve()
     .then(_dispatch(loadLevelData, goal, probabilities))
     .then(handleInitialWeather)
+    .then(handleWeatherThreshold)
+    .then(_dispatch(_.setTutorialUpdating, false))
 }

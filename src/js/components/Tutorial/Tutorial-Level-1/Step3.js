@@ -1,10 +1,10 @@
 import React from 'react'
-import Next from './components/Next.js'
-import TextContainer from './components/TextContainer.js'
-import TutorialBoard from './components/TutorialBoard.js'
-import Lines from './components/Lines.js'
-import { all } from '../../constants/probabilities.js'
-import { auto, delay } from '../../constants/tutorialDefaults.js'
+import Next from '../Components/Next.js'
+import TextContainer from '../Components/TextContainer.js'
+import TutorialBoard from '../Components/TutorialBoard.js'
+import Lines from '../Components/Lines.js'
+import { all } from '../../../constants/probabilities.js'
+import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'These are seed pods',
@@ -12,7 +12,7 @@ const textContent = [
   },
   { text: 'With a little rain,\n they are almost ready to bear seeds',
     visibleAt: [ 6, 7 ],
-    className: 'minus-1-half'
+    className: 'minus-1-5'
   },
   { text: 'Connect them to release the seeds',
     visibleAt: [ 9, 10 ]
@@ -60,6 +60,7 @@ export default class Step3 extends React.PureComponent {
           {...this.props}
         />
         <TutorialBoard
+          seedDirection='top'
           visibleAt={[ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]}
           enabledAt={[ 9, 10 ]}
           {...this.props}

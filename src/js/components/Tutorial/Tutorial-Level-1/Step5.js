@@ -1,33 +1,33 @@
 import React from 'react'
-import TutorialBoard from './components/TutorialBoard.js'
-import TextContainer from './components/TextContainer.js'
-import Next from './components/Next.js'
-import Lines from './components/Lines.js'
-import { auto, delay } from '../../constants/tutorialDefaults.js'
+import TutorialBoard from '../Components/TutorialBoard.js'
+import TextContainer from '../Components/TextContainer.js'
+import Next from '../Components/Next.js'
+import Lines from '../Components/Lines.js'
+import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'Now connect seeds to fill the seed bank',
-    className: 'minus-1-half',
+    className: 'minus-1-5',
     visibleAt: [ 1, 2 ]
   },
   { text: 'Connect as many as you can in one move',
-    className: 'plus-half',
+    className: 'plus-0-5',
     visibleAt: [ 2 ]
   },
   { text: 'Marvellous!',
-    className: 'minus-1-half',
+    className: 'minus-1-5',
     visibleAt: [ 3 ]
   },
   { text: 'The more seeds you connect,\n the faster the seed bank will fill up',
-    className: 'minus-1-half',
+    className: 'minus-1-5',
     visibleAt: [ 5 ]
   },
   { text: 'Your first journey awaits...',
-    className: 'minus-1-half',
+    className: 'minus-1-5',
     visibleAt: [ 7, 8, 9 ]
   },
   { text: 'quickly, grow and collect the seeds\n whilst it\'s still raining',
-    className: 'plus-1-half',
+    className: 'plus-1-5',
     visibleAt: [ 8, 9 ]
   }
 ]
@@ -67,6 +67,7 @@ export default class Step5 extends React.PureComponent {
           {...this.props}
         />
         <TutorialBoard
+          seedDirection='top'
           visibleAt={[ 1, 2, 3, 4, 5 ]}
           enabledAt={[ 2 ]}
           {...this.props}

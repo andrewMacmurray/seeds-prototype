@@ -4,7 +4,16 @@ import classnames from 'classnames'
 import * as _ from './_stepHelpers.js'
 
 export default (props) => {
-  const { step, substep, renderStep, visibleAt, enabledAt } = props
+  const {
+    step,
+    substep,
+    renderStep,
+    visibleAt,
+    enabledAt,
+    rainDirection,
+    sunDirection,
+    seedDirection
+  } = props
 
   const boardClasses = classnames(
     'tutorial-board-container',
@@ -14,7 +23,11 @@ export default (props) => {
 
   return (
     <div className={boardClasses}>
-      <Board />
+      <Board
+        rainDirection={rainDirection}
+        sunDirection={sunDirection}
+        seedDirection={seedDirection}
+      />
     </div>
   )
 }
