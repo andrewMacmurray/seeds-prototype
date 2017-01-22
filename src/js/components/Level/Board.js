@@ -39,16 +39,6 @@ class Board extends React.PureComponent {
     this.props.stopDrag(moveType, seedPodCount)
   }
 
-  triggerWeather = (weatherType) => {
-    const { seedPodCount } = this.props
-    this.props.triggerWeather(weatherType, seedPodCount)
-  }
-
-  harvestSeeds = () => {
-    const { seedMoves } = this.props
-    this.props.harvestSeeds(seedMoves)
-  }
-
   fallingMagnitudeClass = (tile) => {
     return tile ? `falling-${tile}` : ''
   }
@@ -63,6 +53,9 @@ class Board extends React.PureComponent {
       movesOrderArray,
       growingOrderArray,
       seedType,
+      rainDirection,
+      sunDirection,
+      seedDirection,
       board: { tiles, boardSize },
       weather: { animating, remainingWeatherTurns, overridePower }
     } = this.props
@@ -84,13 +77,16 @@ class Board extends React.PureComponent {
                     overridePower={overridePower}
                     moveOrder={movesOrderArray[i][j] ? `delay-${movesOrderArray[i][j]}` : ''}
                     growingOrder={growingOrderArray[i][j] ? `delay-${growingOrderArray[i][j]}` : ''}
-                    isLeaving={isLeavingArray[i][j] ? 'leaving' : ''}
+                    isLeaving={isLeavingArray[i][j]}
                     isDragging={isDraggingArray[i][j] ? 'dragging' : ''}
                     isEntering={isEnteringArray[i][j] ? 'entering' : ''}
                     isGrowing={isGrowingArray[i][j]}
                     isFalling={this.fallingMagnitudeClass(fallingMagnitudeArray[i][j])}
                     y={i}
                     x={j}
+                    rainDirection={rainDirection}
+                    sunDirection={sunDirection}
+                    seedDirection={seedDirection}
                     /> : ''
               }
             )

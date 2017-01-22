@@ -8,8 +8,9 @@ module.exports = {
     path: path.resolve(__dirname, 'public')
   },
   publicPath: './public/',
+  devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js?$/,
         exclude: path.resolve(__dirname, 'node_modules'),
@@ -35,7 +36,7 @@ module.exports = {
     })
   ],
   resolve: {
-    extensions: [ '', '.js', '.jsx' ],
+    extensions: [ '.js', '.jsx' ],
     alias: {
       'react': 'preact-compat',
       'react-dom': 'preact-compat'

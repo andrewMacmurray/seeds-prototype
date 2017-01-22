@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import classNames from 'classnames'
 import { addListener, removeListener } from 'spur-events'
+import { cond, equals, always, or, and, T, identity } from 'ramda'
 
 export default class Seed extends React.PureComponent {
   componentDidMount () {
@@ -11,12 +12,14 @@ export default class Seed extends React.PureComponent {
 
     addListener($el, 'pointerdown', this.props.startDrag)
 
-    addListener($el, 'pointerenter', (e) => {
-      e.preventDefault()
-      const dataX = parseInt(e.target.getAttribute('data-x'))
-      const dataY = parseInt(e.target.getAttribute('data-y'))
-      this.props.checkTile([ dataY, dataX ])
-    })
+    if (!window.PointerEvent) {
+      addListener($el, 'pointerenter', (e) => {
+        e.preventDefault()
+        const dataX = parseInt(e.target.getAttribute('data-x'))
+        const dataY = parseInt(e.target.getAttribute('data-y'))
+        this.props.checkTile([ dataY, dataX ])
+      })
+    }
 
     $el.addEventListener('pointermove', (e) => {
       e.preventDefault()
@@ -52,19 +55,35 @@ export default class Seed extends React.PureComponent {
       isLeaving,
       isDragging,
       isEntering,
-      isFalling
+      isFalling,
+      rainDirection,
+      sunDirection,
+      seedDirection
     } = this.props
 
     const seedClass = tileType === 'seed' || tileType === 'seedPod'
       ? seedType
       : ''
+
     const growingTransition = weatherAnimating ? ' transition' : ''
 
-    const growingClass = (remainingWeatherTurns > 0 || overridePower) && isGrowing
-        ? 'growing ' + growingTransition
-      : isGrowing
-        ? 'bulging'
-        : ''
+    const fullPower = or(remainingWeatherTurns > 0, overridePower)
+
+    const growingClass = cond([
+      [ and(fullPower), always('growing ' + growingTransition) ],
+      [ identity,       always('bulging') ],
+      [ T,              always('') ]
+    ])
+
+    const leavingAlignment = cond([
+      [ equals('rain'), always('leaving ' + rainDirection) ],
+      [ equals('sun'),  always('leaving ' + sunDirection) ],
+      [ equals('seed'), always('leaving ' + seedDirection) ]
+    ])
+
+    const leavingClasses = isLeaving
+      ? leavingAlignment(tileType)
+      : ''
 
     const containerClasses = classNames(
       'tile-container',
@@ -76,10 +95,10 @@ export default class Seed extends React.PureComponent {
       'tile',
       tileType,
       seedClass,
-      growingClass,
+      growingClass(isGrowing),
       moveOrder,
       growingOrder,
-      isLeaving,
+      leavingClasses,
       isDragging,
       isEntering,
       isFalling

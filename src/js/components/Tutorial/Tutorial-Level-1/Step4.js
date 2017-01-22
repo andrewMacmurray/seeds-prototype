@@ -1,9 +1,9 @@
 import React from 'react'
-import TutorialBoard from './components/TutorialBoard.js'
-import TextContainer from './components/TextContainer.js'
-import Lines from './components/Lines.js'
-import { all } from '../../constants/probabilities.js'
-import { auto, delay } from '../../constants/tutorialDefaults.js'
+import TutorialBoard from '../Components/TutorialBoard.js'
+import TextContainer from '../Components/TextContainer.js'
+import Lines from '../Components/Lines.js'
+import { all } from '../../../constants/probabilities.js'
+import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'Connect across or diagonally',
@@ -15,15 +15,15 @@ const textContent = [
 ]
 
 export const sequence4 = {
-  subSteps: [
+  substeps: [
     { delay, auto },
-    { delay },
-    { delay: 2000, auto },
     { delay, auto },
-    { delay }
+    { delay: 2000 },
+    { delay, auto },
+    { delay, auto }
   ],
-  board: { size: 3, probabilities: all.seedPods, step: 1 },
-  weather: { type: 'rain', step: 4, action: 'stop' }
+  board: { size: 3, probabilities: all.seedPods, substep: 1 },
+  weather: { type: 'rain', action: 'stop', substep: 4 }
 }
 
 export default class Step4 extends React.PureComponent {
@@ -46,6 +46,7 @@ export default class Step4 extends React.PureComponent {
           {...this.props}
         />
         <TutorialBoard
+          seedDirection='top'
           visibleAt={[ 2, 3, 4, 5 ]}
           enabledAt={[ 3 ]}
           {...this.props}

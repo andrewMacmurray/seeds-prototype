@@ -13,7 +13,7 @@ const SET_TUTORIAL_UPDATING = 'SET_TUTORIAL_UPDATING'
 const defaultState = {
   data: [],
   step: 1,
-  subStep: 1,
+  substep: 1,
   updating: false
 }
 
@@ -37,12 +37,12 @@ export default (state = defaultState, action) => {
   case INCREMENT_TUTORIAL_SUBSTEP:
     return {
       ...state,
-      subStep: state.subStep + 1
+      substep: state.substep + 1
     }
   case RESET_TUTORIAL_SUBSTEP:
     return {
       ...state,
-      subStep: 1
+      substep: 1
     }
   case SET_TUTORIAL_UPDATING:
     return {

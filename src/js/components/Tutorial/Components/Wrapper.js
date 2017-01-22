@@ -5,7 +5,6 @@ import * as _ from './_stepHelpers.js'
 export default (props) => {
 
   const classes = classnames(
-    'next',
     _.visibleAt(
       props.step,
       props.substep,
@@ -16,11 +15,8 @@ export default (props) => {
   )
 
   return (
-    <p
-      className={classes}
-      onClick={props.stepForward}
-    >
-      {props.text || 'next'}
-    </p>
+    <div className={classes}>
+      {props.children}
+    </div>
   )
 }

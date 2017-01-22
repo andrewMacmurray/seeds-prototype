@@ -8,11 +8,11 @@ export const isVisble = (step, index) =>
     ? ''
     : o0
 
-const subStepTuple = curry((step, steps) =>
+const substepTuple = curry((step, steps) =>
   map(x => [ step, x ], steps))
 
 const matchesCurrentStep = (disableClass) => (currentStep, currentSubStep, step, steps) =>
-  contains([ currentStep, currentSubStep ], subStepTuple(step, steps))
+  contains([ currentStep, currentSubStep ], substepTuple(step, steps))
     ? ''
     : disableClass
 

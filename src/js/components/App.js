@@ -1,6 +1,7 @@
 import React from 'react'
 import { identity } from 'ramda'
 import { connect } from 'react-redux'
+import classnames from 'classnames'
 
 import Level from './Level/Level.js'
 import Hub from './Hub/Hub.js'
@@ -26,7 +27,7 @@ class App extends React.Component {
       level:    <Level />,
       intro:    <Intro />,
       hub:      <Hub />,
-      tutorial: <Tutorial />
+      tutorial: <Tutorial {...this.props} />
     }
     return viewMap[this.props.view]
   }
@@ -87,13 +88,26 @@ class App extends React.Component {
       view,
       loadingScreen: { visible }
     } = this.props
+
+    const backdropClasses = classnames(
+      'backdrop',
+      backdrop,
+      { 'vh-100': view !== 'hub' }
+    )
+
+    const menuVisibility =
+         view === 'tutorial'
+      || view === 'intro'
+      ? 'opacity-0'
+      : ''
+
     return (
       <div
         onTouchMove={this.handleFixedBackground(view, visible)}
-        className={'backdrop ' + backdrop}
+        className={backdropClasses}
       >
         {this.renderLoadingScreen()}
-        <div className='menu'>
+        <div className={'menu ' + menuVisibility}>
           {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
           <p className='menu-item' onClick={this.handleReset}>reset</p>
         </div>

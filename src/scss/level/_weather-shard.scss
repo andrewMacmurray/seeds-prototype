@@ -1,11 +1,15 @@
 .weather-shard {
   width: 40px;
   position: relative;
+  z-index: 10;
 }
 
 .shard {
   transition: 1.5s ease;
-  opacity: 0;
+
+  &.inactive {
+    opacity: 0;
+  }
 
   &.active {
     opacity: 1;
@@ -30,8 +34,7 @@
 }
 
 .power-sphere.active {
-  animation: bigPulse 2s cubic-bezier(0.71, 0.03, 0.24, 0.99);
-  animation-fill-mode: both;
+  animation: bigPulse 3s cubic-bezier(0.71, 0.03, 0.24, 0.99);
 }
 
 .weather-shard-sun {
@@ -75,5 +78,31 @@
 
   .shard-4 {
     fill: $sea-green;
+  }
+}
+
+
+.dormant {
+  &.weather-shard-rain,
+   .weather-shard-sun {
+      .shard-1.inactive {
+        opacity: 1;
+        fill: $grey-1;
+      }
+
+      .shard-2.inactive {
+        opacity: 1;
+        fill: $grey-2;
+      }
+
+      .shard-3.inactive {
+        opacity: 1;
+        fill: $grey-3;
+      }
+
+      .shard-4.inactive {
+        opacity: 1;
+        fill: $grey-4;
+      }
   }
 }
