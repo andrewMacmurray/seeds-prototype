@@ -12,10 +12,10 @@ const textContent = [
   { text: 'Across meadows, and mountains',
     visibleAt: [ 3 ]
   },
-  { text: 'To find the seeds of our dying world',
+  { text: 'To find seeds from our world',
     visibleAt: [ 5, 6 ]
   },
-  { text: 'And build a seed bank for our new world',
+  { text: 'And build a great seed bank',
     visibleAt: [ 6 ]
   }
 ]

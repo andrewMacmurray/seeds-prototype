@@ -7,7 +7,7 @@ import WeatherShard from '../../Level/WeatherShard.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
-  { text: 'Ignite the shard with weather spheres,\n to make the rain fall',
+  { text: 'Ignite the neptune shard,\n with rain spheres',
     className: 'plus-1-5',
     visibleAt: [ 4, 5 ]
   },

@@ -20,7 +20,7 @@ export const sequence4 = {
     { delay, auto },
     { delay: 2000 },
     { delay, auto },
-    { delay, auto }
+    { delay: 1500, auto }
   ],
   board: { size: 3, probabilities: all.seedPods, substep: 1 },
   weather: { type: 'rain', action: 'stop', substep: 4 }

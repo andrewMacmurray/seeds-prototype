@@ -7,6 +7,7 @@
 @import 'app';
 @import 'views/intro';
 @import 'views/loading';
+@import 'views/tutorial';
 
 // level
 @import 'level/tiles';
@@ -20,9 +21,6 @@
 // hub
 @import 'hub/level';
 @import 'hub/world';
-
-// tutorial
-@import 'tutorial/tutorial';
 
 // utilities
 @import 'utilities';
