@@ -5,7 +5,7 @@ import TextContainer from '../Components/TextContainer.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
-  { text: 'The rains have stopped',
+  { text: 'The rain has stopped',
     className: 'plus-1-5',
     visibleAt: [ 2, 3 ]
   },

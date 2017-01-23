@@ -9,7 +9,7 @@ import { all } from '../../../constants/probabilities.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
-  { text: 'You reawakened the neptune shard!',
+  { text: 'You found the neptune shard!',
     className: 'plus-1-5 white',
     visibleAt: [ 4, 5, 6 ]
   },
@@ -23,7 +23,7 @@ export const sequence3 = {
   substeps: [
     { delay, auto },
     { delay: 2000 },
-    { delay: 2000, auto },
+    { delay: 1500, auto },
     { delay, auto },
     { delay, auto },
     { delay }
@@ -58,7 +58,7 @@ export default class Step3 extends React.PureComponent {
           {...this.props}
         >
           <WeatherShard
-            type={'rain w45 minus-4-0-margin ' + handleAwakenedShard}
+            type={'rain w40 minus-4-0-margin ' + handleAwakenedShard}
             power={rain}
             weatherVisible={rainBoardComplete}
             threshold={this.props.threshold}
