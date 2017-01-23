@@ -36,9 +36,9 @@
   margin: 0 1em 0.5em;
   text-align: center;
   left: 0;
-  right: 0; letter-spacing: 0.5px;
+  right: 0; letter-spacing: 1.3px;
   transition: opacity 0.5s linear;
-  font-size: 1.1em;
+  font-size: $f3;
   @include no-select;
 }
 
@@ -50,8 +50,8 @@
   left: 0;
   right: 0;
   margin: 0;
-  letter-spacing: 2px;
-  font-size: $f4;
+  letter-spacing: 3px;
+  font-size: 1em;
   transition: opacity 0.5s linear;
   @include no-select;
 }

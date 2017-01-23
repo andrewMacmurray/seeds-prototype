@@ -11,7 +11,7 @@ const textContent = [
     className: 'plus-3-5',
     visibleAt: [ 2, 3 ]
   },
-  { text: 'A fragment sent from the heavens,\n with the power to control the weather',
+  { text: 'A fragment from the heavens,\n with power to control weather',
     className: 'plus-3-5',
     visibleAt: [ 5 ]
   },
@@ -19,7 +19,7 @@ const textContent = [
     className: 'plus-3-5',
     visibleAt: [ 7, 8 ]
   },
-  { text: 'Reawaken it by collecting weather spheres',
+  { text: 'Reawaken it with weather spheres',
     className: 'plus-5-5',
     visibleAt: [ 8 ]
   }
@@ -27,7 +27,7 @@ const textContent = [
 
 export const sequence2 = {
   substeps: [
-    { delay, auto },
+    { delay: 400, auto },
     { delay, auto },
     { delay },
     { delay: 2000, auto },

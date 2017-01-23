@@ -10,11 +10,11 @@ const textContent = [
   { text: 'These are seed pods',
     visibleAt: [ 3, 4 ]
   },
-  { text: 'With a little rain,\n they are almost ready to bear seeds',
+  { text: 'With a little rain,\n they are almost ready to burst',
     visibleAt: [ 6, 7 ],
     className: 'minus-1-5'
   },
-  { text: 'Connect them to release the seeds',
+  { text: 'Connect them to release seeds',
     visibleAt: [ 9, 10 ]
   },
   { text: 'Brilliant!',
