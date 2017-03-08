@@ -1,4 +1,4 @@
-# Seed
+# Seeds
 
 + A connect the dots game where the user must gather many seeds.
 + An experiment that asks how can you use a UI framework like React to make games?
