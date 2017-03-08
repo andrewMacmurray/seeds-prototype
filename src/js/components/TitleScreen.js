@@ -67,7 +67,7 @@ class TitleScreen extends React.Component {
           <TwinSeed seedType={seedClasses + ' one twin-dark'}/>
           <TwinSeed seedType={seedClasses + ' two twin-red'}/>
           <SingleSeed seedType={seedClasses + ' three'} />
-          <p className={titleClasses + ' title'}>seed</p>
+          <p className={titleClasses + ' title'}>seeds</p>
           <p
             className={beginClasses + ' begin'}
             onClick={this.begin}
