@@ -9,12 +9,13 @@ import TitleScreen from './TitleScreen.js'
 import Tutorial from './Tutorial/Tutorial.js'
 import Loading from './Loading.js'
 import Intro from './Intro/Intro.js'
+import Menu from './Menu.js'
 
 import Audio from './Audio.js'
 import RainCurtain from './RainCurtain.js'
 import SunSphere from './SunSphere.js'
 
-import { setView } from '../redux/allActions.js'
+import { setView, openMenu, closeMenu } from '../redux/allActions.js'
 import flashLoadingScreen from '../redux/actionSequences/flashLoadingScreen.js'
 
 import '../../scss/index.scss'
@@ -32,7 +33,7 @@ class App extends React.Component {
     return viewMap[this.props.view]
   }
 
-  loadView (view) {
+  loadView = (view) => {
     this.props.flashLoadingScreen(Math.random())
     setTimeout(() => this.props.setView(view), 1800)
   }
@@ -65,15 +66,17 @@ class App extends React.Component {
     window.location.reload()
   }
 
-  renderMenu (items) {
-    return items.map((item, i) =>
-      <p
-        key={i}
-        className='menu-item'
-        onClick={() => this.loadView(item)}
-      >
-        {item}
-      </p>
+  renderMenu (menuVisibility) {
+    return (
+      <Menu
+        menuItems={['title', 'level', 'hub', 'tutorial']}
+        loadView={this.loadView}
+        menuVisibility={menuVisibility}
+        handleReset={this.handleReset}
+        menuOpen={this.props.menu.open}
+        open={this.props.openMenu}
+        close={this.props.closeMenu}
+      />
     )
   }
 
@@ -107,12 +110,11 @@ class App extends React.Component {
         className={backdropClasses}
       >
         {this.renderLoadingScreen()}
-        <div className={'menu ' + menuVisibility}>
-          {this.renderMenu(['title', 'level', 'hub', 'tutorial'])}
-          <p className='menu-item' onClick={this.handleReset}>reset</p>
-        </div>
+        {this.renderMenu(menuVisibility)}
         <Audio />
-        {this.router()}
+        <div onClick={this.props.closeMenu}>
+          {this.router()}
+        </div>
         <RainCurtain
           raindropsVisible={raindropsVisible}
           overridePower={overridePower}
@@ -125,4 +127,4 @@ class App extends React.Component {
 
 const mapStateToProps = state => ({ ...state })
 
-export default connect(mapStateToProps, { setView, flashLoadingScreen })(App)
+export default connect(mapStateToProps, { setView, flashLoadingScreen, openMenu, closeMenu })(App)
