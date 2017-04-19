@@ -21,6 +21,7 @@ import * as audio from './modules/audio.js'
 import * as isUpdating from './modules/isUpdating.js'
 import * as backdrop from './modules/backdrop.js'
 import * as view from './modules/view.js'
+import * as menu from './modules/menu.js'
 import * as loading from './modules/loadingScreen.js'
 
 module.exports = {
@@ -43,5 +44,6 @@ module.exports = {
   ...isUpdating,
   ...backdrop,
   ...view,
+  ...menu,
   ...loading
 }

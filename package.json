@@ -1,23 +1,22 @@
 {
-  "name": "seed",
+  "name": "seeds",
   "version": "1.0.0",
   "description": "a connect the dots game build in react",
   "main": "index.js",
   "scripts": {
-    "start": "node lib/server.js",
     "dev": "webpack-dev-server --host 0.0.0.0 --hot --inline --content-base public/",
     "watch": "webpack --watch --progress"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrewMacmurray/seed.git"
+    "url": "git+https://github.com/andrewMacmurray/seeds.git"
   },
-  "author": "FAC7",
-  "license": "ISC",
+  "author": "Andrew MacMurray",
+  "license": "Creative Commons",
   "bugs": {
-    "url": "https://github.com/andrewMacmurray/seed/issues"
+    "url": "https://github.com/andrewMacmurray/seeds/issues"
   },
-  "homepage": "https://github.com/andrewMacmurray/seed#readme",
+  "homepage": "https://github.com/andrewMacmurray/seeds#readme",
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.4",

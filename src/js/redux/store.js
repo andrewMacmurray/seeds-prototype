@@ -16,8 +16,8 @@ export const store = createStore(
   reducers,
   initialState,
   applyMiddleware(
-    thunk.withExtraArgument(levelSettings),
-    logger
+    logger,
+    thunk.withExtraArgument(levelSettings)
   )
 )
 
@@ -30,4 +30,4 @@ export const subscribeLocalStorage = () =>
           'currentLevel'
         ], store.getState().level)
       })
-    }, 5000))
+    }, 1000))
