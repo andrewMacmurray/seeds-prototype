@@ -20,7 +20,7 @@ If you'd like to collaborate feel free to leave an [issue](https://github.com/an
 To set up the build locally, clone the repo (or fork it)
 
 ```
-git clone https://github.com/andrewMacmurray/seed.git
+git clone https://github.com/andrewMacmurray/seeds.git
 ```
 
 install the node modules:
