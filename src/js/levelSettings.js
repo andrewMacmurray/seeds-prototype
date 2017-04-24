@@ -14,19 +14,19 @@ module.exports = addLevelNumbers([
         goal: 1000,
         avatars: [ 'sunflower' ],
         trail: { img: '/red/trail-red-11.svg', offset: { x: 0, y: -10.9 }, rotate: 0 },
-        probabilities: p.even
+        probabilities: p.noSun
       }, {
         offset: { x: -1, y: 0 },
         goal: 800,
         avatars: [ 'sunflower' ],
         trail: { img: '/dark/trail-dark-5.svg', offset: { x: 3.4, y: -2.7 }, rotate: 43 },
-        probabilities: p.even
+        probabilities: p.noSun
       }, {
         offset: { x: 0, y: -1 },
         goal: 700,
         avatars: [ 'sunflower' ],
         trail: { img: '/dark/trail-dark-4.svg', offset: { x: -3.2, y: -2.8 }, rotate: -45 },
-        probabilities: p.noRain
+        probabilities: p.noSun
       }, {
         offset: { x: 1, y: -1 },
         goal: 600,

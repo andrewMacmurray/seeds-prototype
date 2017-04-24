@@ -1,57 +1,61 @@
 import React from 'react'
-import Lines from '../Components/Lines.js'
-import Next from '../Components/Next.js'
+import TutorialBoard from '../Components/TutorialBoard.js'
 import TextContainer from '../Components/TextContainer.js'
+import Lines from '../Components/Lines.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
-
 const textContent = [
-  { text: 'You have embarked on a journey',
-    visibleAt: [ 2, 3 ]
+  { text: 'Collect seeds to fill the seed-bank',
+    visibleAt: [ 2 ]
   },
-  { text: 'Across meadows, and mountains',
-    className: 'plus-2-0',
-    visibleAt: [ 3 ]
+  { text: 'Marvellous',
+    visibleAt: [ 3, 4 ]
   },
-  { text: 'To find seeds across our world',
-    className: 'plus-2-0',
-    visibleAt: [ 5, 6, 7 ]
-  },
-  { text: 'And assemble a great seed bank,',
-    className: 'plus-4-0',
+  { text: 'Your first journey awaits',
     visibleAt: [ 6, 7 ]
-  },
-  { text: 'for our new one',
-    className: 'plus-6-0',
-    visibleAt: [ 7 ]
   }
 ]
 
 export const sequence2 = {
   substeps: [
-    { delay: 600, auto },
     { delay, auto },
     { delay },
-    { delay: 600, auto },
-    { delay: 600, auto },
     { delay, auto },
-    { delay },
-    { delay, auto }
-  ]
+    { delay, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay, auto },
+    { delay, auto },
+  ],
+  weather: { action: 'stop', type: 'rain', substep: 1 }
 }
 
-export default (props) => {
-  return (
-    <TextContainer {...props}>
-      <Lines
-        textContent={textContent}
-        sameLine
-        {...props}
-      />
-      <Next
-        visibleAt={[ 1, 2, 3, 4, 5, 6, 7, 8 ]}
-        {...props}
-      />
-    </TextContainer>
-  )
+export default class Step2 extends React.PureComponent {
+
+  componentDidMount () {
+    const { renderStep, checkBoardComplete } = this.props
+    checkBoardComplete({
+      boardType: 'seedBoardComplete',
+      renderStep,
+      completeStep: 2
+    })
+  }
+
+  render () {
+    return (
+      <TextContainer {...this.props}>
+        <Lines
+          textContent={textContent}
+          sameLine
+          {...this.props}
+        />
+        <TutorialBoard
+          seedDirection='top'
+          visibleAt={[ 1, 2, 3, 4, 5, 6, 7 ]}
+          enabledAt={[ 2 ]}
+          {...this.props}
+        />
+      </TextContainer>
+    )
+  }
 }
