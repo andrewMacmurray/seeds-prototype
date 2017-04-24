@@ -1,62 +1,75 @@
 import React from 'react'
 import Lines from '../Components/Lines.js'
-import Next from '../Components/Next.js'
 import TextContainer from '../Components/TextContainer.js'
 import Wrapper from '../Components/Wrapper.js'
 import WeatherShard from '../../Level/WeatherShard.js'
+import TutorialBoard from '../Components/TutorialBoard.js'
+import { all } from '../../../constants/probabilities.js'
 import { auto, delay } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
-  { text: 'This is a weather shard',
-    className: 'plus-3-5',
-    visibleAt: [ 2, 3 ]
-  },
-  { text: 'A fragment from the heavens,\n with power to control weather',
-    className: 'plus-3-5',
-    visibleAt: [ 5 ]
-  },
-  { text: 'This shard lies dormant',
-    className: 'plus-3-5',
-    visibleAt: [ 7, 8 ]
-  },
-  { text: 'Reawaken it with weather spheres',
-    className: 'plus-5-5',
-    visibleAt: [ 8 ]
+  { text: 'The rain will fall for 2 turns',
+    className: 'plus-1-5 white',
+    visibleAt: [ 4 ]
   }
 ]
 
 export const sequence2 = {
   substeps: [
-    { delay: 400, auto },
     { delay, auto },
-    { delay },
-    { delay: 2000, auto },
-    { delay, auto },
+    { delay: 3000 },
+    { delay: 3000, auto },
     { delay: 1500, auto },
-    { delay, auto },
-    { delay }
-  ]
+    { delay, auto }
+  ],
+  board: { size: 4, probabilities: all.rain, substep: 1 },
+  weather: { action: 'threshold', threshold: 24, substep: 1 }
 }
 
-export default (props) => {
-  return (
-    <TextContainer {...props}>
-      <Wrapper
-        visibleAt={[ 1, 2, 3, 4, 5, 6, 7, 8 ]}
-        className='transition-500 minus-2-0-margin'
-        {...props}
-      >
-        <WeatherShard type='rain dormant w50' power={0} threshold={12} />
-      </Wrapper>
-      <Lines
-        textContent={textContent}
-        sameLine
-        {...props}
-      />
-      <Next
-        visibleAt={[ 3, 4, 5, 6, 7, 8 ]}
-        {...props}
-      />
-    </TextContainer>
-  )
+
+export default class Step2 extends React.PureComponent {
+
+  componentDidMount () {
+    const { renderStep, checkBoardComplete } = this.props
+    checkBoardComplete({
+      boardType: 'rainBoardComplete',
+      renderStep,
+      completeStep: 2
+    })
+  }
+
+  render () {
+    const { rainBoardComplete, rain } = this.props
+    const handleAwakenedShard = !rainBoardComplete
+      ? 'dormant'
+      : ''
+
+    return (
+      <TextContainer {...this.props}>
+        <Wrapper
+          visibleAt={[ 2, 3, 4, 5 ]}
+          className='transition-500'
+          {...this.props}
+        >
+          <WeatherShard
+            type={'rain w40 minus-4-0-margin ' + handleAwakenedShard}
+            power={rain}
+            weatherVisible={rainBoardComplete}
+            threshold={this.props.threshold}
+          />
+        </Wrapper>
+        <Lines
+          textContent={textContent}
+          sameLine
+          {...this.props}
+        />
+        <TutorialBoard
+          rainDirection='top'
+          visibleAt={[ 2 ]}
+          enabledAt={[ 2 ]}
+          {...this.props}
+        />
+      </TextContainer>
+    )
+  }
 }

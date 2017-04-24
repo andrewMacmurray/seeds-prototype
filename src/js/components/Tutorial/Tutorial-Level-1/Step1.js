@@ -3,7 +3,7 @@ import TutorialBoard from '../Components/TutorialBoard.js'
 import TextContainer from '../Components/TextContainer.js'
 import Lines from '../Components/Lines.js'
 import { all } from '../../../constants/probabilities.js'
-import { auto, delay } from '../../../constants/tutorialDefaults.js'
+import { auto } from '../../../constants/tutorialDefaults.js'
 
 const textContent = [
   { text: 'Grow seed-pods in the rain',
@@ -13,10 +13,10 @@ const textContent = [
 
 export const sequence1 = {
   substeps: [
-    { delay: 2500, auto },
-    { delay: 1500, auto },
+    { delay: 3000, auto },
+    { delay: 2000, auto },
     { delay: 1000, auto },
-    { delay: 2000 }
+    { delay: 3000 }
   ],
   board: { size: 3, probabilities: all.seedPods, substep: 1 },
   weather: { action: 'start', type: 'rain', substep: 1 }
