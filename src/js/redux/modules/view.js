@@ -1,5 +1,4 @@
-import { createAction } from 'redux-actions'
-import { identity } from 'ramda'
+import { closeMenu } from './menu.js'
 
 // action types
 const SET_VIEW = 'SET_VIEW'
@@ -15,4 +14,10 @@ export default (state = 'title', action) => {
 }
 
 // actions
-export const setView = createAction(SET_VIEW, identity)
+export const setView = (view) => (dispatch) => {
+  dispatch(closeMenu())
+  dispatch({
+    type: SET_VIEW,
+    payload: view
+  })
+}

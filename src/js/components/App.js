@@ -66,6 +66,12 @@ class App extends React.Component {
     window.location.reload()
   }
 
+  handleCloseMenu = () => {
+    if (this.props.menu.open) {
+      this.props.closeMenu()
+    }
+  }
+
   renderMenu (menuVisibility) {
     return (
       <Menu
@@ -112,7 +118,7 @@ class App extends React.Component {
         {this.renderLoadingScreen()}
         {this.renderMenu(menuVisibility)}
         <Audio />
-        <div onClick={this.props.closeMenu}>
+        <div onClick={this.handleCloseMenu}>
           {this.router()}
         </div>
         <RainCurtain

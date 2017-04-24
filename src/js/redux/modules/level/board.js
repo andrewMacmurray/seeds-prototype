@@ -104,7 +104,6 @@ export const growSeedsFromMoves = (moves) => (dispatch, getState) => {
 export const growSeedsOnBoard = () => (dispatch, getState) => {
   const { level } = getState()
   const { board: { tiles }, growingMoves } = level
-
   dispatch({
     type: GROW_SEEDS_ON_BOARD,
     payload: transformTiles(growingMoves, tiles, 4)

@@ -1,32 +1,53 @@
 import React from 'react'
-import Line from '../Components/Line.js'
-import Next from '../Components/Next.js'
+import TutorialBoard from '../Components/TutorialBoard.js'
 import TextContainer from '../Components/TextContainer.js'
-import { auto, delay } from '../../../constants/tutorialDefaults.js'
+import Lines from '../Components/Lines.js'
+import { all } from '../../../constants/probabilities.js'
+import { auto } from '../../../constants/tutorialDefaults.js'
 
-const text1 = 'Welcome traveller'
+const textContent = [
+  { text: 'Grow seed-pods in the rain',
+    visibleAt: [ 3, 4, 5 ]
+  }
+]
 
 export const sequence1 = {
   substeps: [
-    { delay, auto },
-    { delay, auto },
-    { delay }
-  ]
+    { delay: 3000, auto },
+    { delay: 2000, auto },
+    { delay: 1000, auto },
+    { delay: 3000 }
+  ],
+  board: { size: 3, probabilities: all.seedPods, substep: 1 },
+  weather: { action: 'start', type: 'rain', substep: 1 }
 }
 
-export default (props) => {
-  return (
-    <TextContainer {...props} className='justify-center'>
-      <Line
-        visibleAt={[ 2, 3 ]}
-        text={text1}
-        className='minus-1-5-margin'
-        {...props}
-      />
-      <Next
-        visibleAt={[ 3 ]}
-        {...props}
-      />
-    </TextContainer>
-  )
+export default class Step1 extends React.PureComponent {
+
+  componentDidMount () {
+    const { checkBoardComplete, renderStep } = this.props
+    checkBoardComplete({
+      boardType: 'seedPodBoardComplete',
+      renderStep,
+      completeStep: 4
+    })
+  }
+
+  render () {
+    return (
+      <TextContainer {...this.props}>
+        <Lines
+          textContent={textContent}
+          sameLine
+          {...this.props}
+        />
+        <TutorialBoard
+          seedDirection='top'
+          visibleAt={[ 4, 5 ]}
+          enabledAt={[ 4 ]}
+          {...this.props}
+        />
+      </TextContainer>
+    )
+  }
 }
