@@ -1,8 +1,7 @@
 import React from 'react'
 
 export default (props) =>
-  <svg
-    className={props.seedType} x='0' y='0' width='125'
+  <svg className={props.seedType} x='0' y='0' width='125'
     height='194' viewBox='0 0 125 194'
   >
     <path

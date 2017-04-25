@@ -1,16 +1,8 @@
 import React from 'react'
 
 export default (props) =>
-  <svg className={props.seedType}
-    data-x={props['data-x']}
-    data-y={props['data-y']}
-    draggable={false}
-    id={props.id}
-    onClick={props.handleClick}
-    onMouseDown={props.startDrag}
-    onMouseEnter={props.checkTile}
-    x='0' y='0' width='125' height='194'
-    viewBox='0 0 125 194'
+  <svg className={props.seedType} x='0' y='0' width='125'
+    height='194' viewBox='0 0 125 194'
   >
     <path
       className='left' fill='#3A2315'
