@@ -1,6 +1,6 @@
 # Seeds
 
-+ A connect the dots game where the user must gather many seeds.
++ A connect the dots game with seeds.
 + An experiment that asks how can you use a UI framework like React to make games?
 
 ![seed](public/img/seed-collection.png)
