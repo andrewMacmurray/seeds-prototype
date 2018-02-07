@@ -1,5 +1,5 @@
 {
-  "name": "seeds",
+  "name": "seeds-prototype",
   "version": "1.0.0",
   "description": "a connect the dots game build in react",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrewMacmurray/seeds.git"
+    "url": "git+https://github.com/andrewMacmurray/seeds-prototype.git"
   },
   "author": "Andrew MacMurray",
   "license": "Creative Commons",
   "bugs": {
-    "url": "https://github.com/andrewMacmurray/seeds/issues"
+    "url": "https://github.com/andrewMacmurray/seeds-prototype/issues"
   },
-  "homepage": "https://github.com/andrewMacmurray/seeds#readme",
+  "homepage": "https://github.com/andrewMacmurray/seeds-prototype#readme",
   "devDependencies": {
     "babel-cli": "^6.6.5",
     "babel-core": "^6.7.4",
